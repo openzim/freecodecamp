@@ -1,0 +1,43 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# vim: ai ts=4 sts=4 et sw=4 nu
+
+import os
+import sys
+
+from path import Path as path
+
+from fcctozim import VERSION, logger
+
+help = (
+    """Usage: fcc2zim """
+    """[--zim] [--complete] [-m ONE_LANG_ONE_ZIM_FOLDER] """
+    """ staticPath """
+    """
+
+
+This script is used to produce a ZIM file (and any intermediate state)
+of FCC course content from a static directory"""
+)
+
+
+def main(arguments):
+    # TODO: Allow us to package up only a particular cource from a set of course
+    # For now, hardcoded during development
+    DO_ZIM = arguments.get("--zim", False)
+    SOURCE_DIR = arguments.get("--source-dir")
+    ZIM_TITLE = arguments.get("--zim-title", "FCC Course material")
+    ZIM_DESC = arguments.get("--zim-desc", "The FCC course material for TODO")
+
+    if DO_ZIM:
+
+        logger.info("BUILDING ZIM dynamically")
+        build_zimfile(
+            source_dir=SOURCE_DIR
+            title=ZIM_TITLE,
+            description=ZIM_DESC,
+        )
+
+
+if __name__ == "__main__":
+    main(docopt(help, version=VERSION))

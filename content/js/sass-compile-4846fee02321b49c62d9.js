@@ -1,2 +1,0 @@
-(()=>{var t=self;t.crypto||(t.crypto={getRandomValues:function(t){for(var s=0,e=t.length;s<e;s++)t[s]=Math.floor(256*Math.random());return t}}),t.importScripts("/js/sass.sync.js"),t.onmessage=function(s){var e=s.data;t.Sass.compile(e,(function(s){0===s.status?t.postMessage(s.text):t.postMessage({type:"error",data:{message:s.formatted}})}))},t.postMessage({type:"contentLoaded"})})();
-//# sourceMappingURL=sass-compile-4846fee02321b49c62d9.js.map

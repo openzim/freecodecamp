@@ -1,0 +1,252 @@
+{
+  "data-visualization": {
+    "intro": [
+      "Data is all around us, but it doesn't mean much without shape or context.",
+      "In the Data Visualization Certification, you'll build charts, graphs, and maps to present different types of data with the D3.js library.",
+      "You'll also learn about JSON (JavaScript Object Notation), and how to work with data online using an API (Application Programming Interface)."
+    ],
+    "blocks": {
+      "data-visualization-projects": {
+        "desc": [
+          "Now that you learned how to work with D3, APIs, and AJAX technologies, put your skills to the test with these 5 Data Visualization projects.",
+          "In these projects, you'll need to fetch data and parse a dataset, then use D3 to create different data visualizations. Finish them all to earn your Data Visualization certification."
+        ],
+        "challenges": {
+          "name": "Data Visualization Projects",
+          "isUpcomingChange": false,
+          "dashedName": "data-visualization-projects",
+          "order": 2,
+          "time": "150 hours",
+          "template": "",
+          "required": [],
+          "superBlock": "data-visualization",
+          "challengeOrder": [
+            [
+              "bd7168d8c242eddfaeb5bd13",
+              "Visualize Data with a Bar Chart"
+            ],
+            [
+              "bd7178d8c242eddfaeb5bd13",
+              "Visualize Data with a Scatterplot Graph"
+            ],
+            [
+              "bd7188d8c242eddfaeb5bd13",
+              "Visualize Data with a Heat Map"
+            ],
+            [
+              "587d7fa6367417b2b2512bbf",
+              "Visualize Data with a Choropleth Map"
+            ],
+            [
+              "587d7fa6367417b2b2512bc0",
+              "Visualize Data with a Treemap Diagram"
+            ]
+          ]
+        }
+      },
+      "data-visualization-with-d3": {
+        "desc": [
+          "D3, or D3.js, stands for Data Driven Documents. It's a JavaScript library for creating dynamic and interactive data visualizations in the browser.",
+          "D3 is built to work with common web standards – namely HTML, CSS, and Scalable Vector Graphics (SVG).",
+          "D3 supports many different kinds of input data formats. Then, using its powerful built-in methods, you can transform those data into different charts, graphs, and maps.",
+          "In the Data Visualization with D3 courses, you'll learn how to work with data to create different charts, graphs, hover elements, and other ingredients to create dynamic and attractive data visualizations."
+        ],
+        "challenges": {
+          "name": "Data Visualization with D3",
+          "isUpcomingChange": false,
+          "dashedName": "data-visualization-with-d3",
+          "order": 0,
+          "time": "5 hours",
+          "template": "",
+          "required": [
+            {
+              "src": "https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"
+            }
+          ],
+          "superBlock": "data-visualization",
+          "challengeOrder": [
+            [
+              "587d7fa6367417b2b2512bc2",
+              "Add Document Elements with D3"
+            ],
+            [
+              "587d7fa6367417b2b2512bc3",
+              "Select a Group of Elements with D3"
+            ],
+            [
+              "587d7fa7367417b2b2512bc4",
+              "Work with Data in D3"
+            ],
+            [
+              "587d7fa7367417b2b2512bc5",
+              "Work with Dynamic Data in D3"
+            ],
+            [
+              "587d7fa7367417b2b2512bc6",
+              "Add Inline Styling to Elements"
+            ],
+            [
+              "587d7fa7367417b2b2512bc7",
+              "Change Styles Based on Data"
+            ],
+            [
+              "587d7fa7367417b2b2512bc8",
+              "Add Classes with D3"
+            ],
+            [
+              "587d7fa8367417b2b2512bc9",
+              "Update the Height of an Element Dynamically"
+            ],
+            [
+              "587d7fa8367417b2b2512bca",
+              "Change the Presentation of a Bar Chart"
+            ],
+            [
+              "587d7fa8367417b2b2512bcb",
+              "Learn About SVG in D3"
+            ],
+            [
+              "587d7fa8367417b2b2512bcc",
+              "Display Shapes with SVG"
+            ],
+            [
+              "587d7fa8367417b2b2512bcd",
+              "Create a Bar for Each Data Point in the Set"
+            ],
+            [
+              "587d7fa9367417b2b2512bce",
+              "Dynamically Set the Coordinates for Each Bar"
+            ],
+            [
+              "587d7fa9367417b2b2512bcf",
+              "Dynamically Change the Height of Each Bar"
+            ],
+            [
+              "587d7fa9367417b2b2512bd0",
+              "Invert SVG Elements"
+            ],
+            [
+              "587d7fa9367417b2b2512bd1",
+              "Change the Color of an SVG Element"
+            ],
+            [
+              "587d7faa367417b2b2512bd2",
+              "Add Labels to D3 Elements"
+            ],
+            [
+              "587d7faa367417b2b2512bd3",
+              "Style D3 Labels"
+            ],
+            [
+              "587d7faa367417b2b2512bd4",
+              "Add a Hover Effect to a D3 Element"
+            ],
+            [
+              "587d7faa367417b2b2512bd6",
+              "Add a Tooltip to a D3 Element"
+            ],
+            [
+              "587d7fab367417b2b2512bd7",
+              "Create a Scatterplot with SVG Circles"
+            ],
+            [
+              "587d7fab367417b2b2512bd8",
+              "Add Attributes to the Circle Elements"
+            ],
+            [
+              "587d7fab367417b2b2512bd9",
+              "Add Labels to Scatter Plot Circles"
+            ],
+            [
+              "587d7fab367417b2b2512bda",
+              "Create a Linear Scale with D3"
+            ],
+            [
+              "587d7fac367417b2b2512bdb",
+              "Set a Domain and a Range on a Scale"
+            ],
+            [
+              "587d7fac367417b2b2512bdc",
+              "Use the d3.max and d3.min Functions to Find Minimum and Maximum Values in a Dataset"
+            ],
+            [
+              "587d7fac367417b2b2512bdd",
+              "Use Dynamic Scales"
+            ],
+            [
+              "587d7fac367417b2b2512bde",
+              "Use a Pre-Defined Scale to Place Elements"
+            ],
+            [
+              "587d7fad367417b2b2512bdf",
+              "Add Axes to a Visualization"
+            ]
+          ]
+        }
+      },
+      "json-apis-and-ajax": {
+        "desc": [
+          "Similar to how UIs help people use programs, APIs (Application Programming Interfaces) help programs interact with other programs. APIs are tools that computers use to communicate with one another, in part to send and receive data.",
+          "Programmers often use AJAX (Asynchronous JavaScript and XML) when working with APIs. AJAX refers to a group of technologies that make asynchronous requests to a server to transfer data, then load any returned data into the page. And the data transferred between the browser and server is often in a format called JSON (JavaScript Object Notation).",
+          "This course will teach you the basics about working with APIs and different AJAX technologies in the browser."
+        ],
+        "challenges": {
+          "name": "JSON APIs and AJAX",
+          "isUpcomingChange": false,
+          "dashedName": "json-apis-and-ajax",
+          "order": 1,
+          "time": "2 hours",
+          "template": "",
+          "required": [
+            {
+              "link": "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css"
+            }
+          ],
+          "superBlock": "data-visualization",
+          "challengeOrder": [
+            [
+              "587d7fad367417b2b2512be1",
+              "Handle Click Events with JavaScript using the onclick property"
+            ],
+            [
+              "587d7fad367417b2b2512be2",
+              "Change Text with click Events"
+            ],
+            [
+              "587d7fae367417b2b2512be3",
+              "Get JSON with the JavaScript XMLHttpRequest Method"
+            ],
+            [
+              "5ccfad82bb2dc6c965a848e5",
+              "Get JSON with the JavaScript fetch method"
+            ],
+            [
+              "587d7fae367417b2b2512be4",
+              "Access the JSON Data from an API"
+            ],
+            [
+              "587d7fae367417b2b2512be5",
+              "Convert JSON Data to HTML"
+            ],
+            [
+              "587d7fae367417b2b2512be6",
+              "Render Images from Data Sources"
+            ],
+            [
+              "587d7fae367417b2b2512be7",
+              "Pre-filter JSON to Get the Data You Need"
+            ],
+            [
+              "587d7faf367417b2b2512be8",
+              "Get Geolocation Data to Find A User's GPS Coordinates"
+            ],
+            [
+              "587d7faf367417b2b2512be9",
+              "Post Data with the JavaScript XMLHttpRequest Method"
+            ]
+          ]
+        }
+      }
+    }
+  }
+}

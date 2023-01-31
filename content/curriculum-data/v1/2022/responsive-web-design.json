@@ -1,0 +1,4564 @@
+{
+  "2022/responsive-web-design": {
+    "intro": [
+      "In this Responsive Web Design Certification, you'll learn the languages that developers use to build webpages: HTML (Hypertext Markup Language) for content, and CSS (Cascading Style Sheets) for design.",
+      "First, you'll build a cat photo app to learn the basics of HTML and CSS. Later, you'll learn modern techniques like CSS variables by building a penguin, and best practices for accessibility by building a quiz site.",
+      "Finally, you'll learn how to make webpages that respond to different screen sizes by building a photo gallery with Flexbox, and a magazine article layout with CSS Grid."
+    ],
+    "blocks": {
+      "build-a-personal-portfolio-webpage-project": {
+        "desc": [
+          "This is one of the required projects to earn your certification.",
+          "For this project, you will build your own personal portfolio page."
+        ],
+        "challenges": {
+          "name": "Build a Personal Portfolio Webpage Project",
+          "isUpcomingChange": false,
+          "usesMultifileEditor": true,
+          "order": 19,
+          "time": "30 hours",
+          "template": "",
+          "required": [],
+          "superBlock": "2022/responsive-web-design",
+          "challengeOrder": [
+            [
+              "bd7158d8c242eddfaeb5bd13",
+              "Build a Personal Portfolio Webpage"
+            ]
+          ]
+        }
+      },
+      "build-a-product-landing-page-project": {
+        "desc": [
+          "This is one of the required projects to earn your certification.",
+          "For this project, you will build a product landing page to market a product of your choice."
+        ],
+        "challenges": {
+          "name": "Build a Product Landing Page Project",
+          "isUpcomingChange": false,
+          "usesMultifileEditor": true,
+          "order": 16,
+          "time": "30 hours",
+          "template": "",
+          "required": [],
+          "superBlock": "2022/responsive-web-design",
+          "challengeOrder": [
+            [
+              "587d78af367417b2b2512b04",
+              "Build a Product Landing Page"
+            ]
+          ]
+        }
+      },
+      "build-a-survey-form-project": {
+        "desc": [
+          "This is one of the required projects to earn your certification.",
+          "For this project, you will build a survey form to collect data from your users."
+        ],
+        "challenges": {
+          "name": "Build a Survey Form Project",
+          "isUpcomingChange": false,
+          "usesMultifileEditor": true,
+          "order": 4,
+          "time": "30 hours",
+          "template": "",
+          "required": [],
+          "superBlock": "2022/responsive-web-design",
+          "challengeOrder": [
+            [
+              "587d78af367417b2b2512b03",
+              "Build a Survey Form"
+            ]
+          ]
+        }
+      },
+      "build-a-technical-documentation-page-project": {
+        "desc": [
+          "This is one of the required projects to earn your certification.",
+          "For this project, you will build a technical documentation page to serve as instruction or reference for a topic."
+        ],
+        "challenges": {
+          "name": "Build a Technical Documentation Page Project",
+          "isUpcomingChange": false,
+          "usesMultifileEditor": true,
+          "order": 13,
+          "time": "30 hours",
+          "template": "",
+          "required": [],
+          "superBlock": "2022/responsive-web-design",
+          "challengeOrder": [
+            [
+              "587d78b0367417b2b2512b05",
+              "Build a Technical Documentation Page"
+            ]
+          ]
+        }
+      },
+      "build-a-tribute-page-project": {
+        "desc": [
+          "This is one of the required projects to earn your certification.",
+          "For this project, you will build a tribute page for a subject of your choosing, fictional or real."
+        ],
+        "challenges": {
+          "name": "Build a Tribute Page Project",
+          "isUpcomingChange": false,
+          "usesMultifileEditor": true,
+          "order": 9,
+          "time": "30 hours",
+          "template": "",
+          "required": [],
+          "superBlock": "2022/responsive-web-design",
+          "challengeOrder": [
+            [
+              "bd7158d8c442eddfaeb5bd18",
+              "Build a Tribute Page"
+            ]
+          ]
+        }
+      },
+      "learn-accessibility-by-building-a-quiz": {
+        "desc": [
+          "Accessibility is making your webpage easy for all people to use – even people with disabilities.",
+          "In this course, you'll build a quiz webpage. You'll learn accessibility tools such as keyboard shortcuts, ARIA attributes, and design best practices."
+        ],
+        "challenges": {
+          "name": "Learn Accessibility by Building a Quiz",
+          "isUpcomingChange": false,
+          "usesMultifileEditor": true,
+          "hasEditableBoundaries": true,
+          "dashedName": "learn-accessibility-by-building-a-quiz",
+          "order": 8,
+          "time": "5 hours",
+          "template": "",
+          "required": [],
+          "superBlock": "2022/responsive-web-design",
+          "challengeOrder": [
+            [
+              "614ccc21ea91ef1736b9b578",
+              "Step 1"
+            ],
+            [
+              "613297a923965e0703b64796",
+              "Step 2"
+            ],
+            [
+              "61329b210dac0b08047fd6ab",
+              "Step 3"
+            ],
+            [
+              "61329d52e5010e08d9b9d66b",
+              "Step 4"
+            ],
+            [
+              "6133acc353338c0bba9cb553",
+              "Step 5"
+            ],
+            [
+              "6133d11ef548f51f876149e3",
+              "Step 6"
+            ],
+            [
+              "613e2546d0594208229ada50",
+              "Step 7"
+            ],
+            [
+              "613e275749ebd008e74bb62e",
+              "Step 8"
+            ],
+            [
+              "6140827cff96e906bd38fc2b",
+              "Step 9"
+            ],
+            [
+              "6140883f74224508174794c0",
+              "Step 10"
+            ],
+            [
+              "61408e4ae3e35d08feb260eb",
+              "Step 11"
+            ],
+            [
+              "61408f155e798909b6908712",
+              "Step 12"
+            ],
+            [
+              "614090d5a22b6f0a5a6b464c",
+              "Step 13"
+            ],
+            [
+              "6141fabd6f75610664e908fd",
+              "Step 14"
+            ],
+            [
+              "6141fed65b61320743da5894",
+              "Step 15"
+            ],
+            [
+              "614202874ca576084fca625f",
+              "Step 16"
+            ],
+            [
+              "614206033d366c090ca7dd42",
+              "Step 17"
+            ],
+            [
+              "61435e3c0679a306c20f1acc",
+              "Step 18"
+            ],
+            [
+              "6143610161323a081b249c19",
+              "Step 19"
+            ],
+            [
+              "6143639d5eddc7094161648c",
+              "Step 20"
+            ],
+            [
+              "6143908b6aafb00a659ca189",
+              "Step 21"
+            ],
+            [
+              "6143920c8eafb00b735746ce",
+              "Step 22"
+            ],
+            [
+              "6143931a113bb80c45546287",
+              "Step 23"
+            ],
+            [
+              "614394fb41985e0d2012a93e",
+              "Step 24"
+            ],
+            [
+              "6143956ed76ed60e012faa51",
+              "Step 25"
+            ],
+            [
+              "614396f7ae83f20ea6f9f4b3",
+              "Step 26"
+            ],
+            [
+              "6143cb26f7edff2dc28f7da5",
+              "Step 27"
+            ],
+            [
+              "6144e818fd5ea704fe56081d",
+              "Step 28"
+            ],
+            [
+              "6144f8dc6849e405dd8bb829",
+              "Step 29"
+            ],
+            [
+              "6145e6eeaa66c605eb087fe9",
+              "Step 30"
+            ],
+            [
+              "6351e7a8684bf5377c4ee7f7",
+              "Step 31"
+            ],
+            [
+              "6145e8b5080a5f06bb0223d0",
+              "Step 32"
+            ],
+            [
+              "6145eb5f08a38a0786c7a80c",
+              "Step 33"
+            ],
+            [
+              "6145ed1f22caab087630aaad",
+              "Step 34"
+            ],
+            [
+              "6145ee65e2e1530938cb594d",
+              "Step 35"
+            ],
+            [
+              "6145f02240ff8f09f7ec913c",
+              "Step 36"
+            ],
+            [
+              "6145f14f019a4b0adb94b051",
+              "Step 37"
+            ],
+            [
+              "6145f3a5cd9be60b9459cdd6",
+              "Step 38"
+            ],
+            [
+              "6145f47393fbe70c4d885f9c",
+              "Step 39"
+            ],
+            [
+              "6145f59029474c0d3dc1c8b8",
+              "Step 40"
+            ],
+            [
+              "6145f685797bd30df9784e8c",
+              "Step 41"
+            ],
+            [
+              "6145f829ac6a920ebf5797d7",
+              "Step 42"
+            ],
+            [
+              "6145f8f8bcd4370f6509078e",
+              "Step 43"
+            ],
+            [
+              "6145fb5018cb5b100cb2a88c",
+              "Step 44"
+            ],
+            [
+              "6145fc3707fc3310c277f5c8",
+              "Step 45"
+            ],
+            [
+              "614796cb8086be482d60e0ac",
+              "Step 46"
+            ],
+            [
+              "6147a14ef5668b5881ef2297",
+              "Step 47"
+            ],
+            [
+              "614878f7a412310647873015",
+              "Step 48"
+            ],
+            [
+              "61487b77d4a37707073a64e5",
+              "Step 49"
+            ],
+            [
+              "61487da611a65307e78d2c20",
+              "Step 50"
+            ],
+            [
+              "61487f703571b60899055cf9",
+              "Step 51"
+            ],
+            [
+              "614880dc16070e093e29bc56",
+              "Step 52"
+            ],
+            [
+              "614883b6fa720e09fb167de9",
+              "Step 53"
+            ],
+            [
+              "614884c1f5d6f30ab3d78cde",
+              "Step 54"
+            ],
+            [
+              "61488ecfd05e290b5712e6da",
+              "Step 55"
+            ],
+            [
+              "6148d99cdc7acd0c519862cb",
+              "Step 56"
+            ],
+            [
+              "6148da157cc0bd0d06df5c0a",
+              "Step 57"
+            ],
+            [
+              "6148dc095264000dce348bf5",
+              "Step 58"
+            ],
+            [
+              "6148dcaaf2e8750e6cb4501a",
+              "Step 59"
+            ],
+            [
+              "6148dd31d210990f0fb140f8",
+              "Step 60"
+            ],
+            [
+              "6148defa9c01520fb9d178a0",
+              "Step 61"
+            ],
+            [
+              "6148dfab9b54c110577de165",
+              "Step 62"
+            ],
+            [
+              "6148e0bcc13efd10f7d7a6a9",
+              "Step 63"
+            ],
+            [
+              "6148e161ecec9511941f8833",
+              "Step 64"
+            ],
+            [
+              "6148e28706b34912340fd042",
+              "Step 65"
+            ],
+            [
+              "6148e335c1edd512d00e4691",
+              "Step 66"
+            ],
+            [
+              "6148e41c728f65138addf9cc",
+              "Step 67"
+            ],
+            [
+              "6148e5aeb102e3142de026a2",
+              "Step 68"
+            ]
+          ]
+        }
+      },
+      "learn-basic-css-by-building-a-cafe-menu": {
+        "desc": [
+          "CSS tells the browser how to display your webpage. You can use CSS to set the color, font, size, and other aspects of HTML elements.",
+          "In this course, you'll learn CSS by designing a menu page for a cafe webpage."
+        ],
+        "challenges": {
+          "name": "Learn Basic CSS by Building a Cafe Menu",
+          "isUpcomingChange": false,
+          "usesMultifileEditor": true,
+          "hasEditableBoundaries": true,
+          "dashedName": "learn-basic-css-by-building-a-cafe-menu",
+          "order": 1,
+          "time": "5 hours",
+          "template": "",
+          "required": [],
+          "superBlock": "2022/responsive-web-design",
+          "challengeOrder": [
+            [
+              "5f33071498eb2472b87ddee4",
+              "Step 1"
+            ],
+            [
+              "5f3313e74582ad9d063e3a38",
+              "Step 2"
+            ],
+            [
+              "5f331e55dfab7a896e53c3a1",
+              "Step 3"
+            ],
+            [
+              "5f3326b143638ee1a09ff1e3",
+              "Step 4"
+            ],
+            [
+              "5f33294a6af5e9188dbdb8f3",
+              "Step 5"
+            ],
+            [
+              "5f332a88dc25a0fd25c7687a",
+              "Step 6"
+            ],
+            [
+              "5f332b23c2045fb843337579",
+              "Step 7"
+            ],
+            [
+              "5f344fc1520b6719f2e35605",
+              "Step 8"
+            ],
+            [
+              "5f344fbc22624a2976425065",
+              "Step 9"
+            ],
+            [
+              "5f344fad8bf01691e71a30eb",
+              "Step 10"
+            ],
+            [
+              "5f344f9c805cd193c33d829c",
+              "Step 11"
+            ],
+            [
+              "5f3477ae9675db8bb7655b30",
+              "Step 12"
+            ],
+            [
+              "5f3477ae34c1239cafe128be",
+              "Step 13"
+            ],
+            [
+              "5f3477aefa51bfc29327200b",
+              "Step 14"
+            ],
+            [
+              "5f3477ae8466a9a3d2cc953c",
+              "Step 15"
+            ],
+            [
+              "5f3477cb2e27333b1ab2b955",
+              "Step 16"
+            ],
+            [
+              "5f3477cbcb6ba47918c1da92",
+              "Step 17"
+            ],
+            [
+              "5f3477cb303c5cb61b43aa9b",
+              "Step 18"
+            ],
+            [
+              "5f34a1fd611d003edeafd681",
+              "Step 19"
+            ],
+            [
+              "5f356ed6cf6eab5f15f5cfe6",
+              "Step 20"
+            ],
+            [
+              "5f356ed63c7807a4f1e6d054",
+              "Step 21"
+            ],
+            [
+              "5f356ed60a5decd94ab66986",
+              "Step 22"
+            ],
+            [
+              "5f356ed63e0fa262326eef05",
+              "Step 23"
+            ],
+            [
+              "5f356ed60785e1f3e9850b6e",
+              "Step 24"
+            ],
+            [
+              "5f356ed656a336993abd9f7c",
+              "Step 25"
+            ],
+            [
+              "5f356ed6199b0cdef1d2be8f",
+              "Step 26"
+            ],
+            [
+              "5f356ed69db0a491745e2bb6",
+              "Step 27"
+            ],
+            [
+              "5f35e5c44359872a137bd98f",
+              "Step 28"
+            ],
+            [
+              "5f35e5c4321f818cdc4bed30",
+              "Step 29"
+            ],
+            [
+              "5f3c866daec9a49519871816",
+              "Step 30"
+            ],
+            [
+              "5f3c866d5414453fc2d7b480",
+              "Step 31"
+            ],
+            [
+              "5f3c866d28d7ad0de6470505",
+              "Step 32"
+            ],
+            [
+              "5f769541be494f25449b292f",
+              "Step 33"
+            ],
+            [
+              "5f76967fad478126d6552b0d",
+              "Step 34"
+            ],
+            [
+              "5f769702e6e33127d14aa120",
+              "Step 35"
+            ],
+            [
+              "5f3c866de7a5b784048f94b1",
+              "Step 36"
+            ],
+            [
+              "5f3c866dbf362f99b9a0c6d0",
+              "Step 37"
+            ],
+            [
+              "5f3c866d0fc037f7311b4ac8",
+              "Step 38"
+            ],
+            [
+              "5f3c866dd0d0275f01d4d847",
+              "Step 39"
+            ],
+            [
+              "5f3cade9fa77275d9f4efe62",
+              "Step 40"
+            ],
+            [
+              "5f3cade94c6576e7f7b7953f",
+              "Step 41"
+            ],
+            [
+              "5f3cade9993019e26313fa8e",
+              "Step 42"
+            ],
+            [
+              "5f7691dafd882520797cd2f0",
+              "Step 43"
+            ],
+            [
+              "5f7692f7c5b3ce22a57788b6",
+              "Step 44"
+            ],
+            [
+              "5f47633757ae3469f2d33d2e",
+              "Step 45"
+            ],
+            [
+              "5f3cade99dda4e6071a85dfd",
+              "Step 46"
+            ],
+            [
+              "5f3ef6e0e0c3feaebcf647ad",
+              "Step 47"
+            ],
+            [
+              "5f3ef6e0819d4f23ca7285e6",
+              "Step 48"
+            ],
+            [
+              "5f716ad029ee4053c7027a7a",
+              "Step 49"
+            ],
+            [
+              "5f7b87422a560036fd03ccff",
+              "Step 50"
+            ],
+            [
+              "5f7b88d37b1f98386f04edc0",
+              "Step 51"
+            ],
+            [
+              "5f716bee5838c354c728a7c5",
+              "Step 52"
+            ],
+            [
+              "5f3ef6e0eaa7da26e3d34d78",
+              "Step 53"
+            ],
+            [
+              "5f3ef6e050279c7a4a7101d3",
+              "Step 54"
+            ],
+            [
+              "5f3ef6e04559b939080db057",
+              "Step 55"
+            ],
+            [
+              "5f3ef6e03d719d5ac4738993",
+              "Step 56"
+            ],
+            [
+              "5f3ef6e05473f91f948724ab",
+              "Step 57"
+            ],
+            [
+              "5f3ef6e056bdde6ae6892ba2",
+              "Step 58"
+            ],
+            [
+              "5f3ef6e0e9629bad967cd71e",
+              "Step 59"
+            ],
+            [
+              "5f3ef6e06d34faac0447fc44",
+              "Step 60"
+            ],
+            [
+              "5f3ef6e087d56ed3ffdc36be",
+              "Step 61"
+            ],
+            [
+              "5f3ef6e0f8c230bdd2349716",
+              "Step 62"
+            ],
+            [
+              "5f3ef6e07276f782bb46b93d",
+              "Step 63"
+            ],
+            [
+              "5f3ef6e0a81099d9a697b550",
+              "Step 64"
+            ],
+            [
+              "5f3ef6e0b431cc215bb16f55",
+              "Step 65"
+            ],
+            [
+              "5f3ef6e01f288a026d709587",
+              "Step 66"
+            ],
+            [
+              "5f3f26fa39591db45e5cd7a0",
+              "Step 67"
+            ],
+            [
+              "5f459225127805351a6ad057",
+              "Step 68"
+            ],
+            [
+              "5f459a7ceb8b5c446656d88b",
+              "Step 69"
+            ],
+            [
+              "5f459cf202c2a3472fae6a9f",
+              "Step 70"
+            ],
+            [
+              "5f459fd48bdc98491ca6d1a3",
+              "Step 71"
+            ],
+            [
+              "5f45a05977e2fa49d9119437",
+              "Step 72"
+            ],
+            [
+              "5f45a276c093334f0f6e9df4",
+              "Step 73"
+            ],
+            [
+              "5f45a5a7c49a8251f0bdb527",
+              "Step 74"
+            ],
+            [
+              "5f46fc57528aa1c4b5ea7c2e",
+              "Step 75"
+            ],
+            [
+              "5f4701b942c824109626c3d8",
+              "Step 76"
+            ],
+            [
+              "5f46ede1ff8fec5ba656b44c",
+              "Step 77"
+            ],
+            [
+              "5f45a66d4a2b0453301e5a26",
+              "Step 78"
+            ],
+            [
+              "5f45b0731d39e15d54df4dfc",
+              "Step 79"
+            ],
+            [
+              "5f45b25e7ec2405f166b9de1",
+              "Step 80"
+            ],
+            [
+              "5f45b3c93c027860d9298dbd",
+              "Step 81"
+            ],
+            [
+              "5f45b45d099f3e621fbbb256",
+              "Step 82"
+            ],
+            [
+              "5f45b4c81cea7763550e40df",
+              "Step 83"
+            ],
+            [
+              "5f45b715301bbf667badc04a",
+              "Step 84"
+            ],
+            [
+              "5f46e270702a8456a664f0df",
+              "Step 85"
+            ],
+            [
+              "5f46e36e745ead58487aabf2",
+              "Step 86"
+            ],
+            [
+              "5f46e7a4750dd05b5a673920",
+              "Step 87"
+            ],
+            [
+              "5f46e8284aae155c83015dee",
+              "Step 88"
+            ],
+            [
+              "5f475bb508746c16c9431d42",
+              "Step 89"
+            ],
+            [
+              "5f475e1c7f71a61d913836c6",
+              "Step 90"
+            ],
+            [
+              "5f47fe7e31980053a8d4403b",
+              "Step 91"
+            ]
+          ]
+        }
+      },
+      "learn-css-animation-by-building-a-ferris-wheel": {
+        "desc": [
+          "You can use CSS animation to draw attention to specific sections of your webpage and make it more engaging.",
+          "In this course, you'll build a Ferris wheel. You'll learn how to use CSS to animate elements, transform them, and adjust their speed."
+        ],
+        "challenges": {
+          "name": "Learn CSS Animation by Building a Ferris Wheel",
+          "isUpcomingChange": false,
+          "usesMultifileEditor": true,
+          "hasEditableBoundaries": true,
+          "dashedName": "learn-css-animation-by-building-a-ferris-wheel",
+          "order": 17,
+          "time": "5 hours",
+          "template": "",
+          "required": [],
+          "superBlock": "2022/responsive-web-design",
+          "challengeOrder": [
+            [
+              "6140c7e645d8e905819f1dd4",
+              "Step 1"
+            ],
+            [
+              "6140c9d35015ae0ba0c250e8",
+              "Step 2"
+            ],
+            [
+              "6140cbeec34e970dfe75e710",
+              "Step 3"
+            ],
+            [
+              "6140cd32d018ed0f600eefce",
+              "Step 4"
+            ],
+            [
+              "617ace7d831f9c16a569b38a",
+              "Step 5"
+            ],
+            [
+              "6140cdebd39d6a101e747529",
+              "Step 6"
+            ],
+            [
+              "6140cfc08ca9c5128c3e6478",
+              "Step 7"
+            ],
+            [
+              "6140d0069049f5139d78da40",
+              "Step 8"
+            ],
+            [
+              "6140d10d50636e14695013b2",
+              "Step 9"
+            ],
+            [
+              "6140d1a351e88f159ed54fca",
+              "Step 10"
+            ],
+            [
+              "6140d263016325162fd076fe",
+              "Step 11"
+            ],
+            [
+              "6140d2b687a2cd17bac5730c",
+              "Step 12"
+            ],
+            [
+              "6140d36b8b747718b50d4b7a",
+              "Step 13"
+            ],
+            [
+              "6140d3dc359b371b1a21d783",
+              "Step 14"
+            ],
+            [
+              "6140d4bc9db3c81c51a09ab7",
+              "Step 15"
+            ],
+            [
+              "6140d94b5fab7f1d73c9bedb",
+              "Step 16"
+            ],
+            [
+              "6140dc5e13d0c81e7496f182",
+              "Step 17"
+            ],
+            [
+              "6140dd77e0bc5a1f70bd7466",
+              "Step 18"
+            ],
+            [
+              "6140de31b1f5b420410728ff",
+              "Step 19"
+            ],
+            [
+              "6140df547f09402144e40b92",
+              "Step 20"
+            ],
+            [
+              "6140e0d875ec16262f26432b",
+              "Step 21"
+            ],
+            [
+              "6140f4b5c1555a2960de1e5f",
+              "Step 22"
+            ],
+            [
+              "614100d7d335bb2a5ff74f1f",
+              "Step 23"
+            ],
+            [
+              "61410126fa3a6d2b3cda502e",
+              "Step 24"
+            ],
+            [
+              "6141019eadec6d2c6c6f007b",
+              "Step 25"
+            ],
+            [
+              "6141026ec9882f2d39dcf2b8",
+              "Step 26"
+            ],
+            [
+              "6169ab1aaeb4cd1174def700",
+              "Step 27"
+            ],
+            [
+              "6169b1357fcb701bb5efc619",
+              "Step 28"
+            ],
+            [
+              "6169b284950e171d8d0bb16a",
+              "Step 29"
+            ]
+          ]
+        }
+      },
+      "learn-css-colors-by-building-a-set-of-colored-markers": {
+        "desc": [
+          "Selecting the correct colors for your webpage can greatly improve the aesthetic appeal to your readers.",
+          "In this course, you'll build a set of colored markers. You'll learn different ways to set color values and how to pair colors with each other."
+        ],
+        "challenges": {
+          "name": "Learn CSS Colors by Building a Set of Colored Markers",
+          "isUpcomingChange": false,
+          "usesMultifileEditor": true,
+          "hasEditableBoundaries": true,
+          "dashedName": "learn-css-colors-by-building-a-set-of-colored-markers",
+          "order": 2,
+          "time": "5 hours",
+          "template": "",
+          "required": [],
+          "superBlock": "2022/responsive-web-design",
+          "challengeOrder": [
+            [
+              "61695197ac34f0407e339882",
+              "Step 1"
+            ],
+            [
+              "61695ab9f6ffe951c16d03dd",
+              "Step 2"
+            ],
+            [
+              "61695c4aad56f95497c19583",
+              "Step 3"
+            ],
+            [
+              "61695d1fbc003856628bf561",
+              "Step 4"
+            ],
+            [
+              "616965351e74d4689eb6de30",
+              "Step 5"
+            ],
+            [
+              "616968c2c94c8071b349c146",
+              "Step 6"
+            ],
+            [
+              "61696ef7ac756c829f9e4048",
+              "Step 7"
+            ],
+            [
+              "616971b3cd990186b66c99a1",
+              "Step 8"
+            ],
+            [
+              "616d3a67ccf800ad94ec89ae",
+              "Step 9"
+            ],
+            [
+              "616d47bc9eedc4bc7f621bec",
+              "Step 10"
+            ],
+            [
+              "616d4a84b756d9c4b8255093",
+              "Step 11"
+            ],
+            [
+              "616d50b93ba424d6282c99cf",
+              "Step 12"
+            ],
+            [
+              "616d525007b8c5d8b3308b1c",
+              "Step 13"
+            ],
+            [
+              "616d55bd160a95e22453a081",
+              "Step 14"
+            ],
+            [
+              "616d595270d902f0e7086e18",
+              "Step 15"
+            ],
+            [
+              "61764c602bee6974e7790f35",
+              "Step 16"
+            ],
+            [
+              "61764f23ea21477b76f3b80f",
+              "Step 17"
+            ],
+            [
+              "61764f7e5240eb7ccc7f6a0a",
+              "Step 18"
+            ],
+            [
+              "61764fdda535587e1fefb3aa",
+              "Step 19"
+            ],
+            [
+              "6176519636a76b810ab1219a",
+              "Step 20"
+            ],
+            [
+              "617b65579ce424bf5f02ca73",
+              "Step 21"
+            ],
+            [
+              "617b8b38f32bf2080a140675",
+              "Step 22"
+            ],
+            [
+              "617b8e0d93a8d10d9a90e720",
+              "Step 23"
+            ],
+            [
+              "617b92b9de349513466f6156",
+              "Step 24"
+            ],
+            [
+              "617b954d9f4f6217a749380e",
+              "Step 25"
+            ],
+            [
+              "617b97abd9f3f61d1590b815",
+              "Step 26"
+            ],
+            [
+              "617b9ad735109e217284e095",
+              "Step 27"
+            ],
+            [
+              "617bb5624a75e86463b7e638",
+              "Step 28"
+            ],
+            [
+              "617bb77353188166af43f3ac",
+              "Step 29"
+            ],
+            [
+              "617bb9fdef27bc6aa0470ac2",
+              "Step 30"
+            ],
+            [
+              "617bbb6b97a83f6d1f7d6e38",
+              "Step 31"
+            ],
+            [
+              "617bc3386dc7d07d6469bf20",
+              "Step 32"
+            ],
+            [
+              "617bc4824e233180553a8069",
+              "Step 33"
+            ],
+            [
+              "617bd6ec666b1da2587e4e37",
+              "Step 34"
+            ],
+            [
+              "618a00ed1ca871a2b3aca0cb",
+              "Step 35"
+            ],
+            [
+              "618a0927005553b74bfa05ae",
+              "Step 36"
+            ],
+            [
+              "618a0b2befb143baefab632b",
+              "Step 37"
+            ],
+            [
+              "618a1275e873dcc803c2d1aa",
+              "Step 38"
+            ],
+            [
+              "618a132676346ac9f7fd59dd",
+              "Step 39"
+            ],
+            [
+              "618a16873520a8d088ffdf44",
+              "Step 40"
+            ],
+            [
+              "618a16d21bd3dad1bb3aa8ef",
+              "Step 41"
+            ],
+            [
+              "619b72a0db211f1c29afb906",
+              "Step 42"
+            ],
+            [
+              "619b7396e57b771f903be90d",
+              "Step 43"
+            ],
+            [
+              "619b7424f43ec9215e538afe",
+              "Step 44"
+            ],
+            [
+              "619b74fa777a2b2473c94f82",
+              "Step 45"
+            ],
+            [
+              "619b761916dac02643940022",
+              "Step 46"
+            ],
+            [
+              "619b7c3c83de403126b69c1e",
+              "Step 47"
+            ],
+            [
+              "619b7fd56aa2253778bcf5f7",
+              "Step 48"
+            ],
+            [
+              "61a489b8579e87364b2d2cdb",
+              "Step 49"
+            ],
+            [
+              "61a493ead935c148d2b76312",
+              "Step 50"
+            ],
+            [
+              "61b095989e7fc020b43b1bb9",
+              "Step 51"
+            ],
+            [
+              "61b095a79e7fc020b43b1bba",
+              "Step 52"
+            ],
+            [
+              "61a498399534644f59cff05e",
+              "Step 53"
+            ],
+            [
+              "61a49d15bdbb5e57cc6fd280",
+              "Step 54"
+            ],
+            [
+              "61a4a53c4459446dc134a1c6",
+              "Step 55"
+            ],
+            [
+              "61a4a6e908bc34725b4c25ac",
+              "Step 56"
+            ],
+            [
+              "61a4a7877da33a73a1c1723e",
+              "Step 57"
+            ],
+            [
+              "61a4ac092eb21e7dbfe61c33",
+              "Step 58"
+            ],
+            [
+              "61a4acbb5587197f68544d00",
+              "Step 59"
+            ],
+            [
+              "61a4ada3aabeec822b2975d9",
+              "Step 60"
+            ],
+            [
+              "61a4ae5f29eb5584187201c3",
+              "Step 61"
+            ],
+            [
+              "61b095c79e7fc020b43b1bbb",
+              "Step 62"
+            ],
+            [
+              "61a5be9833e7dc178de2af10",
+              "Step 63"
+            ],
+            [
+              "61a5bfe091060f1d6a629dd0",
+              "Step 64"
+            ],
+            [
+              "61a5c906ab73313316e342f0",
+              "Step 65"
+            ],
+            [
+              "61a5ca57f50ded36d33eef96",
+              "Step 66"
+            ],
+            [
+              "61a5d594b887335228ee6533",
+              "Step 67"
+            ],
+            [
+              "61a5d6701ee08953ca375243",
+              "Step 68"
+            ],
+            [
+              "61a5d79c858bef560e26c685",
+              "Step 69"
+            ],
+            [
+              "61a5d7ef1cfcf45764df07a2",
+              "Step 70"
+            ],
+            [
+              "61adc60b69cd4b87739d2174",
+              "Step 71"
+            ],
+            [
+              "61b092eb9e7fc020b43b1bb2",
+              "Step 72"
+            ],
+            [
+              "61b093179e7fc020b43b1bb3",
+              "Step 73"
+            ],
+            [
+              "61b093219e7fc020b43b1bb4",
+              "Step 74"
+            ],
+            [
+              "61b093329e7fc020b43b1bb5",
+              "Step 75"
+            ],
+            [
+              "61b093429e7fc020b43b1bb6",
+              "Step 76"
+            ],
+            [
+              "61b0934c9e7fc020b43b1bb7",
+              "Step 77"
+            ],
+            [
+              "61b0936d9e7fc020b43b1bb8",
+              "Step 78"
+            ],
+            [
+              "61adc91467b5d59328b9f781",
+              "Step 79"
+            ],
+            [
+              "61add79e739a5faee9d96080",
+              "Step 80"
+            ],
+            [
+              "61add929e41980b1edbdba7e",
+              "Step 81"
+            ],
+            [
+              "61addaf7e83988b59a7d18ff",
+              "Step 82"
+            ],
+            [
+              "61ade49b2dad60c076cbd32d",
+              "Step 83"
+            ],
+            [
+              "61b09f739aa6572d2064f9b8",
+              "Step 84"
+            ],
+            [
+              "61b0a1b2af494934b7ec1a72",
+              "Step 85"
+            ],
+            [
+              "61b0a44a6b865738ba49b9fb",
+              "Step 86"
+            ],
+            [
+              "61b306305810f1c9040ce5a2",
+              "Step 87"
+            ],
+            [
+              "61b30995968123ceb6b76167",
+              "Step 88"
+            ],
+            [
+              "61b30a286c228bd0c493c09a",
+              "Step 89"
+            ],
+            [
+              "61b31287fb580ae75a486047",
+              "Step 90"
+            ],
+            [
+              "61b315e76a63b3ecbbb11b75",
+              "Step 91"
+            ],
+            [
+              "61b3183655ec10efd8c0bb07",
+              "Step 92"
+            ],
+            [
+              "61b31a451057fff645ec09be",
+              "Step 93"
+            ],
+            [
+              "61b31cd7b0c76bfc076b4719",
+              "Step 94"
+            ]
+          ]
+        }
+      },
+      "learn-css-flexbox-by-building-a-photo-gallery": {
+        "desc": [
+          "Flexbox helps you design your webpage so that it looks good on any screen size.",
+          "In this course, you'll use Flexbox to build a responsive photo gallery webpage."
+        ],
+        "challenges": {
+          "name": "Learn CSS Flexbox by Building a Photo Gallery",
+          "isUpcomingChange": false,
+          "usesMultifileEditor": true,
+          "hasEditableBoundaries": true,
+          "dashedName": "learn-css-flexbox-by-building-a-photo-gallery",
+          "order": 6,
+          "time": "5 hours",
+          "template": "",
+          "required": [],
+          "superBlock": "2022/responsive-web-design",
+          "challengeOrder": [
+            [
+              "61537485c4f2a624f18d7794",
+              "Step 1"
+            ],
+            [
+              "61537a8054753e2f1f2a1574",
+              "Step 2"
+            ],
+            [
+              "61537bb9b1a29430ac15ad38",
+              "Step 3"
+            ],
+            [
+              "61537c5f81f0cf325b4a854c",
+              "Step 4"
+            ],
+            [
+              "61537c9eecea6a335db6da79",
+              "Step 5"
+            ],
+            [
+              "61537d86bdc3dd343688fceb",
+              "Step 6"
+            ],
+            [
+              "615380dff67172357fcf0425",
+              "Step 7"
+            ],
+            [
+              "615f171d05def3218035dc85",
+              "Step 8"
+            ],
+            [
+              "6153893900438b4643590367",
+              "Step 9"
+            ],
+            [
+              "6153897c27f6334716ee5abe",
+              "Step 10"
+            ],
+            [
+              "615389bd81347947ea7ba896",
+              "Step 11"
+            ],
+            [
+              "6153908a366afb4d57185c8d",
+              "Step 12"
+            ],
+            [
+              "615392916d83fa4f02f7e2cf",
+              "Step 13"
+            ],
+            [
+              "6153938dce8b294ff8f5a4e9",
+              "Step 14"
+            ],
+            [
+              "6153947986535e5117e60615",
+              "Step 15"
+            ],
+            [
+              "61539e07e7430b528fbffe21",
+              "Step 16"
+            ],
+            [
+              "61539f32a206bd53ec116465",
+              "Step 17"
+            ],
+            [
+              "6153a04847abee57a3a406ac",
+              "Step 18"
+            ],
+            [
+              "6153a3485f0b20591d26d2a1",
+              "Step 19"
+            ],
+            [
+              "6153a3952facd25a83fe8083",
+              "Step 20"
+            ],
+            [
+              "6153a3ebb4f7f05b8401b716",
+              "Step 21"
+            ]
+          ]
+        }
+      },
+      "learn-css-grid-by-building-a-magazine": {
+        "desc": [
+          "CSS Grid gives you control over the rows and columns of your webpage design.",
+          "In this course, you'll build a magazine article. You'll learn how to use CSS Grid, including concepts like grid rows and grid columns."
+        ],
+        "challenges": {
+          "name": "Learn CSS Grid by Building a Magazine",
+          "isUpcomingChange": false,
+          "usesMultifileEditor": true,
+          "hasEditableBoundaries": true,
+          "dashedName": "learn-css-grid-by-building-a-magazine",
+          "order": 15,
+          "time": "5 hours",
+          "template": "",
+          "required": [],
+          "superBlock": "2022/responsive-web-design",
+          "challengeOrder": [
+            [
+              "61437d575fb98f57fa8f7f36",
+              "Step 1"
+            ],
+            [
+              "614385513d91ae5c251c2052",
+              "Step 2"
+            ],
+            [
+              "6143862a5e54455d262c212e",
+              "Step 3"
+            ],
+            [
+              "6143869bb45bd85e3b1926aa",
+              "Step 4"
+            ],
+            [
+              "6165d3b702a5d92ad970b30c",
+              "Step 5"
+            ],
+            [
+              "614e0e588f0e8a772a8a81a6",
+              "Step 6"
+            ],
+            [
+              "614387cbefeeba5f3654a291",
+              "Step 7"
+            ],
+            [
+              "6169cd8a558aa8434e0ad7f6",
+              "Step 8"
+            ],
+            [
+              "614389f601bb4f611db98563",
+              "Step 9"
+            ],
+            [
+              "61438b5b66d76a6264430f2a",
+              "Step 10"
+            ],
+            [
+              "61438ec09438696391076d6a",
+              "Step 11"
+            ],
+            [
+              "61439dc084fa5f659cf75d7c",
+              "Step 12"
+            ],
+            [
+              "61439dfc811e12666b04be6f",
+              "Step 13"
+            ],
+            [
+              "61439e33e4fb7967609e0c83",
+              "Step 14"
+            ],
+            [
+              "6143a1a228f7d068ab16a130",
+              "Step 15"
+            ],
+            [
+              "6143a73279ce6369de4b9bcc",
+              "Step 16"
+            ],
+            [
+              "6143a778bffc206ac6b1dbe3",
+              "Step 17"
+            ],
+            [
+              "6143a83fcc32c26bcfae3efa",
+              "Step 18"
+            ],
+            [
+              "6143b97c06c3306d23d5da47",
+              "Step 19"
+            ],
+            [
+              "6143b9e1f5035c6e5f2a8231",
+              "Step 20"
+            ],
+            [
+              "6143bb50e8e48c6f5ef9d8d5",
+              "Step 21"
+            ],
+            [
+              "6143c2a363865c715f1a3f72",
+              "Step 22"
+            ],
+            [
+              "6143cd08fe927072ca3a371d",
+              "Step 23"
+            ],
+            [
+              "6143cdf48b634a747de42104",
+              "Step 24"
+            ],
+            [
+              "6143d003ad9e9d76766293ec",
+              "Step 25"
+            ],
+            [
+              "6143d2842b497779bad947de",
+              "Step 26"
+            ],
+            [
+              "6144d66a5358db0c80628757",
+              "Step 27"
+            ],
+            [
+              "6144d7dbdd3e580da730ff45",
+              "Step 28"
+            ],
+            [
+              "6144de308591ec10e27d5383",
+              "Step 29"
+            ],
+            [
+              "6144e1ba93e435127a7f516d",
+              "Step 30"
+            ],
+            [
+              "6144ee46a9d6e614c598cc05",
+              "Step 31"
+            ],
+            [
+              "6144ee790af79815ad15a832",
+              "Step 32"
+            ],
+            [
+              "6144f1410990ea17187a722b",
+              "Step 33"
+            ],
+            [
+              "6144f3818bfbc51844152e36",
+              "Step 34"
+            ],
+            [
+              "6144f42204c8c8195f1f3345",
+              "Step 35"
+            ],
+            [
+              "6144f47b7c631e1a6f304dd5",
+              "Step 36"
+            ],
+            [
+              "6148b07081759c2c691166a9",
+              "Step 37"
+            ],
+            [
+              "6148b0d764e4192e5712ed92",
+              "Step 38"
+            ],
+            [
+              "6148b185ef37522f688316b0",
+              "Step 39"
+            ],
+            [
+              "6148b30464daf630848c21d4",
+              "Step 40"
+            ],
+            [
+              "6148b4b150434734143db6f2",
+              "Step 41"
+            ],
+            [
+              "6148b5623efa8f369f2c3643",
+              "Step 42"
+            ],
+            [
+              "614e0e503b110f76d3ac2ff6",
+              "Step 43"
+            ],
+            [
+              "6148b59ef318e03875f35c4a",
+              "Step 44"
+            ],
+            [
+              "6148bd62bbb8c83a5f1fc1b3",
+              "Step 45"
+            ],
+            [
+              "6148be3d605d6b3ca9425d11",
+              "Step 46"
+            ],
+            [
+              "6148be82ca63c63daa8cca49",
+              "Step 47"
+            ],
+            [
+              "6148bf49fcc7913f05dbf9b7",
+              "Step 48"
+            ],
+            [
+              "6148bfc43df3bc40fe0e6405",
+              "Step 49"
+            ],
+            [
+              "6148c004ffc8434252940dc3",
+              "Step 50"
+            ],
+            [
+              "6148c224ecb157439bc5247c",
+              "Step 51"
+            ],
+            [
+              "6148c434bd731d45617a76c6",
+              "Step 52"
+            ],
+            [
+              "6148c5036ddad94692a66230",
+              "Step 53"
+            ],
+            [
+              "6148c58bace368497fb11bcf",
+              "Step 54"
+            ],
+            [
+              "6148c6aa9981d74af202125e",
+              "Step 55"
+            ],
+            [
+              "6148c721e74ecd4c619ae51c",
+              "Step 56"
+            ],
+            [
+              "6148ceaf5d897d4d8b3554b3",
+              "Step 57"
+            ],
+            [
+              "6148cf094b3f2b4e8a032c63",
+              "Step 58"
+            ],
+            [
+              "6148d0b863d10d50544ace0e",
+              "Step 59"
+            ],
+            [
+              "6148d1bdf39c5b5186f5974b",
+              "Step 60"
+            ],
+            [
+              "6148d1f9eb63c252e1f8acc4",
+              "Step 61"
+            ],
+            [
+              "6148d2444d01ab541e64a1e4",
+              "Step 62"
+            ],
+            [
+              "6148d33e31fccf558696c745",
+              "Step 63"
+            ],
+            [
+              "6148d3fff5186b57123d97e2",
+              "Step 64"
+            ],
+            [
+              "6148d4d57b965358c9fa38bf",
+              "Step 65"
+            ],
+            [
+              "6148d7720f0db36775db868a",
+              "Step 66"
+            ],
+            [
+              "6148d94fdf6a5d6899f8ff15",
+              "Step 67"
+            ],
+            [
+              "6148d9825b50a3698aeee644",
+              "Step 68"
+            ],
+            [
+              "6148e162e255676ae0da6a76",
+              "Step 69"
+            ],
+            [
+              "6148e19c3e26436be0155690",
+              "Step 70"
+            ],
+            [
+              "6148e246146b646cf4255f0c",
+              "Step 71"
+            ],
+            [
+              "6148e2dcdd60306dd77d41cc",
+              "Step 72"
+            ],
+            [
+              "6148e4d6861a486f60681f36",
+              "Step 73"
+            ],
+            [
+              "6148e5a204d99e70343a63e4",
+              "Step 74"
+            ],
+            [
+              "6148e62a6f768f71c4f04828",
+              "Step 75"
+            ],
+            [
+              "6148e789329dc9736ce59b85",
+              "Step 76"
+            ],
+            [
+              "6148f34ebedc2274bceeb99c",
+              "Step 77"
+            ],
+            [
+              "6148f600cde42b7670c2611f",
+              "Step 78"
+            ],
+            [
+              "6148f693e0728f77c87f3020",
+              "Step 79"
+            ],
+            [
+              "6148f6f7d8914c78e93136ca",
+              "Step 80"
+            ]
+          ]
+        }
+      },
+      "learn-css-transforms-by-building-a-penguin": {
+        "desc": [
+          "You can transform HTML elements to create appealing designs that draw your reader's eye. You can use transforms to rotate elements, scale them, and more.",
+          "In this course, you'll build a penguin. You'll use CSS transforms to position and resize the parts of your penguin, create a background, and animate your work."
+        ],
+        "challenges": {
+          "name": "Learn CSS Transforms by Building a Penguin",
+          "isUpcomingChange": false,
+          "usesMultifileEditor": true,
+          "hasEditableBoundaries": true,
+          "dashedName": "learn-css-transforms-by-building-a-penguin",
+          "order": 18,
+          "time": "5 hours",
+          "template": "",
+          "required": [],
+          "superBlock": "2022/responsive-web-design",
+          "challengeOrder": [
+            [
+              "619665c9abd72906f3ad30f9",
+              "Step 1"
+            ],
+            [
+              "61967e74a8e3690ab6292daa",
+              "Step 2"
+            ],
+            [
+              "61968df2acd5550bf1616c34",
+              "Step 3"
+            ],
+            [
+              "61a8fe15a6a31306e60d1e89",
+              "Step 4"
+            ],
+            [
+              "61968e9243a4090cc805531c",
+              "Step 5"
+            ],
+            [
+              "61968f8877c6720d6d61aaf5",
+              "Step 6"
+            ],
+            [
+              "619691693bc14b0e528f5a20",
+              "Step 7"
+            ],
+            [
+              "6196928658b6010f28c39484",
+              "Step 8"
+            ],
+            [
+              "6197f667297bb30a552ce017",
+              "Step 9"
+            ],
+            [
+              "619692ff79f5770fc6d8c0b4",
+              "Step 10"
+            ],
+            [
+              "6196990f966e8f10a40094f6",
+              "Step 11"
+            ],
+            [
+              "619699c10a0f6e11591d73c4",
+              "Step 12"
+            ],
+            [
+              "61969aa6acef5b12200f672e",
+              "Step 13"
+            ],
+            [
+              "61969c487ced6f12db8fef94",
+              "Step 14"
+            ],
+            [
+              "61969d66cfcdba137d021558",
+              "Step 15"
+            ],
+            [
+              "61969e7451455614217e901b",
+              "Step 16"
+            ],
+            [
+              "6196adc17f77a714d51485f2",
+              "Step 17"
+            ],
+            [
+              "6196aead7ac7bf1584b17a7f",
+              "Step 18"
+            ],
+            [
+              "6196ce0415498d2463989e84",
+              "Step 19"
+            ],
+            [
+              "6196cee94c6da1253809dff9",
+              "Step 20"
+            ],
+            [
+              "6196d00a5d7292262bc02f4c",
+              "Step 21"
+            ],
+            [
+              "6196d0cda039d026f7f78d1e",
+              "Step 22"
+            ],
+            [
+              "6196d1ac33c68d27dcda5796",
+              "Step 23"
+            ],
+            [
+              "6196d213d99f16287bff22ae",
+              "Step 24"
+            ],
+            [
+              "6196d2c0f22ca0293107c048",
+              "Step 25"
+            ],
+            [
+              "6196d32d1340d829f0f6f57d",
+              "Step 26"
+            ],
+            [
+              "6196d41d40bf9b2aaea5d520",
+              "Step 27"
+            ],
+            [
+              "6197cff995d03905b0cca8ad",
+              "Step 28"
+            ],
+            [
+              "6197f40a16afea068c7e60c8",
+              "Step 29"
+            ],
+            [
+              "61993b72e874e709b8dfd666",
+              "Step 30"
+            ],
+            [
+              "61993cf26a8e0f0a553db223",
+              "Step 31"
+            ],
+            [
+              "61993dbb35adf30b10d49e38",
+              "Step 32"
+            ],
+            [
+              "61993e9adc9e9a0bb4d28fff",
+              "Step 33"
+            ],
+            [
+              "6199409834ccaf0d10736596",
+              "Step 34"
+            ],
+            [
+              "6199429802b7c10dc79ff871",
+              "Step 35"
+            ],
+            [
+              "619943285a41720e6370d985",
+              "Step 36"
+            ],
+            [
+              "619943876b706d0f35c01dbc",
+              "Step 37"
+            ],
+            [
+              "6199442866286d0ff421a4fc",
+              "Step 38"
+            ],
+            [
+              "619bcf239fc15905ecd66fce",
+              "Step 39"
+            ],
+            [
+              "619be73b3c806006ccc00bb0",
+              "Step 40"
+            ],
+            [
+              "619be7af7b0bf60770f5d2a4",
+              "Step 41"
+            ],
+            [
+              "619be80062551a080e32c821",
+              "Step 42"
+            ],
+            [
+              "619be8ce4ea49008c5bfbc30",
+              "Step 43"
+            ],
+            [
+              "619be946958c6009844f1dee",
+              "Step 44"
+            ],
+            [
+              "619c155df0063a0a3fec0e32",
+              "Step 45"
+            ],
+            [
+              "619c16debd0c270b01c5ce38",
+              "Step 46"
+            ],
+            [
+              "619cfdf2e63ddf05feab86ad",
+              "Step 47"
+            ],
+            [
+              "619d019488f98c06acbbb71a",
+              "Step 48"
+            ],
+            [
+              "619d022dc8400c0763829a17",
+              "Step 49"
+            ],
+            [
+              "619d02c7bc95bf0827a5d296",
+              "Step 50"
+            ],
+            [
+              "619d033915012509031f309a",
+              "Step 51"
+            ],
+            [
+              "619d03dadadb6509a16f4f5f",
+              "Step 52"
+            ],
+            [
+              "619d0503e03a790a4179d463",
+              "Step 53"
+            ],
+            [
+              "619d05c54dabca0b10058235",
+              "Step 54"
+            ],
+            [
+              "619d0882f54bf40bdc4671ed",
+              "Step 55"
+            ],
+            [
+              "619d090cd8d6db0c93dc5087",
+              "Step 56"
+            ],
+            [
+              "619d0b51ca42ed0d74582186",
+              "Step 57"
+            ],
+            [
+              "619d0bc9cb05360e1bf549c3",
+              "Step 58"
+            ],
+            [
+              "619d0c1594c38c0ebae75878",
+              "Step 59"
+            ],
+            [
+              "619d0d18ca99870f884a7bff",
+              "Step 60"
+            ],
+            [
+              "619d0daf214542102739b0da",
+              "Step 61"
+            ],
+            [
+              "619d0e56f9ca9710fcb974e3",
+              "Step 62"
+            ],
+            [
+              "619d0eec0ac40611b41e2ccc",
+              "Step 63"
+            ],
+            [
+              "619d0fc9825c271253df28d4",
+              "Step 64"
+            ],
+            [
+              "619d102d786c3d13124c37c6",
+              "Step 65"
+            ],
+            [
+              "619d107edf7ddf13cc77106a",
+              "Step 66"
+            ],
+            [
+              "619d10cc98145f14820399c5",
+              "Step 67"
+            ],
+            [
+              "619d115e2adcd71538e82ebb",
+              "Step 68"
+            ],
+            [
+              "619d11e6d5ef9515d2a16033",
+              "Step 69"
+            ],
+            [
+              "619d129a417d0716a94de913",
+              "Step 70"
+            ],
+            [
+              "619d1340361095175f4b5115",
+              "Step 71"
+            ],
+            [
+              "619d15797b580c1828b05426",
+              "Step 72"
+            ],
+            [
+              "619d15d955d9d418c4487bbc",
+              "Step 73"
+            ],
+            [
+              "619d1629a8adc61960ca8b40",
+              "Step 74"
+            ],
+            [
+              "619d1c5fc9f8941a400955da",
+              "Step 75"
+            ],
+            [
+              "619d1dab9ff3421ae1976991",
+              "Step 76"
+            ],
+            [
+              "619d1deb8b04811b8839ffe4",
+              "Step 77"
+            ],
+            [
+              "619d1e7a8e81a61c5a819dc4",
+              "Step 78"
+            ],
+            [
+              "619d1ed33c9a071cf657a0d6",
+              "Step 79"
+            ],
+            [
+              "619d1fb5d244c31db8a7fdb7",
+              "Step 80"
+            ],
+            [
+              "619d204bd73ae51e743b8e94",
+              "Step 81"
+            ],
+            [
+              "619d20b12996101f430920fb",
+              "Step 82"
+            ],
+            [
+              "619d21fe6a3f9b2016be9d9d",
+              "Step 83"
+            ],
+            [
+              "619d229b0e542520cd91c685",
+              "Step 84"
+            ],
+            [
+              "619d23089e787e216a7043d6",
+              "Step 85"
+            ],
+            [
+              "619d237a107c10221ed743fa",
+              "Step 86"
+            ],
+            [
+              "619d26b12e651022d80cd017",
+              "Step 87"
+            ],
+            [
+              "619d2712853306238f41828e",
+              "Step 88"
+            ],
+            [
+              "619d2b7a84e78b246f2d17a2",
+              "Step 89"
+            ],
+            [
+              "619d2bd9c1d43c2526e96f1f",
+              "Step 90"
+            ],
+            [
+              "619d2d4e80400325ff89664a",
+              "Step 91"
+            ],
+            [
+              "619d2ebc81ba81271460850d",
+              "Step 92"
+            ],
+            [
+              "619d2f0e9440bc27caee1cec",
+              "Step 93"
+            ],
+            [
+              "619d2fd3ff4f772882e3d998",
+              "Step 94"
+            ],
+            [
+              "619d30350883802921bfcccc",
+              "Step 95"
+            ],
+            [
+              "619d324f5915c929f36ae91d",
+              "Step 96"
+            ],
+            [
+              "619d32c7fa21f32aaa91d499",
+              "Step 97"
+            ],
+            [
+              "619d333b738e3c2b5d58b095",
+              "Step 98"
+            ],
+            [
+              "619d337765b9f02c10e93722",
+              "Step 99"
+            ],
+            [
+              "619d33c51140292cc5a21742",
+              "Step 100"
+            ],
+            [
+              "619d3482f505452d861d0f62",
+              "Step 101"
+            ],
+            [
+              "619d3561a951bf2e41a24f10",
+              "Step 102"
+            ],
+            [
+              "619d36103839c82efa95dd34",
+              "Step 103"
+            ],
+            [
+              "619d3711d04d623000013e9e",
+              "Step 104"
+            ]
+          ]
+        }
+      },
+      "learn-css-variables-by-building-a-city-skyline": {
+        "desc": [
+          "CSS variables help you organize your styles and reuse them.",
+          "In this course, you'll build a city skyline. You'll learn how to configure CSS variables so you can reuse them whenever you want."
+        ],
+        "challenges": {
+          "name": "Learn CSS Variables by Building a City Skyline",
+          "isUpcomingChange": false,
+          "usesMultifileEditor": true,
+          "hasEditableBoundaries": true,
+          "dashedName": "learn-css-variables-by-building-a-city-skyline",
+          "order": 14,
+          "time": "5 hours",
+          "template": "",
+          "required": [],
+          "superBlock": "2022/responsive-web-design",
+          "challengeOrder": [
+            [
+              "5d822fd413a79914d39e98c9",
+              "Step 1"
+            ],
+            [
+              "5d822fd413a79914d39e98ca",
+              "Step 2"
+            ],
+            [
+              "5d822fd413a79914d39e98cb",
+              "Step 3"
+            ],
+            [
+              "5d822fd413a79914d39e98cc",
+              "Step 4"
+            ],
+            [
+              "5d822fd413a79914d39e98cd",
+              "Step 5"
+            ],
+            [
+              "5d822fd413a79914d39e98ce",
+              "Step 6"
+            ],
+            [
+              "5d822fd413a79914d39e98cf",
+              "Step 7"
+            ],
+            [
+              "5d822fd413a79914d39e98d0",
+              "Step 8"
+            ],
+            [
+              "5d822fd413a79914d39e98d1",
+              "Step 9"
+            ],
+            [
+              "5d822fd413a79914d39e98d2",
+              "Step 10"
+            ],
+            [
+              "5d822fd413a79914d39e98d3",
+              "Step 11"
+            ],
+            [
+              "5d822fd413a79914d39e98d4",
+              "Step 12"
+            ],
+            [
+              "5d822fd413a79914d39e98d5",
+              "Step 13"
+            ],
+            [
+              "5d822fd413a79914d39e98d6",
+              "Step 14"
+            ],
+            [
+              "5d822fd413a79914d39e98d7",
+              "Step 15"
+            ],
+            [
+              "5d822fd413a79914d39e98d8",
+              "Step 16"
+            ],
+            [
+              "5d822fd413a79914d39e98d9",
+              "Step 17"
+            ],
+            [
+              "5d822fd413a79914d39e98da",
+              "Step 18"
+            ],
+            [
+              "5d822fd413a79914d39e98db",
+              "Step 19"
+            ],
+            [
+              "5d822fd413a79914d39e98dc",
+              "Step 20"
+            ],
+            [
+              "5d822fd413a79914d39e98dd",
+              "Step 21"
+            ],
+            [
+              "5d822fd413a79914d39e98de",
+              "Step 22"
+            ],
+            [
+              "5d822fd413a79914d39e98df",
+              "Step 23"
+            ],
+            [
+              "5d822fd413a79914d39e98e0",
+              "Step 24"
+            ],
+            [
+              "5d822fd413a79914d39e98e1",
+              "Step 25"
+            ],
+            [
+              "5d822fd413a79914d39e98e2",
+              "Step 26"
+            ],
+            [
+              "5d822fd413a79914d39e98e3",
+              "Step 27"
+            ],
+            [
+              "5d822fd413a79914d39e98e4",
+              "Step 28"
+            ],
+            [
+              "5d822fd413a79914d39e98e5",
+              "Step 29"
+            ],
+            [
+              "5d822fd413a79914d39e98e6",
+              "Step 30"
+            ],
+            [
+              "5d822fd413a79914d39e98e7",
+              "Step 31"
+            ],
+            [
+              "5d822fd413a79914d39e98e8",
+              "Step 32"
+            ],
+            [
+              "5d822fd413a79914d39e98e9",
+              "Step 33"
+            ],
+            [
+              "5d822fd413a79914d39e98ea",
+              "Step 34"
+            ],
+            [
+              "5d822fd413a79914d39e98eb",
+              "Step 35"
+            ],
+            [
+              "5d822fd413a79914d39e98ec",
+              "Step 36"
+            ],
+            [
+              "5d822fd413a79914d39e98ed",
+              "Step 37"
+            ],
+            [
+              "5d822fd413a79914d39e98ee",
+              "Step 38"
+            ],
+            [
+              "5d822fd413a79914d39e98ef",
+              "Step 39"
+            ],
+            [
+              "5d822fd413a79914d39e98f0",
+              "Step 40"
+            ],
+            [
+              "5d822fd413a79914d39e98f1",
+              "Step 41"
+            ],
+            [
+              "5d822fd413a79914d39e98f2",
+              "Step 42"
+            ],
+            [
+              "5d822fd413a79914d39e98f3",
+              "Step 43"
+            ],
+            [
+              "5d822fd413a79914d39e98f4",
+              "Step 44"
+            ],
+            [
+              "5d822fd413a79914d39e98f5",
+              "Step 45"
+            ],
+            [
+              "5d822fd413a79914d39e98f6",
+              "Step 46"
+            ],
+            [
+              "5d822fd413a79914d39e98f7",
+              "Step 47"
+            ],
+            [
+              "5d822fd413a79914d39e98f8",
+              "Step 48"
+            ],
+            [
+              "5d822fd413a79914d39e98f9",
+              "Step 49"
+            ],
+            [
+              "5d822fd413a79914d39e98fa",
+              "Step 50"
+            ],
+            [
+              "5d822fd413a79914d39e98fb",
+              "Step 51"
+            ],
+            [
+              "5d822fd413a79914d39e98fc",
+              "Step 52"
+            ],
+            [
+              "5d822fd413a79914d39e98fd",
+              "Step 53"
+            ],
+            [
+              "5d822fd413a79914d39e98fe",
+              "Step 54"
+            ],
+            [
+              "5d822fd413a79914d39e98ff",
+              "Step 55"
+            ],
+            [
+              "5d822fd413a79914d39e9900",
+              "Step 56"
+            ],
+            [
+              "5d822fd413a79914d39e9901",
+              "Step 57"
+            ],
+            [
+              "5d822fd413a79914d39e9902",
+              "Step 58"
+            ],
+            [
+              "5d822fd413a79914d39e9903",
+              "Step 59"
+            ],
+            [
+              "5d822fd413a79914d39e9904",
+              "Step 60"
+            ],
+            [
+              "5d822fd413a79914d39e9905",
+              "Step 61"
+            ],
+            [
+              "5d822fd413a79914d39e9906",
+              "Step 62"
+            ],
+            [
+              "5d822fd413a79914d39e9907",
+              "Step 63"
+            ],
+            [
+              "5d822fd413a79914d39e9908",
+              "Step 64"
+            ],
+            [
+              "5d822fd413a79914d39e9909",
+              "Step 65"
+            ],
+            [
+              "5d822fd413a79914d39e990a",
+              "Step 66"
+            ],
+            [
+              "5d822fd413a79914d39e990b",
+              "Step 67"
+            ],
+            [
+              "5d822fd413a79914d39e990c",
+              "Step 68"
+            ],
+            [
+              "5d822fd413a79914d39e990d",
+              "Step 69"
+            ],
+            [
+              "5d822fd413a79914d39e990e",
+              "Step 70"
+            ],
+            [
+              "5d822fd413a79914d39e990f",
+              "Step 71"
+            ],
+            [
+              "5d822fd413a79914d39e9910",
+              "Step 72"
+            ],
+            [
+              "5d822fd413a79914d39e9911",
+              "Step 73"
+            ],
+            [
+              "5d822fd413a79914d39e9912",
+              "Step 74"
+            ],
+            [
+              "5d822fd413a79914d39e9913",
+              "Step 75"
+            ],
+            [
+              "5d822fd413a79914d39e9914",
+              "Step 76"
+            ],
+            [
+              "5d822fd413a79914d39e9916",
+              "Step 77"
+            ],
+            [
+              "5d822fd413a79914d39e9917",
+              "Step 78"
+            ],
+            [
+              "5d822fd413a79914d39e9918",
+              "Step 79"
+            ],
+            [
+              "5d822fd413a79914d39e9919",
+              "Step 80"
+            ],
+            [
+              "5d822fd413a79914d39e991a",
+              "Step 81"
+            ],
+            [
+              "5d822fd413a79914d39e991b",
+              "Step 82"
+            ],
+            [
+              "5d822fd413a79914d39e991c",
+              "Step 83"
+            ],
+            [
+              "5d822fd413a79914d39e991d",
+              "Step 84"
+            ],
+            [
+              "5d822fd413a79914d39e991e",
+              "Step 85"
+            ],
+            [
+              "5d822fd413a79914d39e991f",
+              "Step 86"
+            ],
+            [
+              "5d822fd413a79914d39e9920",
+              "Step 87"
+            ],
+            [
+              "5d822fd413a79914d39e9921",
+              "Step 88"
+            ],
+            [
+              "5d822fd413a79914d39e9922",
+              "Step 89"
+            ],
+            [
+              "5d822fd413a79914d39e9923",
+              "Step 90"
+            ],
+            [
+              "5d822fd413a79914d39e9924",
+              "Step 91"
+            ],
+            [
+              "5d822fd413a79914d39e9925",
+              "Step 92"
+            ],
+            [
+              "5d822fd413a79914d39e9926",
+              "Step 93"
+            ],
+            [
+              "5d822fd413a79914d39e9927",
+              "Step 94"
+            ],
+            [
+              "5d822fd413a79914d39e9928",
+              "Step 95"
+            ],
+            [
+              "5d822fd413a79914d39e9929",
+              "Step 96"
+            ],
+            [
+              "5d822fd413a79914d39e992a",
+              "Step 97"
+            ],
+            [
+              "5d822fd413a79914d39e992b",
+              "Step 98"
+            ],
+            [
+              "5d822fd413a79914d39e992c",
+              "Step 99"
+            ],
+            [
+              "5d822fd413a79914d39e992d",
+              "Step 100"
+            ],
+            [
+              "5d822fd413a79914d39e992e",
+              "Step 101"
+            ],
+            [
+              "5d822fd413a79914d39e992f",
+              "Step 102"
+            ],
+            [
+              "5d822fd413a79914d39e9930",
+              "Step 103"
+            ],
+            [
+              "5d822fd413a79914d39e9932",
+              "Step 104"
+            ],
+            [
+              "5d822fd413a79914d39e9933",
+              "Step 105"
+            ],
+            [
+              "5d822fd413a79914d39e9915",
+              "Step 106"
+            ],
+            [
+              "5d822fd413a79914d39e9934",
+              "Step 107"
+            ],
+            [
+              "5d822fd413a79914d39e9935",
+              "Step 108"
+            ],
+            [
+              "5d822fd413a79914d39e9931",
+              "Step 109"
+            ],
+            [
+              "5d822fd413a79914d39e9936",
+              "Step 110"
+            ],
+            [
+              "5d822fd413a79914d39e9937",
+              "Step 111"
+            ],
+            [
+              "5d822fd413a79914d39e9938",
+              "Step 112"
+            ],
+            [
+              "5d822fd413a79914d39e9939",
+              "Step 113"
+            ],
+            [
+              "5d822fd413a79914d39e993a",
+              "Step 114"
+            ],
+            [
+              "5d822fd413a79914d39e993b",
+              "Step 115"
+            ],
+            [
+              "5d822fd413a79914d39e993c",
+              "Step 116"
+            ],
+            [
+              "5d822fd413a79914d39e993d",
+              "Step 117"
+            ],
+            [
+              "5d822fd413a79914d39e993e",
+              "Step 118"
+            ]
+          ]
+        }
+      },
+      "learn-html-by-building-a-cat-photo-app": {
+        "desc": [
+          "HTML tags give a webpage its structure. You can use HTML tags to add photos, buttons, and other elements to your webpage.",
+          "In this course, you'll learn the most common HTML tags by building your own cat photo app."
+        ],
+        "challenges": {
+          "name": "Learn HTML by Building a Cat Photo App",
+          "isUpcomingChange": false,
+          "usesMultifileEditor": true,
+          "hasEditableBoundaries": true,
+          "dashedName": "learn-html-by-building-a-cat-photo-app",
+          "order": 0,
+          "time": "5 hours",
+          "template": "",
+          "required": [],
+          "superBlock": "2022/responsive-web-design",
+          "challengeOrder": [
+            [
+              "5dc174fcf86c76b9248c6eb2",
+              "Step 1"
+            ],
+            [
+              "5dc1798ff86c76b9248c6eb3",
+              "Step 2"
+            ],
+            [
+              "5dc17d3bf86c76b9248c6eb4",
+              "Step 3"
+            ],
+            [
+              "5dc17dc8f86c76b9248c6eb5",
+              "Step 4"
+            ],
+            [
+              "5dc2385ff86c76b9248c6eb7",
+              "Step 5"
+            ],
+            [
+              "5dc23991f86c76b9248c6eb8",
+              "Step 6"
+            ],
+            [
+              "5dc23f9bf86c76b9248c6eba",
+              "Step 7"
+            ],
+            [
+              "5dc24073f86c76b9248c6ebb",
+              "Step 8"
+            ],
+            [
+              "5dc24165f86c76b9248c6ebc",
+              "Step 9"
+            ],
+            [
+              "5dc24614f86c76b9248c6ebd",
+              "Step 10"
+            ],
+            [
+              "5ddbd81294d8ddc1510a8e56",
+              "Step 11"
+            ],
+            [
+              "5dfa22d1b521be39a3de7be0",
+              "Step 12"
+            ],
+            [
+              "62dabe2ef403a12d5d295273",
+              "Step 13"
+            ],
+            [
+              "5dfa2407b521be39a3de7be1",
+              "Step 14"
+            ],
+            [
+              "5dfa30b9eacea3f48c6300ad",
+              "Step 15"
+            ],
+            [
+              "5f07be6ef7412fbad0c5626b",
+              "Step 16"
+            ],
+            [
+              "5f07c98cdb9413cbd4b16750",
+              "Step 17"
+            ],
+            [
+              "5dfa3589eacea3f48c6300ae",
+              "Step 18"
+            ],
+            [
+              "5dfa371beacea3f48c6300af",
+              "Step 19"
+            ],
+            [
+              "5dfa37b9eacea3f48c6300b0",
+              "Step 20"
+            ],
+            [
+              "5dfb5ecbeacea3f48c6300b1",
+              "Step 21"
+            ],
+            [
+              "5dfb6250eacea3f48c6300b2",
+              "Step 22"
+            ],
+            [
+              "5dfb655eeacea3f48c6300b3",
+              "Step 23"
+            ],
+            [
+              "5dfb6a35eacea3f48c6300b4",
+              "Step 24"
+            ],
+            [
+              "5ef9b03c81a63668521804d0",
+              "Step 25"
+            ],
+            [
+              "5ef9b03c81a63668521804d1",
+              "Step 26"
+            ],
+            [
+              "5ef9b03c81a63668521804d2",
+              "Step 27"
+            ],
+            [
+              "5ef9b03c81a63668521804d3",
+              "Step 28"
+            ],
+            [
+              "5efada803cbd2bbdab94e332",
+              "Step 29"
+            ],
+            [
+              "5efae0543cbd2bbdab94e333",
+              "Step 30"
+            ],
+            [
+              "5efae16e3cbd2bbdab94e334",
+              "Step 31"
+            ],
+            [
+              "5ef9b03c81a63668521804d4",
+              "Step 32"
+            ],
+            [
+              "5f07fb1579dc934717801375",
+              "Step 33"
+            ],
+            [
+              "5ef9b03c81a63668521804d5",
+              "Step 34"
+            ],
+            [
+              "5ef9b03c81a63668521804d6",
+              "Step 35"
+            ],
+            [
+              "5ef9b03c81a63668521804d7",
+              "Step 36"
+            ],
+            [
+              "5ef9b03c81a63668521804d8",
+              "Step 37"
+            ],
+            [
+              "5efb23e70dc218d6c85f89b1",
+              "Step 38"
+            ],
+            [
+              "7cf9b03d81a65668421804c3",
+              "Step 39"
+            ],
+            [
+              "5ef9b03c81a63668521804d9",
+              "Step 40"
+            ],
+            [
+              "5ef9b03c81a63668521804db",
+              "Step 41"
+            ],
+            [
+              "5ef9b03c81a63668521804da",
+              "Step 42"
+            ],
+            [
+              "5efb2c990dc218d6c85f89b2",
+              "Step 43"
+            ],
+            [
+              "5ef9b03c81a63668521804dc",
+              "Step 44"
+            ],
+            [
+              "5ef9b03c81a63668521804dd",
+              "Step 45"
+            ],
+            [
+              "5ef9b03c81a63668521804df",
+              "Step 46"
+            ],
+            [
+              "5f05a1d8e233dff4a68508d8",
+              "Step 47"
+            ],
+            [
+              "5ef9b03c81a63668521804de",
+              "Step 48"
+            ],
+            [
+              "5f1a80975fc4bcae0edb3497",
+              "Step 49"
+            ],
+            [
+              "5ef9b03c81a63668521804e1",
+              "Step 50"
+            ],
+            [
+              "5f0d48e7b435f13ab6550051",
+              "Step 51"
+            ],
+            [
+              "5f0d4ab1b435f13ab6550052",
+              "Step 52"
+            ],
+            [
+              "5f0d4d04b435f13ab6550053",
+              "Step 53"
+            ],
+            [
+              "5ef9b03c81a63668521804e2",
+              "Step 54"
+            ],
+            [
+              "5efc54138d6a74d05e68af76",
+              "Step 55"
+            ],
+            [
+              "5efc4f528d6a74d05e68af74",
+              "Step 56"
+            ],
+            [
+              "5efc518e8d6a74d05e68af75",
+              "Step 57"
+            ],
+            [
+              "5ef9b03c81a63668521804e3",
+              "Step 58"
+            ],
+            [
+              "5efc575c8d6a74d05e68af77",
+              "Step 59"
+            ],
+            [
+              "5f1a89f1190aff21ae42105a",
+              "Step 60"
+            ],
+            [
+              "5ef9b03c81a63668521804e5",
+              "Step 61"
+            ],
+            [
+              "5ef9b03c81a63668521804e7",
+              "Step 62"
+            ],
+            [
+              "5ef9b03c81a63668521804e8",
+              "Step 63"
+            ],
+            [
+              "5ef9b03c81a63668521804e9",
+              "Step 64"
+            ],
+            [
+              "5ef9b03c81a63668521804ea",
+              "Step 65"
+            ],
+            [
+              "5ef9b03c81a63668521804eb",
+              "Step 66"
+            ],
+            [
+              "5ef9b03c81a63668521804ec",
+              "Step 67"
+            ],
+            [
+              "5ef9b03c81a63668521804ee",
+              "Step 68"
+            ],
+            [
+              "62bb4009e3458a128ff57d5d",
+              "Step 69"
+            ]
+          ]
+        }
+      },
+      "learn-html-forms-by-building-a-registration-form": {
+        "desc": [
+          "You can use HTML forms to collect information from people who visit your webpage.",
+          "In this course, you'll learn HTML forms by building a signup page. You'll learn how to control what types of data people can type into your form, and some new CSS tools for styling your page."
+        ],
+        "challenges": {
+          "name": "Learn HTML Forms by Building a Registration Form",
+          "isUpcomingChange": false,
+          "usesMultifileEditor": true,
+          "hasEditableBoundaries": true,
+          "dashedName": "learn-html-forms-by-building-a-registration-form",
+          "order": 3,
+          "time": "5 hours",
+          "template": "",
+          "required": [],
+          "superBlock": "2022/responsive-web-design",
+          "challengeOrder": [
+            [
+              "60eebd07ea685b0e777b5583",
+              "Step 1"
+            ],
+            [
+              "60f027099a15b00485563dd2",
+              "Step 2"
+            ],
+            [
+              "60f027c87bc98f050395c139",
+              "Step 3"
+            ],
+            [
+              "60f0286404aefb0562a4fdf9",
+              "Step 4"
+            ],
+            [
+              "62cc5b1779e4d313466f73c5",
+              "Step 5"
+            ],
+            [
+              "60f02e7361b68405e27b62a5",
+              "Step 6"
+            ],
+            [
+              "60f030d388cb74067cf291c3",
+              "Step 7"
+            ],
+            [
+              "60f1922fcbd2410527b3bd89",
+              "Step 8"
+            ],
+            [
+              "60f1a5e2d2c23707a4f9a660",
+              "Step 9"
+            ],
+            [
+              "60f1a9cbd23023082e149fee",
+              "Step 10"
+            ],
+            [
+              "60f5c3e399ff1a05629964e4",
+              "Step 11"
+            ],
+            [
+              "63541ef4f96cd82e8e6c788a",
+              "Step 12"
+            ],
+            [
+              "60f5cb8875ab6a0610f05071",
+              "Step 13"
+            ],
+            [
+              "60f5d2776c854e069560fbe6",
+              "Step 14"
+            ],
+            [
+              "60f5dc35c07ac1078f140916",
+              "Step 15"
+            ],
+            [
+              "60f803d5241e6a0433a523a1",
+              "Step 16"
+            ],
+            [
+              "60f805f813eaf2049bc2ceea",
+              "Step 17"
+            ],
+            [
+              "62ff8b9dab5ac88e4d3d43a3",
+              "Step 18"
+            ],
+            [
+              "60f80e0081e0f2052ae5b505",
+              "Step 19"
+            ],
+            [
+              "60f81167d0d4910809f88945",
+              "Step 20"
+            ],
+            [
+              "60f81616cff80508badf9ad5",
+              "Step 21"
+            ],
+            [
+              "60f83e7bfc09900959f41e20",
+              "Step 22"
+            ],
+            [
+              "60f84ec41116b209c280ba91",
+              "Step 23"
+            ],
+            [
+              "60f852f645b5310a8264f555",
+              "Step 24"
+            ],
+            [
+              "60f85a62fb30c80bcea0cedb",
+              "Step 25"
+            ],
+            [
+              "60f8604682407e0d017bbf7f",
+              "Step 26"
+            ],
+            [
+              "60f8618d191b940d62038513",
+              "Step 27"
+            ],
+            [
+              "60fab4a123ce4b04526b082b",
+              "Step 28"
+            ],
+            [
+              "62ff8e998d3e7eae14d6ae3b",
+              "Step 29"
+            ],
+            [
+              "60fab8367d35de04e5cb7929",
+              "Step 30"
+            ],
+            [
+              "60fab9f17fa294054b74228c",
+              "Step 31"
+            ],
+            [
+              "60fabf0dd4959805dbae09e6",
+              "Step 32"
+            ],
+            [
+              "60fac4095512d3066053d73c",
+              "Step 33"
+            ],
+            [
+              "60fac56271087806def55b33",
+              "Step 34"
+            ],
+            [
+              "60fac8d7fdfaee0796934f20",
+              "Step 35"
+            ],
+            [
+              "60faca286cb48b07f6482970",
+              "Step 36"
+            ],
+            [
+              "60facde2d0dc61085b41063f",
+              "Step 37"
+            ],
+            [
+              "62ff919a7b5612c0670923a5",
+              "Step 38"
+            ],
+            [
+              "60facf914c7b9b08d7510c2c",
+              "Step 39"
+            ],
+            [
+              "60fad0a812d9890938524f50",
+              "Step 40"
+            ],
+            [
+              "60fad1cafcde010995e15306",
+              "Step 41"
+            ],
+            [
+              "60fad6dfcc0d930a59becf12",
+              "Step 42"
+            ],
+            [
+              "60fad8e6148f310bba7890b1",
+              "Step 43"
+            ],
+            [
+              "60fad99e09f9d30c1657e790",
+              "Step 44"
+            ],
+            [
+              "60fadb18058e950c73925279",
+              "Step 45"
+            ],
+            [
+              "60fadce90f85c50d0bb0dd4f",
+              "Step 46"
+            ],
+            [
+              "62b30924c5e4ef0daba23b5e",
+              "Step 47"
+            ],
+            [
+              "60fadd972e6ffe0d6858fa2d",
+              "Step 48"
+            ],
+            [
+              "60fadfa2b540b70dcfa8b771",
+              "Step 49"
+            ],
+            [
+              "60fc219d333e37046f474a6e",
+              "Step 50"
+            ],
+            [
+              "60fc22d1e64d1b04cdd4e602",
+              "Step 51"
+            ],
+            [
+              "60fc236dc04532052926fdac",
+              "Step 52"
+            ],
+            [
+              "60ffe1bc30415f042faea936",
+              "Step 53"
+            ],
+            [
+              "60ffe3936796ac04959285a9",
+              "Step 54"
+            ],
+            [
+              "60ffe4f4ec18cd04dc470c56",
+              "Step 55"
+            ],
+            [
+              "60ffe69ee377c6055e192a46",
+              "Step 56"
+            ],
+            [
+              "60ffe7d8aae62c05bcc9e7eb",
+              "Step 57"
+            ],
+            [
+              "60ffe8a5ceb0e90618db06d9",
+              "Step 58"
+            ],
+            [
+              "60ffe947a868ec068f7850f6",
+              "Step 59"
+            ],
+            [
+              "60ffe9cb47809106eda2f2c9",
+              "Step 60"
+            ],
+            [
+              "60ffec2825da1007509ddd06",
+              "Step 61"
+            ],
+            [
+              "60ffecefac971607ae73c60f",
+              "Step 62"
+            ],
+            [
+              "60ffefd6479a3d084fb77cbc",
+              "Step 63"
+            ]
+          ]
+        }
+      },
+      "learn-intermediate-css-by-building-a-picasso-painting": {
+        "desc": [
+          "In this course, you'll learn how to use some intermediate CSS techniques by coding your own Picasso painting webpage. You'll learn about SVG icons, CSS positioning, and review other CSS skills you've learned."
+        ],
+        "challenges": {
+          "name": "Learn Intermediate CSS by Building a Picasso Painting",
+          "isUpcomingChange": false,
+          "usesMultifileEditor": true,
+          "hasEditableBoundaries": true,
+          "dashedName": "learn-intermediate-css-by-building-a-picasso-painting",
+          "order": 11,
+          "time": "5 hours",
+          "template": "",
+          "required": [],
+          "superBlock": "2022/responsive-web-design",
+          "challengeOrder": [
+            [
+              "60b69a66b6ddb80858c51578",
+              "Step 1"
+            ],
+            [
+              "60b69a66b6ddb80858c51579",
+              "Step 2"
+            ],
+            [
+              "60b80da8676fb3227967a731",
+              "Step 3"
+            ],
+            [
+              "60b69a66b6ddb80858c5157a",
+              "Step 4"
+            ],
+            [
+              "60b69a66b6ddb80858c5157b",
+              "Step 5"
+            ],
+            [
+              "60b69a66b6ddb80858c5157c",
+              "Step 6"
+            ],
+            [
+              "60b69a66b6ddb80858c5157d",
+              "Step 7"
+            ],
+            [
+              "60b69a66b6ddb80858c5157e",
+              "Step 8"
+            ],
+            [
+              "60b69a66b6ddb80858c5157f",
+              "Step 9"
+            ],
+            [
+              "60b69a66b6ddb80858c51580",
+              "Step 10"
+            ],
+            [
+              "60b69a66b6ddb80858c51581",
+              "Step 11"
+            ],
+            [
+              "60b69a66b6ddb80858c51582",
+              "Step 12"
+            ],
+            [
+              "60b69a66b6ddb80858c51583",
+              "Step 13"
+            ],
+            [
+              "60b69a66b6ddb80858c51584",
+              "Step 14"
+            ],
+            [
+              "60b69a66b6ddb80858c51585",
+              "Step 15"
+            ],
+            [
+              "60b69a66b6ddb80858c51586",
+              "Step 16"
+            ],
+            [
+              "60b69a66b6ddb80858c51587",
+              "Step 17"
+            ],
+            [
+              "60b69a66b6ddb80858c51588",
+              "Step 18"
+            ],
+            [
+              "60b69a66b6ddb80858c51589",
+              "Step 19"
+            ],
+            [
+              "60b69a66b6ddb80858c5158a",
+              "Step 20"
+            ],
+            [
+              "60b69a66b6ddb80858c5158b",
+              "Step 21"
+            ],
+            [
+              "60b69a66b6ddb80858c5158c",
+              "Step 22"
+            ],
+            [
+              "60b69a66b6ddb80858c5158d",
+              "Step 23"
+            ],
+            [
+              "60b69a66b6ddb80858c5158e",
+              "Step 24"
+            ],
+            [
+              "60b69a66b6ddb80858c5158f",
+              "Step 25"
+            ],
+            [
+              "60b69a66b6ddb80858c51590",
+              "Step 26"
+            ],
+            [
+              "60b69a66b6ddb80858c51591",
+              "Step 27"
+            ],
+            [
+              "60b69a66b6ddb80858c51592",
+              "Step 28"
+            ],
+            [
+              "60b69a66b6ddb80858c51593",
+              "Step 29"
+            ],
+            [
+              "60b69a66b6ddb80858c51594",
+              "Step 30"
+            ],
+            [
+              "60b69a66b6ddb80858c51595",
+              "Step 31"
+            ],
+            [
+              "60b69a66b6ddb80858c51596",
+              "Step 32"
+            ],
+            [
+              "60b69a66b6ddb80858c51597",
+              "Step 33"
+            ],
+            [
+              "60b69a66b6ddb80858c51598",
+              "Step 34"
+            ],
+            [
+              "60b69a66b6ddb80858c51599",
+              "Step 35"
+            ],
+            [
+              "60b69a66b6ddb80858c5159a",
+              "Step 36"
+            ],
+            [
+              "60b69a66b6ddb80858c5159b",
+              "Step 37"
+            ],
+            [
+              "60b69a66b6ddb80858c5159c",
+              "Step 38"
+            ],
+            [
+              "60b69a66b6ddb80858c5159d",
+              "Step 39"
+            ],
+            [
+              "60b69a66b6ddb80858c5159e",
+              "Step 40"
+            ],
+            [
+              "60bad32219ebcb4a8810ac6a",
+              "Step 41"
+            ],
+            [
+              "60b69a66b6ddb80858c5159f",
+              "Step 42"
+            ],
+            [
+              "60b69a66b6ddb80858c515a0",
+              "Step 43"
+            ],
+            [
+              "60b69a66b6ddb80858c515a1",
+              "Step 44"
+            ],
+            [
+              "60b69a66b6ddb80858c515a2",
+              "Step 45"
+            ],
+            [
+              "60b69a66b6ddb80858c515a3",
+              "Step 46"
+            ],
+            [
+              "60b69a66b6ddb80858c515a4",
+              "Step 47"
+            ],
+            [
+              "60b69a66b6ddb80858c515a5",
+              "Step 48"
+            ],
+            [
+              "60b69a66b6ddb80858c515a6",
+              "Step 49"
+            ],
+            [
+              "60b69a66b6ddb80858c515a7",
+              "Step 50"
+            ],
+            [
+              "60b69a66b6ddb80858c515a8",
+              "Step 51"
+            ],
+            [
+              "60b69a66b6ddb80858c515a9",
+              "Step 52"
+            ],
+            [
+              "60b69a66b6ddb80858c515aa",
+              "Step 53"
+            ],
+            [
+              "60b69a66b6ddb80858c515ab",
+              "Step 54"
+            ],
+            [
+              "60b69a66b6ddb80858c515ac",
+              "Step 55"
+            ],
+            [
+              "60b69a66b6ddb80858c515ad",
+              "Step 56"
+            ],
+            [
+              "60b69a66b6ddb80858c515ae",
+              "Step 57"
+            ],
+            [
+              "60b69a66b6ddb80858c515af",
+              "Step 58"
+            ],
+            [
+              "60b69a66b6ddb80858c515b0",
+              "Step 59"
+            ],
+            [
+              "60b69a66b6ddb80858c515b1",
+              "Step 60"
+            ],
+            [
+              "60b69a66b6ddb80858c515b2",
+              "Step 61"
+            ],
+            [
+              "60b69a66b6ddb80858c515b3",
+              "Step 62"
+            ],
+            [
+              "60b69a66b6ddb80858c515b4",
+              "Step 63"
+            ],
+            [
+              "60b69a66b6ddb80858c515b5",
+              "Step 64"
+            ],
+            [
+              "60b69a66b6ddb80858c515b6",
+              "Step 65"
+            ],
+            [
+              "60b69a66b6ddb80858c515b7",
+              "Step 66"
+            ],
+            [
+              "60b69a66b6ddb80858c515b8",
+              "Step 67"
+            ],
+            [
+              "60b69a66b6ddb80858c515b9",
+              "Step 68"
+            ],
+            [
+              "60b69a66b6ddb80858c515ba",
+              "Step 69"
+            ],
+            [
+              "60b69a66b6ddb80858c515bc",
+              "Step 70"
+            ],
+            [
+              "60ba8914bab51f0fb8228e9c",
+              "Step 71"
+            ],
+            [
+              "60ba89146b25080f99ab54ad",
+              "Step 72"
+            ],
+            [
+              "60ba8913f1704c0f7a8906b8",
+              "Step 73"
+            ],
+            [
+              "60ba89123a445e0f5c9e4022",
+              "Step 74"
+            ],
+            [
+              "60ba890832b4940f24d1936b",
+              "Step 75"
+            ],
+            [
+              "60ba929345ab0714a3743655",
+              "Step 76"
+            ],
+            [
+              "60ba9296d4d6b414c1b10995",
+              "Step 77"
+            ],
+            [
+              "60ba92987c1e4914dfa7a0b9",
+              "Step 78"
+            ],
+            [
+              "60b69a66b6ddb80858c515bd",
+              "Step 79"
+            ],
+            [
+              "60b69a66b6ddb80858c515be",
+              "Step 80"
+            ],
+            [
+              "60b69a66b6ddb80858c515bf",
+              "Step 81"
+            ],
+            [
+              "60b69a66b6ddb80858c515c0",
+              "Step 82"
+            ],
+            [
+              "60b69a66b6ddb80858c515c1",
+              "Step 83"
+            ],
+            [
+              "60b69a66b6ddb80858c515c2",
+              "Step 84"
+            ],
+            [
+              "60b69a66b6ddb80858c515c3",
+              "Step 85"
+            ],
+            [
+              "60b69a66b6ddb80858c515c4",
+              "Step 86"
+            ],
+            [
+              "60b69a66b6ddb80858c515c5",
+              "Step 87"
+            ],
+            [
+              "60b69a66b6ddb80858c515c6",
+              "Step 88"
+            ],
+            [
+              "60b69a66b6ddb80858c515c7",
+              "Step 89"
+            ]
+          ]
+        }
+      },
+      "learn-more-about-css-pseudo-selectors-by-building-a-balance-sheet": {
+        "desc": [
+          "You can use CSS pseudo selectors to change specific HTML elements.",
+          "In this course, you'll build a balance sheet using pseudo selectors. You'll learn how to change the style of an element when you hover over it with your mouse, and trigger other events on your webpage."
+        ],
+        "challenges": {
+          "name": "Learn More About CSS Pseudo Selectors By Building A Balance Sheet",
+          "isUpcomingChange": false,
+          "usesMultifileEditor": true,
+          "hasEditableBoundaries": true,
+          "dashedName": "learn-more-about-css-pseudo-selectors-by-building-a-balance-sheet",
+          "order": 10,
+          "time": "5 hours",
+          "template": "",
+          "required": [],
+          "superBlock": "2022/responsive-web-design",
+          "challengeOrder": [
+            [
+              "61fd5a93fd62bb35968adeab",
+              "Step 1"
+            ],
+            [
+              "61fd6343fb42013d99bcd7f3",
+              "Step 2"
+            ],
+            [
+              "61fd66c687e610436494c6f1",
+              "Step 3"
+            ],
+            [
+              "61fd67a656743144844941cb",
+              "Step 4"
+            ],
+            [
+              "61fd6ab779390f49148773bb",
+              "Step 5"
+            ],
+            [
+              "61fd6b7c83dbf54a08cf0498",
+              "Step 6"
+            ],
+            [
+              "61fd6cc9475a784b7776233e",
+              "Step 7"
+            ],
+            [
+              "61fd70336ebb3e4f62ee81ba",
+              "Step 8"
+            ],
+            [
+              "61fd719788899952e67692b9",
+              "Step 9"
+            ],
+            [
+              "61fd71d596e8f253b9408b39",
+              "Step 10"
+            ],
+            [
+              "61fd75ea7f663457612dba02",
+              "Step 11"
+            ],
+            [
+              "61fd7648a7ba2e5882436831",
+              "Step 12"
+            ],
+            [
+              "61fd778081276b59d59abad6",
+              "Step 13"
+            ],
+            [
+              "61fd77f7ad2aeb5ae34d07d6",
+              "Step 14"
+            ],
+            [
+              "61fd78621573aa5e8b512f5e",
+              "Step 15"
+            ],
+            [
+              "61fd7a160ed17960e971f28b",
+              "Step 16"
+            ],
+            [
+              "61fd7b3fcaa5406257abc5d1",
+              "Step 17"
+            ],
+            [
+              "61fd8e491324ce717da97ffe",
+              "Step 18"
+            ],
+            [
+              "61fd8fd08af43372f02952d0",
+              "Step 19"
+            ],
+            [
+              "61fd9126aa72a474301fc49f",
+              "Step 20"
+            ],
+            [
+              "61fd933ba685de776a94997e",
+              "Step 21"
+            ],
+            [
+              "61fd94056e0355785fbba4d3",
+              "Step 22"
+            ],
+            [
+              "61fd986ddbcbd47ba8fbc5ec",
+              "Step 23"
+            ],
+            [
+              "61fd990577d8227dd93fbeeb",
+              "Step 24"
+            ],
+            [
+              "61fd9a4ff2fc4481b9157bd7",
+              "Step 25"
+            ],
+            [
+              "61fd9ad665a4a282c8106be3",
+              "Step 26"
+            ],
+            [
+              "61fd9b7285bde783ad5b8aac",
+              "Step 27"
+            ],
+            [
+              "61fd9d9fbdfe078800317055",
+              "Step 28"
+            ],
+            [
+              "61fda307bde0b091cf7d884a",
+              "Step 29"
+            ],
+            [
+              "61fda339eadcfd92a6812bed",
+              "Step 30"
+            ],
+            [
+              "61fdac1e31692f9a9ad97295",
+              "Step 31"
+            ],
+            [
+              "61fdaea3999cb19d76ce717b",
+              "Step 32"
+            ],
+            [
+              "61fdaf9ff894b6a084ecdc1b",
+              "Step 33"
+            ],
+            [
+              "61fdafe6f07fd7a1c6785bc2",
+              "Step 34"
+            ],
+            [
+              "61fdb04d9939f0a26ca51c2b",
+              "Step 35"
+            ],
+            [
+              "620159cd5431aa34bc6a4c9c",
+              "Step 36"
+            ],
+            [
+              "62015a5da1c95c358f079ebb",
+              "Step 37"
+            ],
+            [
+              "62015cd2654a1139321a89d2",
+              "Step 38"
+            ],
+            [
+              "62015d8942384c3aed48329e",
+              "Step 39"
+            ],
+            [
+              "620167374bb8b4455cd11125",
+              "Step 40"
+            ],
+            [
+              "620174ed519dd7506c1a4b61",
+              "Step 41"
+            ],
+            [
+              "620175b3710a0951cfa86edf",
+              "Step 42"
+            ],
+            [
+              "6201782cc420715562f36271",
+              "Step 43"
+            ],
+            [
+              "620179bc0a6a2358c72b90ad",
+              "Step 44"
+            ],
+            [
+              "62017b6f47454059bf2d3bd1",
+              "Step 45"
+            ],
+            [
+              "62017f47c87be96457c49f46",
+              "Step 46"
+            ],
+            [
+              "62017fa5bbef406580ceb44f",
+              "Step 47"
+            ],
+            [
+              "62018243f046a368fab8ffb6",
+              "Step 48"
+            ],
+            [
+              "6201830cb0c74b69f1b41635",
+              "Step 49"
+            ],
+            [
+              "620186f4b6b8356d2def576b",
+              "Step 50"
+            ],
+            [
+              "62018ba1aa263770c953be66",
+              "Step 51"
+            ],
+            [
+              "62018c3e94434a71af1d5eaa",
+              "Step 52"
+            ],
+            [
+              "62018ec29b3ae674f40bef31",
+              "Step 53"
+            ],
+            [
+              "62019093fe30e278e797d2f6",
+              "Step 54"
+            ],
+            [
+              "620191707bc65579ddd3ce15",
+              "Step 55"
+            ],
+            [
+              "620192a767533a7ad19d96d7",
+              "Step 56"
+            ],
+            [
+              "6201995d9ab88e80f1989dce",
+              "Step 57"
+            ],
+            [
+              "620199c7a7a32c81d4db3410",
+              "Step 58"
+            ],
+            [
+              "6201a1a7af32c287bd6b8183",
+              "Step 59"
+            ],
+            [
+              "6201a1cc668a34888f5b2f52",
+              "Step 60"
+            ],
+            [
+              "6201a20d742f5c89736c8cfb",
+              "Step 61"
+            ],
+            [
+              "6201a42e39bf3b95b6a33bf3",
+              "Step 62"
+            ],
+            [
+              "6201a4adcc6414968b391592",
+              "Step 63"
+            ],
+            [
+              "6201a5258af7b398b030bfaf",
+              "Step 64"
+            ],
+            [
+              "6201a59be346d399c21d10b1",
+              "Step 65"
+            ]
+          ]
+        }
+      },
+      "learn-responsive-web-design-by-building-a-piano": {
+        "desc": [
+          "Responsive Design tells your webpage how it should look on different-sized screens.",
+          "In this course, you'll use CSS and Responsive Design to code a piano. You'll also learn more about media queries and pseudo selectors."
+        ],
+        "challenges": {
+          "name": "Learn Responsive Web Design by Building a Piano",
+          "isUpcomingChange": false,
+          "usesMultifileEditor": true,
+          "hasEditableBoundaries": true,
+          "dashedName": "learn-responsive-web-design-by-building-a-piano",
+          "order": 12,
+          "time": "5 hours",
+          "template": "",
+          "required": [],
+          "superBlock": "2022/responsive-web-design",
+          "challengeOrder": [
+            [
+              "612e6afc009b450a437940a1",
+              "Step 1"
+            ],
+            [
+              "612e77aba7ca691f598feb02",
+              "Step 2"
+            ],
+            [
+              "612e78af05201622d4bab8aa",
+              "Step 3"
+            ],
+            [
+              "612e7d1c29fb872d6384379c",
+              "Step 4"
+            ],
+            [
+              "612e804c54d5e7308d7ebe56",
+              "Step 5"
+            ],
+            [
+              "612e813b3ba67633222cbe54",
+              "Step 6"
+            ],
+            [
+              "612e8279827a28352ce83a72",
+              "Step 7"
+            ],
+            [
+              "612e83ec2eca1e370f830511",
+              "Step 8"
+            ],
+            [
+              "612e89562043183c86df287c",
+              "Step 9"
+            ],
+            [
+              "612e89d254fe5d3df7d6693d",
+              "Step 10"
+            ],
+            [
+              "612e8eebe3a6dc3fcc33a66f",
+              "Step 11"
+            ],
+            [
+              "612e95ef2e4bdf41f69067f9",
+              "Step 12"
+            ],
+            [
+              "612e96fc87fe8e44f69f7ec5",
+              "Step 13"
+            ],
+            [
+              "612e98f3245c98475e49cfc6",
+              "Step 14"
+            ],
+            [
+              "612e9a21381a1949327512e6",
+              "Step 15"
+            ],
+            [
+              "612e9d142affc44a453655db",
+              "Step 16"
+            ],
+            [
+              "612e9f1e7e5ccd4fa9ada0be",
+              "Step 17"
+            ],
+            [
+              "612ea4c4993aba52ab4aa32e",
+              "Step 18"
+            ],
+            [
+              "612ea97df5742154772f312e",
+              "Step 19"
+            ],
+            [
+              "612ead8788d28655ef8db056",
+              "Step 20"
+            ],
+            [
+              "612eaf56b7ba3257fdbfb0db",
+              "Step 21"
+            ],
+            [
+              "612eb4893b63c75bb9251ddf",
+              "Step 22"
+            ],
+            [
+              "612eb75153591b5e3b1ab65e",
+              "Step 23"
+            ],
+            [
+              "612eb7ca8c275d5f89c73333",
+              "Step 24"
+            ],
+            [
+              "612eb8e984cd73677a92b7e9",
+              "Step 25"
+            ],
+            [
+              "612eb934f64a4d6890a45518",
+              "Step 26"
+            ],
+            [
+              "612ebcba99bfa46a15370b11",
+              "Step 27"
+            ],
+            [
+              "612ebe7fe6d07e6b76d1cae2",
+              "Step 28"
+            ],
+            [
+              "612ebedec97e096c8bf64999",
+              "Step 29"
+            ],
+            [
+              "612ebf9a210f2b6d77001e68",
+              "Step 30"
+            ],
+            [
+              "612ec0490ae8626e9adf82e4",
+              "Step 31"
+            ],
+            [
+              "612ec19d5268da7074941f84",
+              "Step 32"
+            ],
+            [
+              "612ec29c84b9a6718b1f5cec",
+              "Step 33"
+            ]
+          ]
+        }
+      },
+      "learn-the-css-box-model-by-building-a-rothko-painting": {
+        "desc": [
+          "Every HTML element is its own box – with its own spacing and a border. This is called the Box Model.",
+          "In this course, you'll use CSS and the Box Model to create your own Rothko-style rectangular art pieces."
+        ],
+        "challenges": {
+          "name": "Learn the CSS Box Model by Building a Rothko Painting",
+          "isUpcomingChange": false,
+          "usesMultifileEditor": true,
+          "hasEditableBoundaries": true,
+          "dashedName": "learn-the-css-box-model-by-building-a-rothko-painting",
+          "order": 5,
+          "time": "5 hours",
+          "template": "",
+          "required": [],
+          "superBlock": "2022/responsive-web-design",
+          "challengeOrder": [
+            [
+              "60a3e3396c7b40068ad6996a",
+              "Step 1"
+            ],
+            [
+              "60a3e3396c7b40068ad6996b",
+              "Step 2"
+            ],
+            [
+              "60a3e3396c7b40068ad6996c",
+              "Step 3"
+            ],
+            [
+              "60a3e3396c7b40068ad6996d",
+              "Step 4"
+            ],
+            [
+              "60a3e3396c7b40068ad6996e",
+              "Step 5"
+            ],
+            [
+              "60a3e3396c7b40068ad6996f",
+              "Step 6"
+            ],
+            [
+              "60a3e3396c7b40068ad69970",
+              "Step 7"
+            ],
+            [
+              "60a3e3396c7b40068ad69971",
+              "Step 8"
+            ],
+            [
+              "60a3e3396c7b40068ad69972",
+              "Step 9"
+            ],
+            [
+              "60a3e3396c7b40068ad69973",
+              "Step 10"
+            ],
+            [
+              "60a3e3396c7b40068ad69974",
+              "Step 11"
+            ],
+            [
+              "60a3e3396c7b40068ad69975",
+              "Step 12"
+            ],
+            [
+              "60a3e3396c7b40068ad69976",
+              "Step 13"
+            ],
+            [
+              "60a3e3396c7b40068ad69977",
+              "Step 14"
+            ],
+            [
+              "60a3e3396c7b40068ad69978",
+              "Step 15"
+            ],
+            [
+              "60a3e3396c7b40068ad69979",
+              "Step 16"
+            ],
+            [
+              "60a3e3396c7b40068ad6997a",
+              "Step 17"
+            ],
+            [
+              "60a3e3396c7b40068ad6997b",
+              "Step 18"
+            ],
+            [
+              "60a3e3396c7b40068ad6997c",
+              "Step 19"
+            ],
+            [
+              "60a3e3396c7b40068ad6997d",
+              "Step 20"
+            ],
+            [
+              "60a3e3396c7b40068ad6997e",
+              "Step 21"
+            ],
+            [
+              "60a3e3396c7b40068ad6997f",
+              "Step 22"
+            ],
+            [
+              "60a3e3396c7b40068ad69980",
+              "Step 23"
+            ],
+            [
+              "60a3e3396c7b40068ad69981",
+              "Step 24"
+            ],
+            [
+              "60a3e3396c7b40068ad69982",
+              "Step 25"
+            ],
+            [
+              "60a3e3396c7b40068ad69983",
+              "Step 26"
+            ],
+            [
+              "60a3e3396c7b40068ad69984",
+              "Step 27"
+            ],
+            [
+              "60a3e3396c7b40068ad69986",
+              "Step 28"
+            ],
+            [
+              "60a3e3396c7b40068ad69987",
+              "Step 29"
+            ],
+            [
+              "60a3e3396c7b40068ad69988",
+              "Step 30"
+            ],
+            [
+              "60a3e3396c7b40068ad69989",
+              "Step 31"
+            ],
+            [
+              "60a3e3396c7b40068ad6998a",
+              "Step 32"
+            ],
+            [
+              "60a3e3396c7b40068ad6998b",
+              "Step 33"
+            ],
+            [
+              "60a3e3396c7b40068ad6998c",
+              "Step 34"
+            ],
+            [
+              "60a3e3396c7b40068ad6998d",
+              "Step 35"
+            ],
+            [
+              "60a3e3396c7b40068ad6998e",
+              "Step 36"
+            ],
+            [
+              "60a3e3396c7b40068ad6998f",
+              "Step 37"
+            ],
+            [
+              "60a3e3396c7b40068ad69990",
+              "Step 38"
+            ],
+            [
+              "60a3e3396c7b40068ad69991",
+              "Step 39"
+            ],
+            [
+              "60a3e3396c7b40068ad69992",
+              "Step 40"
+            ],
+            [
+              "60a3e3396c7b40068ad69993",
+              "Step 41"
+            ],
+            [
+              "60a3e3396c7b40068ad69994",
+              "Step 42"
+            ],
+            [
+              "60a3e3396c7b40068ad69995",
+              "Step 43"
+            ],
+            [
+              "60a3e3396c7b40068ad69996",
+              "Step 44"
+            ],
+            [
+              "60a3e3396c7b40068ad69997",
+              "Step 45"
+            ]
+          ]
+        }
+      },
+      "learn-typography-by-building-a-nutrition-label": {
+        "desc": [
+          "Typography is the art of styling your text to be easily readable and suit its purpose.",
+          "In this course, you'll use typography to build a nutrition label webpage. You'll learn how to style text, adjust line height, and position your text using CSS."
+        ],
+        "challenges": {
+          "name": "Learn Typography by Building a Nutrition Label",
+          "isUpcomingChange": false,
+          "usesMultifileEditor": true,
+          "hasEditableBoundaries": true,
+          "dashedName": "learn-typography-by-building-a-nutrition-label",
+          "order": 7,
+          "time": "5 hours",
+          "template": "",
+          "required": [],
+          "superBlock": "2022/responsive-web-design",
+          "challengeOrder": [
+            [
+              "615f2abbe7d18d49a1e0e1c8",
+              "Step 1"
+            ],
+            [
+              "615f2d4150fe0d4cbd0f2628",
+              "Step 2"
+            ],
+            [
+              "615f34948891834dd77655a6",
+              "Step 3"
+            ],
+            [
+              "615f34ecc1091b4fd5a8a484",
+              "Step 4"
+            ],
+            [
+              "615f357957e370510f21ea16",
+              "Step 5"
+            ],
+            [
+              "615f378014c2da526a109c81",
+              "Step 6"
+            ],
+            [
+              "615f38279e5c3d53692ea441",
+              "Step 7"
+            ],
+            [
+              "615f38cabc64e3556f98cc1a",
+              "Step 8"
+            ],
+            [
+              "615f3949f58e12577dcefb00",
+              "Step 9"
+            ],
+            [
+              "615f39d7da41b15851fa3fb9",
+              "Step 10"
+            ],
+            [
+              "615f3b091162165948e1cb33",
+              "Step 11"
+            ],
+            [
+              "615f3cafd794015aa9547a6d",
+              "Step 12"
+            ],
+            [
+              "615f3d9e59db4b5b8e960762",
+              "Step 13"
+            ],
+            [
+              "615f3e1b7233ee5c7595771f",
+              "Step 14"
+            ],
+            [
+              "615f3e4af8008c5d494d3afe",
+              "Step 15"
+            ],
+            [
+              "615f3ed16592445e57941aec",
+              "Step 16"
+            ],
+            [
+              "615f405b89a7ec5f8e2d11f4",
+              "Step 17"
+            ],
+            [
+              "615f40b01f680e608d360ed4",
+              "Step 18"
+            ],
+            [
+              "615f4172e9eec061d6456221",
+              "Step 19"
+            ],
+            [
+              "615f41c979787462e76dab90",
+              "Step 20"
+            ],
+            [
+              "615f423cf65d5864132a0956",
+              "Step 21"
+            ],
+            [
+              "615f42a021625f656101ef93",
+              "Step 22"
+            ],
+            [
+              "615f4bfb9de4a16703b56eb6",
+              "Step 23"
+            ],
+            [
+              "615f4ce9d877b668417c0c42",
+              "Step 24"
+            ],
+            [
+              "615f4dde9d72e3694cb9ee3b",
+              "Step 25"
+            ],
+            [
+              "615f4ec58334106a4170c2a8",
+              "Step 26"
+            ],
+            [
+              "615f4f9e4a40566b776a8f38",
+              "Step 27"
+            ],
+            [
+              "615f50473cc0196c6dd3892a",
+              "Step 28"
+            ],
+            [
+              "615f51257a8a516d80b6c743",
+              "Step 29"
+            ],
+            [
+              "615f51e4e5b24a6e80eccce1",
+              "Step 30"
+            ],
+            [
+              "615f522dea4f776f64dc3e91",
+              "Step 31"
+            ],
+            [
+              "6395d33ab5d91bf317107c48",
+              "Step 32"
+            ],
+            [
+              "615f5486b8fd4b71633f69b0",
+              "Step 33"
+            ],
+            [
+              "6396e33fe478dd264ebbf278",
+              "Step 34"
+            ],
+            [
+              "615f575b50b91e72af079480",
+              "Step 35"
+            ],
+            [
+              "615f5af373a68e744a3c5a76",
+              "Step 36"
+            ],
+            [
+              "615f5fd85d0062761f288364",
+              "Step 37"
+            ],
+            [
+              "615f61338c8ca176d6445574",
+              "Step 38"
+            ],
+            [
+              "615f666ac5edea782feb7e75",
+              "Step 39"
+            ],
+            [
+              "615f671b6d1919792745aa5d",
+              "Step 40"
+            ],
+            [
+              "635bde33c91c80540eae239b",
+              "Step 41"
+            ],
+            [
+              "615f6823d0815b7a991f2a75",
+              "Step 42"
+            ],
+            [
+              "615f6b2d164f81809efd9bdc",
+              "Step 43"
+            ],
+            [
+              "615f6cc778f7698258467596",
+              "Step 44"
+            ],
+            [
+              "615f6fddaac1e083502d3e6a",
+              "Step 45"
+            ],
+            [
+              "615f70077a4ff98424236c1e",
+              "Step 46"
+            ],
+            [
+              "615f72a872354a850d4f533e",
+              "Step 47"
+            ],
+            [
+              "615f74a71f1e498619e38ee8",
+              "Step 48"
+            ],
+            [
+              "615f7ad94380408d971d14f6",
+              "Step 49"
+            ],
+            [
+              "615f7bc680f7168ea01ebf99",
+              "Step 50"
+            ],
+            [
+              "615f7c71eab8218f846e4503",
+              "Step 51"
+            ],
+            [
+              "615f7d489a581590d1350288",
+              "Step 52"
+            ],
+            [
+              "615f7de4487b64919bb4aa5e",
+              "Step 53"
+            ],
+            [
+              "615f7e7281626a92bbd62da8",
+              "Step 54"
+            ],
+            [
+              "615f7ecb09de9a938ef94756",
+              "Step 55"
+            ],
+            [
+              "615f7fa959ab75948f96a0d6",
+              "Step 56"
+            ],
+            [
+              "615f808d85793195b0f53be9",
+              "Step 57"
+            ],
+            [
+              "615f829d07b18f96f6f6684b",
+              "Step 58"
+            ],
+            [
+              "615f83ef928ec9982b785b6a",
+              "Step 59"
+            ],
+            [
+              "615f84f246e8ba98e3cd97be",
+              "Step 60"
+            ],
+            [
+              "615f887466db4ba14b5342cc",
+              "Step 61"
+            ],
+            [
+              "615f89e055040ba294719d2f",
+              "Step 62"
+            ],
+            [
+              "615f8bfe0f30a1a3c340356b",
+              "Step 63"
+            ],
+            [
+              "615f8f1223601fa546e93f31",
+              "Step 64"
+            ],
+            [
+              "615f905fbd1017a65ca224eb",
+              "Step 65"
+            ],
+            [
+              "615f94786869e1a7fec54375",
+              "Step 66"
+            ],
+            [
+              "615f951dff9317a900ef683f",
+              "Step 67"
+            ]
+          ]
+        }
+      }
+    }
+  }
+}

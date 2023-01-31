@@ -1,0 +1,275 @@
+{
+  "quality-assurance": {
+    "intro": [
+      "As your programs or web applications become more complex, you'll want to test them to make sure that new changes don't break their original functionality.",
+      "In the Quality Assurance Certification, you'll learn how to write tests with Chai to ensure your applications work the way you expect them to.",
+      "Then you'll build a chat application to learn advanced Node and Express concepts. You'll also use Pug as a template engine, Passport for authentication, and Socket.io for real-time communication between the server and connected clients."
+    ],
+    "blocks": {
+      "advanced-node-and-express": {
+        "desc": [
+          "Now it's time to take a deep dive into Node.js and Express.js by building a chat application with a sign-in system.",
+          "To implement the sign-in system safely, you'll need to learn about authentication. This is the act of verifying the identity of a person or process.",
+          "In this course, you'll learn how to use Passport to manage authentication, Pug to create reusable templates for quickly building the front end, and web sockets for real-time communication between the clients and server."
+        ],
+        "challenges": {
+          "name": "Advanced Node and Express",
+          "isUpcomingChange": false,
+          "dashedName": "advanced-node-and-express",
+          "order": 1,
+          "time": "5 hours",
+          "template": "",
+          "required": [],
+          "superBlock": "quality-assurance",
+          "challengeOrder": [
+            [
+              "5895f700f9fc0f352b528e63",
+              "Set up a Template Engine"
+            ],
+            [
+              "5895f70bf9fc0f352b528e64",
+              "Use a Template Engine's Powers"
+            ],
+            [
+              "5895f70cf9fc0f352b528e65",
+              "Set up Passport"
+            ],
+            [
+              "5895f70cf9fc0f352b528e66",
+              "Serialization of a User Object"
+            ],
+            [
+              "5895f70cf9fc0f352b528e67",
+              "Implement the Serialization of a Passport User"
+            ],
+            [
+              "5895f70df9fc0f352b528e68",
+              "Authentication Strategies"
+            ],
+            [
+              "5895f70df9fc0f352b528e69",
+              "How to Use Passport Strategies"
+            ],
+            [
+              "5895f70df9fc0f352b528e6a",
+              "Create New Middleware"
+            ],
+            [
+              "5895f70ef9fc0f352b528e6b",
+              "How to Put a Profile Together"
+            ],
+            [
+              "58965611f9fc0f352b528e6c",
+              "Logging a User Out"
+            ],
+            [
+              "58966a17f9fc0f352b528e6d",
+              "Registration of New Users"
+            ],
+            [
+              "58a25c98f9fc0f352b528e7f",
+              "Hashing Your Passwords"
+            ],
+            [
+              "589690e6f9fc0f352b528e6e",
+              "Clean Up Your Project with Modules"
+            ],
+            [
+              "589a69f5f9fc0f352b528e70",
+              "Implementation of Social Authentication"
+            ],
+            [
+              "589a69f5f9fc0f352b528e71",
+              "Implementation of Social Authentication II"
+            ],
+            [
+              "589a8eb3f9fc0f352b528e72",
+              "Implementation of Social Authentication III"
+            ],
+            [
+              "589fc830f9fc0f352b528e74",
+              "Set up the Environment"
+            ],
+            [
+              "589fc831f9fc0f352b528e75",
+              "Communicate by Emitting"
+            ],
+            [
+              "589fc831f9fc0f352b528e76",
+              "Handle a Disconnect"
+            ],
+            [
+              "589fc831f9fc0f352b528e77",
+              "Authentication with Socket.IO"
+            ],
+            [
+              "589fc832f9fc0f352b528e78",
+              "Announce New Users"
+            ],
+            [
+              "589fc832f9fc0f352b528e79",
+              "Send and Display Chat Messages"
+            ]
+          ]
+        }
+      },
+      "quality-assurance-and-testing-with-chai": {
+        "desc": [
+          "Chai is a JavaScript testing library that helps you confirm that your program still behaves the way you expect it to after you make changes to your code.",
+          "Using Chai, you can write tests that describe your program's requirements and see if your program meets them.",
+          "In this course, you'll learn about assertions, deep equality, truthiness, testing APIs, and other fundamentals for testing JavaScript applications."
+        ],
+        "challenges": {
+          "name": "Quality Assurance and Testing with Chai",
+          "isUpcomingChange": false,
+          "dashedName": "quality-assurance-and-testing-with-chai",
+          "order": 0,
+          "time": "5 hours",
+          "template": "",
+          "required": [],
+          "superBlock": "quality-assurance",
+          "challengeOrder": [
+            [
+              "587d824a367417b2b2512c46",
+              "Learn How JavaScript Assertions Work"
+            ],
+            [
+              "587d824b367417b2b2512c47",
+              "Test if a Variable or Function is Defined"
+            ],
+            [
+              "587d824b367417b2b2512c48",
+              "Use Assert.isOK and Assert.isNotOK"
+            ],
+            [
+              "587d824b367417b2b2512c49",
+              "Test for Truthiness"
+            ],
+            [
+              "587d824b367417b2b2512c4a",
+              "Use the Double Equals to Assert Equality"
+            ],
+            [
+              "587d824b367417b2b2512c4b",
+              "Use the Triple Equals to Assert Strict Equality"
+            ],
+            [
+              "587d824c367417b2b2512c4c",
+              "Assert Deep Equality with .deepEqual and .notDeepEqual"
+            ],
+            [
+              "587d824c367417b2b2512c4d",
+              "Compare the Properties of Two Elements"
+            ],
+            [
+              "587d824c367417b2b2512c4e",
+              "Test if One Value is Below or At Least as Large as Another"
+            ],
+            [
+              "587d824c367417b2b2512c4f",
+              "Test if a Value Falls within a Specific Range"
+            ],
+            [
+              "587d824d367417b2b2512c50",
+              "Test if a Value is an Array"
+            ],
+            [
+              "587d824d367417b2b2512c51",
+              "Test if an Array Contains an Item"
+            ],
+            [
+              "587d824d367417b2b2512c52",
+              "Test if a Value is a String"
+            ],
+            [
+              "587d824d367417b2b2512c53",
+              "Test if a String Contains a Substring"
+            ],
+            [
+              "587d824d367417b2b2512c54",
+              "Use Regular Expressions to Test a String"
+            ],
+            [
+              "587d824e367417b2b2512c55",
+              "Test if an Object has a Property"
+            ],
+            [
+              "587d824e367417b2b2512c56",
+              "Test if a Value is of a Specific Data Structure Type"
+            ],
+            [
+              "587d824e367417b2b2512c57",
+              "Test if an Object is an Instance of a Constructor"
+            ],
+            [
+              "587d824e367417b2b2512c58",
+              "Run Functional Tests on API Endpoints using Chai-HTTP"
+            ],
+            [
+              "587d824f367417b2b2512c59",
+              "Run Functional Tests on API Endpoints using Chai-HTTP II"
+            ],
+            [
+              "587d824f367417b2b2512c5a",
+              "Run Functional Tests on an API Response using Chai-HTTP III - PUT method"
+            ],
+            [
+              "587d824f367417b2b2512c5b",
+              "Run Functional Tests on an API Response using Chai-HTTP IV - PUT method"
+            ],
+            [
+              "587d824f367417b2b2512c5c",
+              "Simulate Actions Using a Headless Browser"
+            ],
+            [
+              "587d8250367417b2b2512c5d",
+              "Run Functional Tests Using a Headless Browser"
+            ],
+            [
+              "5f8884f4c46685731aabfc41",
+              "Run Functional Tests Using a Headless Browser II"
+            ]
+          ]
+        }
+      },
+      "quality-assurance-projects": {
+        "desc": [
+          "Now that you're well versed in both the front end and back end, it's time to apply all the skills and concepts you've learned up to this point. You'll build 5 different web applications, and write tests for each one to make sure they're working and can handle different edge cases.",
+          "After completing these Quality Assurance projects, you'll have 5 more projects under your belt, and a new certification to show off on your portfolio."
+        ],
+        "challenges": {
+          "name": "Quality Assurance Projects",
+          "isUpcomingChange": false,
+          "dashedName": "quality-assurance-projects",
+          "order": 2,
+          "time": "150 hours",
+          "template": "",
+          "required": [],
+          "superBlock": "quality-assurance",
+          "challengeOrder": [
+            [
+              "587d8249367417b2b2512c41",
+              "Metric-Imperial Converter"
+            ],
+            [
+              "587d8249367417b2b2512c42",
+              "Issue Tracker"
+            ],
+            [
+              "587d824a367417b2b2512c43",
+              "Personal Library"
+            ],
+            [
+              "5e601bf95ac9d0ecd8b94afd",
+              "Sudoku Solver"
+            ],
+            [
+              "5e601c0d5ac9d0ecd8b94afe",
+              "American British Translator"
+            ]
+          ]
+        }
+      }
+    }
+  }
+}

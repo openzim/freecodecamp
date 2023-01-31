@@ -1,0 +1,1389 @@
+{
+  "javascript-algorithms-and-data-structures": {
+    "intro": [
+      "While HTML and CSS control the content and styling of a page, JavaScript is used to make it interactive. In the JavaScript Algorithm and Data Structures Certification, you'll learn the fundamentals of JavaScript including variables, arrays, objects, loops, and functions.",
+      "Once you have the fundamentals down, you'll apply that knowledge by creating algorithms to manipulate strings, factorialize numbers, and even calculate the orbit of the International Space Station.",
+      "Along the way, you'll also learn two important programming styles or paradigms: Object Oriented Programming (OOP) and Functional Programming (FP)."
+    ],
+    "blocks": {
+      "basic-algorithm-scripting": {
+        "desc": [
+          "An algorithm is a series of step-by-step instructions that describe how to do something.",
+          "To write an effective algorithm, it helps to break a problem down into smaller parts and think carefully about how to solve each part with code.",
+          "In this course, you'll learn the fundamentals of algorithmic thinking by writing algorithms that do everything from converting temperatures to handling complex 2D arrays."
+        ],
+        "challenges": {
+          "name": "Basic Algorithm Scripting",
+          "isUpcomingChange": false,
+          "dashedName": "basic-algorithm-scripting",
+          "order": 5,
+          "time": "50 hours",
+          "template": "",
+          "required": [],
+          "superBlock": "javascript-algorithms-and-data-structures",
+          "challengeOrder": [
+            [
+              "56533eb9ac21ba0edf2244b3",
+              "Convert Celsius to Fahrenheit"
+            ],
+            [
+              "a202eed8fc186c8434cb6d61",
+              "Reverse a String"
+            ],
+            [
+              "a302f7aae1aa3152a5b413bc",
+              "Factorialize a Number"
+            ],
+            [
+              "a26cbbe9ad8655a977e1ceb5",
+              "Find the Longest Word in a String"
+            ],
+            [
+              "a789b3483989747d63b0e427",
+              "Return Largest Numbers in Arrays"
+            ],
+            [
+              "acda2fb1324d9b0fa741e6b5",
+              "Confirm the Ending"
+            ],
+            [
+              "afcc8d540bea9ea2669306b6",
+              "Repeat a String Repeat a String"
+            ],
+            [
+              "ac6993d51946422351508a41",
+              "Truncate a String"
+            ],
+            [
+              "a6e40f1041b06c996f7b2406",
+              "Finders Keepers"
+            ],
+            [
+              "a77dbc43c33f39daa4429b4f",
+              "Boo who"
+            ],
+            [
+              "ab6137d4e35944e21037b769",
+              "Title Case a Sentence"
+            ],
+            [
+              "579e2a2c335b9d72dd32e05c",
+              "Slice and Splice"
+            ],
+            [
+              "adf08ec01beb4f99fc7a68f2",
+              "Falsy Bouncer"
+            ],
+            [
+              "a24c1a4622e3c05097f71d67",
+              "Where do I Belong"
+            ],
+            [
+              "af2170cad53daa0770fabdea",
+              "Mutations"
+            ],
+            [
+              "a9bd25c716030ec90084d8a1",
+              "Chunky Monkey"
+            ]
+          ]
+        }
+      },
+      "basic-data-structures": {
+        "desc": [
+          "Data can be stored and accessed in many ways. You already know some common JavaScript data structures — arrays and objects.",
+          "In this Basic Data Structures course, you'll learn more about the differences between arrays and objects, and which to use in different situations. You'll also learn how to use helpful JS methods like <code>splice()</code> and <code>Object.keys()</code> to access and manipulate data."
+        ],
+        "challenges": {
+          "name": "Basic Data Structures",
+          "isUpcomingChange": false,
+          "dashedName": "basic-data-structures",
+          "order": 4,
+          "time": "1 hour",
+          "template": "",
+          "required": [],
+          "superBlock": "javascript-algorithms-and-data-structures",
+          "challengeOrder": [
+            [
+              "587d7b7e367417b2b2512b20",
+              "Use an Array to Store a Collection of Data"
+            ],
+            [
+              "5a661e0f1068aca922b3ef17",
+              "Access an Array's Contents Using Bracket Notation"
+            ],
+            [
+              "587d78b2367417b2b2512b0e",
+              "Add Items to an Array with push() and unshift()"
+            ],
+            [
+              "587d78b2367417b2b2512b0f",
+              "Remove Items from an Array with pop() and shift()"
+            ],
+            [
+              "587d78b2367417b2b2512b10",
+              "Remove Items Using splice()"
+            ],
+            [
+              "587d78b3367417b2b2512b11",
+              "Add Items Using splice()"
+            ],
+            [
+              "587d7b7a367417b2b2512b12",
+              "Copy Array Items Using slice()"
+            ],
+            [
+              "587d7b7b367417b2b2512b13",
+              "Copy an Array with the Spread Operator"
+            ],
+            [
+              "587d7b7b367417b2b2512b17",
+              "Combine Arrays with the Spread Operator"
+            ],
+            [
+              "587d7b7b367417b2b2512b14",
+              "Check For The Presence of an Element With indexOf()"
+            ],
+            [
+              "587d7b7b367417b2b2512b15",
+              "Iterate Through All an Array's Items Using For Loops"
+            ],
+            [
+              "587d7b7b367417b2b2512b16",
+              "Create complex multi-dimensional arrays"
+            ],
+            [
+              "587d7b7c367417b2b2512b18",
+              "Add Key-Value Pairs to JavaScript Objects"
+            ],
+            [
+              "587d7b7c367417b2b2512b19",
+              "Modify an Object Nested Within an Object"
+            ],
+            [
+              "587d7b7c367417b2b2512b1a",
+              "Access Property Names with Bracket Notation"
+            ],
+            [
+              "587d7b7c367417b2b2512b1b",
+              "Use the delete Keyword to Remove Object Properties"
+            ],
+            [
+              "587d7b7d367417b2b2512b1c",
+              "Check if an Object has a Property"
+            ],
+            [
+              "587d7b7d367417b2b2512b1d",
+              "Iterate Through the Keys of an Object with a for...in Statement"
+            ],
+            [
+              "587d7b7d367417b2b2512b1e",
+              "Generate an Array of All Object Keys with Object.keys()"
+            ],
+            [
+              "587d7b7d367417b2b2512b1f",
+              "Modify an Array Stored in an Object"
+            ]
+          ]
+        }
+      },
+      "basic-javascript": {
+        "desc": [
+          "JavaScript is a scripting language you can use to make web pages interactive. It is one of the core technologies of the web, along with HTML and CSS, and is supported by all modern browsers.",
+          "In this course, you'll learn fundamental programming concepts in JavaScript. You'll start with basic data structures like numbers and strings. Then you'll learn to work with arrays, objects, functions, loops, if/else statements, and more."
+        ],
+        "challenges": {
+          "name": "Basic JavaScript",
+          "isUpcomingChange": false,
+          "dashedName": "basic-javascript",
+          "order": 0,
+          "time": "10 hours",
+          "template": "",
+          "required": [],
+          "superBlock": "javascript-algorithms-and-data-structures",
+          "challengeOrder": [
+            [
+              "bd7123c9c441eddfaeb4bdef",
+              "Comment Your JavaScript Code"
+            ],
+            [
+              "bd7123c9c443eddfaeb5bdef",
+              "Declare JavaScript Variables"
+            ],
+            [
+              "56533eb9ac21ba0edf2244a8",
+              "Storing Values with the Assignment Operator"
+            ],
+            [
+              "5ee127a03c3b35dd45426493",
+              "Assigning the Value of One Variable to Another"
+            ],
+            [
+              "56533eb9ac21ba0edf2244a9",
+              "Initializing Variables with the Assignment Operator"
+            ],
+            [
+              "bd7123c9c444eddfaeb5bdef",
+              "Declare String Variables"
+            ],
+            [
+              "56533eb9ac21ba0edf2244aa",
+              "Understanding Uninitialized Variables"
+            ],
+            [
+              "56533eb9ac21ba0edf2244ab",
+              "Understanding Case Sensitivity in Variables"
+            ],
+            [
+              "587d7b87367417b2b2512b3f",
+              "Explore Differences Between the var and let Keywords"
+            ],
+            [
+              "587d7b87367417b2b2512b41",
+              "Declare a Read-Only Variable with the const Keyword"
+            ],
+            [
+              "cf1111c1c11feddfaeb3bdef",
+              "Add Two Numbers with JavaScript"
+            ],
+            [
+              "cf1111c1c11feddfaeb4bdef",
+              "Subtract One Number from Another with JavaScript"
+            ],
+            [
+              "cf1231c1c11feddfaeb5bdef",
+              "Multiply Two Numbers with JavaScript"
+            ],
+            [
+              "cf1111c1c11feddfaeb6bdef",
+              "Divide One Number by Another with JavaScript"
+            ],
+            [
+              "56533eb9ac21ba0edf2244ac",
+              "Increment a Number with JavaScript"
+            ],
+            [
+              "56533eb9ac21ba0edf2244ad",
+              "Decrement a Number with JavaScript"
+            ],
+            [
+              "cf1391c1c11feddfaeb4bdef",
+              "Create Decimal Numbers with JavaScript"
+            ],
+            [
+              "bd7993c9c69feddfaeb7bdef",
+              "Multiply Two Decimals with JavaScript"
+            ],
+            [
+              "bd7993c9ca9feddfaeb7bdef",
+              "Divide One Decimal by Another with JavaScript"
+            ],
+            [
+              "56533eb9ac21ba0edf2244ae",
+              "Finding a Remainder in JavaScript"
+            ],
+            [
+              "56533eb9ac21ba0edf2244af",
+              "Compound Assignment With Augmented Addition"
+            ],
+            [
+              "56533eb9ac21ba0edf2244b0",
+              "Compound Assignment With Augmented Subtraction"
+            ],
+            [
+              "56533eb9ac21ba0edf2244b1",
+              "Compound Assignment With Augmented Multiplication"
+            ],
+            [
+              "56533eb9ac21ba0edf2244b2",
+              "Compound Assignment With Augmented Division"
+            ],
+            [
+              "56533eb9ac21ba0edf2244b5",
+              "Escaping Literal Quotes in Strings"
+            ],
+            [
+              "56533eb9ac21ba0edf2244b4",
+              "Quoting Strings with Single Quotes"
+            ],
+            [
+              "56533eb9ac21ba0edf2244b6",
+              "Escape Sequences in Strings"
+            ],
+            [
+              "56533eb9ac21ba0edf2244b7",
+              "Concatenating Strings with Plus Operator"
+            ],
+            [
+              "56533eb9ac21ba0edf2244b8",
+              "Concatenating Strings with the Plus Equals Operator"
+            ],
+            [
+              "56533eb9ac21ba0edf2244b9",
+              "Constructing Strings with Variables"
+            ],
+            [
+              "56533eb9ac21ba0edf2244ed",
+              "Appending Variables to Strings"
+            ],
+            [
+              "bd7123c9c448eddfaeb5bdef",
+              "Find the Length of a String"
+            ],
+            [
+              "bd7123c9c549eddfaeb5bdef",
+              "Use Bracket Notation to Find the First Character in a String"
+            ],
+            [
+              "56533eb9ac21ba0edf2244ba",
+              "Understand String Immutability"
+            ],
+            [
+              "bd7123c9c450eddfaeb5bdef",
+              "Use Bracket Notation to Find the Nth Character in a String"
+            ],
+            [
+              "bd7123c9c451eddfaeb5bdef",
+              "Use Bracket Notation to Find the Last Character in a String"
+            ],
+            [
+              "bd7123c9c452eddfaeb5bdef",
+              "Use Bracket Notation to Find the Nth-to-Last Character in a String"
+            ],
+            [
+              "56533eb9ac21ba0edf2244bb",
+              "Word Blanks"
+            ],
+            [
+              "bd7993c9c69feddfaeb8bdef",
+              "Store Multiple Values in one Variable using JavaScript Arrays"
+            ],
+            [
+              "cf1111c1c11feddfaeb7bdef",
+              "Nest one Array within Another Array"
+            ],
+            [
+              "56bbb991ad1ed5201cd392ca",
+              "Access Array Data with Indexes"
+            ],
+            [
+              "cf1111c1c11feddfaeb8bdef",
+              "Modify Array Data With Indexes"
+            ],
+            [
+              "56592a60ddddeae28f7aa8e1",
+              "Access Multi-Dimensional Arrays With Indexes"
+            ],
+            [
+              "56bbb991ad1ed5201cd392cb",
+              "Manipulate Arrays With push()"
+            ],
+            [
+              "56bbb991ad1ed5201cd392cc",
+              "Manipulate Arrays With pop()"
+            ],
+            [
+              "56bbb991ad1ed5201cd392cd",
+              "Manipulate Arrays With shift()"
+            ],
+            [
+              "56bbb991ad1ed5201cd392ce",
+              "Manipulate Arrays With unshift()"
+            ],
+            [
+              "56533eb9ac21ba0edf2244bc",
+              "Shopping List"
+            ],
+            [
+              "56bbb991ad1ed5201cd392cf",
+              "Write Reusable JavaScript with Functions"
+            ],
+            [
+              "56533eb9ac21ba0edf2244bd",
+              "Passing Values to Functions with Arguments"
+            ],
+            [
+              "56533eb9ac21ba0edf2244c2",
+              "Return a Value from a Function with Return"
+            ],
+            [
+              "56533eb9ac21ba0edf2244be",
+              "Global Scope and Functions"
+            ],
+            [
+              "56533eb9ac21ba0edf2244bf",
+              "Local Scope and Functions"
+            ],
+            [
+              "56533eb9ac21ba0edf2244c0",
+              "Global vs. Local Scope in Functions"
+            ],
+            [
+              "598e8944f009e646fc236146",
+              "Understanding Undefined Value returned from a Function"
+            ],
+            [
+              "56533eb9ac21ba0edf2244c3",
+              "Assignment with a Returned Value"
+            ],
+            [
+              "56533eb9ac21ba0edf2244c6",
+              "Stand in Line"
+            ],
+            [
+              "bd7123c9c441eddfaeb5bdef",
+              "Understanding Boolean Values"
+            ],
+            [
+              "cf1111c1c12feddfaeb3bdef",
+              "Use Conditional Logic with If Statements"
+            ],
+            [
+              "56533eb9ac21ba0edf2244d0",
+              "Comparison with the Equality Operator"
+            ],
+            [
+              "56533eb9ac21ba0edf2244d1",
+              "Comparison with the Strict Equality Operator"
+            ],
+            [
+              "599a789b454f2bbd91a3ff4d",
+              "Practice comparing different values"
+            ],
+            [
+              "56533eb9ac21ba0edf2244d2",
+              "Comparison with the Inequality Operator"
+            ],
+            [
+              "56533eb9ac21ba0edf2244d3",
+              "Comparison with the Strict Inequality Operator"
+            ],
+            [
+              "56533eb9ac21ba0edf2244d4",
+              "Comparison with the Greater Than Operator"
+            ],
+            [
+              "56533eb9ac21ba0edf2244d5",
+              "Comparison with the Greater Than Or Equal To Operator"
+            ],
+            [
+              "56533eb9ac21ba0edf2244d6",
+              "Comparison with the Less Than Operator"
+            ],
+            [
+              "56533eb9ac21ba0edf2244d7",
+              "Comparison with the Less Than Or Equal To Operator"
+            ],
+            [
+              "56533eb9ac21ba0edf2244d8",
+              "Comparisons with the Logical And Operator"
+            ],
+            [
+              "56533eb9ac21ba0edf2244d9",
+              "Comparisons with the Logical Or Operator"
+            ],
+            [
+              "56533eb9ac21ba0edf2244da",
+              "Introducing Else Statements"
+            ],
+            [
+              "56533eb9ac21ba0edf2244db",
+              "Introducing Else If Statements"
+            ],
+            [
+              "5690307fddb111c6084545d7",
+              "Logical Order in If Else Statements"
+            ],
+            [
+              "56533eb9ac21ba0edf2244dc",
+              "Chaining If Else Statements"
+            ],
+            [
+              "5664820f61c48e80c9fa476c",
+              "Golf Code"
+            ],
+            [
+              "56533eb9ac21ba0edf2244dd",
+              "Selecting from Many Options with Switch Statements"
+            ],
+            [
+              "56533eb9ac21ba0edf2244de",
+              "Adding a Default Option in Switch Statements"
+            ],
+            [
+              "56533eb9ac21ba0edf2244df",
+              "Multiple Identical Options in Switch Statements"
+            ],
+            [
+              "56533eb9ac21ba0edf2244e0",
+              "Replacing If Else Chains with Switch"
+            ],
+            [
+              "5679ceb97cbaa8c51670a16b",
+              "Returning Boolean Values from Functions"
+            ],
+            [
+              "56533eb9ac21ba0edf2244c4",
+              "Return Early Pattern for Functions"
+            ],
+            [
+              "565bbe00e9cc8ac0725390f4",
+              "Counting Cards"
+            ],
+            [
+              "56bbb991ad1ed5201cd392d0",
+              "Build JavaScript Objects"
+            ],
+            [
+              "56533eb9ac21ba0edf2244c7",
+              "Accessing Object Properties with Dot Notation"
+            ],
+            [
+              "56533eb9ac21ba0edf2244c8",
+              "Accessing Object Properties with Bracket Notation"
+            ],
+            [
+              "56533eb9ac21ba0edf2244c9",
+              "Accessing Object Properties with Variables"
+            ],
+            [
+              "56bbb991ad1ed5201cd392d1",
+              "Updating Object Properties"
+            ],
+            [
+              "56bbb991ad1ed5201cd392d2",
+              "Add New Properties to a JavaScript Object"
+            ],
+            [
+              "56bbb991ad1ed5201cd392d3",
+              "Delete Properties from a JavaScript Object"
+            ],
+            [
+              "56533eb9ac21ba0edf2244ca",
+              "Using Objects for Lookups"
+            ],
+            [
+              "567af2437cbaa8c51670a16c",
+              "Testing Objects for Properties"
+            ],
+            [
+              "56533eb9ac21ba0edf2244cb",
+              "Manipulating Complex Objects"
+            ],
+            [
+              "56533eb9ac21ba0edf2244cc",
+              "Accessing Nested Objects"
+            ],
+            [
+              "56533eb9ac21ba0edf2244cd",
+              "Accessing Nested Arrays"
+            ],
+            [
+              "56533eb9ac21ba0edf2244cf",
+              "Record Collection"
+            ],
+            [
+              "cf1111c1c11feddfaeb1bdef",
+              "Iterate with JavaScript While Loops"
+            ],
+            [
+              "cf1111c1c11feddfaeb5bdef",
+              "Iterate with JavaScript For Loops"
+            ],
+            [
+              "56104e9e514f539506016a5c",
+              "Iterate Odd Numbers With a For Loop"
+            ],
+            [
+              "56105e7b514f539506016a5e",
+              "Count Backwards With a For Loop"
+            ],
+            [
+              "5675e877dbd60be8ad28edc6",
+              "Iterate Through an Array with a For Loop"
+            ],
+            [
+              "56533eb9ac21ba0edf2244e1",
+              "Nesting For Loops"
+            ],
+            [
+              "5a2efd662fb457916e1fe604",
+              "Iterate with JavaScript Do...While Loops"
+            ],
+            [
+              "5cfa3679138e7d9595b9d9d4",
+              "Replace Loops using Recursion"
+            ],
+            [
+              "5688e62ea601b2482ff8422b",
+              "Profile Lookup"
+            ],
+            [
+              "cf1111c1c11feddfaeb9bdef",
+              "Generate Random Fractions with JavaScript"
+            ],
+            [
+              "cf1111c1c12feddfaeb1bdef",
+              "Generate Random Whole Numbers with JavaScript"
+            ],
+            [
+              "cf1111c1c12feddfaeb2bdef",
+              "Generate Random Whole Numbers within a Range"
+            ],
+            [
+              "587d7b7e367417b2b2512b23",
+              "Use the parseInt Function"
+            ],
+            [
+              "587d7b7e367417b2b2512b22",
+              "Use the parseInt Function with a Radix"
+            ],
+            [
+              "587d7b7e367417b2b2512b24",
+              "Use the Conditional (Ternary) Operator"
+            ],
+            [
+              "587d7b7e367417b2b2512b21",
+              "Use Multiple Conditional (Ternary) Operators"
+            ],
+            [
+              "5cd9a70215d3c4e65518328f",
+              "Use Recursion to Create a Countdown"
+            ],
+            [
+              "5cc0bd7a49b71cb96132e54c",
+              "Use Recursion to Create a Range of Numbers"
+            ]
+          ]
+        }
+      },
+      "debugging": {
+        "desc": [
+          "Debugging is the process of going through your code, finding any issues, and fixing them.",
+          "Issues in code generally come in three forms: syntax errors that prevent your program from running, runtime errors where your code has unexpected behavior, or logical errors where your code doesn't do what you intended.",
+          "In this course, you'll learn how to use the JavaScript console to debug programs and prevent common issues before they happen."
+        ],
+        "challenges": {
+          "name": "Debugging",
+          "isUpcomingChange": false,
+          "dashedName": "debugging",
+          "order": 3,
+          "time": "1 hour",
+          "template": "",
+          "required": [],
+          "superBlock": "javascript-algorithms-and-data-structures",
+          "challengeOrder": [
+            [
+              "587d7b83367417b2b2512b33",
+              "Use the JavaScript Console to Check the Value of a Variable"
+            ],
+            [
+              "587d7b83367417b2b2512b37",
+              "Understanding the Differences between the freeCodeCamp and Browser Console"
+            ],
+            [
+              "587d7b84367417b2b2512b34",
+              "Use typeof to Check the Type of a Variable"
+            ],
+            [
+              "587d7b84367417b2b2512b35",
+              "Catch Misspelled Variable and Function Names"
+            ],
+            [
+              "587d7b84367417b2b2512b36",
+              "Catch Unclosed Parentheses, Brackets, Braces and Quotes"
+            ],
+            [
+              "587d7b84367417b2b2512b37",
+              "Catch Mixed Usage of Single and Double Quotes"
+            ],
+            [
+              "587d7b85367417b2b2512b38",
+              "Catch Use of Assignment Operator Instead of Equality Operator"
+            ],
+            [
+              "587d7b85367417b2b2512b39",
+              "Catch Missing Open and Closing Parenthesis After a Function Call"
+            ],
+            [
+              "587d7b85367417b2b2512b3a",
+              "Catch Arguments Passed in the Wrong Order When Calling a Function"
+            ],
+            [
+              "587d7b86367417b2b2512b3b",
+              "Catch Off By One Errors When Using Indexing"
+            ],
+            [
+              "587d7b86367417b2b2512b3c",
+              "Use Caution When Reinitializing Variables Inside a Loop"
+            ],
+            [
+              "587d7b86367417b2b2512b3d",
+              "Prevent Infinite Loops with a Valid Terminal Condition"
+            ]
+          ]
+        }
+      },
+      "es6": {
+        "desc": [
+          "ECMAScript, or ES, is a standardized version of JavaScript. Because all major browsers follow this specification, the terms ECMAScript and JavaScript are interchangeable.",
+          "Most of the JavaScript you've learned up to this point was in ES5 (ECMAScript 5), which was finalized in 2009. While you can still write programs in ES5, JavaScript is constantly evolving, and new features are released every year.",
+          "ES6, released in 2015, added many powerful new features to the language. In this course, you'll learn these new features, including arrow functions, destructuring, classes, promises, and modules."
+        ],
+        "challenges": {
+          "name": "ES6",
+          "isUpcomingChange": false,
+          "dashedName": "es6",
+          "order": 1,
+          "time": "5 hours",
+          "template": "",
+          "required": [],
+          "superBlock": "javascript-algorithms-and-data-structures",
+          "challengeOrder": [
+            [
+              "587d7b87367417b2b2512b40",
+              "Compare Scopes of the var and let Keywords"
+            ],
+            [
+              "587d7b87367417b2b2512b42",
+              "Mutate an Array Declared with const"
+            ],
+            [
+              "598f48a36c8c40764b4e52b3",
+              "Prevent Object Mutation"
+            ],
+            [
+              "587d7b87367417b2b2512b43",
+              "Use Arrow Functions to Write Concise Anonymous Functions"
+            ],
+            [
+              "587d7b88367417b2b2512b44",
+              "Write Arrow Functions with Parameters"
+            ],
+            [
+              "587d7b88367417b2b2512b46",
+              "Set Default Parameters for Your Functions"
+            ],
+            [
+              "587d7b88367417b2b2512b47",
+              "Use the Rest Parameter with Function Parameters"
+            ],
+            [
+              "587d7b89367417b2b2512b48",
+              "Use the Spread Operator to Evaluate Arrays In-Place"
+            ],
+            [
+              "5cfa550e84205a357704ccb6",
+              "Use Destructuring Assignment to Extract Values from Objects"
+            ],
+            [
+              "587d7b89367417b2b2512b49",
+              "Use Destructuring Assignment to Assign Variables from Objects"
+            ],
+            [
+              "587d7b89367417b2b2512b4a",
+              "Use Destructuring Assignment to Assign Variables from Nested Objects"
+            ],
+            [
+              "587d7b89367417b2b2512b4b",
+              "Use Destructuring Assignment to Assign Variables from Arrays"
+            ],
+            [
+              "587d7b8a367417b2b2512b4c",
+              "Use Destructuring Assignment with the Rest Parameter to Reassign Array Elements"
+            ],
+            [
+              "587d7b8a367417b2b2512b4d",
+              "Use Destructuring Assignment to Pass an Object as a Function's Parameters"
+            ],
+            [
+              "587d7b8a367417b2b2512b4e",
+              "Create Strings using Template Literals"
+            ],
+            [
+              "587d7b8a367417b2b2512b4f",
+              "Write Concise Object Literal Declarations Using Object Property Shorthand"
+            ],
+            [
+              "587d7b8b367417b2b2512b50",
+              "Write Concise Declarative Functions with ES6"
+            ],
+            [
+              "587d7b8b367417b2b2512b53",
+              "Use class Syntax to Define a Constructor Function"
+            ],
+            [
+              "587d7b8c367417b2b2512b54",
+              "Use getters and setters to Control Access to an Object"
+            ],
+            [
+              "5cddbfd622f1a59093ec611d",
+              "Create a Module Script"
+            ],
+            [
+              "587d7b8c367417b2b2512b56",
+              "Use export to Share a Code Block"
+            ],
+            [
+              "587d7b8c367417b2b2512b55",
+              "Reuse JavaScript Code Using import"
+            ],
+            [
+              "587d7b8c367417b2b2512b57",
+              "Use * to Import Everything from a File"
+            ],
+            [
+              "587d7b8c367417b2b2512b58",
+              "Create an Export Fallback with export default"
+            ],
+            [
+              "587d7b8d367417b2b2512b59",
+              "Import a Default Export"
+            ],
+            [
+              "5cdafbb0291309899753167f",
+              "Create a JavaScript Promise"
+            ],
+            [
+              "5cdafbc32913098997531680",
+              "Complete a Promise with resolve and reject"
+            ],
+            [
+              "5cdafbd72913098997531681",
+              "Handle a Fulfilled Promise with then"
+            ],
+            [
+              "5cdafbe72913098997531682",
+              "Handle a Rejected Promise with catch"
+            ]
+          ]
+        }
+      },
+      "functional-programming": {
+        "desc": [
+          "Functional Programming is another popular approach to software development. In Functional Programming, code is organized into smaller, basic functions that can be combined to build complex programs.",
+          "In this course, you'll learn the core concepts of Functional Programming including pure functions, how to avoid mutations, and how to write cleaner code with methods like <code>.map()</code> and <code>.filter()</code>."
+        ],
+        "challenges": {
+          "name": "Functional Programming",
+          "isUpcomingChange": false,
+          "dashedName": "functional-programming",
+          "order": 7,
+          "time": "5 hours",
+          "template": "",
+          "required": [],
+          "superBlock": "javascript-algorithms-and-data-structures",
+          "challengeOrder": [
+            [
+              "587d7b8d367417b2b2512b5b",
+              "Learn About Functional Programming"
+            ],
+            [
+              "587d7b8e367417b2b2512b5c",
+              "Understand Functional Programming Terminology"
+            ],
+            [
+              "587d7b8e367417b2b2512b5d",
+              "Understand the Hazards of Using Imperative Code"
+            ],
+            [
+              "587d7b8e367417b2b2512b5e",
+              "Avoid Mutations and Side Effects Using Functional Programming"
+            ],
+            [
+              "587d7b8e367417b2b2512b5f",
+              "Pass Arguments to Avoid External Dependence in a Function"
+            ],
+            [
+              "587d7b8f367417b2b2512b60",
+              "Refactor Global Variables Out of Functions"
+            ],
+            [
+              "587d7b8f367417b2b2512b61",
+              "Use the map Method to Extract Data from an Array"
+            ],
+            [
+              "587d7b8f367417b2b2512b62",
+              "Implement map on a Prototype"
+            ],
+            [
+              "587d7b8f367417b2b2512b63",
+              "Use the filter Method to Extract Data from an Array"
+            ],
+            [
+              "587d7b8f367417b2b2512b64",
+              "Implement the filter Method on a Prototype"
+            ],
+            [
+              "587d7b90367417b2b2512b65",
+              "Return Part of an Array Using the slice Method"
+            ],
+            [
+              "9d7123c8c441eeafaeb5bdef",
+              "Remove Elements from an Array Using slice Instead of splice"
+            ],
+            [
+              "587d7da9367417b2b2512b66",
+              "Combine Two Arrays Using the concat Method"
+            ],
+            [
+              "587d7da9367417b2b2512b67",
+              "Add Elements to the End of an Array Using concat Instead of push"
+            ],
+            [
+              "587d7da9367417b2b2512b68",
+              "Use the reduce Method to Analyze Data"
+            ],
+            [
+              "587d7b88367417b2b2512b45",
+              "Use Higher-Order Functions map, filter, or reduce to Solve a Complex Problem"
+            ],
+            [
+              "587d7da9367417b2b2512b69",
+              "Sort an Array Alphabetically using the sort Method"
+            ],
+            [
+              "587d7da9367417b2b2512b6a",
+              "Return a Sorted Array Without Changing the Original Array"
+            ],
+            [
+              "587d7daa367417b2b2512b6b",
+              "Split a String into an Array Using the split Method"
+            ],
+            [
+              "587d7daa367417b2b2512b6c",
+              "Combine an Array into a String Using the join Method"
+            ],
+            [
+              "587d7dab367417b2b2512b6d",
+              "Apply Functional Programming to Convert Strings to URL Slugs"
+            ],
+            [
+              "587d7dab367417b2b2512b6e",
+              "Use the every Method to Check that Every Element in an Array Meets a Criteria"
+            ],
+            [
+              "587d7dab367417b2b2512b6f",
+              "Use the some Method to Check that Any Elements in an Array Meet a Criteria"
+            ],
+            [
+              "587d7dab367417b2b2512b70",
+              "Introduction to Currying and Partial Application"
+            ]
+          ]
+        }
+      },
+      "intermediate-algorithm-scripting": {
+        "desc": [
+          "Now that you know the basics of algorithmic thinking, along with OOP and Functional Programming, test your skills with the Intermediate Algorithm Scripting challenges."
+        ],
+        "challenges": {
+          "name": "Intermediate Algorithm Scripting",
+          "isUpcomingChange": false,
+          "dashedName": "intermediate-algorithm-scripting",
+          "order": 8,
+          "time": "50 hours",
+          "template": "",
+          "required": [],
+          "superBlock": "javascript-algorithms-and-data-structures",
+          "challengeOrder": [
+            [
+              "a3566b1109230028080c9345",
+              "Sum All Numbers in a Range"
+            ],
+            [
+              "a5de63ebea8dbee56860f4f2",
+              "Diff Two Arrays"
+            ],
+            [
+              "a39963a4c10bc8b4d4f06d7e",
+              "Seek and Destroy"
+            ],
+            [
+              "a8e512fbe388ac2f9198f0fa",
+              "Wherefore art thou"
+            ],
+            [
+              "a103376db3ba46b2d50db289",
+              "Spinal Tap Case"
+            ],
+            [
+              "aa7697ea2477d1316795783b",
+              "Pig Latin"
+            ],
+            [
+              "a0b5010f579e69b815e7c5d6",
+              "Search and Replace"
+            ],
+            [
+              "afd15382cdfb22c9efe8b7de",
+              "DNA Pairing"
+            ],
+            [
+              "af7588ade1100bde429baf20",
+              "Missing letters"
+            ],
+            [
+              "a105e963526e7de52b219be9",
+              "Sorted Union"
+            ],
+            [
+              "a6b0bb188d873cb2c8729495",
+              "Convert HTML Entities"
+            ],
+            [
+              "a5229172f011153519423690",
+              "Sum All Odd Fibonacci Numbers"
+            ],
+            [
+              "a3bfc1673c0526e06d3ac698",
+              "Sum All Primes"
+            ],
+            [
+              "ae9defd7acaf69703ab432ea",
+              "Smallest Common Multiple"
+            ],
+            [
+              "a5deed1811a43193f9f1c841",
+              "Drop it"
+            ],
+            [
+              "ab306dbdcc907c7ddfc30830",
+              "Steamroller"
+            ],
+            [
+              "a8d97bd4c764e91f9d2bda01",
+              "Binary Agents"
+            ],
+            [
+              "a10d2431ad0c6a099a4b8b52",
+              "Everything Be True"
+            ],
+            [
+              "a97fd23d9b809dac9921074f",
+              "Arguments Optional"
+            ],
+            [
+              "a2f1d72d9b908d0bd72bb9f6",
+              "Make a Person"
+            ],
+            [
+              "af4afb223120f7348cdfc9fd",
+              "Map the Debris"
+            ]
+          ]
+        }
+      },
+      "javascript-algorithms-and-data-structures-projects": {
+        "desc": [
+          "This is it — time to put your new JavaScript skills to work. These projects are similar to the algorithm scripting challenges you've done before – just much more difficult.",
+          "Complete these 5 JavaScript projects to earn the JavaScript Algorithms and Data Structures certification."
+        ],
+        "challenges": {
+          "name": "JavaScript Algorithms and Data Structures Projects",
+          "isUpcomingChange": false,
+          "dashedName": "javascript-algorithms-and-data-structures-projects",
+          "order": 9,
+          "time": "50 hours",
+          "template": "",
+          "required": [],
+          "superBlock": "javascript-algorithms-and-data-structures",
+          "challengeOrder": [
+            [
+              "aaa48de84e1ecc7c742e1124",
+              "Palindrome Checker"
+            ],
+            [
+              "a7f4d8f2483413a6ce226cac",
+              "Roman Numeral Converter"
+            ],
+            [
+              "56533eb9ac21ba0edf2244e2",
+              "Caesars Cipher"
+            ],
+            [
+              "aff0395860f5d3034dc0bfc9",
+              "Telephone Number Validator"
+            ],
+            [
+              "aa2e6f85cab2ab736c9a9b24",
+              "Cash Register"
+            ]
+          ]
+        }
+      },
+      "object-oriented-programming": {
+        "desc": [
+          "OOP, or Object Oriented Programming, is one of the major approaches to the software development process. In OOP, objects and classes organize code to describe things and what they can do.",
+          "In this course, you'll learn the basic principles of OOP in JavaScript, including the <code>this</code> keyword, prototype chains, constructors, and inheritance."
+        ],
+        "challenges": {
+          "name": "Object Oriented Programming",
+          "isUpcomingChange": false,
+          "dashedName": "object-oriented-programming",
+          "order": 6,
+          "time": "5 hours",
+          "template": "",
+          "required": [],
+          "superBlock": "javascript-algorithms-and-data-structures",
+          "challengeOrder": [
+            [
+              "587d7dac367417b2b2512b73",
+              "Create a Basic JavaScript Object"
+            ],
+            [
+              "587d7dac367417b2b2512b74",
+              "Use Dot Notation to Access the Properties of an Object"
+            ],
+            [
+              "587d7dad367417b2b2512b75",
+              "Create a Method on an Object"
+            ],
+            [
+              "587d7dad367417b2b2512b76",
+              "Make Code More Reusable with the this Keyword"
+            ],
+            [
+              "587d7dad367417b2b2512b77",
+              "Define a Constructor Function"
+            ],
+            [
+              "587d7dad367417b2b2512b78",
+              "Use a Constructor to Create Objects"
+            ],
+            [
+              "587d7dae367417b2b2512b79",
+              "Extend Constructors to Receive Arguments"
+            ],
+            [
+              "587d7dae367417b2b2512b7a",
+              "Verify an Object's Constructor with instanceof"
+            ],
+            [
+              "587d7dae367417b2b2512b7b",
+              "Understand Own Properties"
+            ],
+            [
+              "587d7dae367417b2b2512b7c",
+              "Use Prototype Properties to Reduce Duplicate Code"
+            ],
+            [
+              "587d7daf367417b2b2512b7d",
+              "Iterate Over All Properties"
+            ],
+            [
+              "587d7daf367417b2b2512b7e",
+              "Understand the Constructor Property"
+            ],
+            [
+              "587d7daf367417b2b2512b7f",
+              "Change the Prototype to a New Object"
+            ],
+            [
+              "587d7daf367417b2b2512b80",
+              "Remember to Set the Constructor Property when Changing the Prototype"
+            ],
+            [
+              "587d7db0367417b2b2512b81",
+              "Understand Where an Object’s Prototype Comes From"
+            ],
+            [
+              "587d7db0367417b2b2512b82",
+              "Understand the Prototype Chain"
+            ],
+            [
+              "587d7db0367417b2b2512b83",
+              "Use Inheritance So You Don't Repeat Yourself"
+            ],
+            [
+              "587d7db0367417b2b2512b84",
+              "Inherit Behaviors from a Supertype"
+            ],
+            [
+              "587d7db1367417b2b2512b85",
+              "Set the Child's Prototype to an Instance of the Parent"
+            ],
+            [
+              "587d7db1367417b2b2512b86",
+              "Reset an Inherited Constructor Property"
+            ],
+            [
+              "587d7db1367417b2b2512b87",
+              "Add Methods After Inheritance"
+            ],
+            [
+              "587d7db1367417b2b2512b88",
+              "Override Inherited Methods"
+            ],
+            [
+              "587d7db2367417b2b2512b89",
+              "Use a Mixin to Add Common Behavior Between Unrelated Objects"
+            ],
+            [
+              "587d7db2367417b2b2512b8a",
+              "Use Closure to Protect Properties Within an Object from Being Modified Externally"
+            ],
+            [
+              "587d7db2367417b2b2512b8b",
+              "Understand the Immediately Invoked Function Expression (IIFE)"
+            ],
+            [
+              "587d7db2367417b2b2512b8c",
+              "Use an IIFE to Create a Module"
+            ]
+          ]
+        }
+      },
+      "regular-expressions": {
+        "desc": [
+          "Regular expressions, often shortened to \"regex\" or \"regexp\", are patterns that help programmers match, search, and replace text. Regular expressions are very powerful, but can be hard to read because they use special characters to make more complex, flexible matches.",
+          "In this course, you'll learn how to use special characters, capture groups, positive and negative lookaheads, and other techniques to match any text you want."
+        ],
+        "challenges": {
+          "name": "Regular Expressions",
+          "isUpcomingChange": false,
+          "dashedName": "regular-expressions",
+          "order": 2,
+          "time": "5 hours",
+          "template": "",
+          "required": [],
+          "superBlock": "javascript-algorithms-and-data-structures",
+          "challengeOrder": [
+            [
+              "587d7db3367417b2b2512b8e",
+              "Using the Test Method"
+            ],
+            [
+              "587d7db3367417b2b2512b8f",
+              "Match Literal Strings"
+            ],
+            [
+              "587d7db4367417b2b2512b90",
+              "Match a Literal String with Different Possibilities"
+            ],
+            [
+              "587d7db4367417b2b2512b91",
+              "Ignore Case While Matching"
+            ],
+            [
+              "587d7db4367417b2b2512b92",
+              "Extract Matches"
+            ],
+            [
+              "587d7db4367417b2b2512b93",
+              "Find More Than the First Match"
+            ],
+            [
+              "587d7db5367417b2b2512b94",
+              "Match Anything with Wildcard Period"
+            ],
+            [
+              "587d7db5367417b2b2512b95",
+              "Match Single Character with Multiple Possibilities"
+            ],
+            [
+              "587d7db5367417b2b2512b96",
+              "Match Letters of the Alphabet"
+            ],
+            [
+              "587d7db5367417b2b2512b97",
+              "Match Numbers and Letters of the Alphabet"
+            ],
+            [
+              "587d7db6367417b2b2512b98",
+              "Match Single Characters Not Specified"
+            ],
+            [
+              "587d7db6367417b2b2512b99",
+              "Match Characters that Occur One or More Times"
+            ],
+            [
+              "587d7db6367417b2b2512b9a",
+              "Match Characters that Occur Zero or More Times"
+            ],
+            [
+              "587d7db6367417b2b2512b9b",
+              "Find Characters with Lazy Matching"
+            ],
+            [
+              "587d7db7367417b2b2512b9c",
+              "Find One or More Criminals in a Hunt"
+            ],
+            [
+              "587d7db7367417b2b2512b9d",
+              "Match Beginning String Patterns"
+            ],
+            [
+              "587d7db7367417b2b2512b9e",
+              "Match Ending String Patterns"
+            ],
+            [
+              "587d7db7367417b2b2512b9f",
+              "Match All Letters and Numbers"
+            ],
+            [
+              "587d7db8367417b2b2512ba0",
+              "Match Everything But Letters and Numbers"
+            ],
+            [
+              "5d712346c441eddfaeb5bdef",
+              "Match All Numbers"
+            ],
+            [
+              "587d7db8367417b2b2512ba1",
+              "Match All Non-Numbers"
+            ],
+            [
+              "587d7db8367417b2b2512ba2",
+              "Restrict Possible Usernames"
+            ],
+            [
+              "587d7db8367417b2b2512ba3",
+              "Match Whitespace"
+            ],
+            [
+              "587d7db9367417b2b2512ba4",
+              "Match Non-Whitespace Characters"
+            ],
+            [
+              "587d7db9367417b2b2512ba5",
+              "Specify Upper and Lower Number of Matches"
+            ],
+            [
+              "587d7db9367417b2b2512ba6",
+              "Specify Only the Lower Number of Matches"
+            ],
+            [
+              "587d7db9367417b2b2512ba7",
+              "Specify Exact Number of Matches"
+            ],
+            [
+              "587d7dba367417b2b2512ba8",
+              "Check for All or None"
+            ],
+            [
+              "587d7dba367417b2b2512ba9",
+              "Positive and Negative Lookahead"
+            ],
+            [
+              "5c3dda8b4d8df89bea71600f",
+              "Check For Mixed Grouping of Characters"
+            ],
+            [
+              "587d7dbb367417b2b2512baa",
+              "Reuse Patterns Using Capture Groups"
+            ],
+            [
+              "587d7dbb367417b2b2512bab",
+              "Use Capture Groups to Search and Replace"
+            ],
+            [
+              "587d7dbb367417b2b2512bac",
+              "Remove Whitespace from Start and End"
+            ]
+          ]
+        }
+      }
+    }
+  }
+}

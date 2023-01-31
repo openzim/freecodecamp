@@ -1,0 +1,69 @@
+{
+  "superblocks": [
+    {
+      "dashedName": "2022/responsive-web-design",
+      "public": true,
+      "title": "(New) Responsive Web Design"
+    },
+    {
+      "dashedName": "responsive-web-design",
+      "public": true,
+      "title": "Legacy Responsive Web Design"
+    },
+    {
+      "dashedName": "javascript-algorithms-and-data-structures",
+      "public": false,
+      "title": "JavaScript Algorithms and Data Structures"
+    },
+    {
+      "dashedName": "front-end-development-libraries",
+      "public": false,
+      "title": "Front End Development Libraries"
+    },
+    {
+      "dashedName": "data-visualization",
+      "public": false,
+      "title": "Data Visualization"
+    },
+    {
+      "dashedName": "back-end-development-and-apis",
+      "public": false,
+      "title": "Back End Development and APIs"
+    },
+    {
+      "dashedName": "quality-assurance",
+      "public": false,
+      "title": "Quality Assurance"
+    },
+    {
+      "dashedName": "scientific-computing-with-python",
+      "public": false,
+      "title": "Scientific Computing with Python"
+    },
+    {
+      "dashedName": "data-analysis-with-python",
+      "public": false,
+      "title": "Data Analysis with Python"
+    },
+    {
+      "dashedName": "information-security",
+      "public": false,
+      "title": "Information Security"
+    },
+    {
+      "dashedName": "machine-learning-with-python",
+      "public": false,
+      "title": "Machine Learning with Python"
+    },
+    {
+      "dashedName": "coding-interview-prep",
+      "public": false,
+      "title": "Coding Interview Prep"
+    },
+    {
+      "dashedName": "relational-database",
+      "public": false,
+      "title": "Relational Database (Beta)"
+    }
+  ]
+}

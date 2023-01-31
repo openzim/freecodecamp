@@ -1,0 +1,169 @@
+{
+  "information-security": {
+    "intro": [
+      "With everything we do online, there's a vast amount of sensitive information at risk: email addresses, passwords, phone numbers, and much more.",
+      "With the Information Security Certification, you'll build a secure web app with HelmetJS to learn the fundamentals of protecting people's information online.",
+      "You'll also build a TCP client, and an Nmap and port scanner in Python. This will help you learn the basics of penetration testing — an important component of good information security."
+    ],
+    "blocks": {
+      "information-security-projects": {
+        "desc": [
+          "Now it’s time to put your new information security skills to work. These projects will give you a chance to apply the infosec skills, principles, and concepts you've learned.",
+          "When you are done, you will have plenty of information security projects under your belt, along with a certification that you can show off to friends, family, and employers."
+        ],
+        "challenges": {
+          "name": "Information Security Projects",
+          "isUpcomingChange": false,
+          "dashedName": "information-security-projects",
+          "order": 2,
+          "time": "150 hours",
+          "template": "",
+          "required": [],
+          "superBlock": "information-security",
+          "challengeOrder": [
+            [
+              "587d824a367417b2b2512c44",
+              "Stock Price Checker"
+            ],
+            [
+              "587d824a367417b2b2512c45",
+              "Anonymous Message Board"
+            ],
+            [
+              "5e46f979ac417301a38fb932",
+              "Port Scanner"
+            ],
+            [
+              "5e46f983ac417301a38fb933",
+              "SHA-1 Password Cracker"
+            ],
+            [
+              "5e601c775ac9d0ecd8b94aff",
+              "Secure Real Time Multiplayer Game"
+            ]
+          ]
+        }
+      },
+      "information-security-with-helmetjs": {
+        "desc": [
+          "This programming course focuses on HelmetJS, a type of middleware for Express-based applications that automatically sets HTTP headers. This way it can prevent sensitive information from unintentionally being passed between the server and client.",
+          "Completing the courses below will help you understand how to protect your website from malicious behavior."
+        ],
+        "challenges": {
+          "name": "Information Security with HelmetJS",
+          "isUpcomingChange": false,
+          "dashedName": "information-security-with-helmetjs",
+          "order": 0,
+          "time": "5 hours",
+          "template": "",
+          "required": [],
+          "superBlock": "information-security",
+          "challengeOrder": [
+            [
+              "587d8247367417b2b2512c36",
+              "Install and Require Helmet"
+            ],
+            [
+              "587d8247367417b2b2512c37",
+              "Hide Potentially Dangerous Information Using helmet.hidePoweredBy()"
+            ],
+            [
+              "587d8247367417b2b2512c38",
+              "Mitigate the Risk of Clickjacking with helmet.frameguard()"
+            ],
+            [
+              "587d8247367417b2b2512c39",
+              "Mitigate the Risk of Cross Site Scripting (XSS) Attacks with helmet.xssFilter()"
+            ],
+            [
+              "587d8248367417b2b2512c3a",
+              "Avoid Inferring the Response MIME Type with helmet.noSniff()"
+            ],
+            [
+              "587d8248367417b2b2512c3b",
+              "Prevent IE from Opening Untrusted HTML with helmet.ieNoOpen()"
+            ],
+            [
+              "587d8248367417b2b2512c3c",
+              "Ask Browsers to Access Your Site via HTTPS Only with helmet.hsts()"
+            ],
+            [
+              "587d8248367417b2b2512c3d",
+              "Disable DNS Prefetching with helmet.dnsPrefetchControl()"
+            ],
+            [
+              "587d8249367417b2b2512c3e",
+              "Disable Client-Side Caching with helmet.noCache()"
+            ],
+            [
+              "587d8249367417b2b2512c3f",
+              "Set a Content Security Policy with helmet.contentSecurityPolicy()"
+            ],
+            [
+              "587d8249367417b2b2512c40",
+              "Configure Helmet Using the ‘parent’ helmet() Middleware"
+            ],
+            [
+              "58a25bcef9fc0f352b528e7c",
+              "Understand BCrypt Hashes"
+            ],
+            [
+              "58a25bcff9fc0f352b528e7d",
+              "Hash and Compare Passwords Asynchronously"
+            ],
+            [
+              "58a25bcff9fc0f352b528e7e",
+              "Hash and Compare Passwords Synchronously"
+            ]
+          ]
+        }
+      },
+      "python-for-penetration-testing": {
+        "desc": [
+          "These video courses teach you penetration testing with Python. Also known as a pen test, penetration testing is a simulated attack against a system to check for vulnerabilities.",
+          "In this course, you'll learn about sockets, create a TCP server and client, build an Nmap scanner, and other tools and techniques that pen testers use daily."
+        ],
+        "challenges": {
+          "name": "Python for Penetration Testing",
+          "isUpcomingChange": false,
+          "dashedName": "python-for-penetration-testing",
+          "order": 1,
+          "time": "5 hours",
+          "template": "",
+          "required": [],
+          "superBlock": "information-security",
+          "challengeOrder": [
+            [
+              "5ea9997bbec2e9bc47e94dae",
+              "Introduction and Setup"
+            ],
+            [
+              "5ea9997bbec2e9bc47e94daf",
+              "Understanding Sockets and Creating a TCP Server"
+            ],
+            [
+              "5ea9997bbec2e9bc47e94db0",
+              "Creating a TCP Client"
+            ],
+            [
+              "5ea9997bbec2e9bc47e94db1",
+              "Developing an Nmap Scanner part 1"
+            ],
+            [
+              "5ea9997bbec2e9bc47e94db2",
+              "Developing an Nmap Scanner part 2"
+            ],
+            [
+              "5ea9997bbec2e9bc47e94db3",
+              "Developing a Banner Grabber"
+            ],
+            [
+              "5ea9997bbec2e9bc47e94db4",
+              "Developing a Port Scanner"
+            ]
+          ]
+        }
+      }
+    }
+  }
+}

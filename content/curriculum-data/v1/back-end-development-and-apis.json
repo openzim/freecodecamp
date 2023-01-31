@@ -1,0 +1,234 @@
+{
+  "back-end-development-and-apis": {
+    "intro": [
+      "Until this point, you've only used JavaScript on the front end to add interactivity to a page, solve algorithm challenges, or build an SPA. But JavaScript can also be used on the back end, or server, to build entire web applications.",
+      "Today, one of the popular ways to build applications is through microservices, which are small, modular applications that work together to form a larger whole.",
+      "In the Back End Development and APIs Certification, you'll learn how to write back end apps with Node.js and npm. You'll also build web applications with the Express framework, and build a People Finder microservice with MongoDB and the Mongoose library."
+    ],
+    "blocks": {
+      "back-end-development-and-apis-projects": {
+        "desc": [
+          "You've worked with APIs before, but now that you know npm, Node, Express, MongoDB, and Mongoose, it's time to build your own. Draw on everything you've learned up to this point to create 5 different microservices, which are smaller applications that are limited in scope.",
+          "After creating these, you'll have 5 cool microservice APIs you can show off to friends, family, and potential employers. Oh, and you'll have a shiny new Back End Development and APIs Certification, too."
+        ],
+        "challenges": {
+          "name": "Back End Development and APIs Projects",
+          "isUpcomingChange": false,
+          "dashedName": "back-end-development-and-apis-projects",
+          "order": 3,
+          "time": "150 hours",
+          "superBlock": "back-end-development-and-apis",
+          "challengeOrder": [
+            [
+              "bd7158d8c443edefaeb5bdef",
+              "Timestamp Microservice"
+            ],
+            [
+              "bd7158d8c443edefaeb5bdff",
+              "Request Header Parser Microservice"
+            ],
+            [
+              "bd7158d8c443edefaeb5bd0e",
+              "URL Shortener Microservice"
+            ],
+            [
+              "5a8b073d06fa14fcfde687aa",
+              "Exercise Tracker"
+            ],
+            [
+              "bd7158d8c443edefaeb5bd0f",
+              "File Metadata Microservice"
+            ]
+          ]
+        }
+      },
+      "basic-node-and-express": {
+        "desc": [
+          "Node.js is a JavaScript runtime that allows developers to write backend (server-side) programs in JavaScript. Node.js comes with a handful of built-in modules — small, independent programs — that help with this. Some of the core modules include HTTP, which acts like a server, and File System, a module to read and modify files.",
+          "In the last set of courses you learned to install and manage packages from npm, which are collections of smaller modules. These packages can help you build larger, more complex applications.",
+          "Express is a lightweight web application framework, and is one of the most popular packages on npm. Express makes it much easier to create a server and handle routing for your application, which handles things like directing people to the correct page when they visit a certain endpoint like <pre>/blog</pre>.",
+          "In this course, you'll learn the basics of Node and Express including how to create a server, serve different files, and handle different requests from the browser."
+        ],
+        "challenges": {
+          "name": "Basic Node and Express",
+          "isUpcomingChange": false,
+          "dashedName": "basic-node-and-express",
+          "order": 1,
+          "time": "5 hours",
+          "superBlock": "back-end-development-and-apis",
+          "challengeOrder": [
+            [
+              "587d7fb0367417b2b2512bed",
+              "Meet the Node console"
+            ],
+            [
+              "587d7fb0367417b2b2512bee",
+              "Start a Working Express Server"
+            ],
+            [
+              "587d7fb0367417b2b2512bef",
+              "Serve an HTML File"
+            ],
+            [
+              "587d7fb0367417b2b2512bf0",
+              "Serve Static Assets"
+            ],
+            [
+              "587d7fb1367417b2b2512bf1",
+              "Serve JSON on a Specific Route"
+            ],
+            [
+              "587d7fb1367417b2b2512bf2",
+              "Use the .env File"
+            ],
+            [
+              "587d7fb1367417b2b2512bf3",
+              "Implement a Root-Level Request Logger Middleware"
+            ],
+            [
+              "587d7fb1367417b2b2512bf4",
+              "Chain Middleware to Create a Time Server"
+            ],
+            [
+              "587d7fb2367417b2b2512bf5",
+              "Get Route Parameter Input from the Client"
+            ],
+            [
+              "587d7fb2367417b2b2512bf6",
+              "Get Query Parameter Input from the Client"
+            ],
+            [
+              "587d7fb2367417b2b2512bf7",
+              "Use body-parser to Parse POST Requests"
+            ],
+            [
+              "587d7fb2367417b2b2512bf8",
+              "Get Data from POST Requests"
+            ]
+          ]
+        }
+      },
+      "managing-packages-with-npm": {
+        "desc": [
+          "npm (Node Package Manager), is a command line tool to install, create, and share packages of JavaScript code written for Node.js. There are many open source packages available on npm, so before starting a project, take some time to explore so you don't end up recreating the wheel for things like working with dates or fetching data from an API.",
+          "In this course, you'll learn the basics of using npm, including how to work with the <code>package.json</code> and how to manage your installed dependencies."
+        ],
+        "challenges": {
+          "name": "Managing Packages with npm",
+          "isUpcomingChange": false,
+          "dashedName": "managing-packages-with-npm",
+          "order": 0,
+          "time": "5 hours",
+          "superBlock": "back-end-development-and-apis",
+          "challengeOrder": [
+            [
+              "587d7fb3367417b2b2512bfb",
+              "How to Use package.json, the Core of Any Node.js Project or npm Package"
+            ],
+            [
+              "587d7fb3367417b2b2512bfc",
+              "Add a Description to Your package.json"
+            ],
+            [
+              "587d7fb4367417b2b2512bfd",
+              "Add Keywords to Your package.json"
+            ],
+            [
+              "587d7fb4367417b2b2512bfe",
+              "Add a License to Your package.json"
+            ],
+            [
+              "587d7fb4367417b2b2512bff",
+              "Add a Version to Your package.json"
+            ],
+            [
+              "587d7fb4367417b2b2512c00",
+              "Expand Your Project with External Packages from npm"
+            ],
+            [
+              "587d7fb5367417b2b2512c01",
+              "Manage npm Dependencies By Understanding Semantic Versioning"
+            ],
+            [
+              "587d7fb5367417b2b2512c02",
+              "Use the Tilde-Character to Always Use the Latest Patch Version of a Dependency"
+            ],
+            [
+              "587d7fb5367417b2b2512c03",
+              "Use the Caret-Character to Use the Latest Minor Version of a Dependency"
+            ],
+            [
+              "587d7fb5367417b2b2512c04",
+              "Remove a Package from Your Dependencies"
+            ]
+          ]
+        }
+      },
+      "mongodb-and-mongoose": {
+        "desc": [
+          "MongoDB is a database application that stores JSON documents (or records) that you can use in your application. Unlike SQL, another type of database, MongoDB is a non-relational or \"NoSQL\" database. This means MongoDB stores all associated data within one record, instead of storing it across many preset tables as in a SQL database.",
+          "Mongoose is a popular npm package for interacting with MongoDB. With Mongoose, you can use plain JavaScript objects instead of JSON, which makes it easier to work with MongoDB. Also, it allows you to create blueprints for your documents called schemas, so you don't accidentally save the wrong type of data and cause bugs later.",
+          "In the MongoDB and Mongoose courses, you'll learn the fundamentals of working with persistent data including how to set up a model, and save, delete, and find documents in the database."
+        ],
+        "challenges": {
+          "name": "MongoDB and Mongoose",
+          "isUpcomingChange": false,
+          "dashedName": "mongodb-and-mongoose",
+          "order": 2,
+          "time": "5 hours",
+          "superBlock": "back-end-development-and-apis",
+          "challengeOrder": [
+            [
+              "587d7fb6367417b2b2512c06",
+              "Install and Set Up Mongoose"
+            ],
+            [
+              "587d7fb6367417b2b2512c07",
+              "Create a Model"
+            ],
+            [
+              "587d7fb6367417b2b2512c09",
+              "Create and Save a Record of a Model"
+            ],
+            [
+              "587d7fb7367417b2b2512c0a",
+              "Create Many Records with model.create()"
+            ],
+            [
+              "587d7fb7367417b2b2512c0b",
+              "Use model.find() to Search Your Database"
+            ],
+            [
+              "587d7fb7367417b2b2512c0c",
+              "Use model.findOne() to Return a Single Matching Document from Your Database"
+            ],
+            [
+              "587d7fb7367417b2b2512c0d",
+              "Use model.findById() to Search Your Database By _id"
+            ],
+            [
+              "587d7fb8367417b2b2512c0e",
+              "Perform Classic Updates by Running Find, Edit, then Save"
+            ],
+            [
+              "587d7fb8367417b2b2512c0f",
+              "Perform New Updates on a Document Using model.findOneAndUpdate()"
+            ],
+            [
+              "587d7fb8367417b2b2512c10",
+              "Delete One Document Using model.findByIdAndRemove"
+            ],
+            [
+              "587d7fb8367417b2b2512c11",
+              "Delete Many Documents with model.remove()"
+            ],
+            [
+              "587d7fb9367417b2b2512c12",
+              "Chain Search Query Helpers to Narrow Search Results"
+            ]
+          ]
+        }
+      }
+    }
+  }
+}

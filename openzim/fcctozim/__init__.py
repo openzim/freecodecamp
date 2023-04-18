@@ -6,9 +6,7 @@ import logging
 import threading
 from pathlib import Path as path
 
-from zimscraperlib.logging import getLogger
-
-logger = getLogger(__name__, level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 TMP_FOLDER = "tmp"
 TMP_FOLDER_PATH = path(TMP_FOLDER)

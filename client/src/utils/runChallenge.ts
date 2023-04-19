@@ -110,6 +110,7 @@ export const runChallenge = (
   )
 
   const ___originalConsole = console
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const ___consoleFn = (...msg: any[]) => {
     ___result.logs.push(...msg)
     if (!___options?.supressConsole) {

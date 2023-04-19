@@ -13,6 +13,7 @@ const render = (str: string): string => {
 </script>
 
 <template>
+  <!-- eslint-disable vue/no-v-html -->
   <h1>{{ props.title }}</h1>
   <div v-html="render(props.description)" />
   <hr />

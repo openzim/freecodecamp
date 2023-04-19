@@ -80,6 +80,7 @@ export class Challenge {
   }
 
   toJSON() {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const json: any = this.header
     json.solutions = this.solutions
     json.description = this.description

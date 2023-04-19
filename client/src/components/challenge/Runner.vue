@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { Ref, ref } from 'vue'
+import { Ref, ref, ComputedRef, computed} from 'vue'
 import { Challenge } from '@/utils/parseChallenge'
-import { runChallenge } from '@/utils/runChallenge'
+import { RunResult, runChallenge } from '@/utils/runChallenge'
+import ConsoleBox from './ConsoleBox.vue';
 
 const props = defineProps<{
   challenge: Challenge
@@ -15,34 +16,50 @@ const emit = defineEmits<{
 type State = 'initialized' | 'passed' | 'error'
 const state: Ref<State> = ref('initialized')
 
-const error: Ref<string | null> = ref(null)
+const error: Ref<Error | null> = ref(null)
+const result: Ref<RunResult | null> = ref(null)
 
-const test = (): void => {
+const passed: ComputedRef<boolean> = computed(() => {
+  if (result.value) {
+    return result.value.hints.filter((h) => h.passed).length === result.value.hints.length
+  }
+  return false
+})
+
+
+const runTest = (): void => {
   try {
-    runChallenge(props.challenge, props.solution)
+    result.value = runChallenge(props.challenge, props.solution)
     error.value = null
-    state.value = 'passed'
   } catch (e) {
     if (e instanceof Error) {
-      error.value = e.message
+      error.value = e
       state.value = 'error'
     }
   }
 }
+result.value = runChallenge(props.challenge, props.solution)
+
 </script>
 
 <template>
-  <button @click="test">Run</button>
+  <button @click="runTest">Run</button>
   <button @click="emit('reset')">Reset</button>
-  <p v-if="error" class="error">
-    <b>{{ error }}</b>
-  </p>
-  <p v-else-if="state === 'passed'" class="passed">
+  <p v-for="test, i in result?.hints" :key="i" class="hint" :class="{ 'passed': test.passed }">{{ test.description }}</p>
+  <p v-if="passed" class="passed">
     <b>Passed!</b>
   </p>
+  <ConsoleBox :logs="result?.logs || []" :syntax-error="error"></ConsoleBox>
 </template>
 
 <style scoped>
+
+.hint {
+  margin: 2em;
+}
+
+.hint.passed {
+}
 .error {
   color: rgb(164, 4, 4);
 }

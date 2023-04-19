@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import CodeEditor from '../components/challenge/CodeEditor.vue'
 import Description from '../components/challenge/Description.vue'
-import Runner from '../components/challenge/Runner.vue'
+import RunnerVue from '../components/challenge/Runner.vue'
 import { parseChallenge } from '@/utils/parseChallenge'
 
 const { params } = useRoute()
@@ -32,11 +32,11 @@ const onReset = () => {
       :source-code="solution"
       @update="(event) => (solution = event)"
     ></CodeEditor>
-    <Runner
+    <RunnerVue
       :challenge="challenge"
       :solution="solution || ''"
       @reset="onReset"
-    ></Runner>
+    ></RunnerVue>
   </div>
 </template>
 

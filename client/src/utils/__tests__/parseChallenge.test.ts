@@ -8,7 +8,7 @@ describe('Parsing a basic JS challenge', () => {
   let challenge: Challenge
   beforeAll(async () => {
     markdown = await readFile(
-      join(__dirname, 'fixtures', 'sampleJSChallenge.md'),
+      join(__dirname, 'fixtures', 'basicMarkdownChallenge.md'),
       'utf-8'
     )
     challenge = parseChallenge(markdown)

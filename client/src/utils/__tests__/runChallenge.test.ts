@@ -73,24 +73,6 @@ describe('Running a basic JS challenge', () => {
   })
 })
 
-describe('Running a more complex JS Challenge', () => {
-  let markdown = ''
-  let challenge: Challenge
-  beforeAll(async () => {
-    markdown = await readFile(
-      join(__dirname, 'fixtures', 'complexJSChallenge.md'),
-      'utf-8'
-    )
-    challenge = parseChallenge(markdown)
-  })
-
-  it.skip('should take in a challenge and run a working solution against it', async () => {
-    expect(() =>
-      runChallenge(challenge, challenge.solutions[0])
-    ).not.toThrowError()
-  })
-})
-
 describe('Run all the solutions in the assets folder', () => {
   it("every challenge in the assets folder should pass with it's own solution", async () => {
     const markdownChallenges = await glob(

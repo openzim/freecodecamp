@@ -2,12 +2,9 @@ name: Build the FCC zim file
 
 on: push
 jobs:
-  build_python:
+  build_zim_file:
     runs-on: ubuntu-latest
-    defaults:
-        run:
-          working-directory: openzim
-    name: Install the dependencies for this project
+    name: Build latest zim file
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-python@v4
@@ -15,15 +12,24 @@ jobs:
         python-version: '3.11'
         cache: 'pip' # caching pip dependencies
     - run: pip install -r requirements.txt
-  build_node:
-    runs-on: ubuntu-latest
-    defaults:
-        run:
-          working-directory: client
-    steps:
+      working-directory: openzim
+
     - uses: actions/setup-node@v3
       with:
-        node-version: 16
-    - run: yarn install
+        node-version: 18
+        cache: 'yarn'
+        cache-dependency-path: '**/yarn.lock'
+    - run: yarn install --frozen-lockfile
+      working-directory: client
     - run: yarn lint
+      working-directory: client
     - run: yarn test
+      working-directory: client
+    - run: python3 fetch.py --filter=02-javascript
+      working-directory: openzim
+    - run: python3 prebuild.py basic-javascript ../client/src/assets/curriculum
+      working-directory: openzim
+    - run: yarn build
+      working-directory: client
+    - run: python3 ./fcc2zim --source-dir=../client/dist --zim
+      working-directory: openzim

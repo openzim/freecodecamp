@@ -32,7 +32,7 @@ def main(arguments):
     zip_path = f'{tmp_dir}/main.zip'
     curriculum_path = f'{tmp_dir}/curriculum'
 
-    pathlib.Path(tmp_dir).mkdir(parents=True, exist_ok=True)
+    pathlib.Path(curriculum_path).mkdir(parents=True, exist_ok=True)
 
     # Don't redownload the file if we already have it (it's a large file)
     if FORCE or not os.path.exists(zip_path):

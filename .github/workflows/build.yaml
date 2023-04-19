@@ -23,7 +23,7 @@ jobs:
       working-directory: client
     - run: yarn lint
       working-directory: client
-    - run: yarn test
+    - run: yarn test --run
       working-directory: client
     - run: python3 fetch.py --filter=02-javascript
       working-directory: openzim

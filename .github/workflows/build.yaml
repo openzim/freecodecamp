@@ -1,0 +1,21 @@
+name: Build the FCC zim file
+
+on: push
+jobs: 
+  installDependencies:
+    name: Install the dependencies for this project
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        cache: 'pip' # caching pip dependencies
+    - working-directory: openzim
+    - run: pip install -r requirements.txt
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 16
+    - run: yarn install
+    - run: yarn lint
+    - run: yarn test
+    - working-directory: client

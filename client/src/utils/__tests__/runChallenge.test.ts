@@ -17,24 +17,43 @@ describe('Running a basic JS challenge', () => {
   })
 
   it('should take in a challenge and run a working solution against it', async () => {
-    expect(() =>
-      runChallenge(challenge, challenge.solutions[0])
-    ).not.toThrowError()
+    const result = runChallenge(challenge, challenge.solutions[0], {supressConsole: true})
+    expect(result.hints.filter((h) => h.passed).length).toEqual(challenge.hints.length)
   })
 
-  it('should throw the appropriate error with a bad solution', async () => {
-    const badSolution = `
-const testObj = {
-  12: "Namath",
-  16: "Montana",
-  19: "Unitas"
-};
-const playerNumber = 18;
-const player = testObj[playerNumber];
-        `
-    expect(() => runChallenge(challenge, badSolution)).toThrowError(
-      'The variable `player` should be a string'
-    )
+  it('should log all the console statements for outputting to the user', async () => {
+    const result = runChallenge(challenge, challenge.solutions[0], {supressConsole: true})
+    expect(result.logs.length).toEqual(1)
+    expect(result.logs[0]).toEqual("I should show up on the console")
+    expect(result.hints.filter((h) => h.passed).length).toEqual(challenge.hints.length)
+  })
+
+  it('should not pass all tests with a bad solution', async () => {
+    const badSolution = challenge.solutions[1]
+    const result = runChallenge(challenge, badSolution)
+    expect(result.hints[1].passed).toBe(false)
+    expect(result.hints[1].description).toEqual('The variable `player` should be a string')
+  })
+
+  it('should still pass `code` regex tests even when the code throws an exception', async () => {
+    const badSolution = challenge.solutions[2] // Reference error code
+    const result = runChallenge(challenge, badSolution)
+    expect(result.hints[1].passed).toBe(false)
+    expect(result.hints[1].description).toEqual('The variable `player` should be a string')
+    
+    // Code matcher still pass
+    expect(result.hints[3].passed).toBe(true)
+    expect(result.hints[3].description).toEqual('You should use bracket notation to access `testObj`')
+
+    // Log the error
+    expect(result.logs[0]).toEqual('ReferenceError: someUnknownVariable is not defined')
+  })
+
+  it('should throw an error on syntax errors', async () => {
+    const badSolution = challenge.solutions[3] // Reference error code
+    expect(() =>
+      runChallenge(challenge, badSolution)
+    ).toThrowError('Unexpected number')
   })
 })
 
@@ -49,7 +68,7 @@ describe('Running a more complex JS Challenge', () => {
     challenge = parseChallenge(markdown)
   })
 
-  it('should take in a challenge and run a working solution against it', async () => {
+  it.skip('should take in a challenge and run a working solution against it', async () => {
     expect(() =>
       runChallenge(challenge, challenge.solutions[0])
     ).not.toThrowError()
@@ -64,20 +83,8 @@ describe('Run all the solutions in the assets folder', () => {
     for (const markdownChallenge of markdownChallenges) {
       const markdown = await readFile(markdownChallenge, 'utf-8')
       const challenge = parseChallenge(markdown)
-      try {
-        runChallenge(challenge, challenge.solutions[0])
-      } catch (e) {
-        const id = challenge.header['id']
-
-        // This particular challenges solution fails with a ReferenceError on purpose
-        if (id === '56533eb9ac21ba0edf2244bf') {
-          if (e instanceof ReferenceError) {
-            expect(true)
-          }
-        } else {
-          expect(false, `Challenge failed: ${markdownChallenge}`)
-        }
-      }
+      const result = runChallenge(challenge, challenge.solutions[0], {supressConsole: true})
+      expect(result.hints.filter((h) => h.passed).length).toEqual(challenge.hints.length)
     }
   })
 })

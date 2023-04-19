@@ -2,61 +2,130 @@ import { Challenge } from './parseChallenge'
 import { assert as chaiAssert } from 'chai'
 import * as helpers from './helpers'
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-class ChallengeError extends Error {
-  assertionError = ''
-  constructor(message: string, assertionError: string) {
-    super(message)
-    this.assertionError = assertionError
+// const escapeQuotes = (str: string) => {
+//   // return str.replaceAll('"', '\\"')
+//   return str.replace(/\\([\s\S])|(")/g, '\\$1$2')
+// }
+
+// Hijack console logging statements
+const ___setupEvalCode = () => {
+  return(`
+const console = ___consoleProxy;\n
+  `)
+}
+
+// Loop though hints and mark them pass/fail
+const ___hintEvalCode = (hints: [string, string][]): string => {
+  return hints
+    .map((hint, i) => {
+      return `
+try {
+  if (___result.hints[${i}] !== true) {
+    ${hint[1]};
+    ___result.hints[${i}].passed = true;
   }
+} catch (e) {
+  ___result.hints[${i}].passed = false;
+}
+`
+    }).join("\n")
 }
 
-const escapeQuotes = (str: string) => {
-  // return str.replaceAll('"', '\\"')
-  return str.replace(/\\([\s\S])|(")/g, '\\$1$2')
-}
 
-const setup = ``
+/**
+ * Should look something like
+ * 
+ * setupCode
+ * try {
+ *   beforeCode
+ *   userCode
+ *   afterCode
+ *   try {
+ *      hint[i]
+ *   } catch (e) {
+ *      markHint[i] failed
+ *   }
+ * } catch (e) {
+ *   appendErrors to log
+ * }
+ * try {
+ *    hint[i]
+ * } catch (e) {
+ *    markHint[i] failed
+ * }
+ * 
+ * @param solution 
+ * @param beforeCode 
+ * @param afterCode 
+ * @param hints 
+ * @returns 
+ */
 
-const generateEvalCode = (
+const ___generateEvalCode = (
   solution: string,
   beforeCode: string,
   afterCode: string,
   hints: [string, string][]
 ): string => {
   const code =
-    `
-${setup};
-${beforeCode};
-${solution};
-${afterCode};
-    ` +
-    hints
-      .map((hint) => {
-        return `
+`
+${___setupEvalCode()};
 try {
-    ${hint[1]};
+  ${beforeCode};
+  ${solution};
+  ${afterCode};
+  ${___hintEvalCode(hints)}
 } catch (e) {
-    throw new ChallengeError("${escapeQuotes(hint[0])}", e)
+  ___result.logs.push(e.toString());
+  ${___hintEvalCode(hints)}
 }
 `
-      })
-      .join(';')
   return code
 }
 
-export const runChallenge = (challenge: Challenge, code: string) => {
-  const evalCode = generateEvalCode(
+export type RunResult = {
+    logs: string[]
+    hints: {
+        description: string
+        passed: boolean
+    }[]
+}
+
+export const runChallenge = (___challenge: Challenge, code: string, ___options?: {supressConsole: boolean}): RunResult => {
+  const ___result: RunResult = {
+    logs: [],
+    hints: ___challenge.hints.map((hint) => ({
+      passed: false,
+      description: hint[0]
+    })),
+  }
+  const ___evalCode = ___generateEvalCode(
     code,
-    challenge.seedPrecursor || '',
-    challenge.seedAddendum || '',
-    challenge.hints
+    ___challenge.seedPrecursor || '',
+    ___challenge.seedAddendum || '',
+    ___challenge.hints
   )
+
+  const ___originalConsole = console
+  const ___consoleFn = (...msg: any[]) => {
+    ___result.logs.push(...msg)
+    if (!___options?.supressConsole) {
+      // eslint-disable-next-line no-console
+      ___originalConsole.log(...msg)
+    }
+  }
+
   /* eslint-disable @typescript-eslint/no-unused-vars */
+  const ___consoleProxy = {
+    log: ___consoleFn,
+    debug: ___consoleFn,
+    info: ___consoleFn,
+    warn: ___consoleFn,
+    error: ___consoleFn,
+  }
   const assert = chaiAssert
   const __helpers = helpers
   /* eslint-enable @typescript-eslint/no-unused-vars */
-  // console.log(evalCode)
-  // Eval has access to same scope, maybe pull assert out
-  eval(evalCode)
+  eval(___evalCode)
+  return ___result
 }

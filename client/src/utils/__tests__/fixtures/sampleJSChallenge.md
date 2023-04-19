@@ -102,6 +102,41 @@ const testObj = {
   16: "Montana",
   19: "Unitas"
 };
+console.log("I should show up on the console")
 const playerNumber = 16;
 const player = testObj[playerNumber];
 ```
+
+```js
+// Bad solution
+const testObj = {
+  12: "Namath",
+  16: "Montana",
+  19: "Unitas"
+};
+const playerNumber = 18;
+const player = testObj[playerNumber];
+```
+
+```js
+const testObj = {
+  12: "Namath",
+  16: "Montana",
+  19: "Unitas"
+};
+console.log(someUnknownVariable) // ReferenceError, should still pass some `code` match tests
+const playerNumber = 18;
+const player = testObj[playerNumber];
+```
+
+```js
+// Bad syntax
+const testObj = {
+  12: "Namath",
+  16: "Montana" // Missing semicolon
+  19: "Unitas"
+};
+const playerNumber = 18;
+const player = testObj[playerNumber];
+```
+

@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  parser: "vue-eslint-parser",
+  parser: 'vue-eslint-parser',
   parserOptions: {
     sourceType: 'module',
     ecmaVersion: 'latest',
@@ -30,4 +30,3 @@ module.exports = {
     },
   ],
 }
-

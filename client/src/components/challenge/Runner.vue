@@ -17,7 +17,6 @@ const state: Ref<State> = ref('initialized')
 
 const error: Ref<string | null> = ref(null)
 
-
 const test = (): void => {
   try {
     runChallenge(props.challenge, props.solution)

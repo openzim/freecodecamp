@@ -20,7 +20,7 @@ export class Challenge {
     if (this.tokensList[1] && this.tokensList[1].type === 'heading') {
       const frontMatter = this.tokensList[1] as marked.Tokens.Heading
       const rawStrings = frontMatter.text.split('\n')
-      const data: {[key: string]: string} = {}
+      const data: { [key: string]: string } = {}
       for (const rawString of rawStrings) {
         const keyVal = rawString.split(': ')
         data[keyVal[0]] = keyVal[1]

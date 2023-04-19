@@ -9,9 +9,9 @@ import * as helpers from './helpers'
 
 // Hijack console logging statements
 const ___setupEvalCode = () => {
-  return(`
+  return `
 const console = ___consoleProxy;\n
-  `)
+  `
 }
 
 // Loop though hints and mark them pass/fail
@@ -28,13 +28,13 @@ try {
   ___result.hints[${i}].passed = false;
 }
 `
-    }).join("\n")
+    })
+    .join('\n')
 }
-
 
 /**
  * Should look something like
- * 
+ *
  * setupCode
  * try {
  *   beforeCode
@@ -53,12 +53,12 @@ try {
  * } catch (e) {
  *    markHint[i] failed
  * }
- * 
- * @param solution 
- * @param beforeCode 
- * @param afterCode 
- * @param hints 
- * @returns 
+ *
+ * @param solution
+ * @param beforeCode
+ * @param afterCode
+ * @param hints
+ * @returns
  */
 
 const ___generateEvalCode = (
@@ -67,8 +67,7 @@ const ___generateEvalCode = (
   afterCode: string,
   hints: [string, string][]
 ): string => {
-  const code =
-`
+  const code = `
 ${___setupEvalCode()};
 try {
   ${beforeCode};
@@ -84,19 +83,23 @@ try {
 }
 
 export type RunResult = {
-    logs: string[]
-    hints: {
-        description: string
-        passed: boolean
-    }[]
+  logs: string[]
+  hints: {
+    description: string
+    passed: boolean
+  }[]
 }
 
-export const runChallenge = (___challenge: Challenge, code: string, ___options?: {supressConsole: boolean}): RunResult => {
+export const runChallenge = (
+  ___challenge: Challenge,
+  code: string,
+  ___options?: { supressConsole: boolean }
+): RunResult => {
   const ___result: RunResult = {
     logs: [],
     hints: ___challenge.hints.map((hint) => ({
       passed: false,
-      description: hint[0]
+      description: hint[0],
     })),
   }
   const ___evalCode = ___generateEvalCode(

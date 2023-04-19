@@ -4,7 +4,10 @@ export const parseChallenge = (markdownStr: string): Challenge => {
   return new Challenge(marked.lexer(markdownStr))
 }
 
-type HintTokens = marked.Tokens.Space | marked.Tokens.Code | marked.Tokens.Paragraph
+type HintTokens =
+  | marked.Tokens.Space
+  | marked.Tokens.Code
+  | marked.Tokens.Paragraph
 
 export class Challenge {
   tokensList: marked.TokensList
@@ -17,7 +20,7 @@ export class Challenge {
     if (this.tokensList[1] && this.tokensList[1].type === 'heading') {
       const frontMatter = this.tokensList[1] as marked.Tokens.Heading
       const rawStrings = frontMatter.text.split('\n')
-      const data: any = {}
+      const data: {[key: string]: string} = {}
       for (const rawString of rawStrings) {
         const keyVal = rawString.split(': ')
         data[keyVal[0]] = keyVal[1]
@@ -26,7 +29,6 @@ export class Challenge {
     }
     throw new Error('Unable to parse heading data')
   }
-
 
   get hints(): [hint: string, assertion: string][] {
     const solutionsToken = this.getSectionTokens('--hints--')

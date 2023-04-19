@@ -6,4 +6,3 @@ export const deepEqual = assertLib.deepEqual
 export const equal = assertLib.equal
 
 export default defaultAssert
-

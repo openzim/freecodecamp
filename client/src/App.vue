@@ -1,6 +1,4 @@
-<script setup lang="ts">
-import { Suspense } from 'vue';
-
+<script lang="ts">
 </script>
 
 <template>

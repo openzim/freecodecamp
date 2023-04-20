@@ -66,10 +66,8 @@ describe('Running a basic JS challenge', () => {
   })
 
   it('should throw an error on syntax errors', async () => {
-    const badSolution = challenge.solutions[3] // Reference error code
-    expect(() => runChallenge(challenge, badSolution)).toThrowError(
-      'Unexpected number'
-    )
+    const result = runChallenge(challenge, challenge.solutions[3])
+    expect(result.logs[0]).toEqual('SyntaxError: Unexpected number')
   })
 })
 

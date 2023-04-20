@@ -1,3 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  height: 100%;
+  min-height: 100%;
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -14,6 +24,14 @@
   -webkit-text-size-adjust: 100%;
 }
 
+.markdown pre {
+  @apply pl-4 my-4;
+}
+
+.markdown p {
+  @apply pt-2;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -25,10 +43,10 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  height: 100%;
 }
 
 h1 {
@@ -60,10 +78,9 @@ button:focus-visible {
 }
 
 #app {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: left;
+  height: 100%;
 }
 
 @media (prefers-color-scheme: light) {

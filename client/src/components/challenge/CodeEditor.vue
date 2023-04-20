@@ -33,21 +33,19 @@ const handleReady = (payload: any) => {
 </script>
 
 <template>
-  <codemirror
-    v-model="code"
-    placeholder="Code goes here..."
-    :style="{ height: '400px' }"
-    :autofocus="true"
-    :indent-with-tab="true"
-    :tab-size="2"
-    :extensions="extensions"
-    @ready="handleReady"
-    @change="emit('update', $event)"
-  />
+  <div>
+    <codemirror
+      v-model="code"
+      placeholder="Code goes here..."
+      :style="{ height: '100%' }"
+      :autofocus="true"
+      :indent-with-tab="true"
+      :tab-size="2"
+      :extensions="extensions"
+      @ready="handleReady"
+      @change="emit('update', $event)"
+    />
+  </div>
 </template>
 
-<style scoped>
-.read-the-docs {
-  color: #888;
-}
-</style>
+<style scoped></style>

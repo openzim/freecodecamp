@@ -113,7 +113,7 @@ export class Challenge {
 
   private getSectionCodes(title: string): string[] {
     const sectionTokens = this.getSectionTokens(title)
-    const codes = []
+    const codes: string[] = []
     if (sectionTokens) {
       for (const solutionToken of sectionTokens as marked.Tokens.Code[]) {
         if (solutionToken.type === 'code') {

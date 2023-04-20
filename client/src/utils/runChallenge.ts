@@ -2,11 +2,6 @@ import { Challenge } from './parseChallenge'
 import { assert as chaiAssert } from 'chai'
 import * as helpers from './helpers'
 
-// const escapeQuotes = (str: string) => {
-//   // return str.replaceAll('"', '\\"')
-//   return str.replace(/\\([\s\S])|(")/g, '\\$1$2')
-// }
-
 // Hijack console logging statements
 const ___setupEvalCode = () => {
   return `
@@ -130,6 +125,10 @@ export const runChallenge = (
   const assert = chaiAssert
   const __helpers = helpers
   /* eslint-enable @typescript-eslint/no-unused-vars */
-  eval(___evalCode)
+  try {
+    eval(___evalCode)
+  } catch (e) {
+    ___result.logs.push(e.toString())
+  }
   return ___result
 }

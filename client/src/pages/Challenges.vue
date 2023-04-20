@@ -11,13 +11,15 @@ const challenges = (
 </script>
 
 <template>
-  <ul>
-    <li v-for="item in challenges" :key="item.slug">
-      <RouterLink :to="`/english/${params.course}/${item.slug}`">
-        {{ item.title }}
-      </RouterLink>
-    </li>
-  </ul>
+  <div class="card">
+    <ul>
+      <li v-for="item in challenges" :key="item.slug">
+        <RouterLink :to="`/english/${params.course}/${item.slug}`">
+          {{ item.title }}
+        </RouterLink>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <style scoped>

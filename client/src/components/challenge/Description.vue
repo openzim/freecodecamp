@@ -15,13 +15,21 @@ const render = (str: string): string => {
 <template>
   <!-- eslint-disable vue/no-v-html -->
   <h1>{{ props.title }}</h1>
-  <div v-html="render(props.description)" />
-  <hr />
-  <div v-html="render(props.instructions)" />
+  <div class="markdown">
+    <div v-html="render(props.description)" />
+    <hr />
+    <div class="instructions" v-html="render(props.instructions)" />
+  </div>
 </template>
 
 <style scoped>
-.read-the-docs {
-  color: #888;
+hr {
+  @apply my-4;
+}
+h1 {
+  @apply mb-4;
+}
+.instructions {
+  @apply pb-4;
 }
 </style>

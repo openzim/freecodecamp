@@ -124,7 +124,13 @@ export const runChallenge = (
   }
   const assert = chaiAssert
   const __helpers = helpers
+  // vite build will drop these variables since they aren't used by anyone but eval.
+  // Nasty hack to get this working for alpha
+  if (localStorage.getItem('debug')) {
+    console.log(___consoleProxy, __helpers, assert)
+  }
   /* eslint-enable @typescript-eslint/no-unused-vars */
+
   try {
     eval(___evalCode)
   } catch (e: unknown) {

@@ -127,8 +127,12 @@ export const runChallenge = (
   /* eslint-enable @typescript-eslint/no-unused-vars */
   try {
     eval(___evalCode)
-  } catch (e) {
-    ___result.logs.push(e.toString())
+  } catch (e: unknown) {
+    if (e instanceof Error) {
+      ___result.logs.push(e.toString())
+    } else {
+      ___result.logs.push(JSON.stringify(e))
+    }
   }
   return ___result
 }

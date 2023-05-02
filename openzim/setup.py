@@ -11,7 +11,7 @@ from setuptools import setup, find_packages
 from fcc2zim import VERSION
 
 with open("requirements.pip", "r") as f:
-    requirements = [l.strip() for l in f.readlines() if len(l.strip())]
+    requirements = [line.strip() for line in f.readlines() if len(line.strip())]
 with open("pypi-readme.rst", "r", "utf-8") as f:
     readme = f.read()
 

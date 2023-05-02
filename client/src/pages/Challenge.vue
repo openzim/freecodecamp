@@ -2,8 +2,8 @@
 import { ComputedRef, Ref, computed, ref } from 'vue'
 import { RouteParams, onBeforeRouteUpdate, useRoute } from 'vue-router'
 import CodeEditor from '../components/challenge/CodeEditor.vue'
-import Description from '../components/challenge/Description.vue'
-import RunnerVue from '../components/challenge/Runner.vue'
+import Description from '../components/challenge/DescriptionBox.vue'
+import RunnerVue from '../components/challenge/RunnerBox.vue'
 import { parseChallenge } from '@/utils/parseChallenge'
 import ConsoleBox from '@/components/challenge/ConsoleBox.vue'
 
@@ -15,7 +15,7 @@ export type ChallengesJSON = {
 const { params } = useRoute()
 const paramsRef = ref(params)
 
-const markdownChallenge: any = ref(null)
+const markdownChallenge: Ref<string | null> = ref(null)
 const challenges: Ref<ChallengeJSON[]> = ref([])
 
 challenges.value = (
@@ -30,7 +30,7 @@ const updateChallenge = async (newparams: RouteParams) => {
   const challenge = await import(
     `../assets/curriculum/${newparams.language}/${newparams.course}/${newparams.slug}.md?raw`
   )
-  markdownChallenge.value = challenge.default
+  markdownChallenge.value = challenge.default as string
 }
 
 onBeforeRouteUpdate(async (to) => {
@@ -45,7 +45,7 @@ const onReset = () => {
 
 await updateChallenge(params)
 
-const challenge = computed(() => parseChallenge(markdownChallenge.value))
+const challenge = computed(() => parseChallenge(markdownChallenge.value || ''))
 
 const nextChallenge: ComputedRef<ChallengeJSON | null> = computed(() => {
   if (!challenge.value) return null

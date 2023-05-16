@@ -1,11 +1,8 @@
 <script setup lang="ts">
-import { RouterLink, useRouter } from 'vue-router'
+import { RouterLink } from 'vue-router'
 import curriculum from '../assets/curriculum/index.json'
 import { titleize } from '../utils/titleize'
 
-const router = useRouter()
-
-router.push('/english/basic-javascript')
 </script>
 
 <template>

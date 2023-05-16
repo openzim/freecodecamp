@@ -1,9 +1,9 @@
-import Challenge from './pages/Challenge.vue'
-import Challenges from './pages/Challenges.vue'
-import Home from './pages/Home.vue'
+import ChallengePage from './pages/ChallengePage.vue'
+import ChallengesPage from './pages/ChallengesPage.vue'
+import HomePage from './pages/HomePage.vue'
 
 export const routes = [
-  { path: '/', component: Home },
-  { path: '/:language/:course', component: Challenges },
-  { path: '/:language/:course/:slug', component: Challenge },
+  { path: '/', component: HomePage },
+  { path: '/:language/:course', component: ChallengesPage },
+  { path: '/:language/:course/:slug', component: ChallengePage },
 ]

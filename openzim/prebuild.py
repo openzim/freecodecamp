@@ -6,10 +6,12 @@
 
 Usage:
   prebuild.py <course> <out_dir>
+  prebuild.py -l <lang> <course> <out_dir>
   prebuild.py (-h | --help)
 
 Options:
-  -h --help     Show this screen.
+  -l lang     Language [default: english]
+  -h --help         Show this screen.
 
 Used to prebuild content for the client.
 """
@@ -71,32 +73,31 @@ Should write out the following structure of challenges to output dir:
 """
 
 def main(arguments):
-    print(arguments)
 
-    COURSE = arguments.get('<course>')
+    COURSE_LIST = arguments.get('<course>')
     OUTDIR = arguments.get('<out_dir>')
+    LANG = arguments.get('-l')
 
-    # Opening JSON file
-    f = open(f'{tmp_path}/_meta/{COURSE}/meta.json',)
-    
-    # returns JSON object as
-    # a dictionary
-    meta = json.load(f)
-    ids = list(map(lambda item: item[0], meta['challengeOrder']))
-    print(ids)
+    for COURSE in COURSE_LIST.split(','):
+        # Opening JSON file
+        f = open(f'{tmp_path}/_meta/{COURSE}/meta.json',)
+        
+        # returns JSON object as
+        # a dictionary
+        meta = json.load(f)
+        ids = list(map(lambda item: item[0], meta['challengeOrder']))
 
-
-    course_list: List[id: str, path: str, title: str] = []
-    for file in get_challenges_for_lang():
-        info = Frontmatter.read_file(file)
-        id = info['attributes']['id']
-        title = info['attributes']['title']
-        try:
-            if ids.index(id) > -1:
-                course_list.append([id, str(file), title])
-        except ValueError:
-            continue
-    write_course_to_path(sorted(course_list, key=lambda x: ids.index(x[0])), COURSE, OUTDIR)
+        course_list: List[id: str, path: str, title: str] = []
+        for file in get_challenges_for_lang(LANG):
+            info = Frontmatter.read_file(file)
+            id = info['attributes']['id']
+            title = info['attributes']['title']
+            try:
+                if ids.index(id) > -1:
+                    course_list.append([id, str(file), title])
+            except ValueError:
+                continue
+        write_course_to_path(sorted(course_list, key=lambda x: ids.index(x[0])), COURSE, OUTDIR, LANG)
 
 if __name__ == "__main__":
     main(docopt(__doc__))

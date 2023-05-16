@@ -8,7 +8,8 @@ yarn lint
 yarn test --run
 cd ../openzim
 python3 fetch.py --filter=02-javascript
-python3 prebuild.py basic-javascript ../client/src/assets/curriculum
+python3 prebuild.py regular-expressions,basic-javascript,basic-data-structures,debugging,functional-programming,object-oriented-programming,basic-algorithm-scripting,intermediate-algorithm-scripting,javascript-algorithms-and-data-structures-projects \
+    ../client/src/assets/curriculum
 cd ../client
 yarn build
 cd ../openzim

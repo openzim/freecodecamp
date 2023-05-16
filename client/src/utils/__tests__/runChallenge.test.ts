@@ -71,12 +71,11 @@ describe('Running a basic JS challenge', () => {
   })
 })
 
-describe('Run all the solutions in the assets folder', () => {
-  it("every challenge in the assets folder should pass with it's own solution", async () => {
-    const markdownChallenges = await glob(
-      join(__dirname, '..', '..', 'assets', 'curriculum', '**', '*.md')
-    )
-    for (const markdownChallenge of markdownChallenges) {
+describe('Run all the solutions in the assets folder', async () => {
+  const markdownChallenges = await glob(
+    join(__dirname, '..', '..', 'assets', 'curriculum', '**', '*.md')
+  )
+  it.each(markdownChallenges)("every challenge in the assets folder should pass with it's own solution", async (markdownChallenge) => {
       const markdown = await readFile(markdownChallenge, 'utf-8')
       const challenge = parseChallenge(markdown)
       const result = runChallenge(challenge, challenge.solutions[0], {
@@ -85,6 +84,5 @@ describe('Run all the solutions in the assets folder', () => {
       expect(result.hints.filter((h) => h.passed).length).toEqual(
         challenge.hints.length
       )
-    }
   })
 })

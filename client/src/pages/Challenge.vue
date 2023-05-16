@@ -1,56 +1,59 @@
 <script setup lang="ts">
-import { ComputedRef, Ref, computed, ref } from 'vue'
-import { RouteParams, onBeforeRouteUpdate, useRoute } from 'vue-router'
+import { ComputedRef, Ref, computed, ref, toRef, watch } from 'vue'
+import { RouteParams, useRoute } from 'vue-router'
 import CodeEditor from '../components/challenge/CodeEditor.vue'
-import Description from '../components/challenge/DescriptionBox.vue'
-import RunnerVue from '../components/challenge/RunnerBox.vue'
+import ChallengeInstructions from '../components/challenge/ChallengeInstructions.vue'
+import ChallengeRunner from '../components/challenge/ChallengeRunner.vue'
 import { parseChallenge } from '@/utils/parseChallenge'
-import ConsoleBox from '@/components/challenge/ConsoleBox.vue'
+import ConsoleLogger from '@/components/challenge/ConsoleLogger.vue'
 
 export type ChallengeJSON = { title: string; slug: string }
 export type ChallengesJSON = {
   challenges: ChallengeJSON[]
 }
 
-const { params } = useRoute()
-const paramsRef = ref(params)
+const route = useRoute()
+const params: Ref<RouteParams> = toRef(route, 'params')
 
 const markdownChallenge: Ref<string | null> = ref(null)
 const challenges: Ref<ChallengeJSON[]> = ref([])
+const challenge = computed(() => parseChallenge(markdownChallenge.value || ''))
+const solution = ref(challenge.value.seed || '')
+const logs: Ref<string[]> = ref([])
 
 challenges.value = (
   (
     await import(
-      `../assets/curriculum/${params.language}/${params.course}/_meta.json`
+      `../assets/curriculum/${params.value.language}/${params.value.course}/_meta.json`
     )
   ).default as ChallengesJSON
 )['challenges']
 
 const updateChallenge = async (newparams: RouteParams) => {
-  const challenge = await import(
+  const markdownImport = await import(
     `../assets/curriculum/${newparams.language}/${newparams.course}/${newparams.slug}.md?raw`
   )
-  markdownChallenge.value = challenge.default as string
+  markdownChallenge.value = markdownImport.default as string
+  solution.value = challenge.value.seed || ''
 }
 
-onBeforeRouteUpdate(async (to) => {
-  await updateChallenge(to.params)
-  solution.value = challenge.value.seed || ''
-  paramsRef.value = to.params
-})
+watch(
+  () => route.params,
+  async (p: RouteParams) => {
+    await updateChallenge(p)
+  }
+)
 
 const onReset = () => {
   solution.value = challenge.value.seed || ''
 }
 
-await updateChallenge(params)
 
-const challenge = computed(() => parseChallenge(markdownChallenge.value || ''))
 
 const nextChallenge: ComputedRef<ChallengeJSON | null> = computed(() => {
   if (!challenge.value) return null
   const challengeIndex = challenges.value.findIndex(
-    (c) => c.slug === paramsRef.value.slug
+    (c) => c.slug === params.value.slug
   )
   if (challengeIndex <= challenges.value.length) {
     return challenges.value[challengeIndex + 1]
@@ -64,32 +67,31 @@ const nextChallengeLink: ComputedRef<
   if (nextChallenge.value) {
     return {
       title: nextChallenge.value.title,
-      url: `/${paramsRef.value.language}/${paramsRef.value.course}/${nextChallenge.value.slug}`,
+      url: `/${params.value.language}/${params.value.course}/${nextChallenge.value.slug}`,
     }
   }
   return undefined
 })
 
-const solution = ref(challenge.value.seed || '')
 
-const logs: Ref<string[]> = ref([])
+await updateChallenge(params.value)
 </script>
 
 <template>
   <div class="split">
     <div class="left">
-      <Description
+      <ChallengeInstructions
         :title="challenge.header['title']"
         :instructions="challenge.instructions"
         :description="challenge.description"
-      ></Description>
-      <RunnerVue
+      ></ChallengeInstructions>
+      <ChallengeRunner
         :challenge="challenge"
         :solution="solution || ''"
         :next-challenge="nextChallengeLink"
         @reset="onReset"
         @logs="(value) => (logs = value)"
-      ></RunnerVue>
+      ></ChallengeRunner>
     </div>
     <div class="right">
       <CodeEditor
@@ -97,7 +99,7 @@ const logs: Ref<string[]> = ref([])
         class="codeEditor"
         @update="(event) => (solution = event)"
       ></CodeEditor>
-      <ConsoleBox class="console" :logs="logs || []"></ConsoleBox>
+      <ConsoleLogger class="console" :logs="logs || []"></ConsoleLogger>
     </div>
   </div>
 </template>

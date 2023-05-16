@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { RouterLink, useRoute } from 'vue-router'
+import { Ref, toRef } from 'vue';
+import { RouteParams, RouterLink, useRoute } from 'vue-router'
 
-const { params } = useRoute()
+const route = useRoute()
+const params: Ref<RouteParams> = toRef(route, 'params')
 
 const challenges = (
   await import(
-    `../assets/curriculum/${params.language}/${params.course}/_meta.json`
+    `../assets/curriculum/${params.value.language}/${params.value.course}/_meta.json`
   )
 ).default['challenges']
 </script>

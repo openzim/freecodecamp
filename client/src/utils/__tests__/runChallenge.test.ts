@@ -75,6 +75,10 @@ describe('Run all the solutions in the assets folder', async () => {
   const markdownChallenges = await glob(
     join(__dirname, '..', '..', 'assets', 'curriculum', '**', '*.md')
   )
+  if (markdownChallenges.length === 0) {
+    it.skip("No markdown challenges found in the curriculum to run")
+    return
+  }
   it.each(markdownChallenges)("every challenge in the assets folder should pass with it's own solution", async (markdownChallenge) => {
       const markdown = await readFile(markdownChallenge, 'utf-8')
       const challenge = parseChallenge(markdown)

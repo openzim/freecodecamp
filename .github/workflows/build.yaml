@@ -29,6 +29,8 @@ jobs:
       working-directory: openzim
     - run: python3 prebuild.py regular-expressions,basic-javascript,basic-data-structures,debugging,functional-programming,object-oriented-programming,basic-algorithm-scripting,intermediate-algorithm-scripting,javascript-algorithms-and-data-structures-projects ../client/src/assets/curriculum
       working-directory: openzim
+    - run: yarn test --run
+      working-directory: client
     - run: yarn build
       working-directory: client
     - run: python3 ./fcc2zim --source-dir=../client/dist --zim

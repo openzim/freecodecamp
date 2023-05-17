@@ -17,6 +17,8 @@ DISTDIR=./client/dist
 TMPDIR=./tmp
 OUTPATH=./${LANG}.zim
 
+.PHONY: all setup clean
+
 clean:
 	rm -rf client/src/assets/curriculum
 	rm -rf client/dist

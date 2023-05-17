@@ -20,6 +20,7 @@ jobs:
     - run: yarn lint
       working-directory: client
 
+    - run: make fetch
     - run: make prebuild
     - run: yarn test --run
       working-directory: client

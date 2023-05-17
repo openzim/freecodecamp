@@ -1,50 +1,54 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # vim: ai ts=4 sts=4 et sw=4 nu
+from fcctozim.fetch import fetch_command
 
-import os
-import sys
-
-from path import Path as path
-from docopt import docopt
+import argparse
 
 from fcctozim import VERSION, logger
 from fcctozim.build import build_zimfile
+from fcctozim.prebuild import prebuild_command
 
-help = (
-    """Usage: fcc2zim """
-    """[--zim] [--complete] [-m ONE_LANG_ONE_ZIM_FOLDER] """
-    """[--source-dir=DIRECTORY]"""
-    """[--course-slug=SLUG_NAME]"""
-    """
+def main(args):
+    print(args)
+    command = args.command
 
-
-This script is used to produce a ZIM file (and any intermediate state)
-of FCC course content from a static directory"""
-)
-
-
-def main(arguments):
-    # TODO: Allow us to package up only a particular cource from a set of course
-    # For now, hardcoded during development
-    DO_ZIM = arguments.get("--zim", False)
-    SOURCE_DIR = arguments.get("--source-dir", "Foo")
-    COURSE_SLUG = arguments.get("--course-slug", "Foo")
-    ZIM_TITLE = arguments.get("--zim-title", "FCC Course material")
-    ZIM_DESC = arguments.get("--zim-desc", "The FCC course material for TODO")
-    print(SOURCE_DIR)
-    print(COURSE_SLUG)
-
-    if DO_ZIM:
-
+    if command == 'fetch':
+        fetch_command(args)
+    elif command == 'prebuild':
+        prebuild_command(args)
+    elif command == 'zim':
+        SOURCE_DIR = args.distdir
+        OUTPATH = args.outpath
         logger.info("BUILDING ZIM dynamically")
         build_zimfile(
             source_dir=SOURCE_DIR,
-            course_slug=COURSE_SLUG,
+            outpath=OUTPATH
             # title=ZIM_TITLE,
             # description=ZIM_DESC,
         )
 
 
 if __name__ == "__main__":
-    main(docopt(help, version=VERSION))
+    parser = argparse.ArgumentParser(prog='fcc2zim')
+
+    # create sub-parser
+    sub_parsers = parser.add_subparsers(help='sub-command help', dest='command')
+
+    fetch_parser = sub_parsers.add_parser('fetch', help='fetch the latest curriculum')
+    fetch_parser.add_argument('--filter', type=str, help='filter out curriculum not matching a path/glob')
+    fetch_parser.add_argument('--tmp_dir', type=str, help='the temporary directory to hold the curriculum')
+    fetch_parser.add_argument('--force', type=bool, help='force a re-download of the curriculum zip')
+
+    prebuild_parse = sub_parsers.add_parser('prebuild', help='prebuild curriculum for Vite frontend')
+    prebuild_parse.add_argument('--lang', type=str, help='Curriculum language')
+    prebuild_parse.add_argument('--course', type=str, help='Course or course list (seperated by commas)', required=True)
+    prebuild_parse.add_argument('--outdir', type=str, help='output directory (typically vite\'s src/assets folder)', required=True)
+    prebuild_parse.add_argument('--tmp_dir', type=str, help='the temporary directory to hold the curriculum')
+
+    zim_parse = sub_parsers.add_parser('zim', help='package up the zim file')
+    zim_parse.add_argument('--distdir', type=str, help='the directory containing Vite\s build of our application', required=True)
+    zim_parse.add_argument('--outpath', type=str, help='the path of our output file')
+     
+    args = parser.parse_args()
+    main(args)

@@ -11,27 +11,17 @@ jobs:
       with:
         python-version: '3.11'
         cache: 'pip' # caching pip dependencies
-    - run: pip install -r requirements.txt
-      working-directory: openzim
-
     - uses: actions/setup-node@v3
       with:
-        node-version: 18
+        node-version: 20
         cache: 'yarn'
         cache-dependency-path: '**/yarn.lock'
-    - run: yarn install --frozen-lockfile
-      working-directory: client
+    - run: make setup
     - run: yarn lint
       working-directory: client
+
+    - run: make prebuild
     - run: yarn test --run
       working-directory: client
-    - run: python3 fetch.py --filter=02-javascript
-      working-directory: openzim
-    - run: python3 prebuild.py regular-expressions,basic-javascript,basic-data-structures,debugging,functional-programming,object-oriented-programming,basic-algorithm-scripting,intermediate-algorithm-scripting,javascript-algorithms-and-data-structures-projects ../client/src/assets/curriculum
-      working-directory: openzim
-    - run: yarn test --run
+    - run: mark build
       working-directory: client
-    - run: yarn build
-      working-directory: client
-    - run: python3 ./fcc2zim --source-dir=../client/dist --zim
-      working-directory: openzim

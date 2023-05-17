@@ -26,5 +26,5 @@ dist-ssr
 
 # FCC assets used for build
 client/src/assets/curriculum
-openzim/tmp
-openzim/*.zim
+tmp
+*.zim

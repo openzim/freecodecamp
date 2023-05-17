@@ -1,20 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-# vim: ai ts=4 sts=4 et sw=4 nu
-
-"""prebuild.py
-
-Usage:
-  prebuild.py <course> <out_dir>
-  prebuild.py -l <lang> <course> <out_dir>
-  prebuild.py (-h | --help)
-
-Options:
-  -l lang     Language [default: english]
-  -h --help         Show this screen.
-
-Used to prebuild content for the client.
-"""
 
 import json
 import os
@@ -22,7 +5,6 @@ import pathlib
 import shutil
 from typing import List
 from path import Path as path
-from docopt import docopt
 from frontmatter import Frontmatter
 
 tmp_path = './tmp/curriculum/freeCodeCamp-main/curriculum/challenges'
@@ -72,13 +54,13 @@ Should write out the following structure of challenges to output dir:
 
 """
 
-def main(arguments):
+def prebuild_command(arguments):
 
-    COURSE_LIST = arguments.get('<course>')
-    OUTDIR = arguments.get('<out_dir>')
-    LANG = arguments.get('-l')
+    course_list = arguments.course
+    outdir = arguments.outdir
+    lang = arguments.lang
 
-    for COURSE in COURSE_LIST.split(','):
+    for COURSE in course_list.split(','):
         # Opening JSON file
         f = open(f'{tmp_path}/_meta/{COURSE}/meta.json',)
         
@@ -88,7 +70,7 @@ def main(arguments):
         ids = list(map(lambda item: item[0], meta['challengeOrder']))
 
         course_list: List[id: str, path: str, title: str] = []
-        for file in get_challenges_for_lang(LANG):
+        for file in get_challenges_for_lang(lang):
             info = Frontmatter.read_file(file)
             id = info['attributes']['id']
             title = info['attributes']['title']
@@ -97,7 +79,4 @@ def main(arguments):
                     course_list.append([id, str(file), title])
             except ValueError:
                 continue
-        write_course_to_path(sorted(course_list, key=lambda x: ids.index(x[0])), COURSE, OUTDIR, LANG)
-
-if __name__ == "__main__":
-    main(docopt(__doc__))
+        write_course_to_path(sorted(course_list, key=lambda x: ids.index(x[0])), COURSE, outdir, lang)

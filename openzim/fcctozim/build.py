@@ -1,6 +1,5 @@
 import os
 import re
-from fcctozim.relative_path_swap import RelPathProvider
 from libzim.writer import Creator, Item, StringProvider, FileProvider, Hint
 import magic
 
@@ -40,7 +39,7 @@ class MyItem(Item):
         return {Hint.FRONT_ARTICLE: True}
 
 
-def build_zimfile(source_dir, course_slug):
+def build_zimfile(source_dir, outpath):
     rootPath = os.path.join(source_dir, 'index.html')
     fileList = []
     for (root, dirs, files) in os.walk(source_dir):
@@ -66,7 +65,7 @@ def build_zimfile(source_dir, course_slug):
         items.append(MyItem(None, source_dir, file))
         ext = os.path.splitext(file)
 
-    with Creator("test.zim").config_indexing(True, "eng") as creator:
+    with Creator(outpath).config_indexing(True, "eng") as creator:
         creator.set_mainpath(root_item.get_path())
         creator.add_item(root_item)
         for item in items:

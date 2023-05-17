@@ -18,8 +18,8 @@ See: [`Makefile`](Makefile) for a full build process
 
 ## Building with Docker
 
-docker build -t openzim/fcc2zim .
-docker run --rm -v /host/data:/data/fcc2zim openzim/fcc2zim make all LANG=english OUTPATH=/data/fcc2zim/english.zim
+- `docker build -t openzim/fcc2zim .`
+- `docker run --rm -v /host/data:/data/fcc2zim openzim/fcc2zim make all LANG=english OUTPATH=/data/fcc2zim/english.zim`
 
 # License
 

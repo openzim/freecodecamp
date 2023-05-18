@@ -6,7 +6,7 @@ from fcctozim.fetch import fetch_command
 import argparse
 
 from fcctozim import VERSION, logger
-from fcctozim.build import build_zimfile
+from fcctozim.build import build, build_zimfile
 from fcctozim.prebuild import prebuild_command
 
 def main(args):
@@ -18,16 +18,7 @@ def main(args):
     elif command == 'prebuild':
         prebuild_command(args)
     elif command == 'zim':
-        SOURCE_DIR = args.clientdir
-        OUTPATH = args.outpath
-        logger.info("BUILDING ZIM dynamically")
-        build_zimfile(
-            client_dir=SOURCE_DIR,
-            outpath=OUTPATH,
-            language=args.language
-            # title=ZIM_TITLE,
-            # description=ZIM_DESC,
-        )
+        build(args)
 
 
 if __name__ == "__main__":

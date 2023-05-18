@@ -82,7 +82,7 @@ await updateChallenge(params.value)
     <div class="left">
       <ChallengeInstructions
         :title="challenge.header['title']"
-        :instructions="challenge.instructions"
+        :instructions="challenge.instructions || ''"
         :description="challenge.description"
       ></ChallengeInstructions>
       <ChallengeRunner

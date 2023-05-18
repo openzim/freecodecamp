@@ -71,11 +71,8 @@ export class Challenge {
     return descriptionMarkdown
   }
 
-  get instructions(): string {
+  get instructions(): string | null {
     const instructionMarkdown = this.getSectionMarkdown('instructions')
-    if (!instructionMarkdown) {
-      throw new Error('No description in challenge')
-    }
     return instructionMarkdown
   }
 
@@ -103,7 +100,9 @@ export class Challenge {
   }
 
   private getSectionMarkdown(title: string): string | null {
+    console.log(title)
     const sectionTokens = this.getSectionTokens(title)
+    console.log(title, sectionTokens)
     if (sectionTokens) {
       const markdown = sectionTokens?.map((token) => token.raw).join('')
       return markdown

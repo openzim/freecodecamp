@@ -1,4 +1,4 @@
-libzim>=2.1.0
+libzim>=3.1.0
 zimscraperlib>=3.1.0
 path.py==12.5.0
 python-magic==0.4.27

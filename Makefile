@@ -13,7 +13,7 @@ COURSES = 	regular-expressions \
 COURSE_CSV=$(shell sed -r 's/\s/,/g' <<< "${COURSES}")
 
 LANG=english
-DISTDIR=./client/dist
+CLIENTDIR=./client
 TMPDIR=./tmp
 OUTPATH=./${LANG}.zim
 
@@ -36,8 +36,12 @@ fetch:
 prebuild:
 	python3 openzim/fcc2zim prebuild --course=${COURSE_CSV} --outdir=./client/src/assets/curriculum --lang ${LANG} --tmp_dir=${TMPDIR}
 
-build:
+build_client:
 	cd client && yarn build
-	python3 openzim/fcc2zim zim --distdir ${DISTDIR} --outpath ${OUTPATH}
+
+build_zim:
+	python3 openzim/fcc2zim zim --clientdir ${CLIENTDIR} --outpath ${OUTPATH} --lang ${LANG}
+
+build: build_client build_zim
 
 all: fetch prebuild build

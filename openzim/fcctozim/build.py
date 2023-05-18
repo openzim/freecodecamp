@@ -1,45 +1,29 @@
 import os
 import re
-from libzim.writer import Creator, Item, StringProvider, FileProvider, Hint
-import magic
+import json
 
-mime = magic.Magic(mime=True)
+from zimscraperlib.zim import Archive, Creator, StaticItem, URLItem
+from frontmatter import Frontmatter
 
-class MyItem(Item):
-    def __init__(self, title, rel_path, fpath):
-        super().__init__()
-        self.rel_path = rel_path
-        self.title = title
-        self.fpath = fpath
+logo_path = os.path.join(os.path.dirname(__file__), '..', 'fcc_48.png')
 
-    def get_path(self):
-        return os.path.relpath(self.fpath, self.rel_path)
-
-    def get_title(self):
-        if self.title:
-            return self.title
-        return self.get_path().title()
-
-    def get_mimetype(self):
-        # magic seems to think .js is text/plain
-        if (re.search(r'js$', self.fpath)):
-            return 'application/javascript'
-        if (re.search(r'css$', self.fpath)):
-            return 'text/css'
-        return mime.from_file(self.fpath)
-
-    def get_contentprovider(self):
-        # ext = os.path.splitext(self.fpath)
-        # if ext[1] in ['.css', '.html', '.js']:
-        #     result = RelPathProvider(self.get_path(), self.fpath, '/__KIWIX_ROOT__').get_relative_content()
-        #     return result
-        return FileProvider(self.fpath)
-       
-    def get_hints(self):
-        return {Hint.FRONT_ARTICLE: True}
+def build_curriculum_redirects(client_dir, language):
+    index_json_path = os.path.join(client_dir, 'src/assets/curriculum/index.json')
+    with open(index_json_path) as course_index_str:
+        course_list = json.load(course_index_str)[language]
+    redirects = []
+    for course in course_list:
+        meta_json_path = os.path.join(client_dir, 'src/assets/curriculum/', language, course, '_meta.json')
+        with open(meta_json_path) as meta_json_str:
+            challenges = json.load(meta_json_str)['challenges']
+        for challenge in challenges:
+            redirects.append([ f'index.html#{language}/{course}/{challenge["slug"]}', challenge['title'] ])
+            
+    return redirects
 
 
-def build_zimfile(source_dir, outpath):
+def build_zimfile(client_dir, outpath, language):
+    source_dir = os.path.join(client_dir, 'dist')
     rootPath = os.path.join(source_dir, 'index.html')
     fileList = []
     for (root, dirs, files) in os.walk(source_dir):
@@ -47,39 +31,21 @@ def build_zimfile(source_dir, outpath):
             fileList.append(os.path.join(root, name))
 
     fileList = [file for file in fileList if os.path.splitext(file)[1] != '.map']
-    # def matches_course_slug(full_path):
-        # paths = full_path.split(os.sep)
-        # if (len(paths) > 3 and paths[1] == 'learn'):
-            # return paths[2] == course_slug
-        # if (len(paths) > 3 and paths[1] == 'page-data' and paths[2] == 'learn'):
-            # return paths[3] == course_slug
-        # return True
-# 
-    # fileList = filter(matches_course_slug, fileList)
-# 
-    root_item = MyItem("Home", source_dir, rootPath)
 
-    items = []
+    main_path = os.path.relpath(rootPath, source_dir)
+    tags = ";".join(["FCC", "freeCodeCamp"])
+    with open(logo_path, "rb") as fh:
+        png_data = fh.read()
+    with Creator(outpath, main_path).config_dev_metadata(
+        Tags=tags, Illustration_48x48_at_1=png_data
+    ) as creator:
+        for file in fileList:
+            print(file)
+            path = os.path.relpath(file, source_dir)
+            creator.add_item_for(path, fpath=file)
+        
 
-    for file in fileList:
-        items.append(MyItem(None, source_dir, file))
-        ext = os.path.splitext(file)
-
-    with Creator(outpath).config_indexing(True, "eng") as creator:
-        creator.set_mainpath(root_item.get_path())
-        creator.add_item(root_item)
-        for item in items:
-            print("Adding ", item.get_path() , item.get_mimetype())
-            if (item.fpath != rootPath):
-                creator.add_item(item)
-        print("Done adding all pages")
-        for name, value in {
-            "creator": "python-libzim",
-            "description": "Created in python",
-            "name": "my-zim",
-            "publisher": "You",
-            "title": "Test ZIM",
-        }.items():
-
-            print("adding metadata: ", name.title(), value)
-            creator.add_metadata(name.title(), value)
+        for course_page in build_curriculum_redirects(client_dir, language):
+            print(course_page[0], course_page[1])
+            creator.add_redirect(course_page[0], course_page[0], course_page[1], is_front=True)
+            # chrome-extension://donaljnlmapmngakoipdmehbfcioahhk/english.zim/C/index.html#/english/regular-expressions/extract-matches

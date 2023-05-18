@@ -7,9 +7,9 @@ from typing import List
 from path import Path as path
 from frontmatter import Frontmatter
 
-tmp_path = './tmp/curriculum/freeCodeCamp-main/curriculum/challenges'
+default_tmp_path = './tmp'
 
-def get_challenges_for_lang(language='english'):
+def get_challenges_for_lang(tmp_path, language='english'):
     return pathlib.Path(f'{tmp_path}/{language}').rglob('*.md')
 
 def update_index(path: str, slug: str, language="english"):
@@ -59,10 +59,13 @@ def prebuild_command(arguments):
     course_list = arguments.course
     outdir = arguments.outdir
     lang = arguments.lang
+    tmp_dir = arguments.tmp_dir or default_tmp_path
+    curriculum_dir = os.path.join(tmp_dir, 'curriculum/freeCodeCamp-main/curriculum/challenges')
+    print(tmp_dir, curriculum_dir)
 
     for COURSE in course_list.split(','):
         # Opening JSON file
-        f = open(f'{tmp_path}/_meta/{COURSE}/meta.json',)
+        f = open(f'{curriculum_dir}/_meta/{COURSE}/meta.json',)
         
         # returns JSON object as
         # a dictionary
@@ -70,7 +73,7 @@ def prebuild_command(arguments):
         ids = list(map(lambda item: item[0], meta['challengeOrder']))
 
         course_list: List[id: str, path: str, title: str] = []
-        for file in get_challenges_for_lang(lang):
+        for file in get_challenges_for_lang(curriculum_dir, lang):
             info = Frontmatter.read_file(file)
             id = info['attributes']['id']
             title = info['attributes']['title']

@@ -18,12 +18,13 @@ def main(args):
     elif command == 'prebuild':
         prebuild_command(args)
     elif command == 'zim':
-        SOURCE_DIR = args.distdir
+        SOURCE_DIR = args.clientdir
         OUTPATH = args.outpath
         logger.info("BUILDING ZIM dynamically")
         build_zimfile(
-            source_dir=SOURCE_DIR,
-            outpath=OUTPATH
+            client_dir=SOURCE_DIR,
+            outpath=OUTPATH,
+            language=args.language
             # title=ZIM_TITLE,
             # description=ZIM_DESC,
         )
@@ -47,8 +48,9 @@ if __name__ == "__main__":
     prebuild_parse.add_argument('--tmp_dir', type=str, help='the temporary directory to hold the curriculum')
 
     zim_parse = sub_parsers.add_parser('zim', help='package up the zim file')
-    zim_parse.add_argument('--distdir', type=str, help='the directory containing Vite\s build of our application', required=True)
+    zim_parse.add_argument('--clientdir', type=str, help='the directory containing our Vite application', required=True)
     zim_parse.add_argument('--outpath', type=str, help='the path of our output file')
+    zim_parse.add_argument('--language', type=str, help='the path of our output file', required=True)
      
     args = parser.parse_args()
     main(args)

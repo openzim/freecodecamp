@@ -25,4 +25,3 @@ jobs:
     - run: yarn test --run
       working-directory: client
     - run: make build
-      working-directory: client

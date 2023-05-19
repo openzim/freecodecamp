@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { RouteParams, RouterLink, useRoute } from 'vue-router'
 import curriculum from '../assets/fcc/index.json'
-import { titleize } from '../utils/titleize'
 import { Ref, toRef } from 'vue';
 
 const route = useRoute()

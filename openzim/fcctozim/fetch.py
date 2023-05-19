@@ -26,14 +26,16 @@ def fetch_command(arguments):
     with zipfile.ZipFile(zip_path, 'r') as zip_ref:
         file_count = 0
         for zip_info in zip_ref.infolist():
-            if not zip_info.filename.find("freeCodeCamp-main/curriculum/") == 0:
-                continue
-            # TODO: We'll eventually need a better way to filter curriculum
-            if filter:
-                if zip_info.filename.find(filter) >= 0 or zip_info.filename.find("_meta") >= 0:
+            if zip_info.filename.find("freeCodeCamp-main/curriculum/") >= 0:
+                # TODO: We'll eventually need a better way to filter curriculum
+                if filter:
+                    if zip_info.filename.find(filter) >= 0 or zip_info.filename.find("_meta") >= 0:
+                        zip_ref.extract(zip_info, curriculum_path)
+                        file_count = file_count + 1
+                else:
                     zip_ref.extract(zip_info, curriculum_path)
                     file_count = file_count + 1
-            else:
+            elif zip_info.filename.find("freeCodeCamp-main/client/i18n/locales") >= 0:
                 zip_ref.extract(zip_info, curriculum_path)
                 file_count = file_count + 1
         print(f'Extracted {file_count} files')

@@ -20,7 +20,7 @@ OUTPATH=./${LANG}.zim
 .PHONY: all setup clean
 
 clean:
-	rm -rf client/src/assets/curriculum
+	rm -rf client/src/assets/fcc
 	rm -rf client/dist
 	rm -rf ${TMPDIR}
 
@@ -34,7 +34,7 @@ fetch:
 	python3 openzim/fcc2zim fetch --filter=02-javascript --tmp_dir=${TMPDIR}
 
 prebuild:
-	python3 openzim/fcc2zim prebuild --course=${COURSE_CSV} --outdir=./client/src/assets/curriculum --lang ${LANG} --tmp_dir=${TMPDIR}
+	python3 openzim/fcc2zim prebuild --course=${COURSE_CSV} --outdir=./client/src/assets/fcc --lang ${LANG} --tmp_dir=${TMPDIR}
 
 build_client:
 	cd client && yarn build

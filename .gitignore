@@ -25,6 +25,6 @@ dist-ssr
 *.sw?
 
 # FCC assets used for build
-client/src/assets/curriculum
+client/src/assets/fcc
 tmp
 *.zim

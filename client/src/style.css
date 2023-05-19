@@ -32,6 +32,10 @@ body {
   @apply pt-2;
 }
 
+.centered {
+  @apply max-w-2xl m-auto;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -49,9 +53,12 @@ body {
   height: 100%;
 }
 
-h1 {
-  font-size: 3.2em;
+h1 { font-size: 3.2em;
   line-height: 1.1;
+}
+
+h2 {
+  @apply text-4xl my-4;
 }
 
 button {

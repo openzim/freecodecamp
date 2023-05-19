@@ -24,14 +24,14 @@ const logs: Ref<string[]> = ref([])
 challenges.value = (
   (
     await import(
-      `../assets/curriculum/${params.value.language}/${params.value.course}/_meta.json`
+      `../assets/fcc/curriculum/${params.value.language}/${params.value.course}/_meta.json`
     )
   ).default as ChallengesJSON
 )['challenges']
 
 const updateChallenge = async (newparams: RouteParams) => {
   const markdownImport = await import(
-    `../assets/curriculum/${newparams.language}/${newparams.course}/${newparams.slug}.md?raw`
+    `../assets/fcc/curriculum/${newparams.language}/${newparams.course}/${newparams.slug}.md?raw`
   )
   markdownChallenge.value = markdownImport.default as string
   solution.value = challenge.value.seed || ''

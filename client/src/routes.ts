@@ -4,6 +4,8 @@ import HomePage from './pages/HomePage.vue'
 
 export const routes = [
   { path: '/', component: HomePage },
+  { path: '/:language', component: HomePage },
+  { path: '/:language/:course', component: ChallengesPage },
   { path: '/:language/:course', component: ChallengesPage },
   { path: '/:language/:course/:slug', component: ChallengePage },
 ]

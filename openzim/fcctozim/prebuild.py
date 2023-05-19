@@ -1,4 +1,3 @@
-
 import json
 import os
 import pathlib
@@ -27,9 +26,13 @@ def update_index(path: str, slug: str, language="english"):
     with open(index_path, "w") as outfile:
         json.dump(index, outfile, indent=4)
 
-def write_course_to_path(course_list, course_slug: str, path: str, language="english"):
-    print(course_list, path)
-    course_dir = f'{path}/{language}/{course_slug}'
+def write_locales_to_path(source_dir: str, outdir: str, language="english"):
+    locales_dir = f'{outdir}/locales/{language}'
+    print(source_dir, locales_dir)
+    shutil.copytree(source_dir, locales_dir)
+
+def write_course_to_path(course_list, course_slug: str, outdir: str, language="english"):
+    course_dir = f'{outdir}/curriculum/{language}/{course_slug}'
     pathlib.Path(course_dir).mkdir(parents=True, exist_ok=True)
     meta = { "challenges": [] }
 
@@ -43,7 +46,7 @@ def write_course_to_path(course_list, course_slug: str, path: str, language="eng
 
     with open(f'{course_dir}/_meta.json', "w") as outfile:
         json.dump(meta, outfile, indent=4)
-    update_index(path, course_slug, language)
+    update_index(outdir, course_slug, language)
 
 """
 Should write out the following structure of challenges to output dir:
@@ -61,6 +64,7 @@ def prebuild_command(arguments):
     lang = arguments.lang
     tmp_dir = arguments.tmp_dir or default_tmp_path
     curriculum_dir = os.path.join(tmp_dir, 'curriculum/freeCodeCamp-main/curriculum/challenges')
+    locales_dir = os.path.join(tmp_dir, f'curriculum/freeCodeCamp-main/client/i18n/locales/{lang}')
     print(tmp_dir, curriculum_dir)
 
     for COURSE in course_list.split(','):
@@ -83,3 +87,6 @@ def prebuild_command(arguments):
             except ValueError:
                 continue
         write_course_to_path(sorted(course_list, key=lambda x: ids.index(x[0])), COURSE, outdir, lang)
+
+    # Copy all the locales for this language
+    write_locales_to_path(locales_dir, outdir, lang)

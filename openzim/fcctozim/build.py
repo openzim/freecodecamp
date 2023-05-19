@@ -9,12 +9,13 @@ from fcctozim import logger
 logo_path = os.path.join(os.path.dirname(__file__), '..', 'fcc_48.png')
 
 def build_curriculum_redirects(clientdir, language):
-    index_json_path = os.path.join(clientdir, 'src/assets/curriculum/index.json')
+    index_json_path = os.path.join(clientdir, 'src/assets/fcc/index.json')
     with open(index_json_path) as course_index_str:
         course_list = json.load(course_index_str)[language]
+
     redirects = []
     for course in course_list:
-        meta_json_path = os.path.join(clientdir, 'src/assets/curriculum/', language, course, '_meta.json')
+        meta_json_path = os.path.join(clientdir, 'src/assets/fcc/curriculum/', language, course, '_meta.json')
         with open(meta_json_path) as meta_json_str:
             challenges = json.load(meta_json_str)['challenges']
         for challenge in challenges:
@@ -49,7 +50,7 @@ def build_zimfile(clientdir, outpath, language):
         for course_page in build_curriculum_redirects(clientdir, language):
             print(course_page[0], course_page[1])
             creator.add_redirect(course_page[0], course_page[0], course_page[1], is_front=True)
-            # chrome-extension://donaljnlmapmngakoipdmehbfcioahhk/english.zim/C/index.html#/english/regular-expressions/extract-matches
+            #Example index.html#/english/regular-expressions/extract-matches
 
 
 def build(arguments):

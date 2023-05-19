@@ -100,9 +100,7 @@ export class Challenge {
   }
 
   private getSectionMarkdown(title: string): string | null {
-    console.log(title)
     const sectionTokens = this.getSectionTokens(title)
-    console.log(title, sectionTokens)
     if (sectionTokens) {
       const markdown = sectionTokens?.map((token) => token.raw).join('')
       return markdown

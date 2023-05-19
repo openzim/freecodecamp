@@ -1,3 +1,7 @@
 client/node_modules
-openzim/tmp
+client/dist
+client/src/assets/fcc
+build
 __pycache__
+tmp
+*.log

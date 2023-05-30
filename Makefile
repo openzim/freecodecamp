@@ -10,7 +10,7 @@ COURSES = 	regular-expressions \
 			intermediate-algorithm-scripting \
 			javascript-algorithms-and-data-structures-projects
 
-COURSE_CSV=$(shell sed -r 's/\s/,/g' <<< "${COURSES}")
+COURSE_CSV=$(shell sed -r 's/[[:space:]]/,/g' <<< "${COURSES}")
 
 LANG=english
 CLIENTDIR=./client

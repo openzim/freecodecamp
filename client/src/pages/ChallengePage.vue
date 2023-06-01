@@ -21,19 +21,13 @@ const challenge = computed(() => parseChallenge(markdownChallenge.value || ''))
 const solution = ref(challenge.value.seed || '')
 const logs: Ref<string[]> = ref([])
 
-challenges.value = (
-  (
-    await import(
-      `../assets/fcc/curriculum/${params.value.language}/${params.value.course}/_meta.json`
-    )
-  ).default as ChallengesJSON
-)['challenges']
+const challengesMeta = await (await fetch(`fcc/curriculum/${params.value.language}/${params.value.course}/_meta.json`)).json()
+
+challenges.value = (challengesMeta as ChallengesJSON)['challenges']
 
 const updateChallenge = async (newparams: RouteParams) => {
-  const markdownImport = await import(
-    `../assets/fcc/curriculum/${newparams.language}/${newparams.course}/${newparams.slug}.md?raw`
-  )
-  markdownChallenge.value = markdownImport.default as string
+  const md = await fetch(`fcc/curriculum/${newparams.language}/${newparams.course}/${newparams.slug}.md`)
+  markdownChallenge.value = await md.text()
   solution.value = challenge.value.seed || ''
 }
 

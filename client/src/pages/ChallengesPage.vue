@@ -5,17 +5,9 @@ import { RouteParams, RouterLink, useRoute } from 'vue-router'
 const route = useRoute()
 const params: Ref<RouteParams> = toRef(route, 'params')
 
-const challenges = (
-  await import(
-    `../assets/fcc/curriculum/${params.value.language}/${params.value.course}/_meta.json`
-  )
-).default['challenges']
+const challenges = (await (await fetch(`fcc/curriculum/${params.value.language}/${params.value.course}/_meta.json`)).json())['challenges']
 
-const locales = (
-  await import(
-    `../assets/fcc/locales/${params.value.language}/intro.json`
-  )
-).default['javascript-algorithms-and-data-structures']['blocks'][params.value.course as string]
+const locales = (await (await fetch(`fcc/locales/${params.value.language}/intro.json`)).json())['javascript-algorithms-and-data-structures']
 
 </script>
 

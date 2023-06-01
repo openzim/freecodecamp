@@ -1,21 +1,18 @@
 <script setup lang="ts">
 import { RouteParams, RouterLink, useRoute } from 'vue-router'
-import curriculum from '../assets/fcc/index.json'
 import { Ref, toRef } from 'vue';
 
 const route = useRoute()
 const params: Ref<RouteParams> = toRef(route, 'params')
+
+const curriculum = await (await fetch('fcc/index.json')).json()
 
 // Assume the first language is our desired langauge unless it's specifically mentioned
 // Normally the curriculum index for each zim will only include one language
 const language = params.value.language as string || Object.keys(curriculum)[0]
 const items = (curriculum as {[key: string]: string[]})[language]
 
-const locales = (
-  await import(
-    `../assets/fcc/locales/${language}/intro.json`
-  )
-).default['javascript-algorithms-and-data-structures']
+const locales = (await (await fetch(`fcc/locales/${language}/intro.json`)).json())['javascript-algorithms-and-data-structures']
 
 </script>
 

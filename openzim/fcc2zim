@@ -6,11 +6,10 @@ from fcctozim.fetch import fetch_command
 import argparse
 
 from fcctozim import VERSION, logger
-from fcctozim.build import build, build_zimfile
+from fcctozim.build import build
 from fcctozim.prebuild import prebuild_command
 
 def main(args):
-    print(args)
     command = args.command
 
     if command == 'fetch':
@@ -19,29 +18,49 @@ def main(args):
         prebuild_command(args)
     elif command == 'zim':
         build(args)
+    elif command == 'all':
+        fetch_command(args)
+        prebuild_command(args)
+        build(args)
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(prog='fcc2zim')
 
+
     # create sub-parser
     sub_parsers = parser.add_subparsers(help='sub-command help', dest='command')
 
-    fetch_parser = sub_parsers.add_parser('fetch', help='fetch the latest curriculum')
-    fetch_parser.add_argument('--filter', type=str, help='filter out curriculum not matching a path/glob')
-    fetch_parser.add_argument('--tmp_dir', type=str, help='the temporary directory to hold the curriculum')
-    fetch_parser.add_argument('--force', type=bool, help='force a re-download of the curriculum zip')
+    fetch_cmd = sub_parsers.add_parser('fetch', help='fetch the latest curriculum')
+    fetch_cmd.add_argument('--tmpdir', type=str, help='the temporary directory to hold the curriculum')
+    fetch_cmd.add_argument('--force', type=bool, help='force a re-download of the curriculum zip')
 
-    prebuild_parse = sub_parsers.add_parser('prebuild', help='prebuild curriculum for Vite frontend')
-    prebuild_parse.add_argument('--lang', type=str, help='Curriculum language')
-    prebuild_parse.add_argument('--course', type=str, help='Course or course list (seperated by commas)', required=True)
-    prebuild_parse.add_argument('--outdir', type=str, help='output directory (typically vite\'s src/assets folder)', required=True)
-    prebuild_parse.add_argument('--tmp_dir', type=str, help='the temporary directory to hold the curriculum')
+    prebuild_cmd = sub_parsers.add_parser('prebuild', help='prebuild curriculum for Vite frontend')
+    prebuild_cmd.add_argument('--language', type=str, help='Curriculum language')
+    prebuild_cmd.add_argument('--course', type=str, help='Course or course list (seperated by commas)', required=True)
+    prebuild_cmd.add_argument('--outdir', type=str, help='output directory (typically vite\'s dist folder)', required=True)
+    prebuild_cmd.add_argument('--tmpdir', type=str, help='the temporary directory to hold the curriculum')
 
-    zim_parse = sub_parsers.add_parser('zim', help='package up the zim file')
-    zim_parse.add_argument('--clientdir', type=str, help='the directory containing our Vite application', required=True)
-    zim_parse.add_argument('--outpath', type=str, help='the path of our output file')
-    zim_parse.add_argument('--language', type=str, help='the path of our output file', required=True)
-     
+    zim_cmd = sub_parsers.add_parser('zim', help='package up the zim file')
+    zim_cmd.add_argument('--clientdir', type=str, help='the directory containing our Vite application', required=True)
+    zim_cmd.add_argument('--outzim', type=str, help='the path of our output file')
+    zim_cmd.add_argument('--language', type=str, help='Language of zim file', required=True)
+
+    all_cmd = sub_parsers.add_parser('all', help='fetch, build and package up a zim file')
+    all_cmd.add_argument('--force', type=bool, help='force a re-download of the curriculum zip')
+    all_cmd.add_argument('--course', type=str, help='Course or course list (seperated by commas)', required=True)
+    all_cmd.add_argument('--outdir', type=str, help='output directory (typically vite\'s dist folder)', required=True)
+    all_cmd.add_argument('--outzim', type=str, help='path of the zim file to output', required=True)
+    all_cmd.add_argument('--tmpdir', type=str, help='the temporary directory to hold the curriculum')
+    all_cmd.add_argument('--clientdir', type=str, help='the directory containing our Vite application', required=True)
+    all_cmd.add_argument('--outpath', type=str, help='the path of our output file')
+    all_cmd.add_argument('--language', type=str, help='Language of zim file and curriculum', required=True)
+    all_cmd.add_argument('--title', type=str, help='Title of zim file', required=True)
+    all_cmd.add_argument('--name', type=str, help='Name of zim file', required=True)
+    all_cmd.add_argument('--description', type=str, help='Description of zim file', required=True)
+
     args = parser.parse_args()
-    main(args)
+    if args.command:
+        main(args)
+    else:
+        parser.print_usage()

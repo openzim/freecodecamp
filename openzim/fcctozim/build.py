@@ -1,38 +1,44 @@
+from collections import OrderedDict
 import os
 import re
 import json
 
 from zimscraperlib.zim import Archive, Creator, StaticItem, URLItem
+from fcctozim.fcc_lang_map import FCCLangMap
 from fcctozim import logger
 
 logo_path = os.path.join(os.path.dirname(__file__), "..", "fcc_48.png")
 
 
 def build_curriculum_redirects(clientdir, language):
-    index_json_path = os.path.join(clientdir, "src/assets/fcc/index.json")
+    fcc_lang = FCCLangMap[language]
+    index_json_path = os.path.join(clientdir, "fcc/index.json")
     with open(index_json_path) as course_index_str:
-        course_list = json.load(course_index_str)[language]
+        course_list = json.load(course_index_str)[fcc_lang]
 
     redirects = []
     for course in course_list:
         meta_json_path = os.path.join(
-            clientdir, "src/assets/fcc/curriculum/", language, course, "_meta.json"
+            clientdir, "fcc/curriculum/", fcc_lang, course, "_meta.json"
         )
         with open(meta_json_path) as meta_json_str:
             challenges = json.load(meta_json_str)["challenges"]
         for challenge in challenges:
-            redirects.append(
-                [
-                    f'index.html#{language}/{course}/{challenge["slug"]}',
-                    challenge["title"],
-                ]
-            )
+            title = challenge["title"]
+            redirects.append(( f'{fcc_lang}/{course}/{challenge["slug"]}', title ))
 
-    return redirects
+    return OrderedDict(redirects).items()
 
+def build(arguments):
+    clientdir = arguments.clientdir
+    outpath = arguments.outzim
+    language = arguments.language
+    name = arguments.name
+    title = arguments.title
+    description = arguments.description
+    logger.info(f"Building {clientdir} for {language} => {outpath}")
 
-def build_zimfile(clientdir, outpath, language):
-    source_dir = os.path.join(clientdir, "dist")
+    source_dir = os.path.join(clientdir)
     rootPath = os.path.join(source_dir, "index.html")
     fileList = []
     for root, dirs, files in os.walk(source_dir):
@@ -46,6 +52,7 @@ def build_zimfile(clientdir, outpath, language):
     with open(logo_path, "rb") as fh:
         png_data = fh.read()
     with Creator(outpath, main_path).config_dev_metadata(
+        Name=name, Title=title, Description=description, Language=language,
         Tags=tags, Illustration_48x48_at_1=png_data
     ) as creator:
         for file in fileList:
@@ -55,16 +62,9 @@ def build_zimfile(clientdir, outpath, language):
 
         for course_page in build_curriculum_redirects(clientdir, language):
             print(course_page[0], course_page[1])
-            creator.add_redirect(
-                course_page[0], course_page[0], course_page[1], is_front=True
-            )
+            redirect_path = f'redirect/{course_page[0]}'
+            redirect_url = (len(redirect_path.split('/')) - 1) * '../' + f'index.html#{course_page[0]}'
+            content = f'<html><head><title>{title}</title><meta http-equiv="refresh" content="0;URL=\'{redirect_url}\'" /></head><body></body></html>'
+            creator.add_item_for(redirect_path, content=content, title=course_page[1], mimetype='text/html', is_front=True)
             # Example index.html#/english/regular-expressions/extract-matches
 
-
-def build(arguments):
-    clientdir = arguments.clientdir
-    outpath = arguments.outpath
-    language = arguments.language
-    logger.info(f"Building {clientdir} for {language} => {outpath}")
-
-    build_zimfile(clientdir=clientdir, outpath=outpath, language=language)

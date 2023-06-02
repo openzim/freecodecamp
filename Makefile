@@ -12,36 +12,41 @@ COURSES = 	regular-expressions \
 
 COURSE_CSV=$(shell sed -r 's/[[:space:]]/,/g' <<< "${COURSES}")
 
-LANG=english
-CLIENTDIR=./client
+TITLE="freeCodeCamp Javascript"
+NAME="fcc_en_javascript"
+DESCRIPTION="FCC Javascript Courses"
+LANG=eng
+CLIENTDIR=./client/dist
 TMPDIR=./tmp
 OUTPATH=./${LANG}.zim
 
-.PHONY: all setup clean
+.PHONY: all setup clean client
+
+clean_curriculum:
+	rm -rf client/dist/fcc
 
 clean:
-	rm -rf client/src/assets/fcc
 	rm -rf client/dist
 	rm -rf ${TMPDIR}
 
 setup:
 	cd openzim && \
     	pip install -r requirements.txt
-	cd client && \
-    	yarn install --frozen-lockfile
+
+client:
+	cd client && rm -rf dist && yarn install --frozen-lockfile && yarn build
 
 fetch:
-	python3 openzim/fcc2zim fetch --filter=02-javascript --tmp_dir=${TMPDIR}
+	python3 openzim/fcc2zim fetch --tmpdir=${TMPDIR}
 
 prebuild:
-	python3 openzim/fcc2zim prebuild --course=${COURSE_CSV} --outdir=./client/public/fcc --lang ${LANG} --tmp_dir=${TMPDIR}
-
-build_client:
-	cd client && yarn build
+	python3 openzim/fcc2zim prebuild --course=${COURSE_CSV} --outdir=./client/dist/fcc --language ${LANG} --tmpdir=${TMPDIR}
 
 build_zim:
-	python3 openzim/fcc2zim zim --clientdir ${CLIENTDIR} --outpath ${OUTPATH} --lang ${LANG}
+	python3 openzim/fcc2zim all --clientdir ${CLIENTDIR} --outzim ${OUTPATH} \
+	--language ${LANG} --name ${NAME} --title ${TITLE} --description ${DESCRIPTION}
 
-build: build_client build_zim
-
-all: fetch prebuild build
+all:
+	python3 openzim/fcc2zim all --clientdir ${CLIENTDIR} --outdir=./client/dist/fcc --outzim ${OUTPATH} \
+	--language ${LANG} --tmpdir=${TMPDIR} --course=${COURSE_CSV} \
+	--name ${NAME} --title ${TITLE} --description ${DESCRIPTION}

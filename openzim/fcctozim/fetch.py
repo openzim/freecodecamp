@@ -7,12 +7,11 @@ import requests
 
 
 def fetch_command(arguments):
-    filter = arguments.filter
     force = arguments.force or False
-    tmp_dir = arguments.tmp_dir or "./tmp"
+    tmpdir = arguments.tmpdir or "./tmp"
     url = "https://github.com/freeCodeCamp/freeCodeCamp/archive/refs/heads/main.zip"
-    zip_path = f"{tmp_dir}/main.zip"
-    curriculum_path = f"{tmp_dir}/curriculum"
+    zip_path = f"{tmpdir}/main.zip"
+    curriculum_path = f"{tmpdir}/curriculum"
 
     pathlib.Path(curriculum_path).mkdir(parents=True, exist_ok=True)
 
@@ -28,17 +27,8 @@ def fetch_command(arguments):
         file_count = 0
         for zip_info in zip_ref.infolist():
             if zip_info.filename.find("freeCodeCamp-main/curriculum/") >= 0:
-                # TODO: We'll eventually need a better way to filter curriculum
-                if filter:
-                    if (
-                        zip_info.filename.find(filter) >= 0
-                        or zip_info.filename.find("_meta") >= 0
-                    ):
-                        zip_ref.extract(zip_info, curriculum_path)
-                        file_count = file_count + 1
-                else:
-                    zip_ref.extract(zip_info, curriculum_path)
-                    file_count = file_count + 1
+                zip_ref.extract(zip_info, curriculum_path)
+                file_count = file_count + 1
             elif zip_info.filename.find("freeCodeCamp-main/client/i18n/locales") >= 0:
                 zip_ref.extract(zip_info, curriculum_path)
                 file_count = file_count + 1

@@ -3,10 +3,15 @@ import os
 import pathlib
 import shutil
 from typing import List
-from path import Path as path
-from frontmatter import Frontmatter
+from pathlib import Path as path
+import yaml
 
 default_tmp_path = './tmp'
+
+def readFrontmatter(filename: str):
+  with open(filename) as f:
+    front_matter = next(yaml.load_all(f, Loader=yaml.FullLoader))
+    return front_matter
 
 def get_challenges_for_lang(tmp_path, language='english'):
     return pathlib.Path(f'{tmp_path}/{language}').rglob('*.md')
@@ -78,7 +83,7 @@ def prebuild_command(arguments):
 
         course_list: List[id: str, path: str, title: str] = []
         for file in get_challenges_for_lang(curriculum_dir, lang):
-            info = Frontmatter.read_file(file)
+            info = readFrontmatter(file)
             id = info['attributes']['id']
             title = info['attributes']['title']
             try:

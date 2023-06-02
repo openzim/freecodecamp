@@ -3,7 +3,6 @@ import re
 import json
 
 from zimscraperlib.zim import Archive, Creator, StaticItem, URLItem
-from frontmatter import Frontmatter
 from fcctozim import logger
 
 logo_path = os.path.join(os.path.dirname(__file__), '..', 'fcc_48.png')

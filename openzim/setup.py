@@ -6,9 +6,8 @@
 
 from codecs import open
 
-from setuptools import setup, find_packages
-
 from fcc2zim import VERSION
+from setuptools import find_packages, setup
 
 with open("requirements.pip", "r") as f:
     requirements = [line.strip() for line in f.readlines() if len(line.strip())]

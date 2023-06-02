@@ -1,11 +1,11 @@
-from collections import OrderedDict
-import os
-import re
 import json
+import os
+from collections import OrderedDict
 
-from zimscraperlib.zim import Archive, Creator, StaticItem, URLItem
-from fcctozim.fcc_lang_map import FCCLangMap
+from zimscraperlib.zim import Creator
+
 from fcctozim import logger
+from fcctozim.fcc_lang_map import FCCLangMap
 
 logo_path = os.path.join(os.path.dirname(__file__), "..", "fcc_48.png")
 
@@ -25,9 +25,10 @@ def build_curriculum_redirects(clientdir, language):
             challenges = json.load(meta_json_str)["challenges"]
         for challenge in challenges:
             title = challenge["title"]
-            redirects.append(( f'{fcc_lang}/{course}/{challenge["slug"]}', title ))
+            redirects.append((f'{fcc_lang}/{course}/{challenge["slug"]}', title))
 
     return OrderedDict(redirects).items()
+
 
 def build(arguments):
     clientdir = arguments.clientdir
@@ -52,8 +53,12 @@ def build(arguments):
     with open(logo_path, "rb") as fh:
         png_data = fh.read()
     with Creator(outpath, main_path).config_dev_metadata(
-        Name=name, Title=title, Description=description, Language=language,
-        Tags=tags, Illustration_48x48_at_1=png_data
+        Name=name,
+        Title=title,
+        Description=description,
+        Language=language,
+        Tags=tags,
+        Illustration_48x48_at_1=png_data,
     ) as creator:
         for file in fileList:
             print(file)
@@ -62,9 +67,16 @@ def build(arguments):
 
         for course_page in build_curriculum_redirects(clientdir, language):
             print(course_page[0], course_page[1])
-            redirect_path = f'redirect/{course_page[0]}'
-            redirect_url = (len(redirect_path.split('/')) - 1) * '../' + f'index.html#{course_page[0]}'
-            content = f'<html><head><title>{title}</title><meta http-equiv="refresh" content="0;URL=\'{redirect_url}\'" /></head><body></body></html>'
-            creator.add_item_for(redirect_path, content=content, title=course_page[1], mimetype='text/html', is_front=True)
+            redirect_path = f"redirect/{course_page[0]}"
+            redirect_url = (
+                len(redirect_path.split("/")) - 1
+            ) * "../" + f"index.html#{course_page[0]}"
+            content = f'<html><head><title>{title}</title><meta http-equiv="refresh" content="0;URL=\'{redirect_url}\'" /></head><body></body></html>'  # noqa: E501
+            creator.add_item_for(
+                redirect_path,
+                content=content,
+                title=course_page[1],
+                mimetype="text/html",
+                is_front=True,
+            )
             # Example index.html#/english/regular-expressions/extract-matches
-

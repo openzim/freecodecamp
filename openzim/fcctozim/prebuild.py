@@ -3,12 +3,13 @@ import os
 import pathlib
 import shutil
 from typing import List
-from pathlib import Path as path
+
 import yaml
 
 from fcctozim.fcc_lang_map import FCCLangMap
 
 default_tmp_path = "./tmp"
+
 
 def readFrontmatter(filename: str):
     with open(filename) as f:
@@ -30,7 +31,7 @@ def update_index(path: str, slug: str, language="english"):
     index = json.load(f)
     if not index.get(language):
         index[language] = []
-    if not slug in index[language]:
+    if slug not in index[language]:
         index[language].append(slug)
 
     with open(index_path, "w") as outfile:
@@ -96,7 +97,8 @@ def prebuild_command(arguments):
         meta = json.load(f)
         ids = list(map(lambda item: item[0], meta["challengeOrder"]))
 
-        course_list: List[id:str, path:str, title:str] = []
+        course_list: List[str, str, str] = []
+        # List[id, path, title]
         for file in get_challenges_for_lang(curriculum_dir, lang):
             info = readFrontmatter(file)
             id = info["id"]

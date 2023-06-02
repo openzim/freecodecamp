@@ -1,5 +1,6 @@
 SHELL=/bin/bash
 
+
 COURSES = 	regular-expressions \
 	    	basic-javascript \
 			basic-data-structures \
@@ -19,6 +20,7 @@ LANG=eng
 CLIENTDIR=./client/dist
 TMPDIR=./tmp
 OUTPATH=./${LANG}.zim
+MAX_LINE_LENGTH = 88
 
 .PHONY: all setup clean client
 
@@ -27,11 +29,20 @@ clean_curriculum:
 
 clean:
 	rm -rf client/dist
+	rm -rf client/public/fcc
 	rm -rf ${TMPDIR}
 
 setup:
 	cd openzim && \
-    	pip install -r requirements.txt
+    	pip install -r requirements.txt \
+    	pip install -r lint_requirements.txt
+
+lint:
+	cd openzim && \
+	    black . && \
+		flake8 . --count --max-line-length=${MAX_LINE_LENGTH} --statistics && \
+		isort --profile black .
+
 
 client:
 	cd client && rm -rf dist && yarn install --frozen-lockfile && yarn build

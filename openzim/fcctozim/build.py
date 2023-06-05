@@ -4,7 +4,7 @@ from collections import OrderedDict
 
 from zimscraperlib.zim import Creator
 
-from fcctozim import logger
+from fcctozim import VERSION, logger
 from fcctozim.fcc_lang_map import FCCLangMap
 
 logo_path = os.path.join(os.path.dirname(__file__), "..", "fcc_48.png")
@@ -37,27 +37,42 @@ def build(arguments):
     name = arguments.name
     title = arguments.title
     description = arguments.description
-    logger.info(f"Building {clientdir} for {language} => {outpath}")
+
+    logger.info(
+        f"Building {clientdir} for {language} => {outpath} - Version: {VERSION}"
+    )
 
     source_dir = os.path.join(clientdir)
     rootPath = os.path.join(source_dir, "index.html")
     fileList = []
+
+    # Walk the ree and get a list of files we care about
     for root, dirs, files in os.walk(source_dir):
         for name in files:
-            fileList.append(os.path.join(root, name))
-
-    fileList = [file for file in fileList if os.path.splitext(file)[1] != ".map"]
+            file = os.path.join(root, name)
+            if os.path.splitext(file)[1] == ".map":
+                continue
+            fileList.append(file)
 
     main_path = os.path.relpath(rootPath, source_dir)
+
+    # Make sure the outpath directory exists
+    outpathExists = os.path.exists(os.path.dirname(outpath))
+    if not outpathExists:
+        os.makedirs(outpath)
+
     tags = ";".join(["FCC", "freeCodeCamp"])
+
     with open(logo_path, "rb") as fh:
         png_data = fh.read()
+
     with Creator(outpath, main_path).config_dev_metadata(
         Name=name,
         Title=title,
         Description=description,
         Language=language,
         Tags=tags,
+        Scraper=f"v{VERSION}",
         Illustration_48x48_at_1=png_data,
     ) as creator:
         for file in fileList:

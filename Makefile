@@ -19,13 +19,10 @@ DESCRIPTION="FCC Javascript Courses"
 LANG=eng
 CLIENTDIR=./client/dist
 TMPDIR=./tmp
-OUTPATH=./${LANG}.zim
+OUTPATH=./build/${LANG}.zim
 MAX_LINE_LENGTH = 88
 
 .PHONY: all setup clean client
-
-clean_curriculum:
-	rm -rf client/dist/fcc
 
 clean:
 	rm -rf client/dist
@@ -43,21 +40,28 @@ lint:
 		flake8 . --count --max-line-length=${MAX_LINE_LENGTH} --statistics && \
 		isort --profile black .
 
-
-client:
-	cd client && rm -rf dist && yarn install --frozen-lockfile && yarn build
-
 fetch:
 	python3 openzim/fcc2zim fetch --tmpdir=${TMPDIR}
 
 prebuild:
 	python3 openzim/fcc2zim prebuild --course=${COURSE_CSV} --outdir=./client/dist/fcc --language ${LANG} --tmpdir=${TMPDIR}
 
-build_zim:
-	python3 openzim/fcc2zim all --clientdir ${CLIENTDIR} --outzim ${OUTPATH} \
+zim:
+	python3 openzim/fcc2zim zim --clientdir ${CLIENTDIR} --outzim ${OUTPATH} \
 	--language ${LANG} --name ${NAME} --title ${TITLE} --description ${DESCRIPTION}
 
-all:
+build:
 	python3 openzim/fcc2zim all --clientdir ${CLIENTDIR} --outdir=./client/dist/fcc --outzim ${OUTPATH} \
 	--language ${LANG} --tmpdir=${TMPDIR} --course=${COURSE_CSV} \
 	--name ${NAME} --title ${TITLE} --description ${DESCRIPTION}
+
+docker_build:
+	docker build . -t openzim/fcc2zim
+
+docker_run:
+	docker run --rm -it -v $(PWD)/tmp:/tmp/fcc2zim openzim/fcc2zim all --clientdir ${CLIENTDIR} --outdir=./client/dist/fcc --outzim ${OUTPATH} \
+	--language ${LANG} --tmpdir=/tmp/fcc2zim --course=${COURSE_CSV} \
+	--name ${NAME} --title ${TITLE} --description ${DESCRIPTION}
+
+docker_debug:
+	docker run --rm -it --entrypoint=/bin/bash openzim/fcc2zim

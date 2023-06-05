@@ -45,6 +45,9 @@ if __name__ == "__main__":
     zim_cmd.add_argument('--clientdir', type=str, help='the directory containing our Vite application', required=True)
     zim_cmd.add_argument('--outzim', type=str, help='the path of our output file')
     zim_cmd.add_argument('--language', type=str, help='Language of zim file', required=True)
+    zim_cmd.add_argument('--title', type=str, help='Title of zim file', required=True)
+    zim_cmd.add_argument('--name', type=str, help='Name of zim file', required=True)
+    zim_cmd.add_argument('--description', type=str, help='Description of zim file', required=True)
 
     all_cmd = sub_parsers.add_parser('all', help='fetch, build and package up a zim file')
     all_cmd.add_argument('--force', type=bool, help='force a re-download of the curriculum zip')

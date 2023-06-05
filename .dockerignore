@@ -1,7 +1,0 @@
-client/node_modules
-client/dist
-client/src/assets/fcc
-build
-__pycache__
-tmp
-*.log

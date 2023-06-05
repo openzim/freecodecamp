@@ -73,7 +73,7 @@ describe('Running a basic JS challenge', () => {
 
 describe('Run all the solutions in the assets folder', async () => {
   const markdownChallenges = await glob(
-    join(__dirname, '..', '..', 'assets', 'fcc', 'curriculum', '**', '*.md')
+    join(__dirname, '..', '..', 'public', 'fcc', 'curriculum', '**', '*.md')
   )
   if (markdownChallenges.length === 0) {
     it.skip("No markdown challenges found in the curriculum to run")

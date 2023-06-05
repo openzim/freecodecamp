@@ -1,8 +1,19 @@
+FROM mcr.microsoft.com/devcontainers/typescript-node:20 as client
+
+WORKDIR /src
+COPY client /src
+RUN yarn install --frozen-lockfile
+RUN yarn build
+
+
 FROM python:3.11-buster
 
-COPY . /src/
 WORKDIR /src
+COPY openzim/requirements.txt /src
+RUN pip install -r requirements.txt
 
-RUN make setup
+COPY openzim /src
+COPY --from=client /src /src/client
 
-CMD ["openzim/fcc2zim"]
+
+ENTRYPOINT ["python3", "fcc2zim"]

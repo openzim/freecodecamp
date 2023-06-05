@@ -72,7 +72,7 @@ def build(arguments):
         Description=description,
         Language=language,
         Tags=tags,
-        Scraper=f"v{VERSION}",
+        Scraper=f"fcc2zim V{VERSION}",
         Illustration_48x48_at_1=png_data,
     ) as creator:
         for file in fileList:

@@ -1,0 +1,36 @@
+name: QA
+
+on: [push, pull_request]
+
+env:
+  MAX_LINE_LENGTH: 88
+
+jobs:
+  check-qa:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: "3.10"
+          architecture: x64
+
+      - name: Install lint requirements
+        run: |
+          pip install -r openzim/lint_requirements.txt
+
+      - name: Check black formatting
+        run: |
+          black --version
+          black --check .
+
+      - name: Check flake8 linting
+        run: |
+          flake8 --version
+          flake8 . --count --max-line-length=$MAX_LINE_LENGTH --statistics
+
+      - name: Check import order with isort
+        run: |
+          isort --version
+          isort --profile black --check .

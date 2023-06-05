@@ -35,10 +35,10 @@ setup:
     	pip install -r lint_requirements.txt
 
 lint:
-	cd openzim && \
-	    black . && \
-		flake8 . --count --max-line-length=${MAX_LINE_LENGTH} --statistics && \
-		isort --profile black .
+	cd openzim
+	black .
+	flake8 . --count --max-line-length=${MAX_LINE_LENGTH} --statistics
+	isort --profile black .
 
 fetch:
 	python3 openzim/fcc2zim fetch --tmpdir=${TMPDIR}

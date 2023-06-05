@@ -5,7 +5,6 @@ import shutil
 from typing import List
 
 import yaml
-
 from fcctozim.fcc_lang_map import FCCLangMap
 
 default_tmp_path = "./tmp"

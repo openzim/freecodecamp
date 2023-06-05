@@ -1,8 +1,8 @@
-name: Build the FCC zim file
+name: Build and test the freeCodeCamp zim file
 
 on: push
 jobs:
-  build_zim_file:
+  integration-test:
     runs-on: ubuntu-latest
     name: Build latest zim file
     steps:

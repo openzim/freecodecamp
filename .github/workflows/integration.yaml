@@ -1,6 +1,10 @@
 name: Build and test the freeCodeCamp zim file
 
-on: push
+on:
+  pull_request:
+  push:
+    branches:
+      - 'main'
 jobs:
   integration-test:
     runs-on: ubuntu-latest

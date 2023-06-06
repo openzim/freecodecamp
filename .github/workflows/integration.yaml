@@ -20,6 +20,8 @@ jobs:
       working-directory: client
     - run: yarn lint
       working-directory: client
+    - run: yarn build
+      working-directory: client
 
     - uses: actions/setup-python@v4
       with:

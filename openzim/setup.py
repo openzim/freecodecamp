@@ -4,6 +4,7 @@
 
 """ Project Gutemberg ZIM creator for Offline Use """
 
+import os
 from codecs import open
 
 from fcc2zim import VERSION
@@ -11,7 +12,7 @@ from setuptools import find_packages, setup
 
 with open("requirements.pip", "r") as f:
     requirements = [line.strip() for line in f.readlines() if len(line.strip())]
-with open("pypi-readme.rst", "r", "utf-8") as f:
+with open(os.path.join("..", "README.md"), "r", "utf-8") as f:
     readme = f.read()
 
 setup(
@@ -21,6 +22,7 @@ setup(
     author="Kiwix",
     author_email="reg@kiwix.org",
     long_description=readme,
+    long_description_content_type="text/markdown",
     url="http://github.com/openzim/fcc",
     keywords="fcc zim kiwix openzim offline",
     license="GPL-3.0",
@@ -28,7 +30,7 @@ setup(
     zip_safe=False,
     platforms="any",
     include_package_data=True,
-    data_files=["pypi-readme.rst", "LICENSE", "requirements.pip"],
+    data_files=["LICENSE", "requirements.pip"],
     package_dir={"fcc": "fcc"},
     install_requires=requirements,
     scripts=["fcc2zim"],

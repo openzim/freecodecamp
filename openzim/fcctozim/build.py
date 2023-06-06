@@ -58,7 +58,7 @@ def build(arguments):
     # Make sure the outpath directory exists
     outpathExists = os.path.exists(os.path.dirname(outpath))
     if not outpathExists:
-        os.makedirs(outpath)
+        os.makedirs(os.path.dirname(outpath))
 
     tags = ";".join(["FCC", "freeCodeCamp"])
 

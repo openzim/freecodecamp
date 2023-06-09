@@ -2,8 +2,7 @@ import json
 import os
 from collections import OrderedDict
 
-from fcctozim import VERSION, logger
-from fcctozim.fcc_lang_map import FCCLangMap
+from fcctozim import VERSION, FCCLangMap, logger
 from zimscraperlib.zim import Creator
 
 logo_path = os.path.join(os.path.dirname(__file__), "..", "fcc_48.png")

@@ -51,7 +51,7 @@ def write_course_to_path(
     meta = {"challenges": []}
 
     for course_item in course_list:
-        filename = os.path.basename(course_item[1])
+        filename = pathlib.Path(course_item[1]).name
         shutil.copy2(course_item[1], f"{course_dir}/{filename}")
         meta["challenges"].append(
             {"title": course_item[2], "slug": os.path.splitext(filename)[0]}
@@ -94,7 +94,7 @@ def prebuild_command(arguments):
         # returns JSON object as
         # a dictionary
         meta = json.load(f)
-        ids = list(map(lambda item: item[0], meta["challengeOrder"]))
+        ids = [item[0] for item in meta["challengeOrder"]]
 
         course_list: List[str, str, str] = []
         # List[id, path, title]
@@ -108,7 +108,7 @@ def prebuild_command(arguments):
             except ValueError:
                 continue
         write_course_to_path(
-            sorted(course_list, key=lambda x: ids.index(x[0])), COURSE, outdir, lang
+            sorted(course_list, key=lambda id, _, _: ids.index(id)), course, outdir, lang
         )
 
     # Copy all the locales for this language

@@ -8,15 +8,15 @@ import requests
 
 def fetch_command(arguments):
     force = arguments.force or False
-    tmpdir = arguments.tmpdir or "./tmp"
+    tmpdir = pathlib.Path(arguments.tmpdir or "./tmp")
     url = "https://github.com/freeCodeCamp/freeCodeCamp/archive/refs/heads/main.zip"
-    zip_path = f"{tmpdir}/main.zip"
-    curriculum_path = f"{tmpdir}/curriculum"
+    zip_path = tmpdir / "main.zip"
+    curriculum_path = tmpdir / "curriculum"
 
-    pathlib.Path(curriculum_path).mkdir(parents=True, exist_ok=True)
+    curriculum_path.mkdir(parents=True, exist_ok=True)
 
     # Don't redownload the file if we already have it (it's a large file)
-    if force or not os.path.exists(zip_path):
+    if force or not zip_path.exists():
         r = requests.get(url, allow_redirects=True)
         with open(zip_path, "wb") as f:
             f.write(r.content)

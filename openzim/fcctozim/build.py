@@ -5,7 +5,7 @@ from collections import OrderedDict
 from fcctozim import VERSION, FCCLangMap, logger
 from zimscraperlib.zim import Creator
 
-logo_path = os.path.join(os.path.dirname(__file__), "..", "fcc_48.png")
+logo_path = pathlib.Path(__file__).parent.parent.joinpath("fcc_48.png")
 
 
 def build_curriculum_redirects(clientdir, language):
@@ -41,7 +41,7 @@ def build(arguments):
     )
 
     source_dir = os.path.join(clientdir)
-    rootPath = os.path.join(source_dir, "index.html")
+    root_path = source_dir / "index.html"
     fileList = []
 
     # Walk the ree and get a list of files we care about
@@ -52,7 +52,7 @@ def build(arguments):
                 continue
             fileList.append(file)
 
-    main_path = os.path.relpath(rootPath, source_dir)
+    main_path = root_path.relative_to(source_dir)
 
     # Make sure the outpath directory exists
     outpathExists = os.path.exists(os.path.dirname(outpath))
@@ -69,9 +69,9 @@ def build(arguments):
         Title=title,
         Description=description,
         Language=language,
-        Tags=tags,
+        Tags=";".join(["FCC", "freeCodeCamp"]),
         Scraper=f"fcc2zim V{VERSION}",
-        Illustration_48x48_at_1=png_data,
+        Illustration_48x48_at_1=logo_path.read_bytes(),
     ) as creator:
         for file in fileList:
             print(file)

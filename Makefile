@@ -22,12 +22,13 @@ TMPDIR=./tmp
 OUTPATH=./build/${LANG}.zim
 MAX_LINE_LENGTH = 88
 
-.PHONY: all setup clean client
+.PHONY: all setup clean client build
 
 clean:
-	rm -rf client/dist
+	rm -rf client/dist/fcc
 	rm -rf client/public/fcc
-	rm -rf ${TMPDIR}
+	rm -rf ${TMPDIR}/curriculum
+	rm -rf build
 
 setup:
 	cd openzim && \

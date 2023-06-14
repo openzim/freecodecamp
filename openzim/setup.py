@@ -4,7 +4,7 @@
 
 """ Project Gutemberg ZIM creator for Offline Use """
 
-import os
+import pathlib
 from codecs import open
 
 from fcc2zim import VERSION
@@ -12,7 +12,7 @@ from setuptools import find_packages, setup
 
 with open("requirements.pip", "r") as f:
     requirements = [line.strip() for line in f.readlines() if len(line.strip())]
-with open(os.path.join("..", "README.md"), "r", "utf-8") as f:
+with open(pathlib.Path(pathlib.Path.parent, "README.md"), "r", "utf-8") as f:
     readme = f.read()
 
 setup(

@@ -1,23 +1,22 @@
 import json
-import os
 import pathlib
 from collections import OrderedDict
 
-from fcctozim import VERSION, FCCLangMap, logger
+from fcctozim import FCC_LANG_MAP, VERSION, logger
 from zimscraperlib.zim import Creator
 
 logo_path = pathlib.Path(__file__).parent.parent.joinpath("fcc_48.png")
 
 
 def build_curriculum_redirects(clientdir, language):
-    fcc_lang = FCCLangMap[language]
-    index_json_path = os.path.join(clientdir, "fcc/index.json")
+    fcc_lang = FCC_LANG_MAP[language]
+    index_json_path = pathlib.Path(clientdir, "fcc/index.json")
     with open(index_json_path) as course_index_str:
         course_list = json.load(course_index_str)[fcc_lang]
 
     redirects = []
     for course in course_list:
-        meta_json_path = os.path.join(
+        meta_json_path = pathlib.Path(
             clientdir, "fcc/curriculum/", fcc_lang, course, "_meta.json"
         )
         with open(meta_json_path) as meta_json_str:
@@ -41,26 +40,25 @@ def build(arguments):
         f"Building {clientdir} for {language} => {outpath} - Version: {VERSION}"
     )
 
-    source_dir = os.path.join(clientdir)
+    source_dir = pathlib.Path(clientdir)
     root_path = source_dir / "index.html"
     fileList = []
 
-    # Walk the ree and get a list of files we care about
-    for root, dirs, files in os.walk(source_dir):
-        for name in files:
-            file = os.path.join(root, name)
-            if os.path.splitext(file)[1] == ".map":
-                continue
-            fileList.append(file)
+    # Walk the tree and get a list of files we care about
+    for file in pathlib.Path(source_dir).glob("**/*"):
+        if file.is_dir():
+            continue
+        if file.suffix == ".map":
+            continue
+        fileList.append(file)
 
     main_path = root_path.relative_to(source_dir)
 
     # Make sure the outpath directory exists
-    outpathExists = os.path.exists(os.path.dirname(outpath))
-    if not outpathExists:
-        os.makedirs(os.path.dirname(outpath))
 
-    with Creator(outpath, main_path).config_dev_metadata(
+    pathlib.Path(outpath).mkdir(parents=True, exist_ok=True)
+
+    with Creator(outpath, main_path.as_posix()).config_dev_metadata(
         Name=name,
         Title=title,
         Description=description,
@@ -71,7 +69,7 @@ def build(arguments):
     ) as creator:
         for file in fileList:
             print(file)
-            path = os.path.relpath(file, source_dir)
+            path = pathlib.Path(file).relative_to(source_dir).as_posix()
             creator.add_item_for(path, fpath=file)
 
         for course_page in build_curriculum_redirects(clientdir, language):

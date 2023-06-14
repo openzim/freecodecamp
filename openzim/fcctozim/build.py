@@ -1,5 +1,6 @@
 import json
 import os
+import pathlib
 from collections import OrderedDict
 
 from fcctozim import VERSION, FCCLangMap, logger
@@ -58,11 +59,6 @@ def build(arguments):
     outpathExists = os.path.exists(os.path.dirname(outpath))
     if not outpathExists:
         os.makedirs(os.path.dirname(outpath))
-
-    tags = ";".join(["FCC", "freeCodeCamp"])
-
-    with open(logo_path, "rb") as fh:
-        png_data = fh.read()
 
     with Creator(outpath, main_path).config_dev_metadata(
         Name=name,

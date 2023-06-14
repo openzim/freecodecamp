@@ -108,7 +108,10 @@ def prebuild_command(arguments):
             except ValueError:
                 continue
         write_course_to_path(
-            sorted(course_list, key=lambda id, _, _: ids.index(id)), course, outdir, lang
+            sorted(course_list, key=lambda id, _, __: ids.index(id)),
+            COURSE,
+            outdir,
+            lang,
         )
 
     # Copy all the locales for this language

@@ -1,7 +1,7 @@
-from datetime import datetime
 import json
 import pathlib
 from collections import OrderedDict
+from datetime import datetime
 
 from fcctozim import FCC_LANG_MAP, VERSION, logger
 from zimscraperlib.zim import Creator
@@ -20,8 +20,7 @@ def build_curriculum_redirects(clientdir, language):
         meta_json_path = pathlib.Path(
             clientdir, "fcc/curriculum/", fcc_lang, course, "_meta.json"
         )
-        with open(meta_json_path) as meta_json_str:
-            challenges = json.load(meta_json_str)["challenges"]
+        challenges = json.loads(meta_json_path.read_text())["challenges"]
         for challenge in challenges:
             title = challenge["title"]
             redirects.append((f'{fcc_lang}/{course}/{challenge["slug"]}', title))
@@ -30,7 +29,7 @@ def build_curriculum_redirects(clientdir, language):
 
 
 def build(arguments):
-    clientdir = arguments.clientdir
+    client_dir = pathlib.Path(arguments.clientdir)
     outpath = arguments.outzim
     language = arguments.language
     name = arguments.name
@@ -39,22 +38,20 @@ def build(arguments):
     creator = arguments.creator
 
     logger.info(
-        f"Building {clientdir} for {language} => {outpath} - Version: {VERSION}"
+        f"Building {client_dir} for {language} => {outpath} - Version: {VERSION}"
     )
 
-    source_dir = pathlib.Path(clientdir)
-    root_path = source_dir / "index.html"
     fileList = []
 
     # Walk the tree and get a list of files we care about
-    for file in pathlib.Path(source_dir).glob("**/*"):
+    for file in pathlib.Path(client_dir).glob("**/*"):
         if file.is_dir():
             continue
         if file.suffix == ".map":
             continue
         fileList.append(file)
 
-    main_path = root_path.relative_to(source_dir)
+    main_path = client_dir.joinpath("index.html").relative_to(client_dir)
 
     # Make sure the outpath directory exists
 
@@ -74,21 +71,24 @@ def build(arguments):
     ) as creator:
         for file in fileList:
             print(file)
-            path = pathlib.Path(file).relative_to(source_dir).as_posix()
+            path = pathlib.Path(file).relative_to(client_dir).as_posix()
             creator.add_item_for(path, fpath=file)
 
-        for course_page in build_curriculum_redirects(clientdir, language):
-            print(course_page[0], course_page[1])
-            redirect_path = f"redirect/{course_page[0]}"
+        for redir_slug, redir_title in build_curriculum_redirects(client_dir, language):
+            print("Redirect", redir_slug)
+            redirect_path = f"redirect/{redir_slug}"
             redirect_url = (
                 len(redirect_path.split("/")) - 1
-            ) * "../" + f"index.html#{course_page[0]}"
-            content = f'<html><head><title>{title}</title><meta http-equiv="refresh" content="0;URL=\'{redirect_url}\'" /></head><body></body></html>'  # noqa: E501
+            ) * "../" + f"index.html#{redir_slug}"
+            content = (
+                f"<html><head><title>{redir_title}</title>"
+                f'<meta http-equiv="refresh" content="0;URL=\'{redirect_url}\'" />'
+                f"</head><body></body></html>"
+            )
             creator.add_item_for(
                 redirect_path,
-                content=bytes(content, 'utf-8'),
-                title=course_page[1],
+                content=bytes(content, "utf-8"),
+                title=redir_title,
                 mimetype="text/html",
-                is_front=True,
             )
             # Example index.html#/english/regular-expressions/extract-matches

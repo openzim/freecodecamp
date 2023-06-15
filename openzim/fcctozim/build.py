@@ -1,3 +1,4 @@
+from datetime import datetime
 import json
 import pathlib
 from collections import OrderedDict
@@ -35,6 +36,7 @@ def build(arguments):
     name = arguments.name
     title = arguments.title
     description = arguments.description
+    creator = arguments.creator
 
     logger.info(
         f"Building {clientdir} for {language} => {outpath} - Version: {VERSION}"
@@ -58,9 +60,12 @@ def build(arguments):
 
     pathlib.Path(outpath).mkdir(parents=True, exist_ok=True)
 
-    with Creator(outpath, main_path.as_posix()).config_dev_metadata(
+    with Creator(outpath, main_path.as_posix()).config_metadata(
         Name=name,
         Title=title,
+        Publisher="Kiwix",
+        Date=datetime.now(),
+        Creator=creator,
         Description=description,
         Language=language,
         Tags=";".join(["FCC", "freeCodeCamp"]),
@@ -81,7 +86,7 @@ def build(arguments):
             content = f'<html><head><title>{title}</title><meta http-equiv="refresh" content="0;URL=\'{redirect_url}\'" /></head><body></body></html>'  # noqa: E501
             creator.add_item_for(
                 redirect_path,
-                content=content,
+                content=bytes(content, 'utf-8'),
                 title=course_page[1],
                 mimetype="text/html",
                 is_front=True,

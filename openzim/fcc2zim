@@ -62,7 +62,7 @@ if __name__ == "__main__":
     all_cmd.add_argument('--title', type=str, help='Title of zim file', required=True)
     all_cmd.add_argument('--name', type=str, help='Name of zim file', required=True)
     all_cmd.add_argument('--description', type=str, help='Description of zim file', required=True)
-    zim_cmd.add_argument('--creator', type=str, help='Creator of the zim file', required=True)
+    all_cmd.add_argument('--creator', type=str, help='Creator of the zim file', required=True)
 
     args = parser.parse_args()
     if args.command:

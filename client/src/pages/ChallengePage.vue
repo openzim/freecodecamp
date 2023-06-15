@@ -21,12 +21,12 @@ const challenge = computed(() => parseChallenge(markdownChallenge.value || ''))
 const solution = ref(challenge.value.seed || '')
 const logs: Ref<string[]> = ref([])
 
-const challengesMeta = await (await fetch(`fcc/curriculum/${params.value.language}/${params.value.course}/_meta.json`)).json()
+const challengesMeta = await (await fetch(`fcc/curriculum/${params.value.language}/${params.value.superblock}/${params.value.course}/_meta.json`)).json()
 
 challenges.value = (challengesMeta as ChallengesJSON)['challenges']
 
 const updateChallenge = async (newparams: RouteParams) => {
-  const md = await fetch(`fcc/curriculum/${newparams.language}/${newparams.course}/${newparams.slug}.md`)
+  const md = await fetch(`fcc/curriculum/${newparams.language}/${newparams.superblock}/${newparams.course}/${newparams.slug}.md`)
   markdownChallenge.value = await md.text()
   solution.value = challenge.value.seed || ''
 }
@@ -61,7 +61,7 @@ const nextChallengeLink: ComputedRef<
   if (nextChallenge.value) {
     return {
       title: nextChallenge.value.title,
-      url: `/${params.value.language}/${params.value.course}/${nextChallenge.value.slug}`,
+      url: `/${params.value.language}/${params.value.superblock}/${params.value.course}/${nextChallenge.value.slug}`,
     }
   }
   return undefined

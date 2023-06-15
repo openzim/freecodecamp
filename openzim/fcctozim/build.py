@@ -29,7 +29,7 @@ def build_curriculum_redirects(clientdir, language):
 
 
 def build(arguments):
-    client_dir = pathlib.Path(arguments.clientdir)
+    clientdir = pathlib.Path(arguments.clientdir)
     outpath = arguments.outzim
     language = arguments.language
     name = arguments.name
@@ -38,24 +38,24 @@ def build(arguments):
     creator = arguments.creator
 
     logger.info(
-        f"Building {client_dir} for {language} => {outpath} - Version: {VERSION}"
+        f"Building {clientdir} for {language} => {outpath} - Version: {VERSION}"
     )
 
     fileList = []
 
     # Walk the tree and get a list of files we care about
-    for file in pathlib.Path(client_dir).glob("**/*"):
+    for file in pathlib.Path(clientdir).glob("**/*"):
         if file.is_dir():
             continue
         if file.suffix == ".map":
             continue
         fileList.append(file)
 
-    main_path = client_dir.joinpath("index.html").relative_to(client_dir)
+    main_path = clientdir.joinpath("index.html").relative_to(clientdir)
 
     # Make sure the outpath directory exists
 
-    pathlib.Path(outpath).mkdir(parents=True, exist_ok=True)
+    pathlib.Path(outpath).parent.mkdir(parents=True, exist_ok=True)
 
     with Creator(outpath, main_path.as_posix()).config_metadata(
         Name=name,
@@ -71,15 +71,13 @@ def build(arguments):
     ) as creator:
         for file in fileList:
             print(file)
-            path = pathlib.Path(file).relative_to(client_dir).as_posix()
+            path = pathlib.Path(file).relative_to(clientdir).as_posix()
             creator.add_item_for(path, fpath=file)
 
-        for redir_slug, redir_title in build_curriculum_redirects(client_dir, language):
+        for redir_slug, redir_title in build_curriculum_redirects(clientdir, language):
             print("Redirect", redir_slug)
-            redirect_path = f"redirect/{redir_slug}"
-            redirect_url = (
-                len(redirect_path.split("/")) - 1
-            ) * "../" + f"index.html#{redir_slug}"
+            redirect_path = f"{redir_slug}"
+            redirect_url = "./index.html#{redir_slug}"
             content = (
                 f"<html><head><title>{redir_title}</title>"
                 f'<meta http-equiv="refresh" content="0;URL=\'{redirect_url}\'" />'

@@ -49,14 +49,12 @@ def write_course_to_path(
     pathlib.Path(course_dir).mkdir(parents=True, exist_ok=True)
     meta = {"challenges": []}
 
-    for course_item in course_list:
-        filename = pathlib.Path(course_item[1]).name
-        shutil.copy2(course_item[1], course_dir.joinpath(filename))
-        meta["challenges"].append(
-            {"title": course_item[2], "slug": pathlib.Path(filename).suffix}
-        )
+    for _id, path, title in course_list:
+        filename = pathlib.Path(path).name
+        shutil.copy2(path, course_dir.joinpath(filename))
+        meta["challenges"].append({"title": title, "slug": pathlib.Path(filename).stem})
 
-    with open(course_dir.joinpath("meta.json"), "w") as outfile:
+    with open(course_dir.joinpath("_meta.json"), "w") as outfile:
         json.dump(meta, outfile, indent=4)
     update_index(outdir, course_slug, language)
 

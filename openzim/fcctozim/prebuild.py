@@ -28,7 +28,7 @@ def update_index(path: str, slug: str, language="english"):
         index_path.write_bytes(bytes(json.dumps({}), "utf-8"))
 
     index = json.loads(index_path.read_text())
-    if not index.get(language):
+    if language not in index:
         index[language] = []
     if slug not in index[language]:
         index[language].append(slug)
@@ -94,12 +94,10 @@ def prebuild_command(arguments):
         # List[[id, path, title]]
         for file in get_challenges_for_lang(curriculum_dir, lang):
             info = read_yaml_frontmatter(file)
-            id = str(info["id"])
-            try:
-                if ids.index(id) > -1:
-                    course_list.append([id, str(file.as_posix()), str(info["title"])])
-            except ValueError:
-                continue
+            if info["id"] in ids:
+                course_list.append(
+                    [info["id"], str(file.as_posix()), str(info["title"])]
+                )
         write_course_to_path(
             sorted(course_list, key=lambda x: ids.index(x[0])),
             course,

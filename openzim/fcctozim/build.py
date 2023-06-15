@@ -11,19 +11,25 @@ logo_path = pathlib.Path(__file__).parent.parent.joinpath("fcc_48.png")
 
 def build_curriculum_redirects(clientdir, language):
     fcc_lang = FCC_LANG_MAP[language]
-    index_json_path = pathlib.Path(clientdir, "fcc/index.json")
+    index_json_path = pathlib.Path(
+        clientdir, "fcc", "curriculum", fcc_lang, "index.json"
+    )
     with open(index_json_path) as course_index_str:
-        course_list = json.load(course_index_str)[fcc_lang]
+        superblock_dict = json.load(course_index_str)[fcc_lang]
 
     redirects = []
-    for course in course_list:
-        meta_json_path = pathlib.Path(
-            clientdir, "fcc/curriculum/", fcc_lang, course, "_meta.json"
-        )
-        challenges = json.loads(meta_json_path.read_text())["challenges"]
-        for challenge in challenges:
-            title = challenge["title"]
-            redirects.append((f'{fcc_lang}/{course}/{challenge["slug"]}', title))
+    for superblock in superblock_dict:
+        course_list = superblock_dict[superblock]
+        for course in course_list:
+            meta_json_path = pathlib.Path(
+                clientdir, "fcc/curriculum/", fcc_lang, superblock, course, "_meta.json"
+            )
+            challenges = json.loads(meta_json_path.read_text())["challenges"]
+            for challenge in challenges:
+                title = challenge["title"]
+                redirects.append(
+                    (f'{fcc_lang}/{superblock}/{course}/{challenge["slug"]}', title)
+                )
 
     return OrderedDict(redirects).items()
 

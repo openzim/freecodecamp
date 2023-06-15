@@ -1,6 +1,9 @@
 name: QA
 
-on: [push, pull_request]
+on:
+  push:
+    branches: master
+  pull_request:
 
 env:
   MAX_LINE_LENGTH: 88

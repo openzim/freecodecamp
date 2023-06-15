@@ -3,6 +3,7 @@ from typing import Union
 
 import yaml
 
+
 # Each markdown challenge contains 'frontmatter' which is a header
 # consisting of yaml formatted data enclosed inside of '---\n' lines
 # '---' lines in YAML denote multiple documents, so this can be read
@@ -13,8 +14,8 @@ def read_yaml_frontmatter(filename: pathlib.Path):
         front_matter = next(yaml.load_all(f, Loader=yaml.FullLoader))
         return front_matter
 
-class Challenge:
 
+class Challenge:
     def __init__(self, fpath: Union[str, pathlib.Path]) -> None:
         self.path = pathlib.Path(fpath)
         self.course_slug = self.path.parent.stem
@@ -30,8 +31,5 @@ class Challenge:
 
     def frontmatter(self):
         if not self._frontmatter:
-          self._frontmatter = read_yaml_frontmatter(self.path)
+            self._frontmatter = read_yaml_frontmatter(self.path)
         return self._frontmatter
-
-
-

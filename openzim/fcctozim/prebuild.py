@@ -28,7 +28,9 @@ def update_index(path: pathlib.Path, superblock: str, slug: str, language="engli
         json.dump(index, outfile, indent=4)
 
 
-def write_locales_to_path(source_dir: pathlib.Path, outdir: pathlib.Path, language="english"):
+def write_locales_to_path(
+    source_dir: pathlib.Path, outdir: pathlib.Path, language="english"
+):
     locales_dir = pathlib.Path(outdir, "locales", language)
     shutil.copytree(source_dir, locales_dir)
 
@@ -37,19 +39,23 @@ def write_course_to_path(
     challenge_list: List[Challenge],
     superblock: str,
     course_slug: str,
-    outdir: pathlib.Path
+    outdir: pathlib.Path,
 ):
     pathlib.Path(outdir).mkdir(parents=True, exist_ok=True)
     meta = {"challenges": []}
 
     for challenge in challenge_list:
         filename = challenge.path.name
-        challenge_dest_path = outdir.joinpath(challenge.course_superblock, challenge.course_slug)
+        challenge_dest_path = outdir.joinpath(
+            challenge.course_superblock, challenge.course_slug
+        )
         challenge_dest_path.mkdir(parents=True, exist_ok=True)
         shutil.copy2(challenge.path, challenge_dest_path.joinpath(filename))
-        meta["challenges"].append({"title": challenge.title(), "slug": pathlib.Path(filename).stem})
+        meta["challenges"].append(
+            {"title": challenge.title(), "slug": pathlib.Path(filename).stem}
+        )
 
-    meta_path = outdir.joinpath(superblock, course_slug, '_meta.json')
+    meta_path = outdir.joinpath(superblock, course_slug, "_meta.json")
     with open(meta_path, "w") as outfile:
         json.dump(meta, outfile, indent=4)
 
@@ -60,9 +66,10 @@ def write_course_to_path(
 """
 Should write out the following structure of challenges to output dir:
 
-/output_dir/index.json => { 'english': ['02-javascript-algorithms-and-data-structures/basic-javascript'] }
-/output_dir/english/02-javascript-algorithms-and-data-structures/basic-javascript/_meta.json => { challenges: [{slug, title}] }
-/output_dir/english/02-javascript-algorithms-and-data-structures/basic-javascript/{slug}.md
+/output_dir/index.json => { 'english': ['superblock/basic-javascript'] }
+/output_dir/english/<superblock>/<course_slug>/_meta.json
+    => { challenges: [{slug, title}] }
+/output_dir/english/<superblock>/<course_slug>/{slug}.md
 
 """
 
@@ -103,7 +110,7 @@ def prebuild_command(arguments):
             sorted(challenge_list, key=lambda x: ids.index(x.id())),
             superblock,
             course,
-            outdir.joinpath("curriculum",lang),
+            outdir.joinpath("curriculum", lang),
         )
         print(f"Prebuilt {course}")
 

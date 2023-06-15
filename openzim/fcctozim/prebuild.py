@@ -12,7 +12,7 @@ from fcctozim import FCC_LANG_MAP
 # '---' lines in YAML denote multiple documents, so this can be read
 # directly with python's yaml library pulling in the first document
 # with 'next' and immediately returning
-def readYamlFrontmatter(filename: str):
+def read_yaml_frontmatter(filename: str):
     with open(filename) as f:
         front_matter = next(yaml.load_all(f, Loader=yaml.FullLoader))
         return front_matter
@@ -94,7 +94,7 @@ def prebuild_command(arguments):
         course_list: List[str, str, str] = []
         # List[id, path, title]
         for file in get_challenges_for_lang(curriculum_dir, lang):
-            info = readYamlFrontmatter(file)
+            info = read_yaml_frontmatter(file)
             id = info["id"]
             title = info["title"]
             try:

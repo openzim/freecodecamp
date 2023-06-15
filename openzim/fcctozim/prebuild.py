@@ -27,8 +27,7 @@ def update_index(path: str, slug: str, language="english"):
     if not index_path.exists():
         index_path.write_bytes(bytes(json.dumps({}), "utf-8"))
 
-    f = open(index_path, "r")
-    index = json.load(f)
+    index = json.loads(index_path.read_text())
     if not index.get(language):
         index[language] = []
     if slug not in index[language]:

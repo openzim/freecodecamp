@@ -28,11 +28,26 @@ def update_index(path: pathlib.Path, superblock: str, slug: str, language="engli
         json.dump(index, outfile, indent=4)
 
 
+"""
+Simply copies over the locales to the client locales path
+"""
+
+
 def write_locales_to_path(
     source_dir: pathlib.Path, outdir: pathlib.Path, language="english"
 ):
     locales_dir = pathlib.Path(outdir, "locales", language)
     shutil.copytree(source_dir, locales_dir)
+
+
+"""
+Writes the course to the chosen path.
+Each individual Markdown challenge is written along
+with the meta data for the course.
+
+Finally, we udpate the root index.json file with the course, which allows
+us to render a page listing all available courses
+"""
 
 
 def write_course_to_path(
@@ -66,11 +81,10 @@ def write_course_to_path(
 """
 Should write out the following structure of challenges to output dir:
 
-/output_dir/index.json => { 'english': ['superblock/basic-javascript'] }
+/output_dir/index.json => { 'english': {'superblock': ['basic-javascript'] } }
 /output_dir/english/<superblock>/<course_slug>/_meta.json
     => { challenges: [{slug, title}] }
 /output_dir/english/<superblock>/<course_slug>/{slug}.md
-
 """
 
 

@@ -51,6 +51,8 @@ zim:
 	python3 openzim/fcc2zim zim --clientdir ${CLIENTDIR} --outzim ${OUTPATH} \
 	--language ${LANG} --name ${NAME} --title ${TITLE} --description ${DESCRIPTION} --creator Makefile
 
+all: clean fetch prebuild zim
+
 build:
 	python3 openzim/fcc2zim all --clientdir ${CLIENTDIR} --outdir=./client/dist/fcc --outzim ${OUTPATH} \
 	--language ${LANG} --tmpdir=${TMPDIR} --course=${COURSE_CSV} \

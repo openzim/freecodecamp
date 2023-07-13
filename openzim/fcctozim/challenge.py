@@ -11,7 +11,7 @@ import yaml
 # with 'next' and immediately returning
 def read_yaml_frontmatter(filename: pathlib.Path):
     with open(filename) as f:
-        front_matter = next(yaml.load_all(f, Loader=yaml.FullLoader))
+        return next(yaml.load_all(f, Loader=yaml.FullLoader))
         return front_matter
 
 

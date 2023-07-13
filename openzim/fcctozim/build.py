@@ -50,7 +50,7 @@ def build(arguments):
     fileList = []
 
     # Walk the tree and get a list of files we care about
-    for file in pathlib.Path(clientdir).glob("**/*"):
+    for file in clientdir.rglob("*"):
         if file.is_dir():
             continue
         if file.suffix == ".map":
@@ -83,7 +83,7 @@ def build(arguments):
         for redir_slug, redir_title in build_curriculum_redirects(clientdir, language):
             print("Redirect", redir_slug)
             redirect_path = f"{redir_slug}"
-            redirect_url = "./index.html#{redir_slug}"
+            redirect_url = redir_slug.count("/") * "../" + f"index.html#{redir_slug}"
             content = (
                 f"<html><head><title>{redir_title}</title>"
                 f'<meta http-equiv="refresh" content="0;URL=\'{redirect_url}\'" />'

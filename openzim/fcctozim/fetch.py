@@ -25,8 +25,8 @@ def fetch_command(arguments):
         members = [
             member
             for member in zip_ref.namelist()
-            if member.find("freeCodeCamp-main/curriculum/") == 0
-            or member.find("freeCodeCamp-main/client/i18n/locales") == 0
+            if member.startswith("freeCodeCamp-main/curriculum/")
+            or member.startswith("freeCodeCamp-main/client/i18n/locales")
         ]
         zip_ref.extractall(members=members, path=curriculum_path)
         print(f"Extracted {len(members)} files")

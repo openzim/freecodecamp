@@ -14,7 +14,7 @@ def get_challenges_for_lang(tmp_path, language="english"):
 def update_index(path: pathlib.Path, superblock: str, slug: str, language="english"):
     index_path = path.joinpath("index.json")
     if not index_path.exists():
-        index_path.write_bytes(bytes(json.dumps({}), "utf-8"))
+        index_path.write_bytes(json.dumps({}).encode("utf-8"))
 
     index = json.loads(index_path.read_text())
     if language not in index:
@@ -113,7 +113,7 @@ def prebuild_command(arguments):
         challenge_list: List[Challenge] = []
         for file in get_challenges_for_lang(curriculum_dir, lang):
             challenge = Challenge(file)
-            if not challenge.course_superblock == superblock:
+            if challenge.course_superblock != superblock:
                 continue
             # ID is a UUID the Challenge, the only add it to the challenge list if it's
             # a part of the course.

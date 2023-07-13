@@ -48,7 +48,8 @@ if __name__ == "__main__":
     zim_cmd.add_argument('--title', type=str, help='Title of zim file', required=True)
     zim_cmd.add_argument('--name', type=str, help='Name of zim file', required=True)
     zim_cmd.add_argument('--description', type=str, help='Description of zim file', required=True)
-    zim_cmd.add_argument('--creator', type=str, help='Creator of the zim file', required=True)
+    zim_cmd.add_argument('--creator', type=str, help='Creator of the zim files content', required=False)
+    zim_cmd.add_argument('--publisher', type=str, help='Publisher of the zim file', required=False)
 
     all_cmd = sub_parsers.add_parser('all', help='fetch, build and package up a zim file')
     all_cmd.add_argument('--force', type=bool, help='force a re-download of the curriculum zip')
@@ -62,7 +63,8 @@ if __name__ == "__main__":
     all_cmd.add_argument('--title', type=str, help='Title of zim file', required=True)
     all_cmd.add_argument('--name', type=str, help='Name of zim file', required=True)
     all_cmd.add_argument('--description', type=str, help='Description of zim file', required=True)
-    all_cmd.add_argument('--creator', type=str, help='Creator of the zim file', required=True)
+    all_cmd.add_argument('--creator', type=str, help='Creator of the zim files content', required=False)
+    all_cmd.add_argument('--publisher', type=str, help='Publisher of the zim file', required=False)
 
     args = parser.parse_args()
     if args.command:

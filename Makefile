@@ -49,7 +49,7 @@ prebuild:
 
 zim:
 	python3 openzim/fcc2zim zim --clientdir ${CLIENTDIR} --outzim ${OUTPATH} \
-	--language ${LANG} --name ${NAME} --title ${TITLE} --description ${DESCRIPTION} --creator Makefile
+	--language ${LANG} --name ${NAME} --title ${TITLE} --description ${DESCRIPTION}
 
 all: clean fetch prebuild zim
 
@@ -64,7 +64,7 @@ docker_build:
 docker_run:
 	docker run --rm -it -v $(PWD)/tmp:/tmp/fcc2zim openzim/fcc2zim all --clientdir ${CLIENTDIR} --outdir=./client/dist/fcc --outzim ${OUTPATH} \
 	--language ${LANG} --tmpdir=/tmp/fcc2zim --course=${COURSE_CSV} \
-	--name ${NAME} --title ${TITLE} --description ${DESCRIPTION} --creator Docker
+	--name ${NAME} --title ${TITLE} --description ${DESCRIPTION}
 
 docker_debug:
 	docker run --rm -it --entrypoint=/bin/bash openzim/fcc2zim

@@ -41,7 +41,8 @@ def build(arguments):
     name = arguments.name
     title = arguments.title
     description = arguments.description
-    creator = arguments.creator
+    creator = arguments.creator or "freeCodeCamp"
+    publisher = arguments.publisher or "openZIM"
 
     logger.info(
         f"Building {clientdir} for {language} => {outpath} - Version: {VERSION}"
@@ -66,7 +67,7 @@ def build(arguments):
     with Creator(outpath, main_path.as_posix()).config_metadata(
         Name=name,
         Title=title,
-        Publisher="Kiwix",
+        Publisher=publisher,
         Date=datetime.now(),
         Creator=creator,
         Description=description,
@@ -94,5 +95,6 @@ def build(arguments):
                 content=bytes(content, "utf-8"),
                 title=redir_title,
                 mimetype="text/html",
+                is_front=True,
             )
             # Example index.html#/english/regular-expressions/extract-matches

@@ -102,12 +102,13 @@ def prebuild_command(arguments):
 
     # eg. ['basic-javascript', 'debugging']
     for course in course_list_str.split(","):
+        print(f"Prebuilding {course}")
         meta = json.loads(
             curriculum_dir.joinpath("_meta", course, "meta.json").read_text()
         )
 
         # Get the order that the challenges should be completed in for <course>
-        ids = [item[0] for item in meta["challengeOrder"]]
+        ids = [item["id"] for item in meta["challengeOrder"]]
         superblock = meta["superBlock"]
 
         challenge_list: List[Challenge] = []

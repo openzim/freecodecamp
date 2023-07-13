@@ -12,7 +12,6 @@ import yaml
 def read_yaml_frontmatter(filename: pathlib.Path):
     with open(filename) as f:
         return next(yaml.load_all(f, Loader=yaml.FullLoader))
-        return front_matter
 
 
 class Challenge:

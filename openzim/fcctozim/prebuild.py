@@ -62,7 +62,7 @@ def write_course_to_path(
         challenge_dest_path = outdir.joinpath(
             challenge.course_superblock, challenge.course_slug, challenge.path.name
         )
-        challenge_dest_path.parent.mkdir(parents=True, exist_ok=True)
+        challenge_dest_path.mkdir(parents=True, exist_ok=True)
         shutil.copy2(challenge.path, challenge_dest_path.joinpath(challenge.path.name))
         meta["challenges"].append(
             {"title": challenge.title(), "slug": challenge.path.stem}

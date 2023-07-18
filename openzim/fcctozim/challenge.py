@@ -13,7 +13,6 @@ def read_yaml_frontmatter(filename: pathlib.Path):
     with open(filename) as f:
         return next(yaml.load_all(f, Loader=yaml.FullLoader))
 
-
 class Challenge:
     def __init__(self, fpath: Union[str, pathlib.Path]) -> None:
         self.path = pathlib.Path(fpath)

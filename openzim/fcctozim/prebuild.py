@@ -58,7 +58,7 @@ def write_course_to_path(
 
     for challenge in challenge_list:
         challenge_dest_path = outdir.joinpath(
-            challenge.course_superblock, challenge.course_slug, challenge.path.name
+            challenge.course_superblock, challenge.course_slug
         )
         challenge_dest_path.mkdir(parents=True, exist_ok=True)
         shutil.copy2(challenge.path, challenge_dest_path.joinpath(challenge.path.name))

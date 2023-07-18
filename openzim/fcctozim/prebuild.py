@@ -78,17 +78,14 @@ def write_course_to_path(
     update_index(outdir, superblock, course_slug, challenge_list[0].language)
 
 
-"""
-Should write out the following structure of challenges to output dir:
-
-/output_dir/index.json => { 'english': {'superblock': ['basic-javascript'] } }
-/output_dir/english/<superblock>/<course_slug>/_meta.json
-    => { challenges: [{slug, title}] }
-/output_dir/english/<superblock>/<course_slug>/{slug}.md
-"""
-
-
 def prebuild_command(arguments):
+    """Writes out a structure of challenges to output dir:
+
+    /output_dir/index.json => { 'english': {'superblock': ['basic-javascript'] } }
+    /output_dir/english/<superblock>/<course_slug>/_meta.json
+        => { challenges: [{slug, title}] }
+    /output_dir/english/<superblock>/<course_slug>/{slug}.md
+    """
     course_list_str = str(arguments.course)
     outdir = pathlib.Path(arguments.outdir)
     lang = FCC_LANG_MAP[arguments.language]

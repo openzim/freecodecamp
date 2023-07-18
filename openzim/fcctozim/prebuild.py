@@ -55,7 +55,7 @@ def write_course_to_path(
     course_slug: str,
     outdir: pathlib.Path,
 ):
-    pathlib.Path(outdir).mkdir(parents=True, exist_ok=True)
+    outdir.mkdir(parents=True, exist_ok=True)
     meta = {"challenges": []}
 
     for challenge in challenge_list:
@@ -69,6 +69,7 @@ def write_course_to_path(
         )
 
     meta_path = outdir.joinpath(superblock, course_slug, "_meta.json")
+    meta_path.parent.mkdir(parents=True, exist_ok=True)
     with open(meta_path, "w") as outfile:
         json.dump(meta, outfile, indent=4)
 

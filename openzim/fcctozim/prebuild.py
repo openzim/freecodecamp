@@ -39,22 +39,20 @@ def write_locales_to_path(
     shutil.copytree(source_dir, outdir / "locales" / language)
 
 
-"""
-Writes the course to the chosen path.
-Each individual Markdown challenge is written along
-with the meta data for the course.
-
-Finally, we udpate the root index.json file with the course, which allows
-us to render a page listing all available courses
-"""
-
-
 def write_course_to_path(
     challenge_list: List[Challenge],
     superblock: str,
     course_slug: str,
     outdir: pathlib.Path,
 ):
+    """Writes the course to the chosen path.
+
+    Each individual Markdown challenge is written along
+    with the meta data for the course.
+
+    Finally, we udpate the root index.json file with the course, which allows
+    us to render a page listing all available courses
+    """
     outdir.mkdir(parents=True, exist_ok=True)
     meta = {"challenges": []}
 
@@ -103,7 +101,10 @@ def prebuild_command(arguments):
             curriculum_dir.joinpath("_meta", course, "meta.json").read_text()
         )
         # Get the order that the challenges should be completed in for <course>
-        ids = [id_ for id_, _ in meta["challengeOrder"]]
+        ids = [
+            item[0] if isinstance(item, list) else item["id"]
+            for item in meta["challengeOrder"]
+        ]
         superblock = meta["superBlock"]
 
         challenge_list: List[Challenge] = []

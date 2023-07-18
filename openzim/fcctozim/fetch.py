@@ -9,8 +9,8 @@ def fetch_command(arguments):
     force = arguments.force or False
     tmpdir = pathlib.Path(arguments.tmpdir or "./tmp")
     url = "https://github.com/freeCodeCamp/freeCodeCamp/archive/refs/heads/main.zip"
-    zip_path = pathlib.Path(tmpdir, "main.zip")
-    curriculum_path = pathlib.Path(tmpdir, "curriculum")
+    zip_path = tmpdir / "main.zip"
+    curriculum_path = tmpdir / "curriculum"
 
     curriculum_path.mkdir(parents=True, exist_ok=True)
 

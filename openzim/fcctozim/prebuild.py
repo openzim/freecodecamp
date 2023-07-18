@@ -36,8 +36,7 @@ Simply copies over the locales to the client locales path
 def write_locales_to_path(
     source_dir: pathlib.Path, outdir: pathlib.Path, language="english"
 ):
-    locales_dir = pathlib.Path(outdir, "locales", language)
-    shutil.copytree(source_dir, locales_dir)
+    shutil.copytree(source_dir, outdir / "locales" / language)
 
 
 """
@@ -60,14 +59,13 @@ def write_course_to_path(
     meta = {"challenges": []}
 
     for challenge in challenge_list:
-        filename = challenge.path.name
         challenge_dest_path = outdir.joinpath(
-            challenge.course_superblock, challenge.course_slug
+            challenge.course_superblock, challenge.course_slug, challenge.path.name
         )
-        challenge_dest_path.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(challenge.path, challenge_dest_path.joinpath(filename))
+        challenge_dest_path.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(challenge.path, challenge_dest_path.joinpath(challenge.path.name))
         meta["challenges"].append(
-            {"title": challenge.title(), "slug": pathlib.Path(filename).stem}
+            {"title": challenge.title(), "slug": challenge.path.stem}
         )
 
     meta_path = outdir.joinpath(superblock, course_slug, "_meta.json")

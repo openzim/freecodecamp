@@ -35,6 +35,18 @@ See: [`Makefile`](Makefile) for a full build process
     --name "fcc_en_javascript" --title "freeCodeCamp Javascript" --description "FCC Javascript Courses"
 `
 
+## Course Options and Limitations
+
+Currently this scraper only supports Javascript challenges. A list of courses is passed to the `prebuild` step as a comma seperated list of 'course slugs'.
+
+You can find a list of course slugs in the [freeCodeCamp curriculum folder](https://github.com/freeCodeCamp/freeCodeCamp/tree/main/curriculum/challenges/english/02-javascript-algorithms-and-data-structures)
+
+Example:
+
+```
+python3 openzim/fcc2zim prebuild --course=regular-expressions,basic-javascript,basic-data-structures,debugging,functional-programming,object-oriented-programming,basic-algorithm-scripting,intermediate-algorithm-scripting,javascript-algorithms-and-data-structures-projects --outdir=./client/dist/fcc --language eng --tmpdir=./tmp
+```
+
 # License
 
 This repository is licensed under GPLv3, with the exception of the freeCodeCamp curriculum which is licensed under BSD 3 Clause (see LICENSE.fcc.md).

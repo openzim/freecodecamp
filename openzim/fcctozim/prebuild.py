@@ -34,16 +34,16 @@ Simply copies over the locales to the client locales path
 
 
 def write_locales_to_path(
-    source_dir: pathlib.Path, outdir: pathlib.Path, language="english"
+    source_dir: pathlib.Path, curriculumdir: pathlib.Path, language="english"
 ):
-    shutil.copytree(source_dir, outdir / "locales" / language)
+    shutil.copytree(source_dir, curriculumdir / "locales" / language)
 
 
 def write_course_to_path(
     challenge_list: List[Challenge],
     superblock: str,
     course_slug: str,
-    outdir: pathlib.Path,
+    curriculumdir: pathlib.Path,
 ):
     """Writes the course to the chosen path.
 
@@ -53,11 +53,11 @@ def write_course_to_path(
     Finally, we udpate the root index.json file with the course, which allows
     us to render a page listing all available courses
     """
-    outdir.mkdir(parents=True, exist_ok=True)
+    curriculumdir.mkdir(parents=True, exist_ok=True)
     meta = {"challenges": []}
 
     for challenge in challenge_list:
-        challenge_dest_path = outdir.joinpath(
+        challenge_dest_path = curriculumdir.joinpath(
             challenge.course_superblock, challenge.course_slug
         )
         challenge_dest_path.mkdir(parents=True, exist_ok=True)
@@ -66,13 +66,13 @@ def write_course_to_path(
             {"title": challenge.title(), "slug": challenge.path.stem}
         )
 
-    meta_path = outdir.joinpath(superblock, course_slug, "_meta.json")
+    meta_path = curriculumdir.joinpath(superblock, course_slug, "_meta.json")
     meta_path.parent.mkdir(parents=True, exist_ok=True)
     with open(meta_path, "w") as outfile:
         json.dump(meta, outfile, indent=4)
 
     # Create an index with a list of the courses
-    update_index(outdir, superblock, course_slug, challenge_list[0].language)
+    update_index(curriculumdir, superblock, course_slug, challenge_list[0].language)
 
 
 def prebuild_command(arguments):
@@ -84,7 +84,7 @@ def prebuild_command(arguments):
     /output_dir/english/<superblock>/<course_slug>/{slug}.md
     """
     course_list_str = str(arguments.course)
-    outdir = pathlib.Path(arguments.outdir)
+    curriculumdir = pathlib.Path(arguments.curriculumdir)
     lang = FCC_LANG_MAP[arguments.language]
     tmpdir = arguments.tmpdir or "./tmp"
     curriculum_dir = pathlib.Path(
@@ -121,10 +121,10 @@ def prebuild_command(arguments):
             sorted(challenge_list, key=lambda x: ids.index(x.id())),
             superblock,
             course,
-            outdir.joinpath("curriculum", lang),
+            curriculumdir.joinpath("curriculum", lang),
         )
         print(f"Prebuilt {course}")
 
     # Copy all the locales for this language
-    write_locales_to_path(locales_dir, outdir, lang)
-    print(f"Prebuilt curriculum into {outdir}")
+    write_locales_to_path(locales_dir, curriculumdir, lang)
+    print(f"Prebuilt curriculum into {curriculumdir}")

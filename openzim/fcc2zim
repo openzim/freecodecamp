@@ -8,7 +8,6 @@ from fcctozim.build import build
 from fcctozim.fetch import fetch_command
 from fcctozim.prebuild import prebuild_command
 
-
 def main(args):
     command = args.command
 
@@ -23,6 +22,25 @@ def main(args):
         prebuild_command(args)
         build(args)
 
+argsActions = {
+    'tmpdir': {'flags': '--tmpdir', 'type': str, 'help': 'the temporary directory to hold the curriculum'},
+    'force': {'flags': '--force', 'type': bool, 'help': 'force a re-download of the curriculum zip'},
+    'language': {'flags': '--language', 'type': str, 'help': 'Curriculum language'},
+    'course': {'flags': '--course', 'type': str, 'help': 'Course or course list (separated by commas)', 'required': True},
+    'curriculumdir': {'flags': '--curriculumdir', 'type': str, 'help': 'the directory to place the processed curriculum', 'required': True},
+    'clientdir': {'flags': '--clientdir', 'type': str, 'help': 'the directory containing our Vite application', 'required': True},
+    'outpath': {'flags': '--outpath', 'type': str, 'help': 'output path', 'required': True},
+    'outzim': {'flags': '--outzim', 'type': str, 'help': 'the path of our output file'},
+    'title': {'flags': '--title', 'type': str, 'help': 'Title of zim file', 'required': True},
+    'name': {'flags': '--name', 'type': str, 'help': 'Name of zim file', 'required': True},
+    'description': {'flags': '--description', 'type': str, 'help': 'Description of zim file', 'required': True},
+    'creator': {'flags': '--creator', 'type': str, 'help': 'Creator of the zim files content'},
+    'publisher': {'flags': '--publisher', 'type': str, 'help': 'Publisher of the zim file'}
+}
+
+def add_arguments(parser, arg):
+    parser.add_argument(arg['flags'], type=arg.get('type', str), help=arg['help'], required=arg.get('required', False))
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(prog='fcc2zim')
@@ -32,39 +50,47 @@ if __name__ == "__main__":
     sub_parsers = parser.add_subparsers(help='sub-command help', dest='command')
 
     fetch_cmd = sub_parsers.add_parser('fetch', help='fetch the latest curriculum')
-    fetch_cmd.add_argument('--tmpdir', type=str, help='the temporary directory to hold the curriculum')
-    fetch_cmd.add_argument('--force', type=bool, help='force a re-download of the curriculum zip')
+    add_arguments(fetch_cmd, [
+        argsActions['tmpdir'],
+        argsActions['force']
+    ])
 
     prebuild_cmd = sub_parsers.add_parser('prebuild', help='prebuild curriculum for Vite frontend')
-    prebuild_cmd.add_argument('--language', type=str, help='Curriculum language')
-    prebuild_cmd.add_argument('--course', type=str, help='Course or course list (seperated by commas)', required=True)
-    prebuild_cmd.add_argument('--outdir', type=str, help='output directory (typically vite\'s dist folder)', required=True)
-    prebuild_cmd.add_argument('--tmpdir', type=str, help='the temporary directory to hold the curriculum')
+    add_arguments(prebuild_cmd, [
+        argsActions['language'],
+        argsActions['course'],
+        argsActions['curriculumdir'],
+        argsActions['tmpdir'],
+    ])
 
     zim_cmd = sub_parsers.add_parser('zim', help='package up the zim file')
-    zim_cmd.add_argument('--clientdir', type=str, help='the directory containing our Vite application', required=True)
-    zim_cmd.add_argument('--outzim', type=str, help='the path of our output file')
-    zim_cmd.add_argument('--language', type=str, help='Language of zim file', required=True)
-    zim_cmd.add_argument('--title', type=str, help='Title of zim file', required=True)
-    zim_cmd.add_argument('--name', type=str, help='Name of zim file', required=True)
-    zim_cmd.add_argument('--description', type=str, help='Description of zim file', required=True)
-    zim_cmd.add_argument('--creator', type=str, help='Creator of the zim files content', required=False)
-    zim_cmd.add_argument('--publisher', type=str, help='Publisher of the zim file', required=False)
+    add_arguments(zim_cmd, [
+        argsActions['clientdir'],
+        argsActions['outzim'],
+        argsActions['language'],
+        argsActions['title'],
+        argsActions['name'],
+        argsActions['description'],
+        argsActions['creator'],
+        argsActions['publisher'],
+    ])
 
     all_cmd = sub_parsers.add_parser('all', help='fetch, build and package up a zim file')
-    all_cmd.add_argument('--force', type=bool, help='force a re-download of the curriculum zip')
-    all_cmd.add_argument('--course', type=str, help='Course or course list (seperated by commas)', required=True)
-    all_cmd.add_argument('--outdir', type=str, help='output directory (typically vite\'s dist folder)', required=True)
-    all_cmd.add_argument('--outzim', type=str, help='path of the zim file to output', required=True)
-    all_cmd.add_argument('--tmpdir', type=str, help='the temporary directory to hold the curriculum')
-    all_cmd.add_argument('--clientdir', type=str, help='the directory containing our Vite application', required=True)
-    all_cmd.add_argument('--outpath', type=str, help='the path of our output file')
-    all_cmd.add_argument('--language', type=str, help='Language of zim file and curriculum', required=True)
-    all_cmd.add_argument('--title', type=str, help='Title of zim file', required=True)
-    all_cmd.add_argument('--name', type=str, help='Name of zim file', required=True)
-    all_cmd.add_argument('--description', type=str, help='Description of zim file', required=True)
-    all_cmd.add_argument('--creator', type=str, help='Creator of the zim files content', required=False)
-    all_cmd.add_argument('--publisher', type=str, help='Publisher of the zim file', required=False)
+    add_arguments(all_cmd, [
+        argsActions['tmpdir'],
+        argsActions['force'],
+        argsActions['course'],
+        argsActions['curriculumdir'],
+        argsActions['clientdir'],
+        argsActions['outzim'],
+        argsActions['outpath'],
+        argsActions['language'],
+        argsActions['title'],
+        argsActions['name'],
+        argsActions['description'],
+        argsActions['creator'],
+        argsActions['publisher'],
+    ])
 
     args = parser.parse_args()
     if args.command:

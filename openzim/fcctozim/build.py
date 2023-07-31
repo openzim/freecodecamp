@@ -36,11 +36,12 @@ def build_curriculum_redirects(clientdir, language):
 
 def build(arguments):
     clientdir = pathlib.Path(arguments.clientdir)
-    outpath = arguments.outzim
+    outpath = pathlib.Path(arguments.outpath)
     language = arguments.language
     name = arguments.name
     title = arguments.title
     description = arguments.description
+    long_description = arguments.long_description
     creator = arguments.creator or "freeCodeCamp"
     publisher = arguments.publisher or "openZIM"
 
@@ -60,9 +61,9 @@ def build(arguments):
 
     main_path = clientdir.joinpath("index.html").relative_to(clientdir)
 
-    # Make sure the outpath directory exists
+    # Make sure the output directory exists
 
-    pathlib.Path(outpath).parent.mkdir(parents=True, exist_ok=True)
+    outpath.parent.mkdir(parents=True, exist_ok=True)
 
     with Creator(outpath, main_path.as_posix()).config_metadata(
         Name=name,
@@ -71,9 +72,10 @@ def build(arguments):
         Date=datetime.now(),
         Creator=creator,
         Description=description,
+        LongDescription=long_description,
         Language=language,
         Tags=";".join(["FCC", "freeCodeCamp"]),
-        Scraper=f"fcc2zim V{VERSION}",
+        Scraper=f"fcctozim V{VERSION}",
         Illustration_48x48_at_1=logo_path.read_bytes(),
     ) as creator:
         for file in fileList:

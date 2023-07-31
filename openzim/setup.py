@@ -2,38 +2,62 @@
 # -*- coding: utf-8 -*-
 # vim: ai ts=4 sts=4 et sw=4 nu
 
-""" Project Gutemberg ZIM creator for Offline Use """
+""" freeCodeCamp ZIM creator for Offline Use """
 
 import pathlib
-from codecs import open
+import shutil
 
-from fcc2zim import VERSION
-from setuptools import find_packages, setup
+from setuptools import setup
 
-with open("requirements.pip", "r") as f:
-    requirements = [line.strip() for line in f.readlines() if len(line.strip())]
-with open(pathlib.Path(pathlib.Path.parent, "README.md"), "r", "utf-8") as f:
-    readme = f.read()
+root_dir = pathlib.Path(__file__).parent
+
+
+def copyParentData():
+    sourcePaths = [
+        pathlib.Path.joinpath(root_dir.parent, "LICENSE"),
+        pathlib.Path.joinpath(root_dir.parent, "README.md"),
+    ]
+    for sourcePath in sourcePaths:
+        dest = pathlib.Path.joinpath(root_dir, sourcePath.name)
+        shutil.copy2(sourcePath, dest)
+
+
+copyParentData()
+
+
+def read(*names, **kwargs):
+    with open(root_dir.joinpath(*names), "r") as fh:
+        return fh.read()
+
 
 setup(
-    name="fcc2zim",
-    version=VERSION,
+    name="fcctozim",
+    version=read("fcctozim", "VERSION").strip(),
     description=__doc__,
     author="Kiwix",
     author_email="reg@kiwix.org",
-    long_description=readme,
+    long_description=read("README.md"),
     long_description_content_type="text/markdown",
     url="http://github.com/openzim/fcc",
-    keywords="fcc zim kiwix openzim offline",
+    keywords="fcc freecodecamp zim kiwix openzim offline",
     license="GPL-3.0",
-    packages=find_packages("."),
+    packages=["fcctozim"],
     zip_safe=False,
     platforms="any",
     include_package_data=True,
-    data_files=["LICENSE", "requirements.pip"],
-    package_dir={"fcc": "fcc"},
-    install_requires=requirements,
-    scripts=["fcc2zim"],
+    data_files=["LICENSE", "README.md", "requirements.pip"],
+    # package_data={"": [f for f in copy_client()]},
+    # package_dir={"": "openzim"},
+    install_requires=[
+        line.strip()
+        for line in read("requirements.pip").splitlines()
+        if not line.strip().startswith("#")
+    ],
+    entry_points={
+        "console_scripts": [
+            "fcctozim=fcctozim.__main__:main",
+        ]
+    },
     classifiers=[
         "Intended Audience :: Developers",
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",

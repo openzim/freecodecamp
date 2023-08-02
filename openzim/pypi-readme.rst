@@ -1,8 +1,8 @@
 =============
-fcc2zim
+fcctozim
 =============
 
-@TODO Update this for fcc2zim usage
+@TODO Update this for fcctozim usage
 
 A scraper that downloads the whole JS course material for FCC
 (http://freecodecamp.org) and puts it into a locally browsable
@@ -34,7 +34,7 @@ Usage
 
 .. code-block:: sh
 
-	fcc2zim
+	fcctozim
 
 By default (no argument), it runs all the steps: download, parse, export and zim.
 

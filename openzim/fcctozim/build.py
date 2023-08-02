@@ -73,7 +73,7 @@ def build(arguments):
         Description=description,
         Language=language,
         Tags=";".join(["FCC", "freeCodeCamp"]),
-        Scraper=f"fcc2zim V{VERSION}",
+        Scraper=f"fcctozim V{VERSION}",
         Illustration_48x48_at_1=logo_path.read_bytes(),
     ) as creator:
         for file in fileList:

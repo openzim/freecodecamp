@@ -7,7 +7,7 @@
 import pathlib
 from codecs import open
 
-from fcc2zim import VERSION
+from fcctozim import VERSION
 from setuptools import find_packages, setup
 
 with open("requirements.pip", "r") as f:
@@ -16,7 +16,7 @@ with open(pathlib.Path(pathlib.Path.parent, "README.md"), "r", "utf-8") as f:
     readme = f.read()
 
 setup(
-    name="fcc2zim",
+    name="fcctozim",
     version=VERSION,
     description=__doc__,
     author="Kiwix",
@@ -33,7 +33,7 @@ setup(
     data_files=["LICENSE", "requirements.pip"],
     package_dir={"fcc": "fcc"},
     install_requires=requirements,
-    scripts=["fcc2zim"],
+    scripts=["fcctozim"],
     classifiers=[
         "Intended Audience :: Developers",
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",

@@ -22,7 +22,7 @@ def main(args):
         prebuild_command(args)
         build(args)
 
-argsActions = {
+arg_flags = {
     'tmpdir': {'flags': '--tmpdir', 'type': str, 'help': 'the temporary directory to hold the curriculum'},
     'force': {'flags': '--force', 'type': bool, 'help': 'force a re-download of the curriculum zip'},
     'language': {'flags': '--language', 'type': str, 'help': 'Curriculum language'},
@@ -38,12 +38,13 @@ argsActions = {
     'publisher': {'flags': '--publisher', 'type': str, 'help': 'Publisher of the zim file'}
 }
 
-def add_arguments(parser, arg):
-    parser.add_argument(arg['flags'], type=arg.get('type', str), help=arg['help'], required=arg.get('required', False))
+def add_arguments(parser, args):
+    for arg in args:
+        parser.add_argument(arg['flags'], type=arg.get('type', str), help=arg['help'], required=arg.get('required', False))
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(prog='fcc2zim')
+    parser = argparse.ArgumentParser(prog='fcctozim')
 
 
     # create sub-parser
@@ -51,46 +52,32 @@ if __name__ == "__main__":
 
     fetch_cmd = sub_parsers.add_parser('fetch', help='fetch the latest curriculum')
     add_arguments(fetch_cmd, [
-        argsActions['tmpdir'],
-        argsActions['force']
+        arg_flags['tmpdir'],
+        arg_flags['force']
     ])
 
     prebuild_cmd = sub_parsers.add_parser('prebuild', help='prebuild curriculum for Vite frontend')
     add_arguments(prebuild_cmd, [
-        argsActions['language'],
-        argsActions['course'],
-        argsActions['curriculumdir'],
-        argsActions['tmpdir'],
+        arg_flags['language'],
+        arg_flags['course'],
+        arg_flags['curriculumdir'],
+        arg_flags['tmpdir'],
     ])
 
     zim_cmd = sub_parsers.add_parser('zim', help='package up the zim file')
     add_arguments(zim_cmd, [
-        argsActions['clientdir'],
-        argsActions['outzim'],
-        argsActions['language'],
-        argsActions['title'],
-        argsActions['name'],
-        argsActions['description'],
-        argsActions['creator'],
-        argsActions['publisher'],
+        arg_flags['clientdir'],
+        arg_flags['outzim'],
+        arg_flags['language'],
+        arg_flags['title'],
+        arg_flags['name'],
+        arg_flags['description'],
+        arg_flags['creator'],
+        arg_flags['publisher'],
     ])
 
     all_cmd = sub_parsers.add_parser('all', help='fetch, build and package up a zim file')
-    add_arguments(all_cmd, [
-        argsActions['tmpdir'],
-        argsActions['force'],
-        argsActions['course'],
-        argsActions['curriculumdir'],
-        argsActions['clientdir'],
-        argsActions['outzim'],
-        argsActions['outpath'],
-        argsActions['language'],
-        argsActions['title'],
-        argsActions['name'],
-        argsActions['description'],
-        argsActions['creator'],
-        argsActions['publisher'],
-    ])
+    add_arguments(all_cmd, [arg_flags[key] for key in arg_flags])
 
     args = parser.parse_args()
     if args.command:

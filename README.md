@@ -29,7 +29,7 @@ See: [`Makefile`](Makefile) for a full build process
 
 - `docker build -t openzim/fcctozim .`
 - `docker run --rm -it -v /workspaces/openzim-freecodecamp/tmp:/tmp/fcctozim openzim/fcctozim all \
-    --clientdir ./client/dist --curriculumdir=./client/dist/fcc --outzim ./build/eng.zim \
+    --clientdir ./client/dist --curriculumdir=./client/dist/fcc --outpath ./build/eng.zim \
     --language eng --tmpdir=/tmp/fcctozim \
     --course=regular-expressions,basic-javascript,basic-data-structures,debugging,functional-programming,object-oriented-programming,basic-algorithm-scripting,intermediate-algorithm-scripting,javascript-algorithms-and-data-structures-projects \
     --name "fcc_en_javascript" --title "freeCodeCamp Javascript" --description "FCC Javascript Courses"

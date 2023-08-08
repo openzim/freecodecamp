@@ -30,7 +30,6 @@ arg_flags = {
     'curriculumdir': {'flags': '--curriculumdir', 'type': str, 'help': 'the directory to place the processed curriculum', 'required': True},
     'clientdir': {'flags': '--clientdir', 'type': str, 'help': 'the directory containing our Vite application', 'required': True},
     'outpath': {'flags': '--outpath', 'type': str, 'help': 'output path', 'required': True},
-    'outzim': {'flags': '--outzim', 'type': str, 'help': 'the path of our output file'},
     'title': {'flags': '--title', 'type': str, 'help': 'Title of zim file', 'required': True},
     'name': {'flags': '--name', 'type': str, 'help': 'Name of zim file', 'required': True},
     'description': {'flags': '--description', 'type': str, 'help': 'Description of zim file', 'required': True},
@@ -67,7 +66,7 @@ if __name__ == "__main__":
     zim_cmd = sub_parsers.add_parser('zim', help='package up the zim file')
     add_arguments(zim_cmd, [
         arg_flags['clientdir'],
-        arg_flags['outzim'],
+        arg_flags['outpath'],
         arg_flags['language'],
         arg_flags['title'],
         arg_flags['name'],

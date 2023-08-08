@@ -36,7 +36,7 @@ def build_curriculum_redirects(clientdir, language):
 
 def build(arguments):
     clientdir = pathlib.Path(arguments.clientdir)
-    output = arguments.outzim
+    outpath = pathlib.Path(arguments.outpath)
     language = arguments.language
     name = arguments.name
     title = arguments.title
@@ -45,7 +45,7 @@ def build(arguments):
     publisher = arguments.publisher or "openZIM"
 
     logger.info(
-        f"Building {clientdir} for {language} => {output} - Version: {VERSION}"
+        f"Building {clientdir} for {language} => {outpath} - Version: {VERSION}"
     )
 
     fileList = []
@@ -62,9 +62,9 @@ def build(arguments):
 
     # Make sure the output directory exists
 
-    pathlib.Path(output).parent.mkdir(parents=True, exist_ok=True)
+    outpath.parent.mkdir(parents=True, exist_ok=True)
 
-    with Creator(output, main_path.as_posix()).config_metadata(
+    with Creator(outpath, main_path.as_posix()).config_metadata(
         Name=name,
         Title=title,
         Publisher=publisher,

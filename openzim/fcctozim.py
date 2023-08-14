@@ -77,6 +77,12 @@ arg_flags = {
         "help": "Description of zim file",
         "required": True,
     },
+    "long_description": {
+        "flags": "--long_description",
+        "type": str,
+        "help": "Long description of zim file",
+        "required": False,
+    },
     "creator": {
         "flags": "--creator",
         "type": str,
@@ -132,6 +138,7 @@ if __name__ == "__main__":
             arg_flags["title"],
             arg_flags["name"],
             arg_flags["description"],
+            arg_flags["long_description"],
             arg_flags["creator"],
             arg_flags["publisher"],
         ],

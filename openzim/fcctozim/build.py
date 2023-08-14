@@ -41,6 +41,7 @@ def build(arguments):
     name = arguments.name
     title = arguments.title
     description = arguments.description
+    long_description = arguments.long_description
     creator = arguments.creator or "freeCodeCamp"
     publisher = arguments.publisher or "openZIM"
 
@@ -71,6 +72,7 @@ def build(arguments):
         Date=datetime.now(),
         Creator=creator,
         Description=description,
+        LongDescription=long_description,
         Language=language,
         Tags=";".join(["FCC", "freeCodeCamp"]),
         Scraper=f"fcctozim V{VERSION}",

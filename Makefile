@@ -42,13 +42,13 @@ lint:
 	isort --profile black .
 
 fetch:
-	python3 openzim/fcctozim.py fetch --tmpdir=${TMPDIR}
+	python3 openzim/fcctozim fetch --tmpdir=${TMPDIR}
 
 prebuild:
-	python3 openzim/fcctozim.py prebuild --course=${COURSE_CSV} --curriculumdir=./client/dist/fcc --language ${LANG} --tmpdir=${TMPDIR}
+	python3 openzim/fcctozim prebuild --course=${COURSE_CSV} --curriculumdir=./client/dist/fcc --language ${LANG} --tmpdir=${TMPDIR}
 
 zim:
-	python3 openzim/fcctozim.py zim --clientdir ${CLIENTDIR} --outpath ${OUTPATH} \
+	python3 openzim/fcctozim zim --clientdir ${CLIENTDIR} --outpath ${OUTPATH} \
 	--language ${LANG} --name ${NAME} --title ${TITLE} --description ${DESCRIPTION}
 
 all: clean fetch prebuild zim

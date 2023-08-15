@@ -7,22 +7,6 @@ from fcctozim.build import build
 from fcctozim.fetch import fetch_command
 from fcctozim.prebuild import prebuild_command
 
-
-def main(args):
-    command = args.command
-
-    if command == "fetch":
-        fetch_command(args)
-    elif command == "prebuild":
-        prebuild_command(args)
-    elif command == "zim":
-        build(args)
-    elif command == "all":
-        fetch_command(args)
-        prebuild_command(args)
-        build(args)
-
-
 arg_flags = {
     "tmpdir": {
         "flags": "--tmpdir",
@@ -96,17 +80,7 @@ arg_flags = {
 }
 
 
-def add_arguments(parser, args):
-    for arg in args:
-        parser.add_argument(
-            arg["flags"],
-            type=arg.get("type", str),
-            help=arg["help"],
-            required=arg.get("required", False),
-        )
-
-
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser(prog="fcctozim")
 
     # create sub-parser
@@ -151,6 +125,27 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     if args.command:
-        main(args)
+        command = args.command
+
+        if command == "fetch":
+            fetch_command(args)
+        elif command == "prebuild":
+            prebuild_command(args)
+        elif command == "zim":
+            build(args)
+        elif command == "all":
+            fetch_command(args)
+            prebuild_command(args)
+            build(args)
     else:
         parser.print_usage()
+
+
+def add_arguments(parser, args):
+    for arg in args:
+        parser.add_argument(
+            arg["flags"],
+            type=arg.get("type", str),
+            help=arg["help"],
+            required=arg.get("required", False),
+        )

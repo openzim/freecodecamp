@@ -129,3 +129,7 @@ dmypy.json
 .pyre/
 
 /tmp
+
+# These come from the parent directory and are copied in on setup.py
+LICENSE
+README.md

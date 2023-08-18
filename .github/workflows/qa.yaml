@@ -17,6 +17,7 @@ jobs:
         with:
           python-version: '3.11'
           cache: 'pip' # caching pip dependencies
+          cache-dependency-path: '**/requirements.pip'
 
 
       - name: Install lint requirements

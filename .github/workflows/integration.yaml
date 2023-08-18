@@ -27,6 +27,7 @@ jobs:
       with:
         python-version: '3.11'
         cache: 'pip' # caching pip dependencies
+        cache-dependency-path: '**/requirements.pip'
 
     - run: make setup
     - run: make fetch

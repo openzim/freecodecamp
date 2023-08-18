@@ -22,7 +22,7 @@ jobs:
 
       - name: Install lint requirements
         run: |
-          pip install -r openzim/lint_requirements.txt
+          pip install -r openzim/lint_requirements.pip
 
       - name: Check black formatting
         run: |

@@ -9,8 +9,8 @@ RUN yarn build
 FROM python:3.11-buster
 
 WORKDIR /src
-COPY openzim/requirements.txt /src
-RUN pip install -r requirements.txt --no-cache-dir
+COPY openzim/requirements.pip /src
+RUN pip install -r requirements.pip --no-cache-dir
 
 COPY openzim /src
 COPY --from=client /src /src/client

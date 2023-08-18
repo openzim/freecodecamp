@@ -32,8 +32,8 @@ clean:
 
 setup:
 	cd openzim && \
-    	pip install -r requirements.txt \
-    	pip install -r lint_requirements.txt
+    	pip install -r requirements.pip \
+    	pip install -r lint_requirements.pip
 
 lint:
 	cd openzim

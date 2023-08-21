@@ -3,7 +3,7 @@ import pathlib
 from collections import OrderedDict
 from datetime import datetime
 
-from fcctozim import FCC_LANG_MAP, VERSION, logger
+from fcc2zim import FCC_LANG_MAP, VERSION, logger
 from zimscraperlib.zim import Creator
 
 logo_path = pathlib.Path(__file__).parent.parent.joinpath("fcc_48.png")
@@ -75,7 +75,7 @@ def build(arguments):
         LongDescription=long_description,
         Language=language,
         Tags=";".join(["FCC", "freeCodeCamp"]),
-        Scraper=f"fcctozim V{VERSION}",
+        Scraper=f"fcc2zim V{VERSION}",
         Illustration_48x48_at_1=logo_path.read_bytes(),
     ) as creator:
         for file in fileList:

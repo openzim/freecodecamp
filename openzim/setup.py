@@ -31,8 +31,8 @@ def read(*names, **kwargs):
 
 
 setup(
-    name="fcctozim",
-    version=read("fcctozim", "VERSION").strip(),
+    name="fcc2zim",
+    version=read("fcc2zim", "VERSION").strip(),
     description=__doc__,
     author="Kiwix",
     author_email="reg@kiwix.org",
@@ -41,7 +41,7 @@ setup(
     url="http://github.com/openzim/fcc",
     keywords="fcc freecodecamp zim kiwix openzim offline",
     license="GPL-3.0",
-    packages=["fcctozim"],
+    packages=["fcc2zim"],
     zip_safe=False,
     platforms="any",
     include_package_data=True,
@@ -55,7 +55,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "fcctozim=fcctozim.__main__:main",
+            "fcc2zim=fcc2zim.__main__:main",
         ]
     },
     classifiers=[

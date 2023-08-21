@@ -6,8 +6,8 @@ import pathlib
 import shutil
 from typing import List
 
-from fcctozim import FCC_LANG_MAP
-from fcctozim.challenge import Challenge
+from fcc2zim import FCC_LANG_MAP
+from fcc2zim.challenge import Challenge
 
 
 def get_challenges_for_lang(tmp_path, language="english"):

@@ -10,7 +10,7 @@ def main():
     # allows running it from source using python sotoki
     sys.path = [str(pathlib.Path(__file__).parent.parent.resolve())] + sys.path
 
-    from fcctozim.entrypoint import main as entry
+    from fcc2zim.entrypoint import main as entry
 
     entry()
 

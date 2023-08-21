@@ -27,10 +27,10 @@ See: [`Makefile`](Makefile) for a full build process
 
 ## Building with Docker
 
-- `docker build -t openzim/fcctozim .`
-- `docker run --rm -it -v /workspaces/openzim-freecodecamp/tmp:/tmp/fcctozim openzim/fcctozim all \
+- `docker build -t openzim/fcc2zim .`
+- `docker run --rm -it -v /workspaces/openzim-freecodecamp/tmp:/tmp/fcc2zim openzim/fcc2zim all \
     --clientdir ./client/dist --curriculumdir=./client/dist/fcc --outpath ./build/eng.zim \
-    --language eng --tmpdir=/tmp/fcctozim \
+    --language eng --tmpdir=/tmp/fcc2zim \
     --course=regular-expressions,basic-javascript,basic-data-structures,debugging,functional-programming,object-oriented-programming,basic-algorithm-scripting,intermediate-algorithm-scripting,javascript-algorithms-and-data-structures-projects \
     --name "fcc_en_javascript" --title "freeCodeCamp Javascript" --description "FCC Javascript Courses"
 `
@@ -44,7 +44,7 @@ You can find a list of course slugs in the [freeCodeCamp curriculum folder](http
 Example:
 
 ```
-python3 openzim/fcctozim prebuild --course=regular-expressions,basic-javascript,basic-data-structures,debugging,functional-programming,object-oriented-programming,basic-algorithm-scripting,intermediate-algorithm-scripting,javascript-algorithms-and-data-structures-projects --curriculumdir=./client/dist/fcc --language eng --tmpdir=./tmp
+python3 openzim/fcc2zim prebuild --course=regular-expressions,basic-javascript,basic-data-structures,debugging,functional-programming,object-oriented-programming,basic-algorithm-scripting,intermediate-algorithm-scripting,javascript-algorithms-and-data-structures-projects --curriculumdir=./client/dist/fcc --language eng --tmpdir=./tmp
 ```
 
 # License

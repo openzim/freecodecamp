@@ -3,9 +3,9 @@
 # vim: ai ts=4 sts=4 et sw=4 nu
 import argparse
 
-from fcctozim.build import build
-from fcctozim.fetch import fetch_command
-from fcctozim.prebuild import prebuild_command
+from fcc2zim.build import build
+from fcc2zim.fetch import fetch_command
+from fcc2zim.prebuild import prebuild_command
 
 arg_flags = {
     "tmpdir": {
@@ -81,7 +81,7 @@ arg_flags = {
 
 
 def main():
-    parser = argparse.ArgumentParser(prog="fcctozim")
+    parser = argparse.ArgumentParser(prog="fcc2zim")
 
     # create sub-parser
     sub_parsers = parser.add_subparsers(help="sub-command help", dest="command")

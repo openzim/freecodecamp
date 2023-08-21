@@ -42,29 +42,29 @@ lint:
 	isort --profile black .
 
 fetch:
-	python3 openzim/fcctozim fetch --tmpdir=${TMPDIR}
+	python3 openzim/fcc2zim fetch --tmpdir=${TMPDIR}
 
 prebuild:
-	python3 openzim/fcctozim prebuild --course=${COURSE_CSV} --curriculumdir=./client/dist/fcc --language ${LANG} --tmpdir=${TMPDIR}
+	python3 openzim/fcc2zim prebuild --course=${COURSE_CSV} --curriculumdir=./client/dist/fcc --language ${LANG} --tmpdir=${TMPDIR}
 
 zim:
-	python3 openzim/fcctozim zim --clientdir ${CLIENTDIR} --outpath ${OUTPATH} \
+	python3 openzim/fcc2zim zim --clientdir ${CLIENTDIR} --outpath ${OUTPATH} \
 	--language ${LANG} --name ${NAME} --title ${TITLE} --description ${DESCRIPTION}
 
 all: clean fetch prebuild zim
 
 build:
-	python3 openzim/fcctozim all --clientdir ${CLIENTDIR} --curriculumdir=./client/dist/fcc --outpath ${OUTPATH} \
+	python3 openzim/fcc2zim all --clientdir ${CLIENTDIR} --curriculumdir=./client/dist/fcc --outpath ${OUTPATH} \
 	--language ${LANG} --tmpdir=${TMPDIR} --course=${COURSE_CSV} \
 	--name ${NAME} --title ${TITLE} --description ${DESCRIPTION}
 
 docker_build:
-	docker build . -t openzim/fcctozim
+	docker build . -t openzim/fcc2zim
 
 docker_run:
-	docker run --rm -it -v $(PWD)/tmp:/tmp/fcctozim openzim/fcctozim all --clientdir ${CLIENTDIR} --curriculumdir=./client/dist/fcc --outpath ${OUTPATH} \
-	--language ${LANG} --tmpdir=/tmp/fcctozim --course=${COURSE_CSV} \
+	docker run --rm -it -v $(PWD)/tmp:/tmp/fcc2zim openzim/fcc2zim all --clientdir ${CLIENTDIR} --curriculumdir=./client/dist/fcc --outpath ${OUTPATH} \
+	--language ${LANG} --tmpdir=/tmp/fcc2zim --course=${COURSE_CSV} \
 	--name ${NAME} --title ${TITLE} --description ${DESCRIPTION}
 
 docker_debug:
-	docker run --rm -it --entrypoint=/bin/bash openzim/fcctozim
+	docker run --rm -it --entrypoint=/bin/bash openzim/fcc2zim

@@ -16,4 +16,4 @@ COPY openzim /src
 COPY --from=client /src /src/client
 
 
-ENTRYPOINT ["python3", "fcctozim"]
+ENTRYPOINT ["python3", "fcc2zim"]

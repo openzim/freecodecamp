@@ -2,8 +2,13 @@
 
 This project consists of two major components:
 
-- Openzim - The scripts (python) that fetch the latest FCC curriculum and package it into a format client can read, as well as our zim builder
-- Client - A vite app configured to be consumed by a Zim reader.
+- `scraper` - The Python tool that build FCC ZIM. It is responsible to:
+    - fetch FCC curriculum and package it into a proper format
+    - embed client can read, as well as our zim builder
+- `zimui` - A vite app specially crafted to:
+    - be embeded inside the ZIM and serve as main entry point
+    - present FCC curriculum, including solving exercices
+    - be compatible with most ZIM readers
 
 ## freeCodeCamp Zim build process
 

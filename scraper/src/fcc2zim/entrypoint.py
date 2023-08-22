@@ -5,6 +5,7 @@ from fcc2zim.build import build_command
 from fcc2zim.constants import FCC_LANG_MAP, VERSION, Global, set_debug
 from fcc2zim.fetch import fetch_command
 from fcc2zim.prebuild import prebuild_command
+from fcc2zim.zimscraperlib import compute_descriptions
 
 
 def main():
@@ -157,8 +158,13 @@ def main():
 
     name = args.name
     title = args.title
+
     description = args.description
     long_description = args.long_description
+    (description, long_description) = compute_descriptions(
+        description, description, long_description
+    )
+
     creator = args.creator
     publisher = args.publisher
     zim_file = args.zim_file

@@ -40,8 +40,6 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 - Node 20.x
 - Python 3.11
 
-This project comes with .devcontainer to help onboard new developers, with Node 20 and Python3 installed
-
 See: [`Makefile`](Makefile) for a full build process
 
 ### Running scraper with Docker

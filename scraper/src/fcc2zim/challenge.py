@@ -1,5 +1,4 @@
 import pathlib
-from typing import Union
 
 import yaml
 
@@ -15,14 +14,14 @@ def read_yaml_frontmatter(filename: pathlib.Path):
 
 
 class Challenge:
-    def __init__(self, fpath: Union[str, pathlib.Path]) -> None:
+    def __init__(self, fpath: str | pathlib.Path) -> None:
         self.path = pathlib.Path(fpath)
         self.course_slug = self.path.parent.stem
         self.course_superblock = "-".join(self.path.parent.parent.stem.split("-")[1:])
         self.language = self.path.parent.parent.parent.stem
         self._frontmatter = None
 
-    def id(self):
+    def identifier(self):
         return str(self.frontmatter()["id"])
 
     def title(self):

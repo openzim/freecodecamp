@@ -1,5 +1,17 @@
-# FCC on Zim
+# freeCodeCamp scraper
 
+This scraper downloads selected [freeCodeCamp](https://www.freecodecamp.org/) courses and puts it in a
+[ZIM](https://openzim.org) file, a clean and user friendly format for storing content for offline usage.
+
+[![CodeFactor](https://www.codefactor.io/repository/github/openzim/freecodecamp/badge)](https://www.codefactor.io/repository/github/openzim/freecodecamp)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![codecov](https://codecov.io/gh/openzim/freecodecamp/branch/main/graph/badge.svg)](https://codecov.io/gh/openzim/freecodecamp)
+[![PyPI version shields.io](https://img.shields.io/pypi/v/fcc2zim.svg)](https://pypi.org/project/fcc2zim/)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/fcc2zim.svg)](https://pypi.org/project/fcc2zim/)
+[![Docker](https://ghcr-badge.deta.dev/openzim/freecodecamp/latest_tag?label=docker)](https://ghcr.io/openzim/freecodecamp)
+
+
+## Architecture
 This project consists of two major components:
 
 - `scraper` - The Python tool that build FCC ZIM. It is responsible to:
@@ -21,7 +33,9 @@ The scraper operation is divided into three phases:
 
 ## Development
 
-#### Prerequsites
+See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+### Prerequisites
 
 - Node 20.x
 - Python 3.11
@@ -30,7 +44,7 @@ This project comes with .devcontainer to help onboard new developers, with Node 
 
 See: [`Makefile`](Makefile) for a full build process
 
-## Running scraper with Docker
+### Running scraper with Docker
 
 Run from official version (published on GHCR.io) ; ZIM will be available in the `output` sub-folder of current working directory.
 
@@ -55,6 +69,6 @@ You can find a list of course slugs in the [freeCodeCamp curriculum folder](http
 
 In docker example above, see the `--course` argument : `regular-expressions,basic-javascript,basic-data-structures,debugging,functional-programming,object-oriented-programming,basic-algorithm-scripting,intermediate-algorithm-scripting,javascript-algorithms-and-data-structures-projects`
 
-# License
+## License
 
 This repository is licensed under GPLv3, with the exception of the freeCodeCamp curriculum which is licensed under BSD 3 Clause (see LICENSE.fcc.md).

@@ -5,10 +5,9 @@ from datetime import datetime
 
 from zimscraperlib.zim import Creator
 
-from fcc2zim import FCC_LANG_MAP, VERSION
-from fcc2zim.constants import Global
+from fcc2zim.constants import FCC_LANG_MAP, VERSION, Global
 
-logo_path = pathlib.Path(__file__).parent.parent.joinpath("fcc_48.png")
+logo_path = pathlib.Path(__file__).parent.joinpath("assets", "fcc_48.png")
 
 
 def build_curriculum_redirects(curriculum_dist_dir: pathlib.Path, language):
@@ -51,11 +50,12 @@ def build_command(
     publisher: str,
     curriculum_dist_dir: pathlib.Path,
     zim_file: str | None,
+    *,
     force: bool,
 ):
     Global.logger.info("Scraper: build phase starting")
 
-    period = datetime.today().strftime("%Y-%m")
+    period = datetime.today().strftime("%Y-%m")  # noqa: DTZ002
     if zim_file:
         zim_path = pathlib.Path(zim_file.format(period=period))
         # make sure we were given a filename and not a path
@@ -80,13 +80,13 @@ def build_command(
         Name=name,
         Title=title,
         Publisher=publisher,
-        Date=datetime.now(),
+        Date=datetime.now(),  # noqa: DTZ005
         Creator=creator,
         Description=description,
         LongDescription=long_description,
         Language=language,
         Tags=";".join(["FCC", "freeCodeCamp"]),
-        Scraper=f"fcc2zim V{VERSION}",
+        Scraper=f"fcc2zim v{VERSION}",
         Illustration_48x48_at_1=logo_path.read_bytes(),
     ) as creator:
         # Add zimui files

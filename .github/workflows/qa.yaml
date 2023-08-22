@@ -1,39 +1,38 @@
 name: QA
 
 on:
-  push:
-    branches: main
   pull_request:
-
-env:
-  MAX_LINE_LENGTH: 88
+  push:
+    branches:
+      - main
 
 jobs:
   check-qa:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
+
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v4
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
-          cache: 'pip' # caching pip dependencies
+          python-version-file: scraper/pyproject.toml
+          architecture: x64
 
-
-      - name: Install lint requirements
+      - name: Install dependencies (and project)
+        working-directory: scraper
         run: |
-          pip install -r openzim/lint_requirements.txt
+          pip install -U pip
+          pip install -e .[lint,scripts,test,check]
 
       - name: Check black formatting
-        run: |
-          black --version
-          black --check .
+        working-directory: scraper
+        run: inv lint-black
 
-      - name: Check flake8 linting
-        run: |
-          flake8 --version
-          flake8 . --count --max-line-length=$MAX_LINE_LENGTH --statistics
+      - name: Check ruff
+        working-directory: scraper
+        run: inv lint-ruff
 
-      - name: Check import order with isort
-        run: |
-          isort --version
-          isort --profile black --check .
+      - name: Check pyright
+        working-directory: scraper
+        run: inv check-pyright

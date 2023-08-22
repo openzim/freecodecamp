@@ -1,7 +1,6 @@
 import json
 import shutil
 from pathlib import Path
-from typing import List
 
 from fcc2zim.challenge import Challenge
 from fcc2zim.constants import Global
@@ -38,7 +37,7 @@ def write_locales_to_path(source_dir: Path, curriculumdir: Path, language="engli
 
 
 def write_course_to_path(
-    challenge_list: List[Challenge],
+    challenge_list: list[Challenge],
     superblock: str,
     course_slug: str,
     curriculumdir: Path,
@@ -114,18 +113,18 @@ def prebuild_command(
         ]
         superblock = meta["superBlock"]
 
-        challenge_list: List[Challenge] = []
+        challenge_list: list[Challenge] = []
         for file in get_challenges_for_lang(challenges_dir, language_full):
             challenge = Challenge(file)
             if challenge.course_superblock != superblock:
                 continue
             # ID is a UUID the Challenge, the only add it to the challenge list if it's
             # a part of the course.
-            if challenge.id() in ids:
+            if challenge.identifier() in ids:
                 challenge_list.append(challenge)
 
         write_course_to_path(
-            sorted(challenge_list, key=lambda x: ids.index(x.id())),
+            sorted(challenge_list, key=lambda x: ids.index(x.identifier())),
             superblock,
             course,
             curriculum_dist_dir.joinpath("curriculum", language_full),

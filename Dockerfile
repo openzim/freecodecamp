@@ -9,13 +9,20 @@ RUN yarn build
 FROM python:3.11.4-bookworm
 LABEL org.opencontainers.image.source https://github.com/openzim/freecodecamp
 
-WORKDIR /src
-COPY scraper/requirements.txt /src
-RUN pip install -r requirements.txt --no-cache-dir
+RUN python -m pip install --no-cache-dir -U \
+      pip
 
-COPY scraper /src
+# Copy code + associated artifacts + zimui build output
+COPY scraper/src /src/scraper/src
+COPY scraper/pyproject.toml scraper/*.md scraper/*.rst LICENSE LICENSE.fcc.md scraper/*.py /src/scraper/
 COPY --from=zimui /src/dist /src/zimui
 
+# Install + cleanup
+RUN pip install --no-cache-dir /src/scraper \
+ && rm -rf /src/scraper
+
+# default output directory
+RUN mkdir -p /output
 WORKDIR /output
 
-ENTRYPOINT ["python3", "/src/fcc2zim"]
+ENTRYPOINT ["fcc2zim"]

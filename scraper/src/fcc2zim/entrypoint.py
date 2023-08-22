@@ -1,9 +1,8 @@
 import argparse
 from pathlib import Path
 
-from fcc2zim import FCC_LANG_MAP, VERSION
 from fcc2zim.build import build_command
-from fcc2zim.constants import Global, set_debug
+from fcc2zim.constants import FCC_LANG_MAP, VERSION, Global, set_debug
 from fcc2zim.fetch import fetch_command
 from fcc2zim.prebuild import prebuild_command
 
@@ -95,7 +94,7 @@ def main():
         "--tmp-dir",
         type=str,
         help="The temporary directory to hold temporary files during scraper operation",
-        default="/tmp",
+        default="/tmp",  # noqa: S108
     )
     parser.add_argument(
         "--zimui-dist-dir",
@@ -127,7 +126,7 @@ def main():
 
     Global.logger.info(f"Starting scraper {VERSION}")
 
-    set_debug(args.debug)
+    set_debug(debug=args.debug)
 
     do_fetch = args.fetch
     do_prebuid = args.prebuild

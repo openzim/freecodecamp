@@ -8,6 +8,19 @@ from fcc2zim.prebuild import prebuild_command
 from fcc2zim.zimscraperlib import compute_descriptions
 
 
+def log_and_sys_exit(func):
+    def wrapper():
+        try:
+            func()
+        except Exception as exc:
+            Global.logger.error(f"FAILED. An error occurred: {exc}")
+            Global.logger.exception(exc)
+            raise SystemExit(1) from exc
+
+    return wrapper
+
+
+@log_and_sys_exit
 def main():
     parser = argparse.ArgumentParser(
         prog="fcc2zim",
@@ -138,8 +151,7 @@ def main():
 
     zimui_dist_dir = Path(args.zimui_dist_dir)
     if not zimui_dist_dir.exists():
-        Global.logger.error("zimui_dist_dir {zimui_dist_dir} does not exists")
-        return
+        raise ValueError("zimui_dist_dir {zimui_dist_dir} does not exists")
 
     out_dir = Path(args.out_dir)
     tmp_dir = Path(args.tmp_dir)
@@ -152,8 +164,7 @@ def main():
 
     language = args.language
     if language not in FCC_LANG_MAP:
-        Global.logger.error(f"Unsupported language {language}")
-        return
+        raise ValueError(f"Unsupported language {language}")
     language_full = FCC_LANG_MAP[language]
 
     name = args.name
@@ -176,8 +187,7 @@ def main():
     else:
         zip_path = Path(zip_path)
         if not zip_path:
-            Global.logger.error(f"Zip file not found in {zip_path}")
-            return
+            raise ValueError(f"Zip file not found in {zip_path}")
 
     if do_fetch:
         fetch_command(

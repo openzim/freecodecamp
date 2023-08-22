@@ -69,8 +69,7 @@ def build_command(
 
     if zim_path.exists():
         if not force:
-            Global.logger.info(f"ZIM file {zim_path} already exist.")
-            return
+            raise ValueError(f"ZIM file {zim_path} already exist.")
         Global.logger.info(f"Removing existing ZIM file {zim_path}")
         zim_path.unlink()
     else:

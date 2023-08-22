@@ -108,7 +108,7 @@ def main():
         "--tmp-dir",
         type=str,
         help="The temporary directory to hold temporary files during scraper operation",
-        default="/tmp",  # noqa: S108
+        default="/tmp",  # noqa: S108  # nosec B108
     )
     parser.add_argument(
         "--zimui-dist-dir",

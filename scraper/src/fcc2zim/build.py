@@ -10,7 +10,7 @@ from fcc2zim.constants import FCC_LANG_MAP, VERSION, Global
 logo_path = pathlib.Path(__file__).parent.joinpath("assets", "fcc_48.png")
 
 
-def build_curriculum_redirects(curriculum_dist_dir: pathlib.Path, language):
+def build_curriculum_redirects(curriculum_dist_dir: pathlib.Path, language: str):
     fcc_lang = FCC_LANG_MAP[language]
     index_json_path = curriculum_dist_dir.joinpath("curriculum", fcc_lang, "index.json")
     with open(index_json_path) as course_index_str:

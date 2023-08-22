@@ -1,151 +1,204 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-# vim: ai ts=4 sts=4 et sw=4 nu
 import argparse
+from pathlib import Path
 
-from fcc2zim.build import build
+from fcc2zim import FCC_LANG_MAP, VERSION
+from fcc2zim.build import build_command
+from fcc2zim.constants import Global, set_debug
 from fcc2zim.fetch import fetch_command
 from fcc2zim.prebuild import prebuild_command
 
-arg_flags = {
-    "tmpdir": {
-        "flags": "--tmpdir",
-        "type": str,
-        "help": "the temporary directory to hold the curriculum",
-    },
-    "force": {
-        "flags": "--force",
-        "type": bool,
-        "help": "force a re-download of the curriculum zip",
-    },
-    "language": {"flags": "--language", "type": str, "help": "Curriculum language"},
-    "course": {
-        "flags": "--course",
-        "type": str,
-        "help": "Course or course list (separated by commas)",
-        "required": True,
-    },
-    "curriculumdir": {
-        "flags": "--curriculumdir",
-        "type": str,
-        "help": "the directory to place the processed curriculum",
-        "required": True,
-    },
-    "clientdir": {
-        "flags": "--clientdir",
-        "type": str,
-        "help": "the directory containing our Vite application",
-        "required": True,
-    },
-    "outpath": {
-        "flags": "--outpath",
-        "type": str,
-        "help": "output path",
-        "required": True,
-    },
-    "title": {
-        "flags": "--title",
-        "type": str,
-        "help": "Title of zim file",
-        "required": True,
-    },
-    "name": {
-        "flags": "--name",
-        "type": str,
-        "help": "Name of zim file",
-        "required": True,
-    },
-    "description": {
-        "flags": "--description",
-        "type": str,
-        "help": "Description of zim file",
-        "required": True,
-    },
-    "long_description": {
-        "flags": "--long_description",
-        "type": str,
-        "help": "Long description of zim file",
-        "required": False,
-    },
-    "creator": {
-        "flags": "--creator",
-        "type": str,
-        "help": "Creator of the zim files content",
-    },
-    "publisher": {
-        "flags": "--publisher",
-        "type": str,
-        "help": "Publisher of the zim file",
-    },
-}
-
 
 def main():
-    parser = argparse.ArgumentParser(prog="fcc2zim")
-
-    # create sub-parser
-    sub_parsers = parser.add_subparsers(help="sub-command help", dest="command")
-
-    fetch_cmd = sub_parsers.add_parser("fetch", help="fetch the latest curriculum")
-    add_arguments(fetch_cmd, [arg_flags["tmpdir"], arg_flags["force"]])
-
-    prebuild_cmd = sub_parsers.add_parser(
-        "prebuild", help="prebuild curriculum for Vite frontend"
-    )
-    add_arguments(
-        prebuild_cmd,
-        [
-            arg_flags["language"],
-            arg_flags["course"],
-            arg_flags["curriculumdir"],
-            arg_flags["tmpdir"],
-        ],
+    parser = argparse.ArgumentParser(
+        prog="fcc2zim",
+        description="Scraper to create ZIM files from Freecodedcamp courses",
     )
 
-    zim_cmd = sub_parsers.add_parser("zim", help="package up the zim file")
-    add_arguments(
-        zim_cmd,
-        [
-            arg_flags["clientdir"],
-            arg_flags["outpath"],
-            arg_flags["language"],
-            arg_flags["title"],
-            arg_flags["name"],
-            arg_flags["description"],
-            arg_flags["long_description"],
-            arg_flags["creator"],
-            arg_flags["publisher"],
-        ],
+    parser.add_argument(
+        "--course",
+        type=str,
+        help="Course or course list (separated by commas)",
+        required=True,
     )
-
-    all_cmd = sub_parsers.add_parser(
-        "all", help="fetch, build and package up a zim file"
+    parser.add_argument(
+        "--language",
+        type=str,
+        help="Curriculum language",
+        required=True,
     )
-    add_arguments(all_cmd, [arg_flags[key] for key in arg_flags])
+    parser.add_argument(
+        "--name",
+        type=str,
+        help="ZIM name. Used as identifier and filename (date will be appended)",
+        required=True,
+    )
+    parser.add_argument(
+        "--title",
+        type=str,
+        help="Title of zim file",
+        required=True,
+    )
+    parser.add_argument(
+        "--description", type=str, help="Description of ZIM file", required=True
+    )
+    parser.add_argument(
+        "--long-description",
+        type=str,
+        help="Long description of ZIM file",
+    )
+    parser.add_argument(
+        "--creator",
+        type=str,
+        help="Name of freeCodeCamp courses creator",
+        default="freeCodeCamp",
+    )
+    parser.add_argument(
+        "--publisher", type=str, help="Publisher of the zim file", default="OpenZIM"
+    )
+    parser.add_argument(
+        "--fetch",
+        help="Run fetch scraper phase",
+        action="store_true",
+        default=False,
+    )
+    parser.add_argument(
+        "--prebuild",
+        help="Run pre-build scraper phase",
+        action="store_true",
+        default=False,
+    )
+    parser.add_argument(
+        "--build",
+        help="Run build scraper phase",
+        action="store_true",
+        default=False,
+    )
+    parser.add_argument(
+        "--force",
+        help="Force a full reprocessing, not benefiting from any cached file",
+        action="store_true",
+        default=False,
+    )
+    parser.add_argument(
+        "--debug",
+        help="Enable verbose output",
+        action="store_true",
+        default=False,
+    )
+    parser.add_argument(
+        "--out-dir",
+        type=str,
+        help="Output directory where zim file will be built",
+        default="/output",
+    )
+    parser.add_argument(
+        "--tmp-dir",
+        type=str,
+        help="The temporary directory to hold temporary files during scraper operation",
+        default="/tmp",
+    )
+    parser.add_argument(
+        "--zimui-dist-dir",
+        type=str,
+        help=(
+            "Directory containing Vite build output from the Zim UI Vue.JS application"
+        ),
+        default="/src/zimui",
+    )
+    parser.add_argument(
+        "--zim-file",
+        type=str,
+        help="ZIM file name (based on --name if not provided), could contain {period}"
+        " placeholder which will be replaced by <year>_<month>",
+    )
+    parser.add_argument(
+        "--zip-path",
+        help="Path to zip file containing FCC courses",
+        type=str,
+    )
+    parser.add_argument(
+        "--version",
+        help="Display scraper version and exit",
+        action="version",
+        version=f"fcc2zim {VERSION}",
+    )
 
     args = parser.parse_args()
-    if args.command:
-        command = args.command
 
-        if command == "fetch":
-            fetch_command(args)
-        elif command == "prebuild":
-            prebuild_command(args)
-        elif command == "zim":
-            build(args)
-        elif command == "all":
-            fetch_command(args)
-            prebuild_command(args)
-            build(args)
+    Global.logger.info(f"Starting scraper {VERSION}")
+
+    set_debug(args.debug)
+
+    do_fetch = args.fetch
+    do_prebuid = args.prebuild
+    do_build = args.build
+
+    if not (do_fetch + do_prebuid + do_build):
+        do_fetch = do_prebuid = do_build = True
+
+    zimui_dist_dir = Path(args.zimui_dist_dir)
+    if not zimui_dist_dir.exists():
+        Global.logger.error("zimui_dist_dir {zimui_dist_dir} does not exists")
+        return
+
+    out_dir = Path(args.out_dir)
+    tmp_dir = Path(args.tmp_dir)
+    curriculum_raw_dir = tmp_dir.joinpath("curriculum-raw")
+    curriculum_dist_dir = tmp_dir.joinpath("curriculum-dist")
+
+    # Make sure the output directory exists
+    out_dir.mkdir(parents=True, exist_ok=True)
+    tmp_dir.mkdir(parents=True, exist_ok=True)
+
+    language = args.language
+    if language not in FCC_LANG_MAP:
+        Global.logger.error(f"Unsupported language {language}")
+        return
+    language_full = FCC_LANG_MAP[language]
+
+    name = args.name
+    title = args.title
+    description = args.description
+    long_description = args.long_description
+    creator = args.creator
+    publisher = args.publisher
+    zim_file = args.zim_file
+    force = args.force
+    course_csv = args.course
+    zip_path = args.zip_path
+    if not zip_path:
+        zip_path = tmp_dir.joinpath("main.zip")
     else:
-        parser.print_usage()
+        zip_path = Path(zip_path)
+        if not zip_path:
+            Global.logger.error(f"Zip file not found in {zip_path}")
+            return
 
-
-def add_arguments(parser, args):
-    for arg in args:
-        parser.add_argument(
-            arg["flags"],
-            type=arg.get("type", str),
-            help=arg["help"],
-            required=arg.get("required", False),
+    if do_fetch:
+        fetch_command(
+            force=force, curriculum_raw_dir=curriculum_raw_dir, zip_path=zip_path
         )
+    if do_prebuid:
+        prebuild_command(
+            language_full=language_full,
+            course_csv=course_csv,
+            curriculum_raw_dir=curriculum_raw_dir,
+            curriculum_dist_dir=curriculum_dist_dir,
+        )
+    if do_build:
+        build_command(
+            language=language,
+            name=name,
+            title=title,
+            description=description,
+            long_description=long_description,
+            creator=creator,
+            publisher=publisher,
+            out_dir=out_dir,
+            zimui_dist_dir=zimui_dist_dir,
+            curriculum_dist_dir=curriculum_dist_dir,
+            zim_file=zim_file,
+            force=force,
+        )
+
+    Global.logger.info("Scraper completed")

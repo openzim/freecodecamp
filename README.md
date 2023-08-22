@@ -5,52 +5,55 @@ This project consists of two major components:
 - `scraper` - The Python tool that build FCC ZIM. It is responsible to:
     - fetch FCC curriculum and package it into a proper format
     - embed client can read, as well as our zim builder
-- `zimui` - A vite app specially crafted to:
-    - be embeded inside the ZIM and serve as main entry point
+- `zimui` - A Vue.JS application specially crafted to:
+    - be embeded inside the ZIM and serve as main entry point (through compilation for offline usage with Vite)
     - present FCC curriculum, including solving exercices
     - be compatible with most ZIM readers
 
-## freeCodeCamp Zim build process
+## Scraper operation
 
-This process can be broken down into 5 parts
+The scraper assumes that `zimui` is already built and ready to be embedded into the ZIM in the `<zimui_dir>`.
 
-1. Build the Vite client
-1. Fetch the latest curriculum from freeCodeCamp by downloading the latest release source archive
-1. "Prebuild" the curriculum for a selected langauge and set of courses. Copy to the client directory
-1. Build a Zim file of the resulting Vite application.
+The scraper operation is divided into three phases:
+1. `fetch`: retrieve curriculum source code from Github and extracts it into `<tmp_dir>/curriculum` folder
+2. `prebuild`: transform curriculum data into files ready to be consumed by the Vite UI
+3. `build`: create the final ZIM with `zimui` and curriculum data
 
 ## Development
 
 #### Prerequsites
 
 - Node 20.x
-- Python 3
+- Python 3.11
 
 This project comes with .devcontainer to help onboard new developers, with Node 20 and Python3 installed
 
 See: [`Makefile`](Makefile) for a full build process
 
-## Building with Docker
+## Running scraper with Docker
 
-- `docker build -t openzim/fcc2zim .`
-- `docker run --rm -it -v /workspaces/openzim-freecodecamp/tmp:/tmp/fcc2zim openzim/fcc2zim all \
-    --clientdir ./client/dist --curriculumdir=./client/dist/fcc --outpath ./build/eng.zim \
-    --language eng --tmpdir=/tmp/fcc2zim \
-    --course=regular-expressions,basic-javascript,basic-data-structures,debugging,functional-programming,object-oriented-programming,basic-algorithm-scripting,intermediate-algorithm-scripting,javascript-algorithms-and-data-structures-projects \
-    --name "fcc_en_javascript" --title "freeCodeCamp Javascript" --description "FCC Javascript Courses"
-`
+Run from official version (published on GHCR.io) ; ZIM will be available in the `output` sub-folder of current working directory.
+
+```
+docker run --rm -it -v $(pwd)/output:/output ghcr.io/openzim/freecodecamp:latest --language eng --course "regular-expressions,basic-javascript,basic-data-structures,debugging,functional-programming,object-oriented-programming,basic-algorithm-scripting,intermediate-algorithm-scripting,javascript-algorithms-and-data-structures-projects" --name "fcc_en_javascript" --title "freeCodeCamp Javascript" --description "FCC Javascript Courses"
+```
+
+You might add `-v $(pwd)/tmp:/tmp` parameter to also mount temporary directory and keep temporary artificats.
+
+You might use the `dev` Docker image tag instead of `latest` to use current development version (based on Github `main` branch).
+
+You might build your own local Docker image and then use it with `openzim/freecodecamp` instead of `ghcr.io/openzim/freecodecamp:latest`:
+```
+docker build -t openzim/freecodecamp .
+```
 
 ## Course Options and Limitations
 
-Currently this scraper only supports Javascript challenges. A list of courses is passed to the `prebuild` step as a comma seperated list of 'course slugs'.
+Currently this scraper only supports Javascript challenges. A list of courses is passed to the scraper as a comma seperated list of 'course slugs'.
 
 You can find a list of course slugs in the [freeCodeCamp curriculum folder](https://github.com/freeCodeCamp/freeCodeCamp/tree/main/curriculum/challenges/english/02-javascript-algorithms-and-data-structures)
 
-Example:
-
-```
-python3 openzim/fcc2zim prebuild --course=regular-expressions,basic-javascript,basic-data-structures,debugging,functional-programming,object-oriented-programming,basic-algorithm-scripting,intermediate-algorithm-scripting,javascript-algorithms-and-data-structures-projects --curriculumdir=./client/dist/fcc --language eng --tmpdir=./tmp
-```
+In docker example above, see the `--course` argument : `regular-expressions,basic-javascript,basic-data-structures,debugging,functional-programming,object-oriented-programming,basic-algorithm-scripting,intermediate-algorithm-scripting,javascript-algorithms-and-data-structures-projects`
 
 # License
 

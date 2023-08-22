@@ -17,54 +17,72 @@ TITLE="freeCodeCamp Javascript"
 NAME="fcc_en_javascript"
 DESCRIPTION="FCC Javascript Courses"
 LANG=eng
-CLIENTDIR=./client/dist
 TMPDIR=./tmp
-OUTPATH=./build/${LANG}.zim
+OUTDIR=./output
+ZIMUI_DIST_DIR=./zimui/dist
 MAX_LINE_LENGTH = 88
 
-.PHONY: all setup clean client build
+.PHONY: all clean
 
 clean:
-	rm -rf client/dist/fcc
-	rm -rf client/public/fcc
-	rm -rf ${TMPDIR}/curriculum
-	rm -rf build
+	rm -rf ${TMPDIR}
+	rm -rf ${OUTDIR}
+	rm -rf ${ZIMUI_DIST_DIR}
+	
+scraper_setup:
+	cd scraper && \
+		pip install -U pip && \
+		pip install -r requirements.txt && \
+		pip install -r lint_requirements.txt
 
-setup:
-	cd openzim && \
-    	pip install -r requirements.txt \
-    	pip install -r lint_requirements.txt
+scraper_lint:
+	black scraper
+	flake8 scraper/fcc2zim --count --max-line-length=${MAX_LINE_LENGTH} --statistics
+	isort --profile black -p fcc2zim scraper/fcc2zim
 
-lint:
-	cd openzim
-	black .
-	flake8 . --count --max-line-length=${MAX_LINE_LENGTH} --statistics
-	isort --profile black .
+zimui_build:
+	cd zimui && \
+		yarn install --frozen-lockfile  && \
+		yarn build
 
-fetch:
-	python3 openzim/fcc2zim fetch --tmpdir=${TMPDIR}
+scraper_fetch:
+	python3 scraper/fcc2zim --fetch \
+	--language ${LANG} --course=${COURSE_CSV} \
+	--name ${NAME} --title ${TITLE} --description ${DESCRIPTION} \
+	--out-dir ${OUTDIR} --tmp-dir ${TMPDIR} \
+	--zimui-dist-dir ${ZIMUI_DIST_DIR}
 
-prebuild:
-	python3 openzim/fcc2zim prebuild --course=${COURSE_CSV} --curriculumdir=./client/dist/fcc --language ${LANG} --tmpdir=${TMPDIR}
+scraper_prebuild:
+	python3 scraper/fcc2zim --prebuild \
+	--language ${LANG} --course=${COURSE_CSV} \
+	--name ${NAME} --title ${TITLE} --description ${DESCRIPTION} \
+	--out-dir ${OUTDIR} --tmp-dir ${TMPDIR} \
+	--zimui-dist-dir ${ZIMUI_DIST_DIR}
 
-zim:
-	python3 openzim/fcc2zim zim --clientdir ${CLIENTDIR} --outpath ${OUTPATH} \
-	--language ${LANG} --name ${NAME} --title ${TITLE} --description ${DESCRIPTION}
+scraper_build:
+	python3 scraper/fcc2zim --build \
+	--language ${LANG} --course=${COURSE_CSV} \
+	--name ${NAME} --title ${TITLE} --description ${DESCRIPTION} \
+	--out-dir ${OUTDIR} --tmp-dir ${TMPDIR} \
+	--zimui-dist-dir ${ZIMUI_DIST_DIR}
 
-all: clean fetch prebuild zim
+all: clean zimui_build scraper_all
 
-build:
-	python3 openzim/fcc2zim all --clientdir ${CLIENTDIR} --curriculumdir=./client/dist/fcc --outpath ${OUTPATH} \
-	--language ${LANG} --tmpdir=${TMPDIR} --course=${COURSE_CSV} \
-	--name ${NAME} --title ${TITLE} --description ${DESCRIPTION}
+scraper_all:
+	python3 scraper/fcc2zim \
+	--language ${LANG} --course=${COURSE_CSV} \
+	--name ${NAME} --title ${TITLE} --description ${DESCRIPTION} \
+	--out-dir ${OUTDIR} --tmp-dir ${TMPDIR} \
+	--zimui-dist-dir ${ZIMUI_DIST_DIR}
 
 docker_build:
-	docker build . -t openzim/fcc2zim
+	docker build . -t openzim/freecodecamp
 
 docker_run:
-	docker run --rm -it -v $(PWD)/tmp:/tmp/fcc2zim openzim/fcc2zim all --clientdir ${CLIENTDIR} --curriculumdir=./client/dist/fcc --outpath ${OUTPATH} \
-	--language ${LANG} --tmpdir=/tmp/fcc2zim --course=${COURSE_CSV} \
-	--name ${NAME} --title ${TITLE} --description ${DESCRIPTION}
+	docker run --rm -it -v $(PWD)/tmp:/tmp/fcc2zim openzim/freecodecamp \
+	--language ${LANG} --course=${COURSE_CSV} \
+	--name ${NAME} --title ${TITLE} --description ${DESCRIPTION} \
+	--out-dir ${OUTDIR} --tmp-dir ${TMPDIR} 
 
 docker_debug:
-	docker run --rm -it --entrypoint=/bin/bash openzim/fcc2zim
+	docker run --rm -it --entrypoint=/bin/bash openzim/freecodecamp

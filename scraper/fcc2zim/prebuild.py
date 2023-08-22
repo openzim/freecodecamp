@@ -1,20 +1,17 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-# vim: ai ts=4 sts=4 et sw=4 nu
 import json
-import pathlib
 import shutil
+from pathlib import Path
 from typing import List
 
-from fcc2zim import FCC_LANG_MAP
 from fcc2zim.challenge import Challenge
+from fcc2zim.constants import Global
 
 
 def get_challenges_for_lang(tmp_path, language="english"):
-    return pathlib.Path(tmp_path, language).rglob("*.md")
+    return Path(tmp_path, language).rglob("*.md")
 
 
-def update_index(path: pathlib.Path, superblock: str, slug: str, language="english"):
+def update_index(path: Path, superblock: str, slug: str, language="english"):
     index_path = path.joinpath("index.json")
     if not index_path.exists():
         index_path.write_bytes(json.dumps({}).encode("utf-8"))
@@ -36,9 +33,7 @@ Simply copies over the locales to the client locales path
 """
 
 
-def write_locales_to_path(
-    source_dir: pathlib.Path, curriculumdir: pathlib.Path, language="english"
-):
+def write_locales_to_path(source_dir: Path, curriculumdir: Path, language="english"):
     shutil.copytree(source_dir, curriculumdir / "locales" / language)
 
 
@@ -46,7 +41,7 @@ def write_course_to_path(
     challenge_list: List[Challenge],
     superblock: str,
     course_slug: str,
-    curriculumdir: pathlib.Path,
+    curriculumdir: Path,
 ):
     """Writes the course to the chosen path.
 
@@ -78,30 +73,39 @@ def write_course_to_path(
     update_index(curriculumdir, superblock, course_slug, challenge_list[0].language)
 
 
-def prebuild_command(arguments):
-    """Writes out a structure of challenges to output dir:
+def prebuild_command(
+    course_csv: str,
+    language_full: str,
+    curriculum_raw_dir: Path,
+    curriculum_dist_dir: Path,
+):
+    """Transform raw data in curriculum_raw_dir into pre-built data in
+    curriculum_dist_dir
 
-    /output_dir/index.json => { 'english': {'superblock': ['basic-javascript'] } }
-    /output_dir/english/<superblock>/<course_slug>/_meta.json
+    E.g. if lang in english:
+    - curriculum_dist_dir/index.json
+        => { 'english': {'superblock': ['basic-javascript'] } }
+    - curriculum_dist_dir/english/<superblock>/<course_slug>/_meta.json
         => { challenges: [{slug, title}] }
-    /output_dir/english/<superblock>/<course_slug>/{slug}.md
+    - curriculum_dist_dir/english/<superblock>/<course_slug>/{slug}.md
     """
-    course_list_str = str(arguments.course)
-    curriculumdir = pathlib.Path(arguments.curriculumdir)
-    lang = FCC_LANG_MAP[arguments.language]
-    tmpdir = arguments.tmpdir or "./tmp"
-    curriculum_dir = pathlib.Path(
-        tmpdir, "curriculum", "freeCodeCamp-main", "curriculum", "challenges"
+    Global.logger.info("Scraper: prebuild phase starting")
+
+    curriculum_dist_dir.mkdir(parents=True, exist_ok=True)
+    shutil.rmtree(curriculum_dist_dir)
+
+    challenges_dir = curriculum_raw_dir.joinpath(
+        "freeCodeCamp-main", "curriculum", "challenges"
     )
-    locales_dir = pathlib.Path(
-        tmpdir, "curriculum", "freeCodeCamp-main", "client", "i18n", "locales", lang
+    locales_dir = curriculum_raw_dir.joinpath(
+        "freeCodeCamp-main", "client", "i18n", "locales", language_full
     )
 
     # eg. ['basic-javascript', 'debugging']
-    for course in course_list_str.split(","):
-        print(f"Prebuilding {course}")
+    for course in course_csv.split(","):
+        Global.logger.debug(f"Prebuilding {course}")
         meta = json.loads(
-            curriculum_dir.joinpath("_meta", course, "meta.json").read_text()
+            challenges_dir.joinpath("_meta", course, "meta.json").read_text()
         )
         # Get the order that the challenges should be completed in for <course>
         ids = [
@@ -111,7 +115,7 @@ def prebuild_command(arguments):
         superblock = meta["superBlock"]
 
         challenge_list: List[Challenge] = []
-        for file in get_challenges_for_lang(curriculum_dir, lang):
+        for file in get_challenges_for_lang(challenges_dir, language_full):
             challenge = Challenge(file)
             if challenge.course_superblock != superblock:
                 continue
@@ -124,10 +128,10 @@ def prebuild_command(arguments):
             sorted(challenge_list, key=lambda x: ids.index(x.id())),
             superblock,
             course,
-            curriculumdir.joinpath("curriculum", lang),
+            curriculum_dist_dir.joinpath("curriculum", language_full),
         )
-        print(f"Prebuilt {course}")
 
     # Copy all the locales for this language
-    write_locales_to_path(locales_dir, curriculumdir, lang)
-    print(f"Prebuilt curriculum into {curriculumdir}")
+    write_locales_to_path(locales_dir, curriculum_dist_dir, language_full)
+    Global.logger.info(f"Prebuilt curriculum into {curriculum_dist_dir}")
+    Global.logger.info("Scraper: prebuild phase finished")

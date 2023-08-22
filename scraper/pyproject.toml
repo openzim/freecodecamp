@@ -30,14 +30,14 @@ scripts = [
 ]
 lint = [
   "black==23.7.0",
-  "ruff==0.0.282",
+  "ruff==0.0.285",
 ]
 check = [
-  "pyright==1.1.320",
+  "pyright==1.1.323",
 ]
 test = [
   "pytest==7.4.0",
-  "coverage==7.2.7",
+  "coverage==7.3.0",
 ]
 dev = [
   "pre-commit==3.3.3",
@@ -190,7 +190,7 @@ ban-relative-imports = "all"
 "tests/**/*" = ["PLR2004", "S101", "TID252"]
 
 [tool.pytest.ini_options]
-minversion = "7.3"
+minversion = "7.4"
 testpaths = ["tests"]
 pythonpath = [".", "src"]
 

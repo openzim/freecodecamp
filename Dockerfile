@@ -19,7 +19,7 @@ RUN python -m pip install --no-cache-dir -U \
 COPY scraper/src/fcc2zim/__about__.py /src/scraper/src/fcc2zim/__about__.py
 COPY scraper/pyproject.toml scraper/pypi-readme.rst /src/scraper/
 RUN pip-compile --strip-extras -o requirements.txt /src/scraper/pyproject.toml \
- && pip install -r requirements.txt \
+ && pip install --no-cache-dir -r requirements.txt \
  && rm requirements.txt
 
 # Copy zimui build output

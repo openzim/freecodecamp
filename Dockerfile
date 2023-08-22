@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/devcontainers/typescript-node:20 as zimui
+FROM node:20-alpine as zimui
 
 WORKDIR /src
 COPY zimui /src

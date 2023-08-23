@@ -24,13 +24,13 @@ class Scraper:
         name: str,
         title: str,
         description: str,
-        long_description: str,
+        long_description: str | None,
         content_creator: str,
         publisher: str,
-        zim_file: str,
+        zim_file: str | None,
         force: bool,
         course_csv: str,
-        zip_path: str,
+        zip_path: str | None,
         start_time: datetime,
     ):
         self.do_fetch = do_fetch

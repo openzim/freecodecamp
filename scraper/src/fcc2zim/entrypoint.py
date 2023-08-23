@@ -58,7 +58,7 @@ def main():
     parser.add_argument(
         "--title",
         type=str,
-        # TODO: once Zimscraperlib > 3.1.1 is released, use constant from library
+        # once Zimscraperlib > 3.1.1 is released, use constant from library
         # instead of '30' magic number
         help="Title of zim file (less than 30 chars)",
         required=True,

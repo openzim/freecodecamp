@@ -17,7 +17,8 @@ RUN python -m pip install --no-cache-dir -U \
 # This is separated to benefit from Docker build cache when only
 # zimui or Python source code is modified (which is quite often the case)
 COPY scraper/src/fcc2zim/__about__.py /src/scraper/src/fcc2zim/__about__.py
-COPY scraper/pyproject.toml scraper/pypi-readme.rst /src/scraper/
+COPY scraper/pyproject.toml /src/scraper/
+COPY README.md /src
 RUN pip-compile --strip-extras -o requirements.txt /src/scraper/pyproject.toml \
  && pip install --no-cache-dir -r requirements.txt \
  && rm requirements.txt

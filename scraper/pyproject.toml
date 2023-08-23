@@ -7,10 +7,10 @@ name = "fcc2zim"
 authors = [
   { name = "Kiwix", email = "dev@kiwix.org" },
 ]
-keywords = ["fcc freecodecamp zim kiwix openzim offline"]
+keywords = ["fcc","freecodecamp","zim","kiwix","openzim","offline"]
 requires-python = ">=3.11"
-description = "Make ZIM files from Freecodedcamp courses"
-readme = "pypi-readme.rst"
+description = "Make ZIM files from freeCodeCamp courses"
+readme = "../README.md"
 license = {text = "GPL-3.0-or-later"}
 classifiers = [
     "Programming Language :: Python :: 3",

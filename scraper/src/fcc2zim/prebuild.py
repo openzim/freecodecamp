@@ -74,7 +74,7 @@ def write_course_to_path(
 
 def prebuild_command(
     course_csv: str,
-    language_full: str,
+    fcc_lang: str,
     curriculum_raw_dir: Path,
     curriculum_dist_dir: Path,
 ):
@@ -97,7 +97,7 @@ def prebuild_command(
         "freeCodeCamp-main", "curriculum", "challenges"
     )
     locales_dir = curriculum_raw_dir.joinpath(
-        "freeCodeCamp-main", "client", "i18n", "locales", language_full
+        "freeCodeCamp-main", "client", "i18n", "locales", fcc_lang
     )
 
     # eg. ['basic-javascript', 'debugging']
@@ -114,7 +114,7 @@ def prebuild_command(
         superblock = meta["superBlock"]
 
         challenge_list: list[Challenge] = []
-        for file in get_challenges_for_lang(challenges_dir, language_full):
+        for file in get_challenges_for_lang(challenges_dir, fcc_lang):
             challenge = Challenge(file)
             if challenge.course_superblock != superblock:
                 continue
@@ -127,10 +127,10 @@ def prebuild_command(
             sorted(challenge_list, key=lambda x: ids.index(x.identifier())),
             superblock,
             course,
-            curriculum_dist_dir.joinpath("curriculum", language_full),
+            curriculum_dist_dir.joinpath("curriculum", fcc_lang),
         )
 
     # Copy all the locales for this language
-    write_locales_to_path(locales_dir, curriculum_dist_dir, language_full)
+    write_locales_to_path(locales_dir, curriculum_dist_dir, fcc_lang)
     Global.logger.info(f"Prebuilt curriculum into {curriculum_dist_dir}")
     Global.logger.info("Scraper: prebuild phase finished")

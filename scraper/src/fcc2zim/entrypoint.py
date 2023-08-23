@@ -1,19 +1,28 @@
 import argparse
-from pathlib import Path
+import functools
+import os
+from datetime import datetime
 
-from fcc2zim.build import build_command
+from zimscraperlib.constants import (
+    MAXIMUM_DESCRIPTION_METADATA_LENGTH as MAX_DESC_LENGTH,
+)
+from zimscraperlib.constants import (
+    MAXIMUM_LONG_DESCRIPTION_METADATA_LENGTH as MAX_LONG_DESC_LENGTH,
+)
+
 from fcc2zim.constants import FCC_LANG_MAP, VERSION, Global, set_debug
-from fcc2zim.fetch import fetch_command
-from fcc2zim.prebuild import prebuild_command
-from fcc2zim.zimscraperlib import compute_descriptions
+from fcc2zim.scraper import Scraper
 
 
 def log_and_sys_exit(func):
+    @functools.wraps(func)
     def wrapper():
         try:
             func()
+        except SystemExit:  # SystemExit has been asked for at lower level, simply do it
+            raise
         except Exception as exc:
-            Global.logger.error(f"FAILED. An error occurred: {exc}")
+            Global.logger.error(f"A fatal error occurred: {exc}")
             Global.logger.exception(exc)
             raise SystemExit(1) from exc
 
@@ -24,7 +33,7 @@ def log_and_sys_exit(func):
 def main():
     parser = argparse.ArgumentParser(
         prog="fcc2zim",
-        description="Scraper to create ZIM files from Freecodedcamp courses",
+        description="Scraper to create ZIM files from freeCodeCamp courses",
     )
 
     parser.add_argument(
@@ -38,6 +47,7 @@ def main():
         type=str,
         help="Curriculum language",
         required=True,
+        choices=FCC_LANG_MAP.keys(),
     )
     parser.add_argument(
         "--name",
@@ -48,16 +58,21 @@ def main():
     parser.add_argument(
         "--title",
         type=str,
-        help="Title of zim file",
+        # TODO: once Zimscraperlib > 3.1.1 is released, use constant from library
+        # instead of '30' magic number
+        help="Title of zim file (less than 30 chars)",
         required=True,
     )
     parser.add_argument(
-        "--description", type=str, help="Description of ZIM file", required=True
+        "--description",
+        type=str,
+        help=f"Description of ZIM file (less than {MAX_DESC_LENGTH} chars)",
+        required=True,
     )
     parser.add_argument(
         "--long-description",
         type=str,
-        help="Long description of ZIM file",
+        help=f"Long description of ZIM file (less than {MAX_LONG_DESC_LENGTH} chars)",
     )
     parser.add_argument(
         "--creator",
@@ -99,16 +114,16 @@ def main():
         default=False,
     )
     parser.add_argument(
-        "--out-dir",
+        "--output-dir",
         type=str,
         help="Output directory where zim file will be built",
         default="/output",
     )
     parser.add_argument(
-        "--tmp-dir",
+        "--build-dir",
         type=str,
-        help="The temporary directory to hold temporary files during scraper operation",
-        default="/tmp",  # noqa: S108  # nosec B108
+        help="The build directory to hold temporary files during scraper operation",
+        default=os.getenv("TMPDIR"),
     )
     parser.add_argument(
         "--zimui-dist-dir",
@@ -142,78 +157,27 @@ def main():
 
     set_debug(debug=args.debug)
 
-    do_fetch = args.fetch
-    do_prebuid = args.prebuild
-    do_build = args.build
-
-    if not (do_fetch + do_prebuid + do_build):
-        do_fetch = do_prebuid = do_build = True
-
-    zimui_dist_dir = Path(args.zimui_dist_dir)
-    if not zimui_dist_dir.exists():
-        raise ValueError("zimui_dist_dir {zimui_dist_dir} does not exists")
-
-    out_dir = Path(args.out_dir)
-    tmp_dir = Path(args.tmp_dir)
-    curriculum_raw_dir = tmp_dir.joinpath("curriculum-raw")
-    curriculum_dist_dir = tmp_dir.joinpath("curriculum-dist")
-
-    # Make sure the output directory exists
-    out_dir.mkdir(parents=True, exist_ok=True)
-    tmp_dir.mkdir(parents=True, exist_ok=True)
-
-    language = args.language
-    if language not in FCC_LANG_MAP:
-        raise ValueError(f"Unsupported language {language}")
-    language_full = FCC_LANG_MAP[language]
-
-    name = args.name
-    title = args.title
-
-    description = args.description
-    long_description = args.long_description
-    (description, long_description) = compute_descriptions(
-        description, description, long_description
+    scraper = Scraper(
+        do_fetch=args.fetch,
+        do_prebuild=args.prebuild,
+        do_build=args.build,
+        zimui_dist_dir=args.zimui_dist_dir,
+        output_dir=args.output_dir,
+        build_dir=args.build_dir,
+        language=args.language,
+        name=args.name,
+        title=args.title,
+        description=args.description,
+        long_description=args.long_description,
+        content_creator=args.creator,
+        publisher=args.publisher,
+        zim_file=args.zim_file,
+        force=args.force,
+        course_csv=args.course,
+        zip_path=args.zip_path,
+        start_time=datetime.now(),  # noqa: DTZ005
     )
 
-    creator = args.creator
-    publisher = args.publisher
-    zim_file = args.zim_file
-    force = args.force
-    course_csv = args.course
-    zip_path = args.zip_path
-    if not zip_path:
-        zip_path = tmp_dir.joinpath("main.zip")
-    else:
-        zip_path = Path(zip_path)
-        if not zip_path:
-            raise ValueError(f"Zip file not found in {zip_path}")
-
-    if do_fetch:
-        fetch_command(
-            force=force, curriculum_raw_dir=curriculum_raw_dir, zip_path=zip_path
-        )
-    if do_prebuid:
-        prebuild_command(
-            language_full=language_full,
-            course_csv=course_csv,
-            curriculum_raw_dir=curriculum_raw_dir,
-            curriculum_dist_dir=curriculum_dist_dir,
-        )
-    if do_build:
-        build_command(
-            language=language,
-            name=name,
-            title=title,
-            description=description,
-            long_description=long_description,
-            creator=creator,
-            publisher=publisher,
-            out_dir=out_dir,
-            zimui_dist_dir=zimui_dist_dir,
-            curriculum_dist_dir=curriculum_dist_dir,
-            zim_file=zim_file,
-            force=force,
-        )
+    scraper.run()
 
     Global.logger.info("Scraper completed")

@@ -6,7 +6,7 @@ from zimscraperlib.constants import (
 )
 
 # This function will be released in zimscraperlib 3.1.2
-# Until then, it is forked here for convinience
+# Until then, it is forked here for convenience
 
 
 def compute_descriptions(

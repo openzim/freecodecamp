@@ -1,4 +1,4 @@
-from datetime import datetime
+import datetime
 from pathlib import Path
 from tempfile import NamedTemporaryFile, TemporaryDirectory
 
@@ -6,7 +6,7 @@ import pytest
 
 from fcc2zim.scraper import Scraper
 
-DEFAULT_START_TIME = datetime.fromisoformat("2023-08-23T13:50:10")
+DEFAULT_START_DATE = datetime.date.fromisoformat("2023-08-23")
 WORKING_DIR = TemporaryDirectory(prefix="fcc2zim_tests_")
 WORKING_DIR_PATH = Path(WORKING_DIR.name)
 ZIMUI_DIST_PATH = WORKING_DIR_PATH.joinpath("zimui/dist")
@@ -90,7 +90,7 @@ class TestScraper:
         force: bool = False,
         course_csv="regular-expressions,basic-javascript",
         zip_path: str | None = None,
-        start_time: datetime = DEFAULT_START_TIME,
+        start_date: datetime.date = DEFAULT_START_DATE,
     ):
         return Scraper(
             do_fetch=do_fetch,
@@ -110,7 +110,7 @@ class TestScraper:
             force=force,
             course_csv=course_csv,
             zip_path=zip_path,
-            start_time=start_time,
+            start_date=start_date,
         )
 
     def test_init_ok(self):
@@ -203,19 +203,17 @@ class TestScraper:
             self.create_scraper(zip_path="whatever")
 
     @pytest.mark.parametrize(
-        "name, start_time",
+        "name, start_date",
         [
-            pytest.param("something", "2023-08-23T13:50:10", id="case1"),
-            pytest.param("name2", "2023-08-23T13:50:10", id="case2"),
-            pytest.param("something", "2023-08-12T23:50:10", id="case3"),
-            pytest.param("name2", "2023-08-28T00:50:10", id="case4"),
+            pytest.param("something", "2023-08-23", id="case1"),
+            pytest.param("name2", "2023-08-24", id="case2"),
         ],
     )
-    def test_zim_file_default(self, name, start_time):
+    def test_zim_file_default(self, name, start_date):
         scraper = self.create_scraper(
-            name=name, start_time=datetime.fromisoformat(start_time)
+            name=name, start_date=datetime.date.fromisoformat(start_date)
         )
-        assert scraper.zim_path == OUTPUT_PATH.joinpath(f"{name}_{start_time[:10]}.zim")
+        assert scraper.zim_path == OUTPUT_PATH.joinpath(f"{name}_{start_date[:7]}.zim")
 
     def test_zim_file_is_path_ko(self):
         with pytest.raises(ValueError):

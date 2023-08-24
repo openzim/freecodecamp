@@ -1,7 +1,7 @@
 import argparse
+import datetime
 import functools
 import os
-from datetime import datetime
 
 from zimscraperlib.constants import (
     MAXIMUM_DESCRIPTION_METADATA_LENGTH as MAX_DESC_LENGTH,
@@ -175,7 +175,7 @@ def main():
         force=args.force,
         course_csv=args.course,
         zip_path=args.zip_path,
-        start_time=datetime.now(),  # noqa: DTZ005
+        start_date=datetime.date.today(),
     )
 
     scraper.run()

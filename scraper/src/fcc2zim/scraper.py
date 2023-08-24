@@ -1,4 +1,4 @@
-from datetime import datetime
+import datetime
 from pathlib import Path
 
 from zimscraperlib.zim import Creator
@@ -31,7 +31,7 @@ class Scraper:
         force: bool,
         course_csv: str,
         zip_path: str | None,
-        start_time: datetime,
+        start_date: datetime.date,
     ):
         self.do_fetch = do_fetch
         self.do_prebuild = do_prebuild
@@ -82,7 +82,7 @@ class Scraper:
         if not self.do_build:
             return
 
-        period = start_time.strftime("%Y-%m-%d")
+        period = start_date.strftime("%Y-%m")
         if zim_file:
             self.zim_path = Path(zim_file.format(period=period))
             # make sure we were given a filename and not a path
@@ -110,7 +110,7 @@ class Scraper:
             Name=self.name,
             Title=self.title,
             Publisher=self.publisher,
-            Date=start_time,
+            Date=start_date,
             Creator=self.content_creator,
             Description=self.description,
             LongDescription=self.long_description,

@@ -1,13 +1,13 @@
 import json
-import pathlib
 from collections import OrderedDict
+from pathlib import Path
 
 from zimscraperlib.zim import Creator
 
 from fcc2zim.constants import Global
 
 
-def build_curriculum_redirects(curriculum_dist_dir: pathlib.Path, fcc_lang: str):
+def build_curriculum_redirects(curriculum_dist_dir: Path, fcc_lang: str):
     index_json_path = curriculum_dist_dir.joinpath("curriculum", fcc_lang, "index.json")
     with open(index_json_path) as course_index_str:
         superblock_dict = json.load(course_index_str)[fcc_lang]
@@ -16,7 +16,7 @@ def build_curriculum_redirects(curriculum_dist_dir: pathlib.Path, fcc_lang: str)
     for superblock in superblock_dict:
         course_list = superblock_dict[superblock]
         for course in course_list:
-            meta_json_path = pathlib.Path(
+            meta_json_path = Path(
                 curriculum_dist_dir,
                 "curriculum",
                 fcc_lang,
@@ -35,10 +35,10 @@ def build_curriculum_redirects(curriculum_dist_dir: pathlib.Path, fcc_lang: str)
 
 
 def build_command(
-    zimui_dist_dir: pathlib.Path,
+    zimui_dist_dir: Path,
     fcc_lang: str,
     creator: Creator,
-    curriculum_dist_dir: pathlib.Path,
+    curriculum_dist_dir: Path,
 ):
     Global.logger.info("Scraper: build phase starting")
 
@@ -46,24 +46,15 @@ def build_command(
     for file in zimui_dist_dir.rglob("*"):
         if file.is_dir():
             continue
-        if file.suffix == ".map":
-            Global.logger.debug(f"IGNORING: {file}")
-            continue
-        path = str(pathlib.Path(file).relative_to(zimui_dist_dir))
+        path = str(Path(file).relative_to(zimui_dist_dir))
         Global.logger.debug(f"Adding {path} to ZIM")
         creator.add_item_for(path, fpath=file)
 
+    # Add prebuild generated curriculum file
     for file in curriculum_dist_dir.rglob("*"):
         if file.is_dir():
             continue
-        if file.suffix == ".map":
-            Global.logger.debug(f"IGNORING: {file}")
-            continue
-        path = str(
-            pathlib.Path("fcc").joinpath(
-                pathlib.Path(file).relative_to(curriculum_dist_dir)
-            )
-        )
+        path = str(Path("fcc").joinpath(Path(file).relative_to(curriculum_dist_dir)))
         Global.logger.debug(f"Adding {path} to ZIM")
         creator.add_item_for(path, fpath=file)
 

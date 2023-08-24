@@ -8,6 +8,13 @@ from fcc2zim.constants import Global
 
 
 def build_curriculum_redirects(curriculum_dist_dir: Path, fcc_lang: str):
+    """
+    Build the list of redirects from challenge URL to Vite hash URL
+
+    The Vite app uses its own router to navigate. We have a single HTML file, but we
+    need an URL for each challenge for the zim search to work.
+    This builds the list of redirect needed fron the challenge URL to Vite hash URL.
+    """
     index_json_path = curriculum_dist_dir.joinpath("curriculum", fcc_lang, "index.json")
     with open(index_json_path) as course_index_str:
         superblock_dict = json.load(course_index_str)[fcc_lang]

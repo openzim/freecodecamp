@@ -117,13 +117,13 @@ def main():
         "--output-dir",
         type=str,
         help="Output directory where zim file will be built",
-        default="/output",
+        default=os.getenv("OUTPUT_DIR", "../output"),
     )
     parser.add_argument(
         "--build-dir",
         type=str,
         help="The build directory to hold temporary files during scraper operation",
-        default=os.getenv("TMPDIR"),
+        default=os.getenv("BUILD_DIR", "../build"),
     )
     parser.add_argument(
         "--zimui-dist-dir",
@@ -131,7 +131,7 @@ def main():
         help=(
             "Directory containing Vite build output from the Zim UI Vue.JS application"
         ),
-        default="/src/zimui",
+        default=os.getenv("ZIMUI_DIST_DIR", "../zimui/dist"),
     )
     parser.add_argument(
         "--zim-file",

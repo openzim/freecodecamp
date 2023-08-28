@@ -63,7 +63,7 @@ class Scraper:
 
         self.description = description
         self.long_description = long_description
-        (self.description, self.long_description) = compute_descriptions(
+        self.description, self.long_description = compute_descriptions(
             self.description, self.description, self.long_description
         )
 

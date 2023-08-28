@@ -33,6 +33,8 @@ class Scraper:
         zip_path: str | None,
         start_date: datetime.date,
     ):
+        self.creator = None
+
         self.do_fetch = do_fetch
         self.do_prebuild = do_prebuild
         self.do_build = do_build

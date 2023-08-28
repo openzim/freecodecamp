@@ -12,6 +12,7 @@ from zimscraperlib.constants import (
 
 from fcc2zim.constants import FCC_LANG_MAP, VERSION, Global, set_debug
 from fcc2zim.scraper import Scraper
+from fcc2zim.utils import strtobool
 
 
 def log_and_sys_exit(func):
@@ -84,24 +85,6 @@ def main():
         "--publisher", type=str, help="Publisher of the zim file", default="OpenZIM"
     )
     parser.add_argument(
-        "--fetch",
-        help="Run fetch scraper phase",
-        action="store_true",
-        default=False,
-    )
-    parser.add_argument(
-        "--prebuild",
-        help="Run pre-build scraper phase",
-        action="store_true",
-        default=False,
-    )
-    parser.add_argument(
-        "--build",
-        help="Run build scraper phase",
-        action="store_true",
-        default=False,
-    )
-    parser.add_argument(
         "--force",
         help="Force a full reprocessing, not benefiting from any cached file",
         action="store_true",
@@ -153,14 +136,14 @@ def main():
 
     args = parser.parse_args()
 
-    Global.logger.info(f"Starting scraper {VERSION}")
+    Global.logger.info(f"Starting fcc2zim {VERSION}")
 
     set_debug(debug=args.debug)
 
     scraper = Scraper(
-        do_fetch=args.fetch,
-        do_prebuild=args.prebuild,
-        do_build=args.build,
+        do_fetch=strtobool(os.getenv("DO_FETCH", "False")),
+        do_prebuild=strtobool(os.getenv("DO_PREBUILD", "False")),
+        do_build=strtobool(os.getenv("DO_BUILD", "False")),
         zimui_dist_dir=args.zimui_dist_dir,
         output_dir=args.output_dir,
         build_dir=args.build_dir,

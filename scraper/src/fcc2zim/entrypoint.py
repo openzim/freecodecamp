@@ -12,7 +12,6 @@ from zimscraperlib.constants import (
 
 from fcc2zim.constants import FCC_LANG_MAP, VERSION, Global, set_debug
 from fcc2zim.scraper import Scraper
-from fcc2zim.utils import strtobool
 
 
 def log_and_sys_exit(func):
@@ -141,9 +140,9 @@ def main():
     set_debug(debug=args.debug)
 
     scraper = Scraper(
-        do_fetch=strtobool(os.getenv("DO_FETCH", "False")),
-        do_prebuild=strtobool(os.getenv("DO_PREBUILD", "False")),
-        do_build=strtobool(os.getenv("DO_BUILD", "False")),
+        do_fetch=os.getenv("DO_FETCH", "False").lower() == "true",
+        do_prebuild=os.getenv("DO_PREBUILD", "False").lower() == "true",
+        do_build=os.getenv("DO_BUILD", "False").lower() == "true",
         zimui_dist_dir=args.zimui_dist_dir,
         output_dir=args.output_dir,
         build_dir=args.build_dir,

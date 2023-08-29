@@ -26,5 +26,8 @@ RUN pip install --no-cache-dir /src/scraper \
 RUN mkdir -p /output
 WORKDIR /output
 
-ENV ZIMUI_DIST_DIR=/src/zimui OUTPUT_DIR=/output BUILD_DIR=/tmp
+ENV BUILD_DIR=/tmp
+ENV OUTPUT_DIR=/output
+ENV ZIMUI_DIST_DIR=/src/zimui
+
 ENTRYPOINT ["fcc2zim"]

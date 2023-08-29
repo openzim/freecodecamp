@@ -1,19 +1,33 @@
-FROM mcr.microsoft.com/devcontainers/typescript-node:20 as client
+FROM node:20-alpine as zimui
 
 WORKDIR /src
-COPY client /src
+COPY zimui /src
 RUN yarn install --frozen-lockfile
 RUN yarn build
 
 
-FROM python:3.11-buster
+FROM python:3.11.4-bookworm
+LABEL org.opencontainers.image.source https://github.com/openzim/freecodecamp
 
-WORKDIR /src
-COPY openzim/requirements.txt /src
-RUN pip install -r requirements.txt --no-cache-dir
+RUN python -m pip install --no-cache-dir -U \
+      pip
 
-COPY openzim /src
-COPY --from=client /src /src/client
+# Copy code + associated artifacts + zimui build output
+COPY LICENSE LICENSE.fcc.md README.md /src/
+COPY scraper/pyproject.toml scraper/tasks.py /src/scraper/
+COPY scraper/src /src/scraper/src
+COPY --from=zimui /src/dist /src/zimui
 
+# Install + cleanup
+RUN pip install --no-cache-dir /src/scraper \
+ && rm -rf /src/scraper
 
-ENTRYPOINT ["python3", "fcc2zim"]
+# default output directory
+RUN mkdir -p /output
+WORKDIR /output
+
+ENV BUILD_DIR=/tmp
+ENV OUTPUT_DIR=/output
+ENV ZIMUI_DIST_DIR=/src/zimui
+
+ENTRYPOINT ["fcc2zim"]

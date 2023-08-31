@@ -7,7 +7,7 @@ from zimscraperlib.zim import Creator
 from fcc2zim.constants import Global
 
 
-def build_curriculum_redirects(curriculum_dist_dir: Path, fcc_lang: str):
+def build_curriculum_redirects(curriculum_dist: Path, fcc_lang: str):
     """
     Build the list of redirects from challenge URL to Vite hash URL
 
@@ -15,7 +15,7 @@ def build_curriculum_redirects(curriculum_dist_dir: Path, fcc_lang: str):
     need an URL for each challenge for the zim search to work.
     This builds the list of redirect needed fron the challenge URL to Vite hash URL.
     """
-    index_json_path = curriculum_dist_dir.joinpath("curriculum", fcc_lang, "index.json")
+    index_json_path = curriculum_dist.joinpath("curriculum", fcc_lang, "index.json")
     with open(index_json_path) as course_index_str:
         superblock_dict = json.load(course_index_str)[fcc_lang]
 
@@ -24,7 +24,7 @@ def build_curriculum_redirects(curriculum_dist_dir: Path, fcc_lang: str):
         course_list = superblock_dict[superblock]
         for course in course_list:
             meta_json_path = Path(
-                curriculum_dist_dir,
+                curriculum_dist,
                 "curriculum",
                 fcc_lang,
                 superblock,
@@ -42,31 +42,31 @@ def build_curriculum_redirects(curriculum_dist_dir: Path, fcc_lang: str):
 
 
 def build_command(
-    zimui_dist_dir: Path,
+    zimui_dist: Path,
     fcc_lang: str,
     creator: Creator,
-    curriculum_dist_dir: Path,
+    curriculum_dist: Path,
 ):
     Global.logger.info("Scraper: build phase starting")
 
     # Add zimui files
-    for file in zimui_dist_dir.rglob("*"):
+    for file in zimui_dist.rglob("*"):
         if file.is_dir():
             continue
-        path = str(Path(file).relative_to(zimui_dist_dir))
+        path = str(Path(file).relative_to(zimui_dist))
         Global.logger.debug(f"Adding {path} to ZIM")
         creator.add_item_for(path, fpath=file)
 
     # Add prebuild generated curriculum file
-    for file in curriculum_dist_dir.rglob("*"):
+    for file in curriculum_dist.rglob("*"):
         if file.is_dir():
             continue
-        path = str(Path("fcc").joinpath(Path(file).relative_to(curriculum_dist_dir)))
+        path = str(Path("fcc").joinpath(Path(file).relative_to(curriculum_dist)))
         Global.logger.debug(f"Adding {path} to ZIM")
         creator.add_item_for(path, fpath=file)
 
     for redir_slug, redir_title in build_curriculum_redirects(
-        curriculum_dist_dir=curriculum_dist_dir, fcc_lang=fcc_lang
+        curriculum_dist=curriculum_dist, fcc_lang=fcc_lang
     ):
         redirect_path = f"{redir_slug}"
         redirect_url = redir_slug.count("/") * "../" + f"index.html#{redir_slug}"

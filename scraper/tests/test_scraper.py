@@ -76,9 +76,9 @@ class TestScraper:
         do_fetch: bool = True,
         do_prebuild: bool = True,
         do_build: bool = True,
-        zimui_dist_dir: str = str(ZIMUI_DIST_PATH),
-        output_dir: str = str(OUTPUT_PATH),
-        build_dir: str = str(BUILD_PATH),
+        zimui_dist: str = str(ZIMUI_DIST_PATH),
+        output: str = str(OUTPUT_PATH),
+        build: str = str(BUILD_PATH),
         language: str = "eng",
         name="fcc_en_javascript",
         title="freeCodeCamp Javascript",
@@ -96,9 +96,9 @@ class TestScraper:
             do_fetch=do_fetch,
             do_prebuild=do_prebuild,
             do_build=do_build,
-            zimui_dist_dir=zimui_dist_dir,
-            output_dir=output_dir,
-            build_dir=build_dir,
+            zimui_dist=zimui_dist,
+            output=output,
+            build=build,
             language=language,
             name=name,
             title=title,
@@ -151,9 +151,9 @@ class TestScraper:
         assert scraper.do_prebuild == expected_do_prebuild
         assert scraper.do_build == expected_do_build
 
-    def test_zimui_dist_dir_ko(self):
+    def test_zimui_dist_ko(self):
         with pytest.raises(ValueError):
-            self.create_scraper(zimui_dist_dir="whatever")
+            self.create_scraper(zimui_dist="whatever")
 
     @pytest.mark.parametrize(
         "language, expected_fcc_lang",

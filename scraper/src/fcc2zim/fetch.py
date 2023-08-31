@@ -7,7 +7,7 @@ import requests
 from fcc2zim.constants import Global
 
 
-def fetch_command(zip_path: Path, curriculum_raw_dir: Path, *, force: bool):
+def fetch_command(zip_path: Path, curriculum_raw: Path, *, force: bool):
     Global.logger.info("Scraper: fetch phase starting")
     url = "https://github.com/freeCodeCamp/freeCodeCamp/archive/refs/heads/main.zip"
 
@@ -19,8 +19,8 @@ def fetch_command(zip_path: Path, curriculum_raw_dir: Path, *, force: bool):
     else:
         Global.logger.debug(f"Using existing zip file {zip_path}")
 
-    curriculum_raw_dir.mkdir(parents=True, exist_ok=True)
-    shutil.rmtree(curriculum_raw_dir)
+    curriculum_raw.mkdir(parents=True, exist_ok=True)
+    shutil.rmtree(curriculum_raw)
 
     Global.logger.debug("Extracting files")
     with zipfile.ZipFile(zip_path, "r") as zip_ref:
@@ -30,7 +30,7 @@ def fetch_command(zip_path: Path, curriculum_raw_dir: Path, *, force: bool):
             if member.startswith("freeCodeCamp-main/curriculum/")
             or member.startswith("freeCodeCamp-main/client/i18n/locales")
         ]
-        zip_ref.extractall(members=members, path=curriculum_raw_dir)
+        zip_ref.extractall(members=members, path=curriculum_raw)
         Global.logger.info(f"Extracted {len(members)} files")
-    Global.logger.info(f"Fetched curriculum into {curriculum_raw_dir}")
+    Global.logger.info(f"Fetched curriculum into {curriculum_raw}")
     Global.logger.info("Scraper: fetch phase finished")

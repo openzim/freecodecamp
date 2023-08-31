@@ -96,24 +96,24 @@ def main():
         default=False,
     )
     parser.add_argument(
-        "--output-dir",
+        "--output",
         type=str,
         help="Output directory where zim file will be built",
-        default=os.getenv("OUTPUT_DIR", "../output"),
+        default=os.getenv("FCC_OUTPUT", "../output"),
     )
     parser.add_argument(
-        "--build-dir",
+        "--build",
         type=str,
         help="The build directory to hold temporary files during scraper operation",
-        default=os.getenv("BUILD_DIR", "../build"),
+        default=os.getenv("FCC_BUILD", "../build"),
     )
     parser.add_argument(
-        "--zimui-dist-dir",
+        "--zimui-dist",
         type=str,
         help=(
             "Directory containing Vite build output from the Zim UI Vue.JS application"
         ),
-        default=os.getenv("ZIMUI_DIST_DIR", "../zimui/dist"),
+        default=os.getenv("FCC_ZIMUI_DIST", "../zimui/dist"),
     )
     parser.add_argument(
         "--zim-file",
@@ -143,9 +143,9 @@ def main():
         do_fetch=os.getenv("DO_FETCH", "False").lower() == "true",
         do_prebuild=os.getenv("DO_PREBUILD", "False").lower() == "true",
         do_build=os.getenv("DO_BUILD", "False").lower() == "true",
-        zimui_dist_dir=args.zimui_dist_dir,
-        output_dir=args.output_dir,
-        build_dir=args.build_dir,
+        zimui_dist=args.zimui_dist,
+        output=args.output,
+        build=args.build,
         language=args.language,
         name=args.name,
         title=args.title,

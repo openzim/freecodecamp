@@ -17,9 +17,9 @@ class Scraper:
         do_fetch: bool,
         do_prebuild: bool,
         do_build: bool,
-        zimui_dist_dir: str,
-        output_dir: str,
-        build_dir: str,
+        zimui_dist: str,
+        output: str,
+        build: str,
         language: str,
         name: str,
         title: str,
@@ -42,18 +42,18 @@ class Scraper:
         if not (self.do_fetch + self.do_prebuild + self.do_build):
             self.do_fetch = self.do_prebuild = self.do_build = True
 
-        self.zimui_dist_dir = Path(zimui_dist_dir)
-        if not self.zimui_dist_dir.exists():
-            raise ValueError(f"zimui_dist_dir {self.zimui_dist_dir} does not exists")
+        self.zimui_dist = Path(zimui_dist)
+        if not self.zimui_dist.exists():
+            raise ValueError(f"zimui_dist directory {self.zimui_dist} does not exists")
 
-        self.output_dir = Path(output_dir)
-        self.build_dir = Path(build_dir)
-        self.curriculum_raw_dir = self.build_dir.joinpath("curriculum-raw")
-        self.curriculum_dist_dir = self.build_dir.joinpath("curriculum-dist")
+        self.output = Path(output)
+        self.build = Path(build)
+        self.curriculum_raw = self.build.joinpath("curriculum-raw")
+        self.curriculum_dist = self.build.joinpath("curriculum-dist")
 
         # Make sure the output directory exists
-        self.output_dir.mkdir(parents=True, exist_ok=True)
-        self.build_dir.mkdir(parents=True, exist_ok=True)
+        self.output.mkdir(parents=True, exist_ok=True)
+        self.build.mkdir(parents=True, exist_ok=True)
 
         self.language = language
         if self.language not in FCC_LANG_MAP:
@@ -74,7 +74,7 @@ class Scraper:
         self.force = force
         self.course_csv = course_csv
         if not zip_path:
-            self.zip_path = self.build_dir.joinpath("main.zip")
+            self.zip_path = self.build.joinpath("main.zip")
         else:
             self.zip_path = Path(zip_path)
             if not self.zip_path.exists():
@@ -94,7 +94,7 @@ class Scraper:
             self.zim_path = Path(f"{name}_{period}.zim")
 
         # build full path
-        self.zim_path = self.output_dir.joinpath(self.zim_path)
+        self.zim_path = self.output.joinpath(self.zim_path)
 
         if self.zim_path.exists():
             if not self.force:
@@ -147,20 +147,20 @@ class Scraper:
         if self.do_fetch:
             fetch_command(
                 force=self.force,
-                curriculum_raw_dir=self.curriculum_raw_dir,
+                curriculum_raw=self.curriculum_raw,
                 zip_path=self.zip_path,
             )
         if self.do_prebuild:
             prebuild_command(
                 fcc_lang=self.fcc_lang,
                 course_csv=self.course_csv,
-                curriculum_raw_dir=self.curriculum_raw_dir,
-                curriculum_dist_dir=self.curriculum_dist_dir,
+                curriculum_raw=self.curriculum_raw,
+                curriculum_dist=self.curriculum_dist,
             )
         if self.do_build:
             build_command(
                 fcc_lang=self.fcc_lang,
                 creator=self.creator,
-                zimui_dist_dir=self.zimui_dist_dir,
-                curriculum_dist_dir=self.curriculum_dist_dir,
+                zimui_dist=self.zimui_dist,
+                curriculum_dist=self.curriculum_dist,
             )

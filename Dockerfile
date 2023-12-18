@@ -30,4 +30,4 @@ ENV FCC_BUILD=/tmp
 ENV FCC_OUTPUT=/output
 ENV FCC_ZIMUI_DIST=/src/zimui
 
-ENTRYPOINT ["fcc2zim"]
+CMD ["fcc2zim", "--help"]

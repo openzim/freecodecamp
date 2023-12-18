@@ -63,4 +63,4 @@ jobs:
 
       - name: Ensure we can start the Docker image
         run: |
-          docker run --rm testimage --version
+          docker run --rm testimage fcc2zim --version

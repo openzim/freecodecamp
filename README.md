@@ -54,7 +54,7 @@ hatch run fcc2zim --language eng --course "regular-expressions,basic-javascript,
 Run from official version (published on GHCR.io) ; ZIM will be available in the `output` sub-folder of current working directory.
 
 ```
-docker run --rm -it -v $(pwd)/output:/output ghcr.io/openzim/freecodecamp:latest --language eng --course "regular-expressions,basic-javascript,basic-data-structures,debugging,functional-programming,object-oriented-programming,basic-algorithm-scripting,intermediate-algorithm-scripting,javascript-algorithms-and-data-structures-projects" --name "fcc_en_javascript" --title "freeCodeCamp Javascript" --description "FCC Javascript Courses"
+docker run --rm -it -v $(pwd)/output:/output ghcr.io/openzim/freecodecamp:latest fcc2zim --language eng --course "regular-expressions,basic-javascript,basic-data-structures,debugging,functional-programming,object-oriented-programming,basic-algorithm-scripting,intermediate-algorithm-scripting,javascript-algorithms-and-data-structures-projects" --name "fcc_en_javascript" --title "freeCodeCamp Javascript" --description "FCC Javascript Courses"
 ```
 
 ## Course Options and Limitations

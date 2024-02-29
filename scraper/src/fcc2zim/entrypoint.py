@@ -81,7 +81,7 @@ def main():
         default="freeCodeCamp",
     )
     parser.add_argument(
-        "--publisher", type=str, help="Publisher of the zim file", default="OpenZIM"
+        "--publisher", type=str, help="Publisher of the zim file", default="openZIM"
     )
     parser.add_argument(
         "--force",

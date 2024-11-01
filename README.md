@@ -8,7 +8,8 @@ This scraper downloads selected [freeCodeCamp](https://www.freecodecamp.org/) co
 [![codecov](https://codecov.io/gh/openzim/freecodecamp/branch/main/graph/badge.svg)](https://codecov.io/gh/openzim/freecodecamp)
 [![PyPI version shields.io](https://img.shields.io/pypi/v/fcc2zim.svg)](https://pypi.org/project/fcc2zim/)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/fcc2zim.svg)](https://pypi.org/project/fcc2zim/)
-[![Docker](https://ghcr-badge.deta.dev/openzim/freecodecamp/latest_tag?label=docker)](https://ghcr.io/openzim/freecodecamp)
+[![Docker](https://ghcr-badge.epgl.dev/openzim/freecodecamp/latest_tag?label=docker)](https://ghcr.io/openzim/freecodecamp)
+
 ## Architecture
 This project consists of two major components:
 

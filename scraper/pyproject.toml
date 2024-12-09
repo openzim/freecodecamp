@@ -8,21 +8,25 @@ authors = [
   { name = "Kiwix", email = "dev@kiwix.org" },
 ]
 keywords = ["fcc","freecodecamp","zim","kiwix","openzim","offline"]
-requires-python = ">=3.11,<3.12"
+requires-python = ">=3.12,<3.13"
 description = "Make ZIM files from freeCodeCamp courses"
 readme = "../README.md"
 license = {text = "GPL-3.0-or-later"}
 classifiers = [
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
     "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
 ]
 dependencies = [
-  "zimscraperlib==3.1.1",
+  # use zimscraperlib pinned version once content rewriting functions have been released
+  "zimscraperlib @ git+https://github.com/openzim/python-scraperlib@main",
   "requests==2.31.0",
   "PyYAML==6.0.1",
 ]
 dynamic = ["version"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
 
 [project.optional-dependencies]
 scripts = [
@@ -93,10 +97,10 @@ all = "inv checkall --args '{args}'"
 
 [tool.black]
 line-length = 88
-target-version = ['py311']
+target-version = ['py312']
 
 [tool.ruff]
-target-version = "py311"
+target-version = "py312"
 line-length = 88
 src = ["src"]
 select = [
@@ -219,5 +223,5 @@ exclude_lines = [
 include = ["src", "tests", "tasks.py"]
 exclude = [".env/**", ".venv/**"]
 extraPaths = ["src"]
-pythonVersion = "3.11"
+pythonVersion = "3.12"
 typeCheckingMode="basic"

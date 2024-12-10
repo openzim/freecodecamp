@@ -22,6 +22,7 @@ dependencies = [
   "zimscraperlib @ git+https://github.com/openzim/python-scraperlib@main",
   "requests==2.31.0",
   "PyYAML==6.0.1",
+  "jinja2==3.1.4",
 ]
 dynamic = ["version"]
 
@@ -58,6 +59,7 @@ Donate = "https://www.kiwix.org/en/support-us/"
 
 [project.scripts]
 fcc2zim = "fcc2zim:entrypoint.main"
+fcc2zim_poc = "fcc2zim:create_zim.main"
 
 [tool.hatch.version]
 path = "src/fcc2zim/__about__.py"

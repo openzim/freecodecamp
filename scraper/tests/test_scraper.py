@@ -89,7 +89,8 @@ class TestScraper:
         zim_file: str | None = None,
         force: bool = False,
         course_csv="regular-expressions,basic-javascript",
-        zip_path: str | None = None,
+        zip_main_path: str | None = None,
+        zip_i18n_path: str | None = None,
         start_date: datetime.date = DEFAULT_START_DATE,
     ):
         return Scraper(
@@ -109,7 +110,8 @@ class TestScraper:
             zim_file=zim_file,
             force=force,
             course_csv=course_csv,
-            zip_path=zip_path,
+            zip_main_path=zip_main_path,
+            zip_i18n_path=zip_i18n_path,
             start_date=start_date,
         )
 
@@ -193,14 +195,23 @@ class TestScraper:
         with pytest.raises(ValueError):
             self.create_scraper(title=LONG_TEXT[:31])
 
-    def test_zip_path_ok(self):
+    def test_zip_main_path_ok(self):
         with NamedTemporaryFile(dir=WORKING_DIR_PATH) as tmp:
             zip_path = tmp.name
-            self.create_scraper(zip_path=zip_path)
+            self.create_scraper(zip_main_path=zip_path)
 
-    def test_zip_path_ko(self):
+    def test_zip_main_path_ko(self):
         with pytest.raises(ValueError):
-            self.create_scraper(zip_path="whatever")
+            self.create_scraper(zip_main_path="whatever")
+
+    def test_zip_i18n_path_ok(self):
+        with NamedTemporaryFile(dir=WORKING_DIR_PATH) as tmp:
+            zip_path = tmp.name
+            self.create_scraper(zip_i18n_path=zip_path)
+
+    def test_zip_i18n_path_ko(self):
+        with pytest.raises(ValueError):
+            self.create_scraper(zip_i18n_path="whatever")
 
     @pytest.mark.parametrize(
         "name, start_date",

@@ -30,11 +30,10 @@ class Scraper:
         zim_file: str | None,
         force: bool,
         course_csv: str,
-        zip_path: str | None,
+        zip_main_path: str | None,
+        zip_i18n_path: str | None,
         start_date: datetime.date,
     ):
-        self.creator = None
-
         self.do_fetch = do_fetch
         self.do_prebuild = do_prebuild
         self.do_build = do_build
@@ -73,12 +72,20 @@ class Scraper:
         self.publisher = publisher
         self.force = force
         self.course_csv = course_csv
-        if not zip_path:
-            self.zip_path = self.build.joinpath("main.zip")
+
+        if not zip_main_path:
+            self.zip_main_path = self.build.joinpath("main.zip")
         else:
-            self.zip_path = Path(zip_path)
-            if not self.zip_path.exists():
-                raise ValueError(f"Zip file not found in {self.zip_path}")
+            self.zip_main_path = Path(zip_main_path)
+            if not self.zip_main_path.exists():
+                raise ValueError(f"Main zip file not found in {self.zip_main_path}")
+
+        if not zip_i18n_path:
+            self.zip_i18n_path = self.build.joinpath("i18n.zip")
+        else:
+            self.zip_i18n_path = Path(zip_i18n_path)
+            if not self.zip_i18n_path.exists():
+                raise ValueError(f"i18n zip file not found in {self.zip_i18n_path}")
 
         # if we do not build the ZIM, we can stop here
         if not self.do_build:
@@ -148,7 +155,9 @@ class Scraper:
             fetch_command(
                 force=self.force,
                 curriculum_raw=self.curriculum_raw,
-                zip_path=self.zip_path,
+                zip_main_path=self.zip_main_path,
+                zip_i18n_path=self.zip_i18n_path,
+                fcc_lang=self.fcc_lang,
             )
         if self.do_prebuild:
             prebuild_command(
@@ -159,7 +168,6 @@ class Scraper:
             )
         if self.do_build:
             build_command(
-                fcc_lang=self.fcc_lang,
                 creator=self.creator,
                 zimui_dist=self.zimui_dist,
                 curriculum_dist=self.curriculum_dist,

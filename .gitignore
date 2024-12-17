@@ -372,3 +372,6 @@ output
 
 # ignore all vscode, this configuration is not maintained
 .vscode
+
+# content dumped from ZIM file to test ZIM UI
+zimui/public/content

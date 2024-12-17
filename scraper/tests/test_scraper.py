@@ -91,6 +91,7 @@ class TestScraper:
         course_csv="regular-expressions,basic-javascript",
         zip_main_path: str | None = None,
         zip_i18n_path: str | None = None,
+        overwrite_existing_zim: bool = False,
         start_date: datetime.date = DEFAULT_START_DATE,
     ):
         return Scraper(
@@ -112,6 +113,7 @@ class TestScraper:
             course_csv=course_csv,
             zip_main_path=zip_main_path,
             zip_i18n_path=zip_i18n_path,
+            overwrite_existing_zim=overwrite_existing_zim,
             start_date=start_date,
         )
 

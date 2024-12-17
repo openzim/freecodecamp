@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix support for all FCC supported spoken languages (#20)
 - Remove incomplete support of dark mode, no more white on white text: not readable (#33)
 
+### Added
+
+- Add --overwrite CLI argument to not fail when ZIM already exists (#44)
+
 ## [1.1.1] - 2023-12-18
 
 ### Fixed

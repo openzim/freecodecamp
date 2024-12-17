@@ -4,6 +4,14 @@ export const parseChallenge = (markdownStr: string): Challenge => {
   return new Challenge(marked.lexer(markdownStr))
 }
 
+export const extractKeyValueFromMarkdown = (rawString: string): string[] => {
+  // return a tuple of key and value for a given markdown header string 
+  // which format is "key: value" or "key: 'quoted value: with colon'"
+  // value is unquotted, and leading/trailing whitespaces (outside of the
+  // quotes if any) are dropped
+  return rawString.split(/:\s*'?(.*?)(?:'\s*|\s*$)/s).slice(0,2)
+}
+
 type HintTokens =
   | marked.Tokens.Space
   | marked.Tokens.Code
@@ -22,7 +30,7 @@ export class Challenge {
       const rawStrings = frontMatter.text.split('\n')
       const data: { [key: string]: string } = {}
       for (const rawString of rawStrings) {
-        const keyVal = rawString.split(': ')
+        const keyVal = extractKeyValueFromMarkdown(rawString)
         data[keyVal[0]] = keyVal[1]
       }
       return data

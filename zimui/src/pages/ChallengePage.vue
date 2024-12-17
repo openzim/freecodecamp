@@ -6,11 +6,14 @@ import ChallengeInstructions from '../components/challenge/ChallengeInstructions
 import ChallengeRunner from '../components/challenge/ChallengeRunner.vue'
 import { parseChallenge } from '@/utils/parseChallenge'
 import ConsoleLogger from '@/components/challenge/ConsoleLogger.vue'
+import errimageData from '../assets/dead_kiwix.png'
 
 export type ChallengeJSON = { title: string; slug: string }
 export type ChallengesJSON = {
   challenges: ChallengeJSON[]
 }
+
+const errimage = ref(errimageData)
 
 const route = useRoute()
 const params: Ref<RouteParams> = toRef(route, 'params')
@@ -72,7 +75,7 @@ await updateChallenge(params.value)
 </script>
 
 <template>
-  <div class="split">
+  <div v-if="['1', '4', '5'].includes(challenge.header['challengeType'])" class="split">
     <div class="left">
       <ChallengeInstructions
         :title="challenge.header['title']"
@@ -96,6 +99,17 @@ await updateChallenge(params.value)
       <ConsoleLogger class="console" :logs="logs || []"></ConsoleLogger>
     </div>
   </div>
+
+  <div v-else class="unsupported-page">
+    <div class="unsupported-container">
+      <div class="unsupported-content">
+        <p class="unsupported-text">This type of challenge is not yet working offline.</p>
+      </div>
+      <div class="unsupported-image-container">
+        <img :src="errimage" class="unsupported-image" alt="error image" />
+      </div>
+    </div>
+  </div>
 </template>
 
 <style scoped>
@@ -115,5 +129,55 @@ await updateChallenge(params.value)
 
 .console {
   @apply basis-1/4;
+}
+
+.unsupported-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px;
+  text-align: center;
+}
+.unsupported-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  margin: 60px 0;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+}
+.unsupported-content {
+  flex: 1;
+  text-align: left;
+}
+.unsupported-text {
+  color: #222;
+  margin: 10px 0;
+  max-width: 500px;
+  line-height: 1.6;
+  font-size: 18px;
+}
+.unsupported-image-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .unsupported-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .unsupported-text {
+    margin: 20px auto;
+    font-size: 16px;
+  }
+
+  .unsupported-image {
+    width: 300px;
+  }
 }
 </style>

@@ -123,7 +123,12 @@ def main():
     )
     parser.add_argument(
         "--zip-path",
-        help="Path to zip file containing FCC courses",
+        help="Path to main zip file containing FCC courses",
+        type=str,
+    )
+    parser.add_argument(
+        "--i18n-zip-path",
+        help="Path to i18n zip file containing translations of FCC courses",
         type=str,
     )
     parser.add_argument(
@@ -156,7 +161,8 @@ def main():
         zim_file=args.zim_file,
         force=args.force,
         course_csv=args.course,
-        zip_path=args.zip_path,
+        zip_main_path=args.zip_path,
+        zip_i18n_path=args.i18n_zip_path,
         start_date=datetime.date.today(),
     )
 

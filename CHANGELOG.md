@@ -17,6 +17,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add --overwrite CLI argument to not fail when ZIM already exists (#44)
 
+### Changed
+
+- Clarify which courses / challenges are supported and display a nice error when it is not supported (#21)
+
 ## [1.1.1] - 2023-12-18
 
 ### Fixed

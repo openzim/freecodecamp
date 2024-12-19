@@ -60,8 +60,12 @@ docker run --rm -it -v $(pwd)/output:/output ghcr.io/openzim/freecodecamp:latest
 
 ## Course Options and Limitations
 
-Currently this scraper only supports Javascript challenges. A list of courses is passed to the scraper as a comma seperated list of 'course slugs'.
+Currently this scraper only supports challenge types 1, 4 and 5 (challenge types can be found in the markdown file describing the challenge). This means courses from `javascript-algorithms-and-data-structures`, `project-euler`, `rosetta-code` and most of `coding-interview-prep` curriculum (frontend projects are type 3 and are not working).
 
-You can find a list of course slugs in the [freeCodeCamp curriculum folder](https://github.com/freeCodeCamp/freeCodeCamp/tree/main/curriculum/challenges/english/02-javascript-algorithms-and-data-structures)
+A list of courses is passed to the scraper as a comma seperated list of 'course slugs'.
+
+When you pass a course with an unsupported challenge to the scraper, the ZIM will still create but an error message will be displayed instead of the challenge with wrong type.
+
+You can find a list of course slugs in the [freeCodeCamp curriculum folder](https://github.com/freeCodeCamp/freeCodeCamp/tree/main/curriculum/challenges/english)
 
 In docker example above, see the `--course` argument : `regular-expressions,basic-javascript,basic-data-structures,debugging,functional-programming,object-oriented-programming,basic-algorithm-scripting,intermediate-algorithm-scripting,javascript-algorithms-and-data-structures-projects`

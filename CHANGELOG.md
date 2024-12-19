@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Fix support for all FCC supported spoken languages (#20)
+- Remove incomplete support of dark mode, no more white on white text: not readable (#33)
 
 ## [1.1.1] - 2023-12-18
 

@@ -137,6 +137,12 @@ def main():
         action="version",
         version=f"fcc2zim {VERSION}",
     )
+    parser.add_argument(
+        "--overwrite",
+        help="Do not fail if ZIM already exists, overwrite it",
+        action="store_true",
+        dest="overwrite_existing_zim",
+    )
 
     args = parser.parse_args()
 
@@ -163,6 +169,7 @@ def main():
         course_csv=args.course,
         zip_main_path=args.zip_path,
         zip_i18n_path=args.i18n_zip_path,
+        overwrite_existing_zim=args.overwrite_existing_zim,
         start_date=datetime.date.today(),
     )
 

@@ -32,6 +32,7 @@ class Scraper:
         course_csv: str,
         zip_main_path: str | None,
         zip_i18n_path: str | None,
+        overwrite_existing_zim: bool,
         start_date: datetime.date,
     ):
         self.do_fetch = do_fetch
@@ -104,7 +105,7 @@ class Scraper:
         self.zim_path = self.output.joinpath(self.zim_path)
 
         if self.zim_path.exists():
-            if not self.force:
+            if not (self.force or overwrite_existing_zim):
                 raise ValueError(f"ZIM file {self.zim_path} already exist.")
             Global.logger.info(f"Removing existing ZIM file {self.zim_path}")
             self.zim_path.unlink()

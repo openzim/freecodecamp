@@ -1,6 +1,6 @@
 import { Challenge } from './parseChallenge'
 import { assert as chaiAssert } from 'chai'
-import * as helpers from './helpers'
+import * as helpers from '@freecodecamp/curriculum-helpers'
 
 // Hijack console logging statements
 const ___setupEvalCode = () => {

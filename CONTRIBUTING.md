@@ -11,6 +11,20 @@ and openZIM's [Bootstrap conventions](https://github.com/openzim/_python-bootstr
 - Ensure your Python code (inside scraper folder) passes `inv lintall` and `inv checkall`
 - Ensure your Javascript code (inside zimui folder) passes `yarn format` and `yarn lint`
 
+## Testing
+
+If you encounter a challenge for which you do not achieve to make the tests pass, or if you wanna check that all challenges are
+solvable, you might want to activate a cheat mode.
+
+When cheat mode is activated, every challenge has a new button to directly set a known solution into the code editor.
+
+To activate this cheat mode, you need to set a given property on your browser local storage. This is typically done by typing
+following text in the Console of your browser (the item to set in local storage is `cheatMode` and the value is `true`):
+
+```
+localStorage.setItem("cheatMode", "true")
+```
+
 ## Development
 
 ### Setup

@@ -45,7 +45,9 @@ const onReset = () => {
   solution.value = challenge.value.seed || ''
 }
 
-
+const onSetSolution = () => {
+  solution.value = challenge.value.solutions[0]
+}
 
 const nextChallenge: ComputedRef<ChallengeJSON | null> = computed(() => {
   if (!challenge.value) return null
@@ -87,6 +89,7 @@ await updateChallenge(params.value)
         :solution="solution || ''"
         :next-challenge="nextChallengeLink"
         @reset="onReset"
+        @set-solution="onSetSolution"
         @logs="(value) => (logs = value)"
       ></ChallengeRunner>
     </div>

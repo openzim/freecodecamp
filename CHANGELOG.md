@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Add --overwrite CLI argument to not fail when ZIM already exists (#44)
+- Implement a cheat mode to ease software manual testing (#54)
 
 ### Changed
 

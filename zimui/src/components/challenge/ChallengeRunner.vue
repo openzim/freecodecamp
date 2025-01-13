@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Ref, ref, ComputedRef, computed, watch } from 'vue'
+import { Ref, ref, ComputedRef, computed, watch, onMounted } from 'vue'
 import { Challenge } from '@/utils/parseChallenge'
 import { RunResult, runChallenge } from '@/utils/runChallenge'
 
@@ -11,10 +11,13 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   (e: 'reset'): void
+  (e: 'setSolution'): void
   (e: 'logs', logs: string[]): void
 }>()
 
 const result: Ref<RunResult | null> = ref(null)
+
+const cheatMode: Ref<boolean> = ref(false)
 
 const passed: ComputedRef<boolean> = computed(() => {
   if (result.value) {
@@ -38,9 +41,15 @@ watch(
     result.value = runChallenge(props.challenge, '')
   }
 )
+
+onMounted(() => {
+  cheatMode.value = (localStorage.getItem("cheatMode") == "true")
+})
+
 </script>
 
 <template>
+  <button v-if="cheatMode" @click="emit('setSolution')">Set solution</button>
   <button @click="runTest">Run the tests</button>
   <div v-if="passed" class="passed">
     <p>Passed!</p>

@@ -42,6 +42,14 @@ watch(
 
 <template>
   <button @click="runTest">Run the tests</button>
+  <div v-if="passed" class="passed">
+    <p>Passed!</p>
+    <p v-if="nextChallenge">
+      <router-link :to="nextChallenge.url">
+        <button>Move to next challenge</button>
+      </router-link>
+    </p>
+  </div>
   <button @click="emit('reset')">Reset this lesson</button>
   <p
     v-for="(test, i) in result?.hints"
@@ -51,14 +59,6 @@ watch(
   >
     {{ test.description }}
   </p>
-  <div v-if="passed" class="passed">
-    <p>Passed!</p>
-    <p v-if="nextChallenge">
-      <router-link :to="nextChallenge.url">{{
-        nextChallenge.title
-      }}</router-link>
-    </p>
-  </div>
 </template>
 
 <style scoped>

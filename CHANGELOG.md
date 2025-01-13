@@ -12,7 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix support for all FCC supported spoken languages (#20)
 - Remove incomplete support of dark mode, no more white on white text: not readable (#33)
 - Parse properly markdown property with colon and quotes (#6)
+<<<<<<< HEAD
 - Move button to go to next challenge so that it is more obvious (#56)
+=======
+- Fix Javascript - and other - hints which are failing due to missing helpers (#53)
+>>>>>>> 5d90684 (Fix Javascript - and other - hints which are failing due to missing helpers)
 
 ### Added
 

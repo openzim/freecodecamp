@@ -173,7 +173,7 @@ class TestScraper:
             pytest.param("ita", "italian", id="italian"),
             pytest.param("jpn", "japanese", id="japanese"),
             pytest.param("por", "portuguese", id="portuguese"),
-            pytest.param("ukr", "ukranian", id="ukranian"),
+            pytest.param("ukr", "ukrainian", id="ukrainian"),
         ],
     )
     def test_fcc_lang_ok(self, language: str, expected_fcc_lang: str):

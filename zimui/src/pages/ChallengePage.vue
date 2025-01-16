@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { ComputedRef, Ref, computed, ref, toRef, watch } from 'vue'
-import { RouteParams, useRoute } from 'vue-router'
+import type { ComputedRef, Ref } from 'vue'
+import { computed, ref, toRef, watch } from 'vue'
+import type { RouteParams } from 'vue-router'
+import { useRoute } from 'vue-router'
 import CodeEditor from '../components/challenge/CodeEditor.vue'
 import ChallengeInstructions from '../components/challenge/ChallengeInstructions.vue'
 import ChallengeRunner from '../components/challenge/ChallengeRunner.vue'
@@ -24,14 +26,20 @@ const challenge = computed(() => parseChallenge(markdownChallenge.value || ''))
 const solution = ref(challenge.value.seed || '')
 const logs: Ref<string[]> = ref([])
 
-const challengesMeta = await (await fetch(`content/curriculum/${params.value.superblock}/${params.value.course}/_meta.json`)).json()
+const challengesMeta = await (
+  await fetch(`content/curriculum/${params.value.superblock}/${params.value.course}/_meta.json`)
+).json()
 
-const locales = (await (await fetch(`content/locales/intro.json`)).json())[params.value.superblock as string]
+const locales = (await (await fetch(`content/locales/intro.json`)).json())[
+  params.value.superblock as string
+]
 
 challenges.value = (challengesMeta as ChallengesJSON)['challenges']
 
 const updateChallenge = async (newparams: RouteParams) => {
-  const md = await fetch(`content/curriculum/${newparams.superblock}/${newparams.course}/${newparams.slug}.md`)
+  const md = await fetch(
+    `content/curriculum/${newparams.superblock}/${newparams.course}/${newparams.slug}.md`
+  )
   markdownChallenge.value = await md.text()
   solution.value = challenge.value.seed || ''
 }
@@ -53,27 +61,22 @@ const onSetSolution = () => {
 
 const nextChallenge: ComputedRef<ChallengeJSON | null> = computed(() => {
   if (!challenge.value) return null
-  const challengeIndex = challenges.value.findIndex(
-    (c) => c.slug === params.value.slug
-  )
+  const challengeIndex = challenges.value.findIndex((c) => c.slug === params.value.slug)
   if (challengeIndex <= challenges.value.length) {
     return challenges.value[challengeIndex + 1]
   }
   return null
 })
 
-const nextChallengeLink: ComputedRef<
-  { title: string; url: string } | undefined
-> = computed(() => {
+const nextChallengeLink: ComputedRef<{ title: string; url: string } | undefined> = computed(() => {
   if (nextChallenge.value) {
     return {
       title: nextChallenge.value.title,
-      url: `/${params.value.superblock}/${params.value.course}/${nextChallenge.value.slug}`,
+      url: `/${params.value.superblock}/${params.value.course}/${nextChallenge.value.slug}`
     }
   }
   return undefined
 })
-
 
 await updateChallenge(params.value)
 </script>
@@ -95,14 +98,14 @@ await updateChallenge(params.value)
         :next-challenge="nextChallengeLink"
         @reset="onReset"
         @set-solution="onSetSolution"
-        @logs="(value) => (logs = value)"
+        @logs="(value: any) => (logs = value)"
       ></ChallengeRunner>
     </div>
     <div class="right">
       <CodeEditor
         :source-code="solution"
         class="codeEditor"
-        @update="(event) => (solution = event)"
+        @update="(event: any) => (solution = event)"
       ></CodeEditor>
       <ConsoleLogger class="console" :logs="logs || []"></ConsoleLogger>
     </div>

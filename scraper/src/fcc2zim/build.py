@@ -1,10 +1,16 @@
 import json
-from collections import OrderedDict
+from dataclasses import dataclass
 from pathlib import Path
 
 from zimscraperlib.zim import Creator
 
 from fcc2zim.constants import Global
+
+
+@dataclass
+class CurriculumRedirect:
+    path: str
+    title: str
 
 
 def build_curriculum_redirects(curriculum_dist: Path):
@@ -19,7 +25,7 @@ def build_curriculum_redirects(curriculum_dist: Path):
     with open(index_json_path) as course_index_str:
         superblock_dict = json.load(course_index_str)
 
-    redirects = []
+    redirects: list[CurriculumRedirect] = []
     for superblock in superblock_dict:
         course_list = superblock_dict[superblock]
         for course in course_list:
@@ -33,9 +39,13 @@ def build_curriculum_redirects(curriculum_dist: Path):
             challenges = json.loads(meta_json_path.read_text())["challenges"]
             for challenge in challenges:
                 title = challenge["title"]
-                redirects.append((f'{superblock}/{course}/{challenge["slug"]}', title))
+                redirects.append(
+                    CurriculumRedirect(
+                        path=f'{superblock}/{course}/{challenge["slug"]}', title=title
+                    )
+                )
 
-    return OrderedDict(redirects).items()
+    return redirects
 
 
 def build_command(
@@ -61,24 +71,24 @@ def build_command(
         Global.logger.debug(f"Adding {path} to ZIM")
         creator.add_item_for(path, fpath=file)
 
-    for redir_slug, redir_title in build_curriculum_redirects(
-        curriculum_dist=curriculum_dist
-    ):
-        redirect_path = f"index/{redir_slug}.html"
-        redirect_url = (redir_slug.count("/") + 1) * "../" + f"index.html#{redir_slug}"
+    for redirection in build_curriculum_redirects(curriculum_dist=curriculum_dist):
+        redirect_path = f"index/{redirection.path}.html"
+        redirect_url = (
+            redirection.path.count("/") + 1
+        ) * "../" + f"index.html#{redirection.path}"
         content = (
-            f"<html><head><title>{redir_title}</title>"
+            f"<html><head><title>{redirection.title}</title>"
             f'<meta http-equiv="refresh" content="0;URL=\'{redirect_url}\'" />'
             f"</head><body></body></html>"
         )
         Global.logger.debug(
-            f"Redirecting {redirect_path} to {redirect_url} for slug {redir_slug}"
-            f"and title {redir_title}",
+            f"Redirecting {redirect_path} to {redirect_url} for slug {redirection.path}"
+            f"and title {redirection.title}",
         )
         creator.add_item_for(
             redirect_path,
             content=bytes(content, "utf-8"),
-            title=redir_title,
+            title=redirection.title,
             mimetype="text/html",
             is_front=True,
         )

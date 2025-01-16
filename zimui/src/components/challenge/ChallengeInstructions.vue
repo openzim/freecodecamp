@@ -11,7 +11,7 @@ const props = defineProps<{
 }>()
 
 const render = (str: string): string => {
-  return marked.parse(str)
+  return marked.parse(str) as string
 }
 </script>
 

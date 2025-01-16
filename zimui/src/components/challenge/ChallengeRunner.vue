@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { Ref, ref, ComputedRef, computed, watch, onMounted } from 'vue'
+import type { Ref, ComputedRef } from 'vue'
+import { ref, computed, watch, onMounted } from 'vue'
 import { Challenge } from '@/utils/parseChallenge'
-import { RunResult, runChallenge } from '@/utils/runChallenge'
+import type { RunResult } from '@/utils/runChallenge'
+import { runChallenge } from '@/utils/runChallenge'
 
 const props = defineProps<{
   challenge: Challenge
@@ -21,10 +23,7 @@ const cheatMode: Ref<boolean> = ref(false)
 
 const passed: ComputedRef<boolean> = computed(() => {
   if (result.value) {
-    return (
-      result.value.hints.filter((h) => h.passed).length ===
-      result.value.hints.length
-    )
+    return result.value.hints.filter((h) => h.passed).length === result.value.hints.length
   }
   return false
 })
@@ -43,9 +42,8 @@ watch(
 )
 
 onMounted(() => {
-  cheatMode.value = (localStorage.getItem("cheatMode") == "true")
+  cheatMode.value = localStorage.getItem('cheatMode') == 'true'
 })
-
 </script>
 
 <template>
@@ -60,12 +58,7 @@ onMounted(() => {
     </p>
   </div>
   <button @click="emit('reset')">Reset this lesson</button>
-  <p
-    v-for="(test, i) in result?.hints"
-    :key="i"
-    class="hint"
-    :class="{ passed: test.passed }"
-  >
+  <p v-for="(test, i) in result?.hints" :key="i" class="hint" :class="{ passed: test.passed }">
     {{ test.description }}
   </p>
 </template>

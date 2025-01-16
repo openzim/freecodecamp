@@ -6,7 +6,7 @@ from fcc2zim.challenge import Challenge
 from fcc2zim.constants import Global
 
 
-def get_challenges_for_lang(tmp_path, language):
+def get_challenges_for_lang(tmp_path: Path, language: str):
     return Path(tmp_path, language).rglob("*.md")
 
 
@@ -49,7 +49,7 @@ def write_course_to_path(
     us to render a page listing all available courses
     """
     curriculumdir.mkdir(parents=True, exist_ok=True)
-    meta = {"challenges": []}
+    meta: dict[str, list[dict[str, str]]] = {"challenges": []}
 
     for challenge in challenge_list:
         challenge_dest_path = curriculumdir.joinpath(
@@ -101,7 +101,7 @@ def prebuild_command(
         Global.logger.debug(f"Prebuilding {course}")
         meta = json.loads(challenges.joinpath("_meta", course, "meta.json").read_text())
         # Get the order that the challenges should be completed in for <course>
-        ids = [
+        ids: list[str] = [
             item[0] if isinstance(item, list) else item["id"]
             for item in meta["challengeOrder"]
         ]

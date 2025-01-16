@@ -1,13 +1,13 @@
 import datetime
 from pathlib import Path
 
-from zimscraperlib.zim import Creator
+from zimscraperlib.inputs import compute_descriptions
+from zimscraperlib.zim import Creator, metadata
 
 from fcc2zim.build import build_command
 from fcc2zim.constants import FCC_LANG_MAP, VERSION, Global
 from fcc2zim.fetch import fetch_command
 from fcc2zim.prebuild import prebuild_command
-from fcc2zim.zimscraperlib_fork import compute_descriptions
 
 
 class Scraper:
@@ -117,17 +117,25 @@ class Scraper:
             raise ValueError(f"Logo not found at {logo_path}")
 
         self.creator = Creator(self.zim_path, "index.html").config_metadata(
-            Name=self.name,
-            Title=self.title,
-            Publisher=self.publisher,
-            Date=start_date,
-            Creator=self.content_creator,
-            Description=self.description,
-            LongDescription=self.long_description,
-            Language=self.language,
-            Tags=";".join(["FCC", "freeCodeCamp"]),
-            Scraper=f"fcc2zim v{VERSION}",
-            Illustration_48x48_at_1=logo_path.read_bytes(),
+            std_metadata=metadata.StandardMetadataList(
+                Name=metadata.NameMetadata(self.name),
+                Language=metadata.LanguageMetadata(self.language),
+                Title=metadata.TitleMetadata(self.title),
+                Creator=metadata.CreatorMetadata(self.content_creator),
+                Publisher=metadata.PublisherMetadata(self.publisher),
+                Date=metadata.DateMetadata(start_date),
+                Illustration_48x48_at_1=metadata.DefaultIllustrationMetadata(
+                    logo_path.read_bytes()
+                ),
+                Description=metadata.DescriptionMetadata(self.description),
+                LongDescription=(
+                    metadata.LongDescriptionMetadata(self.long_description)
+                    if self.long_description
+                    else None
+                ),
+                Tags=metadata.TagsMetadata(["FCC", "freeCodeCamp"]),
+                Scraper=metadata.ScraperMetadata(f"fcc2zim v{VERSION}"),
+            )
         )
 
         # start creator early to detect any problem early as well

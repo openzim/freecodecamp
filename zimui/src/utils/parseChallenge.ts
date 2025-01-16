@@ -1,3 +1,4 @@
+import type { Token, Tokens, TokensList } from 'marked'
 import { marked } from 'marked'
 
 export const parseChallenge = (markdownStr: string): Challenge => {
@@ -5,28 +6,25 @@ export const parseChallenge = (markdownStr: string): Challenge => {
 }
 
 export const extractKeyValueFromMarkdown = (rawString: string): string[] => {
-  // return a tuple of key and value for a given markdown header string 
+  // return a tuple of key and value for a given markdown header string
   // which format is "key: value" or "key: 'quoted value: with colon'"
   // value is unquotted, and leading/trailing whitespaces (outside of the
   // quotes if any) are dropped
-  return rawString.split(/:\s*'?(.*?)(?:'\s*|\s*$)/s).slice(0,2)
+  return rawString.split(/:\s*'?(.*?)(?:'\s*|\s*$)/s).slice(0, 2)
 }
 
-type HintTokens =
-  | marked.Tokens.Space
-  | marked.Tokens.Code
-  | marked.Tokens.Paragraph
+type HintTokens = Tokens.Space | Tokens.Code | Tokens.Paragraph
 
 export class Challenge {
-  tokensList: marked.TokensList
+  tokensList: TokensList
 
-  constructor(tokensList: marked.TokensList) {
+  constructor(tokensList: TokensList) {
     this.tokensList = tokensList
   }
 
   get header() {
     if (this.tokensList[1] && this.tokensList[1].type === 'heading') {
-      const frontMatter = this.tokensList[1] as marked.Tokens.Heading
+      const frontMatter = this.tokensList[1] as Tokens.Heading
       const rawStrings = frontMatter.text.split('\n')
       const data: { [key: string]: string } = {}
       for (const rawString of rawStrings) {
@@ -92,8 +90,8 @@ export class Challenge {
     return json
   }
 
-  private getSectionTokens(title: string): marked.Token[] | null {
-    const tokens: marked.Token[] = []
+  private getSectionTokens(title: string): Token[] | null {
+    const tokens: Token[] = []
     let inHeading = false
     for (const token of this.tokensList) {
       if (token.type === 'heading' && token.raw.match(title)) {
@@ -120,7 +118,7 @@ export class Challenge {
     const sectionTokens = this.getSectionTokens(title)
     const codes: string[] = []
     if (sectionTokens) {
-      for (const solutionToken of sectionTokens as marked.Tokens.Code[]) {
+      for (const solutionToken of sectionTokens as Tokens.Code[]) {
         if (solutionToken.type === 'code') {
           codes.push(solutionToken.text)
         }

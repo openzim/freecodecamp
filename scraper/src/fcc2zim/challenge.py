@@ -1,16 +1,17 @@
 import pathlib
+import re
 
 import yaml
+
+FRONTMATTER_BOUNDARY = re.compile(r"^-{3,}\s*$", re.MULTILINE)
 
 
 # Each markdown challenge contains 'frontmatter' which is a header
 # consisting of yaml formatted data enclosed inside of '---\n' lines
-# '---' lines in YAML denote multiple documents, so this can be read
-# directly with python's yaml library pulling in the first document
-# with 'next' and immediately returning
+# We load into YAML only the frontmatter
 def read_yaml_frontmatter(filename: pathlib.Path):
-    with open(filename) as f:
-        return next(yaml.load_all(f, Loader=yaml.FullLoader))
+    _, fm, _ = FRONTMATTER_BOUNDARY.split(filename.read_text("UTF8"), 2)
+    return yaml.load(fm, Loader=yaml.SafeLoader)
 
 
 class Challenge:

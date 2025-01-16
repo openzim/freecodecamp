@@ -26,7 +26,7 @@ jobs:
           python -m build --sdist --wheel
 
       - name: Upload to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1.8
+        uses: pypa/gh-action-pypi-publish@release/v1.12
         with:
           packages-dir: scraper/dist/
 

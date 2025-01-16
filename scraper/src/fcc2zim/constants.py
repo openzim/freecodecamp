@@ -18,6 +18,7 @@ FCC_LANG_MAP = {
     "jpn": "japanese",
     "por": "portuguese",
     "ukr": "ukrainian",
+    "swa": "swahili",
 }
 
 VERSION = __version__

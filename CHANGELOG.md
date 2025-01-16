@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fix ukrainian typo (#65)
 - Remove undecided Chinese codes
+- Add missing support for swahili (#66)
 
 ## [1.2.0] - 2025-01-16
 

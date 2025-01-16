@@ -19,7 +19,8 @@ const locales = (await (await fetch(`content/locales/intro.json`)).json())[param
         &gt; {{ locales.title }}
       </RouterLink>
     </p>
-    <p v-for="(p, idx) in locales.intro" :key="idx" class="my-2">{{ p }}</p>
+    <!-- eslint-disable-next-line vue/no-v-html-->
+    <p v-for="(p, idx) in locales.intro" :key="idx" class="my-2" v-html="p"></p>
     <ul>
       <li v-for="item in challenges" :key="item.slug">
         <RouterLink :to="`/${params.superblock}/${params.course}/${item.slug}`">

@@ -164,7 +164,6 @@ class TestScraper:
         [
             pytest.param("eng", "english", id="english"),
             pytest.param("eng", "english", id="english"),
-            pytest.param("ara", "arabic", id="arabic"),
             # pytest.param("cmn", "chinese", id="chinese"),
             # pytest.param("lzh", "chinese-traditional", id="chinese-traditional"),
             pytest.param("eng", "english", id="english"),

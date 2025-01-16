@@ -26,6 +26,8 @@ const logs: Ref<string[]> = ref([])
 
 const challengesMeta = await (await fetch(`content/curriculum/${params.value.superblock}/${params.value.course}/_meta.json`)).json()
 
+const locales = (await (await fetch(`content/locales/intro.json`)).json())[params.value.superblock as string]
+
 challenges.value = (challengesMeta as ChallengesJSON)['challenges']
 
 const updateChallenge = async (newparams: RouteParams) => {
@@ -83,6 +85,9 @@ await updateChallenge(params.value)
         :title="challenge.header['title']"
         :instructions="challenge.instructions || ''"
         :description="challenge.description"
+        :coursetitle="locales.blocks[params.course as string].title"
+        :coursepath="`/${params.superblock}/${params.course}`"
+        :curriculumtitle="locales.title"
       ></ChallengeInstructions>
       <ChallengeRunner
         :challenge="challenge"

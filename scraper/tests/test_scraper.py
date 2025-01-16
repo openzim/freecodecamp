@@ -164,16 +164,16 @@ class TestScraper:
         [
             pytest.param("eng", "english", id="english"),
             pytest.param("eng", "english", id="english"),
-            pytest.param("ara", "arabic", id="arabic"),
-            pytest.param("cmn", "chinese", id="chinese"),
-            pytest.param("lzh", "chinese-traditional", id="chinese-traditional"),
+            # pytest.param("cmn", "chinese", id="chinese"),
+            # pytest.param("lzh", "chinese-traditional", id="chinese-traditional"),
             pytest.param("eng", "english", id="english"),
             pytest.param("spa", "espanol", id="espanol"),
             pytest.param("deu", "german", id="german"),
             pytest.param("ita", "italian", id="italian"),
             pytest.param("jpn", "japanese", id="japanese"),
             pytest.param("por", "portuguese", id="portuguese"),
-            pytest.param("ukr", "ukranian", id="ukranian"),
+            pytest.param("ukr", "ukrainian", id="ukrainian"),
+            pytest.param("swa", "swahili", id="swahili"),
         ],
     )
     def test_fcc_lang_ok(self, language: str, expected_fcc_lang: str):

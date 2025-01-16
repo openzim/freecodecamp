@@ -4,17 +4,20 @@ from zimscraperlib.logging import getLogger
 
 from fcc2zim.__about__ import __version__
 
+# key is the language passed at CLI (and used as ZIM Language metadata)
+# value is the name of folders used in FCC source code
 FCC_LANG_MAP = {
-    "ara": "arabic",
-    "cmn": "chinese",
-    "lzh": "chinese-traditional",
+    # removed until we settle on these two codes
+    # "cmn": "chinese",
+    # "lzh": "chinese-traditional",
     "eng": "english",
     "spa": "espanol",
     "deu": "german",
     "ita": "italian",
     "jpn": "japanese",
     "por": "portuguese",
-    "ukr": "ukranian",
+    "ukr": "ukrainian",
+    "swa": "swahili",
 }
 
 VERSION = __version__

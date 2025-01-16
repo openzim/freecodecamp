@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix ukrainian typo (#65)
+- Remove undecided Chinese codes
+- Remove obsolete/missing arabic code
+- Add missing support for swahili (#66)
+
 ## [1.2.0] - 2025-01-16
 
 ### Fixed

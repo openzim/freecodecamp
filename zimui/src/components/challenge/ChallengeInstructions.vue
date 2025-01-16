@@ -5,6 +5,9 @@ const props = defineProps<{
   title: string
   description: string
   instructions: string
+  coursetitle: string
+  coursepath: string
+  curriculumtitle: string
 }>()
 
 const render = (str: string): string => {
@@ -15,6 +18,14 @@ const render = (str: string): string => {
 <template>
   <!-- eslint-disable vue/no-v-html -->
   <h1>{{ props.title }}</h1>
+  <p>
+    <RouterLink to="/">
+      &gt; {{ curriculumtitle }}
+    </RouterLink>
+    <RouterLink :to="coursepath">
+      &gt; {{ coursetitle }}
+    </RouterLink>
+  </p>
   <div class="markdown">
     <div v-html="render(props.description)" />
     <hr />

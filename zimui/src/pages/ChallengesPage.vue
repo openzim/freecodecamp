@@ -14,6 +14,11 @@ const locales = (await (await fetch(`content/locales/intro.json`)).json())[param
 <template>
   <div class="card centered">
     <h1>{{ locales.title }}</h1>
+    <p>
+      <RouterLink :to="`/`">
+        &gt; {{ locales.title }}
+      </RouterLink>
+    </p>
     <p v-for="(p, idx) in locales.intro" :key="idx" class="my-2">{{ p }}</p>
     <ul>
       <li v-for="item in challenges" :key="item.slug">

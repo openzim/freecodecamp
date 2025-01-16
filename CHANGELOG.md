@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Move button to go to next challenge so that it is more obvious (#56)
 - Fix Javascript - and other - hints which are failing due to missing helpers (#53)
 - Add breadcrumbs and fix course title (#61)
+- Fix description of curriculum / challenge which might contain HTML code (#58)
 
 ### Added
 

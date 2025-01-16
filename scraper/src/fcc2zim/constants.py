@@ -8,8 +8,9 @@ from fcc2zim.__about__ import __version__
 # value is the name of folders used in FCC source code
 FCC_LANG_MAP = {
     "ara": "arabic",
-    "cmn": "chinese",
-    "lzh": "chinese-traditional",
+    # removed until we settle on these two codes
+    # "cmn": "chinese",
+    # "lzh": "chinese-traditional",
     "eng": "english",
     "spa": "espanol",
     "deu": "german",

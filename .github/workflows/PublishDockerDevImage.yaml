@@ -7,10 +7,10 @@ on:
 
 jobs:
   publish:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Build and push Docker image
         uses: openzim/docker-publish-action@v10
@@ -20,7 +20,7 @@ jobs:
           latest-on-tag: false
           restrict-to: openzim/freecodecamp
           registries: ghcr.io
-          credentials:
+          credentials: |
             GHCRIO_USERNAME=${{ secrets.GHCR_USERNAME }}
             GHCRIO_TOKEN=${{ secrets.GHCR_TOKEN }}
           repo_description: auto

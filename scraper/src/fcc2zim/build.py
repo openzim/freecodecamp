@@ -4,7 +4,9 @@ from pathlib import Path
 
 from zimscraperlib.zim import Creator
 
-from fcc2zim.constants import Global
+from fcc2zim.context import Context
+
+logger = Context.logger
 
 
 @dataclass
@@ -53,14 +55,14 @@ def build_command(
     creator: Creator,
     curriculum_dist: Path,
 ):
-    Global.logger.info("Scraper: build phase starting")
+    logger.info("Scraper: build phase starting")
 
     # Add zimui files
     for file in zimui_dist.rglob("*"):
         if file.is_dir():
             continue
         path = str(Path(file).relative_to(zimui_dist))
-        Global.logger.debug(f"Adding {path} to ZIM")
+        logger.debug(f"Adding {path} to ZIM")
         creator.add_item_for(path, fpath=file)
 
     # Add prebuild generated curriculum file
@@ -68,7 +70,7 @@ def build_command(
         if file.is_dir():
             continue
         path = str(Path("content").joinpath(Path(file).relative_to(curriculum_dist)))
-        Global.logger.debug(f"Adding {path} to ZIM")
+        logger.debug(f"Adding {path} to ZIM")
         creator.add_item_for(path, fpath=file)
 
     for redirection in build_curriculum_redirects(curriculum_dist=curriculum_dist):
@@ -81,7 +83,7 @@ def build_command(
             f'<meta http-equiv="refresh" content="0;URL=\'{redirect_url}\'" />'
             f"</head><body></body></html>"
         )
-        Global.logger.debug(
+        logger.debug(
             f"Redirecting {redirect_path} to {redirect_url} for slug {redirection.path}"
             f"and title {redirection.title}",
         )
@@ -94,4 +96,4 @@ def build_command(
         )
         # Example index.html#/regular-expressions/extract-matches
 
-    Global.logger.info("Scraper: build phase finished")
+    logger.info("Scraper: build phase finished")

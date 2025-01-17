@@ -44,7 +44,7 @@ dev = [
 ]
 
 [project.scripts]
-fcc2zim = "fcc2zim:entrypoint.main"
+fcc2zim = "fcc2zim:__main__.main"
 
 [tool.hatch.version]
 path = "src/fcc2zim/__about__.py"

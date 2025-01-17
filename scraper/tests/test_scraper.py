@@ -4,7 +4,7 @@ from tempfile import NamedTemporaryFile, TemporaryDirectory
 
 import pytest
 
-from fcc2zim.scraper import Scraper
+from fcc2zim.context import Context
 
 DEFAULT_START_DATE = datetime.date.fromisoformat("2023-08-23")
 WORKING_DIR = TemporaryDirectory(prefix="fcc2zim_tests_")
@@ -76,46 +76,52 @@ class TestScraper:
         do_fetch: bool = True,
         do_prebuild: bool = True,
         do_build: bool = True,
-        zimui_dist: str = str(ZIMUI_DIST_PATH),
-        output: str = str(OUTPUT_PATH),
-        build: str = str(BUILD_PATH),
+        zimui_dist: Path = ZIMUI_DIST_PATH,
+        output: Path = OUTPUT_PATH,
+        build: Path = BUILD_PATH,
         language: str = "eng",
-        name="fcc_en_javascript",
-        title="freeCodeCamp Javascript",
-        description="FCC Javascript Courses",
+        name: str = "fcc_en_javascript",
+        title: str = "freeCodeCamp Javascript",
+        description: str = "FCC Javascript Courses",
         long_description: str | None = None,
         content_creator: str = "freeCodeCamp",
-        publisher="openZIM",
+        publisher: str = "openZIM",
         zim_file: str | None = None,
         force: bool = False,
-        course_csv="regular-expressions,basic-javascript",
-        zip_main_path: str | None = None,
-        zip_i18n_path: str | None = None,
+        course_csv: str = "regular-expressions,basic-javascript",
+        zip_main_path: Path | None = None,
+        zip_i18n_path: Path | None = None,
         overwrite_existing_zim: bool = False,
         start_date: datetime.date = DEFAULT_START_DATE,
     ):
-        return Scraper(
-            do_fetch=do_fetch,
-            do_prebuild=do_prebuild,
-            do_build=do_build,
-            zimui_dist=zimui_dist,
-            output=output,
-            build=build,
-            language=language,
-            name=name,
-            title=title,
-            description=description,
-            long_description=long_description,
-            content_creator=content_creator,
-            publisher=publisher,
-            zim_file=zim_file,
-            force=force,
-            course_csv=course_csv,
-            zip_main_path=zip_main_path,
-            zip_i18n_path=zip_i18n_path,
-            overwrite_existing_zim=overwrite_existing_zim,
-            start_date=start_date,
+
+        Context.setup(
+            **{
+                "do_fetch": do_fetch,
+                "do_prebuild": do_prebuild,
+                "do_build": do_build,
+                "zimui_dist": zimui_dist,
+                "output_folder": output,
+                "build_folder": build,
+                "language": language,
+                "name": name,
+                "title": title,
+                "description": description,
+                "long_description": long_description,
+                "creator": content_creator,
+                "publisher": publisher,
+                "zim_file": zim_file,
+                "force": force,
+                "course": course_csv,
+                "main_zip_path": zip_main_path,
+                "i18n_zip_path": zip_i18n_path,
+                "overwrite_existing_zim": overwrite_existing_zim,
+                "start_date": start_date,
+            }
         )
+        from fcc2zim.scraper import Scraper
+
+        return Scraper()
 
     def test_init_ok(self):
         assert not OUTPUT_PATH.exists()
@@ -148,16 +154,17 @@ class TestScraper:
         expected_do_prebuild: bool,
         expected_do_build: bool,
     ):
-        scraper = self.create_scraper(
+        self.create_scraper(
             do_fetch=do_fetch, do_prebuild=do_prebuild, do_build=do_build
         )
-        assert scraper.do_fetch == expected_do_fetch
-        assert scraper.do_prebuild == expected_do_prebuild
-        assert scraper.do_build == expected_do_build
+        context = Context.get()
+        assert context.do_fetch == expected_do_fetch
+        assert context.do_prebuild == expected_do_prebuild
+        assert context.do_build == expected_do_build
 
     def test_zimui_dist_ko(self):
         with pytest.raises(ValueError):
-            self.create_scraper(zimui_dist="whatever")
+            self.create_scraper(zimui_dist=Path("whatever"))
 
     @pytest.mark.parametrize(
         "language, expected_fcc_lang",
@@ -178,7 +185,8 @@ class TestScraper:
     )
     def test_fcc_lang_ok(self, language: str, expected_fcc_lang: str):
         scraper = self.create_scraper(language=language)
-        assert scraper.language == language
+        context = Context.get()
+        assert context.language == language
         assert scraper.fcc_lang == expected_fcc_lang
 
     def test_language_ko(self):
@@ -199,21 +207,21 @@ class TestScraper:
 
     def test_zip_main_path_ok(self):
         with NamedTemporaryFile(dir=WORKING_DIR_PATH) as tmp:
-            zip_path = tmp.name
+            zip_path = Path(tmp.name)
             self.create_scraper(zip_main_path=zip_path)
 
     def test_zip_main_path_ko(self):
         with pytest.raises(ValueError):
-            self.create_scraper(zip_main_path="whatever")
+            self.create_scraper(zip_main_path=Path("whatever"))
 
     def test_zip_i18n_path_ok(self):
         with NamedTemporaryFile(dir=WORKING_DIR_PATH) as tmp:
-            zip_path = tmp.name
+            zip_path = Path(tmp.name)
             self.create_scraper(zip_i18n_path=zip_path)
 
     def test_zip_i18n_path_ko(self):
         with pytest.raises(ValueError):
-            self.create_scraper(zip_i18n_path="whatever")
+            self.create_scraper(zip_i18n_path=Path("whatever"))
 
     @pytest.mark.parametrize(
         "name, start_date",
@@ -222,7 +230,7 @@ class TestScraper:
             pytest.param("name2", "2023-08-24", id="case2"),
         ],
     )
-    def test_zim_file_default(self, name, start_date):
+    def test_zim_file_default(self, name: str, start_date: str):
         scraper = self.create_scraper(
             name=name, start_date=datetime.date.fromisoformat(start_date)
         )

@@ -4,7 +4,9 @@ from pathlib import Path
 
 import requests
 
-from fcc2zim.constants import Global
+from fcc2zim.context import Context
+
+logger = Context.logger
 
 
 def fetch_command(
@@ -15,7 +17,7 @@ def fetch_command(
     *,
     force: bool,
 ):
-    Global.logger.info("Scraper: fetch phase starting")
+    logger.info("Scraper: fetch phase starting")
     main_url = (
         "https://github.com/freeCodeCamp/freeCodeCamp/archive/refs/heads/main.zip"
     )
@@ -26,7 +28,7 @@ def fetch_command(
     # Don't redownload the file if we already have it (it's a large file)
     for zip_path in [zip_main_path, zip_i18n_path]:
         if force or not zip_path.exists():
-            Global.logger.debug(f"Download zip file to {zip_path}")
+            logger.debug(f"Download zip file to {zip_path}")
             resp = requests.get(
                 main_url if zip_path == zip_main_path else i18n_url,
                 allow_redirects=True,
@@ -34,12 +36,12 @@ def fetch_command(
             )
             zip_path.write_bytes(resp.content)
         else:
-            Global.logger.debug(f"Using existing zip file {zip_path}")
+            logger.debug(f"Using existing zip file {zip_path}")
 
     curriculum_raw.mkdir(parents=True, exist_ok=True)
     shutil.rmtree(curriculum_raw)
 
-    Global.logger.debug("Extracting files")
+    logger.debug("Extracting files")
     for zip_path in [zip_main_path, zip_i18n_path]:
         with zipfile.ZipFile(zip_path, "r") as zip_ref:
             count = 0
@@ -71,6 +73,6 @@ def fetch_command(
                     target_path.parent.mkdir(parents=True, exist_ok=True)
                     target_path.write_bytes(zip_ref.read(member))
                     count += 1
-            Global.logger.info(f"Extracted {count} files from {zip_path}")
-    Global.logger.info(f"Fetched curriculum into {curriculum_raw}")
-    Global.logger.info("Scraper: fetch phase finished")
+            logger.info(f"Extracted {count} files from {zip_path}")
+    logger.info(f"Fetched curriculum into {curriculum_raw}")
+    logger.info("Scraper: fetch phase finished")

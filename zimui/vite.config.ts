@@ -10,6 +10,7 @@ export default defineConfig({
   plugins: [
     vue(),
     legacy({
+      modernTargets: ['fully supports bigint'],
       targets: ['fully supports es6'],
       modernPolyfills: true
     })

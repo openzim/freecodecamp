@@ -11,22 +11,26 @@ This scraper downloads selected [freeCodeCamp](https://www.freecodecamp.org/) co
 [![Docker](https://ghcr-badge.egpl.dev/openzim/freecodecamp/latest_tag?label=docker)](https://ghcr.io/openzim/freecodecamp)
 
 ## Architecture
+
 This project consists of two major components:
 
 - `zimui` - A Vue.JS application specially crafted to:
-    - be embeded inside the ZIM and serve as main entry point (through compilation for offline usage with Vite)
-    - present FCC curriculum, including solving exercices
-    - be compatible with most ZIM readers
+  - be embeded inside the ZIM and serve as main entry point (through compilation for offline usage with Vite)
+  - present FCC curriculum, including solving exercices
+  - be compatible with most ZIM readers
 - `scraper` - The Python tool that build FCC ZIM. It is responsible to:
-    - fetch FCC curriculum and package it into a proper format
-    - embed client can read, as well as our zim builder
+  - fetch FCC curriculum and package it into a proper format
+  - embed client can read, as well as our zim builder
 
 ## Dependencies
 
 Aside Node.JS and Python dependencies which are managed, other binary dependencies comes from Python [zimscraperlib](https://github.com/openzim/python-scraperlib/)
 
-
 ## Development
+
+This project adheres to openZIM's [Contribution Guidelines](https://github.com/openzim/overview/wiki/Contributing).
+
+This project has implemented openZIM's [Python bootstrap, conventions and policies](https://github.com/openzim/_python-bootstrap/blob/main/docs/Policy.md) **v1.0.3**.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).
 
@@ -38,10 +42,12 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 ### Running scraper locally
 
 You have to:
+
 - build the `zimui` frontend which will be embededed inside the ZIM (and redo it every time you make modifications to the `zimui`)
 - run the `scraper` to retrieve FCC curriculum and build the ZIM
 
 Sample commands:
+
 ```
 cd zimui
 yarn install

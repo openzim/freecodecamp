@@ -30,10 +30,11 @@ jobs:
         run: inv coverage --args "-vvv"
 
       - name: Upload coverage report to codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v5
         with:
           fail_ci_if_error: true
           token: ${{ secrets.CODECOV_TOKEN }}
+          slug: openzim/freecodecamp
 
   build-scraper:
     runs-on: ubuntu-24.04

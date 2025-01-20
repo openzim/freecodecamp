@@ -25,6 +25,7 @@ const main = useMainStore()
       </ul>
     </div>
   </div>
+  <div v-else-if="main.isLoading">Page is loading ...</div>
   <ErrorInfo v-else> Introduction data failed to load. </ErrorInfo>
 </template>
 

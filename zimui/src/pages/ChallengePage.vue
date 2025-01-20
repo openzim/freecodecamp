@@ -48,7 +48,7 @@ watch(
 
     <ErrorInfo v-else> This type of challenge is not yet working offline. </ErrorInfo>
   </div>
-
+  <div v-else-if="main.isLoading">Page is loading ...</div>
   <ErrorInfo v-else> Challenge not found. </ErrorInfo>
 </template>
 

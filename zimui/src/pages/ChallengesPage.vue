@@ -39,6 +39,7 @@ watch(
       </li>
     </ul>
   </div>
+  <div v-else-if="main.isLoading">Page is loading ...</div>
   <ErrorInfo v-else> Introduction or course data failed to load. </ErrorInfo>
 </template>
 

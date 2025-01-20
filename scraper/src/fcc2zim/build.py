@@ -57,6 +57,20 @@ def build_command(
 ):
     logger.info("Scraper: build phase starting")
 
+    mathjax = (Path(__file__) / "../mathjax").resolve()
+    count_mathjax_files = len(list(mathjax.rglob("*")))
+    logger.info(f"Adding {count_mathjax_files} MathJax files in {mathjax}")
+    for file in mathjax.rglob("*"):
+        if not file.is_file():
+            continue
+        path = str(Path(file).relative_to(mathjax.parent))
+        logger.debug(f"Adding {path} to ZIM")
+        creator.add_item_for(
+            path=path,
+            fpath=file,
+            is_front=False,
+        )
+
     # Add zimui files
     for file in zimui_dist.rglob("*"):
         if file.is_dir():

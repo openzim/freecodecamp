@@ -375,3 +375,5 @@ output
 
 # content dumped from ZIM file to test ZIM UI
 zimui/public/content
+zimui/public/mathjax
+scraper/src/fcc2zim/mathjax

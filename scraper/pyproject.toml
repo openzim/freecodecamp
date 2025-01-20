@@ -1,5 +1,5 @@
 [build-system]
-requires = ["hatchling", "hatch-openzim==0.2.1"]
+requires = ["hatchling", "hatch-openzim>=0.2.0"]
 build-backend = "hatchling.build"
 
 [project]
@@ -18,6 +18,8 @@ dynamic = ["authors", "classifiers", "keywords", "license", "version", "urls"]
 [tool.hatch.metadata.hooks.openzim-metadata]
 kind = "scraper"
 additional-keywords = ["fcc","freecodecamp"]
+
+[tool.hatch.build.hooks.openzim-build]
 
 [project.optional-dependencies]
 scripts = [

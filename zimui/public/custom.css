@@ -26,3 +26,7 @@ a[href^="https://"]:after
   background-repeat: no-repeat;
   margin-left: 5px;
 }
+
+.MathJax svg {
+  display: inline;
+}

@@ -1,0 +1,28 @@
+a[href^="http://"],
+a[href^="https://"]
+{
+  /* modify all <a> tag so that the :after is centered */
+  display: inline-flex;
+  align-items: center;
+  color: #df2121;
+}
+
+a[href^="http://"]:hover,
+a[href^="https://"]:hover
+{
+  color: #df2121;
+}
+
+a[href^="http://"]:after,
+a[href^="https://"]:after
+{
+  /* add an external link icon to all external links (not relative after HTML rewriting) */
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-image: url('external-link.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-left: 5px;
+}

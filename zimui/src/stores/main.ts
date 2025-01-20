@@ -9,6 +9,8 @@ export type RootState = {
   locales: Locales | null
   challengesMeta: ChallengesMeta | null
   challenge: Challenge | null
+  solution: string
+  logs: string[]
   isLoading: boolean
   errorMessage: string
   errorDetails: string
@@ -20,6 +22,8 @@ export const useMainStore = defineStore('main', {
       locales: null,
       challengesMeta: null,
       challenge: null,
+      solution: '',
+      logs: [],
       isLoading: false,
       errorMessage: '',
       errorDetails: ''
@@ -90,6 +94,7 @@ export const useMainStore = defineStore('main', {
         (response) => {
           this.isLoading = false
           this.challenge = parseChallenge(response.data as string)
+          this.resetSolution()
         },
         (error) => {
           this.isLoading = false
@@ -123,6 +128,12 @@ export const useMainStore = defineStore('main', {
     },
     setErrorMessage(message: string) {
       this.errorMessage = message
+    },
+    resetSolution() {
+      this.solution = this.challenge?.seed || ''
+    },
+    cheatSolution() {
+      this.solution = this.challenge?.solutions[0] || ''
     }
   }
 })

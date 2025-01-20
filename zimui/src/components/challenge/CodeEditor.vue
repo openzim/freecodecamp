@@ -1,18 +1,13 @@
 <script setup lang="ts">
-import { ref, shallowRef, watch } from 'vue'
+import { shallowRef } from 'vue'
 import { Codemirror } from 'vue-codemirror'
 import { javascript } from '@codemirror/lang-javascript'
 import { EditorView } from '@codemirror/view'
+import { useMainStore } from '@/stores/main'
 
-const props = defineProps<{ sourceCode: string }>()
-const emit = defineEmits<{ (e: 'update', value: string): void }>()
+const main = useMainStore()
 
-const code = ref(props.sourceCode)
 const extensions = [javascript()]
-
-watch(props, () => {
-  code.value = props.sourceCode
-})
 
 // Codemirror EditorView instance ref
 const view = shallowRef()
@@ -36,7 +31,7 @@ const handleReady = ({ view: editorView }: { view: EditorView }) => {
 <template>
   <div>
     <codemirror
-      v-model="code"
+      v-model="main.solution"
       placeholder="Code goes here..."
       :style="{ height: '100%' }"
       :autofocus="true"
@@ -44,7 +39,7 @@ const handleReady = ({ view: editorView }: { view: EditorView }) => {
       :tab-size="2"
       :extensions="extensions"
       @ready="handleReady"
-      @change="emit('update', $event)"
+      @change="(event: any) => (main.solution = event)"
     />
   </div>
 </template>

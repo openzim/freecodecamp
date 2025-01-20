@@ -6,26 +6,19 @@ import type { RunResult } from '@/utils/runChallenge'
 import { runChallenge } from '@/utils/runChallenge'
 import type { ChallengeInfo } from '@/types/challenges'
 import { useMainStore } from '@/stores/main'
-
-const props = defineProps<{
-  challenge: Challenge
-  solution: string
-  superblock: string
-  course: string
-  slug: string
-}>()
+import { singlePathParam } from '@/utils/pathParams.ts'
+import { useRoute } from 'vue-router'
 
 const main = useMainStore()
+const route = useRoute()
+
+const superblock = computed(() => singlePathParam(route.params.superblock))
+const course = computed(() => singlePathParam(route.params.course))
+const slug = computed(() => singlePathParam(route.params.slug))
 
 const nextChallenge: Ref<ChallengeInfo | undefined> = computed(() => {
-  return main.nextChallenge(props.slug)
+  return main.nextChallenge(slug.value)
 })
-
-const emit = defineEmits<{
-  (e: 'reset'): void
-  (e: 'setSolution'): void
-  (e: 'logs', logs: string[]): void
-}>()
 
 const result: Ref<RunResult | null> = ref(null)
 
@@ -39,15 +32,15 @@ const passed: ComputedRef<boolean> = computed(() => {
 })
 
 const runTest = (): void => {
-  result.value = runChallenge(props.challenge, props.solution)
-  emit('logs', result.value.logs)
+  result.value = runChallenge(main.challenge as Challenge, main.solution)
+  main.logs = result.value.logs
 }
-result.value = runChallenge(props.challenge, '')
+result.value = runChallenge(main.challenge as Challenge, '')
 
 watch(
-  () => props.challenge,
+  () => main.challenge,
   () => {
-    result.value = runChallenge(props.challenge, '')
+    result.value = runChallenge(main.challenge as Challenge, '')
   }
 )
 
@@ -57,7 +50,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <button v-if="cheatMode" @click="emit('setSolution')">Set solution</button>
+  <button v-if="cheatMode" @click="main.cheatSolution()">Set solution</button>
   <button @click="runTest">Run the tests</button>
   <div v-if="passed" class="passed">
     <p>Passed!</p>
@@ -67,7 +60,7 @@ onMounted(() => {
       </router-link>
     </p>
   </div>
-  <button @click="emit('reset')">Reset this lesson</button>
+  <button @click="main.resetSolution()">Reset this lesson</button>
   <p v-for="(test, i) in result?.hints" :key="i" class="hint" :class="{ passed: test.passed }">
     {{ test.description }}
   </p>

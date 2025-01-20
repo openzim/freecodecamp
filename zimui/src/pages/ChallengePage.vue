@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import type { Ref } from 'vue'
-import { computed, ref, watch } from 'vue'
+import { computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import CodeEditor from '../components/challenge/CodeEditor.vue'
 import ErrorInfo from '../components/ErrorInfo.vue'
 import ChallengeInstructions from '../components/challenge/ChallengeInstructions.vue'
 import ChallengeRunner from '../components/challenge/ChallengeRunner.vue'
-import { Challenge } from '@/utils/parseChallenge'
 import ConsoleLogger from '@/components/challenge/ConsoleLogger.vue'
 import { useMainStore } from '@/stores/main'
 import { singlePathParam } from '../utils/pathParams.ts'
@@ -17,11 +15,6 @@ const route = useRoute()
 const superblock = computed(() => singlePathParam(route.params.superblock))
 const course = computed(() => singlePathParam(route.params.course))
 const slug = computed(() => singlePathParam(route.params.slug))
-
-const locales = computed(() => (main.locales ? main.locales[superblock.value] : undefined))
-
-const solution: Ref<string> = ref('')
-const logs: Ref<string[]> = ref([])
 
 watch(
   () => `${superblock.value}/${course.value}`,
@@ -35,50 +28,21 @@ watch(
   () => `${superblock.value}/${course.value}/${slug.value}`,
   () => {
     main.fetchChallenge(superblock.value, course.value, slug.value)
-    solution.value = main.challenge?.seed || ''
   },
   { immediate: true }
 )
-
-const onReset = () => {
-  solution.value = main.challenge?.seed || ''
-}
-
-const onSetSolution = () => {
-  solution.value = main.challenge?.solutions[0] || ''
-}
 </script>
 
 <template>
   <div v-if="main.challenge && main.locales">
     <div v-if="['1', '4', '5'].includes(main.challenge.header['challengeType'])" class="split">
       <div class="left">
-        <ChallengeInstructions
-          :title="main.challenge.header['title']"
-          :instructions="main.challenge.instructions || ''"
-          :description="main.challenge.description"
-          :coursetitle="locales.blocks[course].title"
-          :coursepath="`/${superblock}/${course}`"
-          :curriculumtitle="main.locales[superblock].title"
-        ></ChallengeInstructions>
-        <ChallengeRunner
-          :challenge="main.challenge as Challenge"
-          :solution="solution || ''"
-          :superblock="superblock"
-          :course="course"
-          :slug="slug || ''"
-          @reset="onReset"
-          @set-solution="onSetSolution"
-          @logs="(value: any) => (logs = value)"
-        ></ChallengeRunner>
+        <ChallengeInstructions></ChallengeInstructions>
+        <ChallengeRunner></ChallengeRunner>
       </div>
       <div class="right">
-        <CodeEditor
-          :source-code="solution"
-          class="codeEditor"
-          @update="(event: any) => (solution = event)"
-        ></CodeEditor>
-        <ConsoleLogger class="console" :logs="logs || []"></ConsoleLogger>
+        <CodeEditor class="codeEditor"></CodeEditor>
+        <ConsoleLogger class="console"></ConsoleLogger>
       </div>
     </div>
 

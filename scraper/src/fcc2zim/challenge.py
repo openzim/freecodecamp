@@ -9,9 +9,11 @@ FRONTMATTER_BOUNDARY = re.compile(r"^-{3,}\s*$", re.MULTILINE)
 # Each markdown challenge contains 'frontmatter' which is a header
 # consisting of yaml formatted data enclosed inside of '---\n' lines
 # We load into YAML only the frontmatter
-def read_yaml_frontmatter(filename: pathlib.Path):
+def read_yaml_frontmatter(filename: pathlib.Path) -> dict[str, str]:
     _, fm, _ = FRONTMATTER_BOUNDARY.split(filename.read_text("UTF8"), 2)
-    return yaml.load(fm, Loader=yaml.SafeLoader)
+    return yaml.load(  # pyright: ignore[reportReturnType, reportUnknownVariableType, reportUnknownMemberType]
+        fm, Loader=yaml.SafeLoader
+    )
 
 
 class Challenge:

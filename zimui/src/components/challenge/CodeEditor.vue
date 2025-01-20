@@ -2,7 +2,7 @@
 import { ref, shallowRef, watch } from 'vue'
 import { Codemirror } from 'vue-codemirror'
 import { javascript } from '@codemirror/lang-javascript'
-import { EditorView } from '@codemirror/view';
+import { EditorView } from '@codemirror/view'
 
 const props = defineProps<{ sourceCode: string }>()
 const emit = defineEmits<{ (e: 'update', value: string): void }>()
@@ -16,7 +16,7 @@ watch(props, () => {
 
 // Codemirror EditorView instance ref
 const view = shallowRef()
-const handleReady = ({ view: editorView }: {view: EditorView}) => {
+const handleReady = ({ view: editorView }: { view: EditorView }) => {
   view.value = editorView
 }
 

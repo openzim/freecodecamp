@@ -1,7 +1,6 @@
 import argparse
 import datetime
-import functools
-import os
+from pathlib import Path
 
 from zimscraperlib.constants import (
     MAXIMUM_DESCRIPTION_METADATA_LENGTH as MAX_DESC_LENGTH,
@@ -9,39 +8,27 @@ from zimscraperlib.constants import (
 from zimscraperlib.constants import (
     MAXIMUM_LONG_DESCRIPTION_METADATA_LENGTH as MAX_LONG_DESC_LENGTH,
 )
+from zimscraperlib.constants import RECOMMENDED_MAX_TITLE_LENGTH
 
-from fcc2zim.constants import FCC_LANG_MAP, VERSION, Global, set_debug
-from fcc2zim.scraper import Scraper
-
-
-def log_and_sys_exit(func):
-    @functools.wraps(func)
-    def wrapper():
-        try:
-            func()
-        except SystemExit:  # SystemExit has been asked for at lower level, simply do it
-            raise
-        except Exception as exc:
-            Global.logger.error(f"A fatal error occurred: {exc}")
-            Global.logger.exception(exc)
-            raise SystemExit(1) from exc
-
-    return wrapper
+from fcc2zim.constants import FCC_LANG_MAP, NAME, VERSION
+from fcc2zim.context import Context
 
 
-@log_and_sys_exit
-def main():
+def prepare_context(raw_args: list[str]) -> None:
+    """Initialize scraper context from command line arguments"""
+
     parser = argparse.ArgumentParser(
-        prog="fcc2zim",
+        prog=NAME,
         description="Scraper to create ZIM files from freeCodeCamp courses",
     )
 
     parser.add_argument(
         "--course",
-        type=str,
         help="Course or course list (separated by commas)",
+        type=lambda x: [course.strip() for course in x.split(",")],
         required=True,
     )
+
     parser.add_argument(
         "--language",
         type=str,
@@ -49,94 +36,109 @@ def main():
         required=True,
         choices=FCC_LANG_MAP.keys(),
     )
+
     parser.add_argument(
         "--name",
         type=str,
         help="ZIM name. Used as identifier and filename (date will be appended)",
         required=True,
     )
+
     parser.add_argument(
         "--title",
         type=str,
-        # once Zimscraperlib > 3.1.1 is released, use constant from library
-        # instead of '30' magic number
-        help="Title of zim file (less than 30 chars)",
+        help=f"Title of ZIM file (less than {RECOMMENDED_MAX_TITLE_LENGTH} graphemes)",
         required=True,
     )
+
     parser.add_argument(
         "--description",
         type=str,
-        help=f"Description of ZIM file (less than {MAX_DESC_LENGTH} chars)",
+        help=f"Description of ZIM file (less than {MAX_DESC_LENGTH} graphemes)",
         required=True,
     )
+
     parser.add_argument(
         "--long-description",
         type=str,
-        help=f"Long description of ZIM file (less than {MAX_LONG_DESC_LENGTH} chars)",
+        help=f"Long description of ZIM file (less than {MAX_LONG_DESC_LENGTH} "
+        "graphemes)",
     )
+
     parser.add_argument(
         "--creator",
         type=str,
-        help="Name of freeCodeCamp courses creator",
-        default="freeCodeCamp",
+        help=f"Name of freeCodeCamp courses creator. Default: {Context.creator!s}",
     )
+
     parser.add_argument(
-        "--publisher", type=str, help="Publisher of the zim file", default="openZIM"
+        "--publisher",
+        type=str,
+        help=f"Publisher of the zim file. Default: {Context.publisher!s}",
     )
+
     parser.add_argument(
         "--force",
         help="Force a full reprocessing, not benefiting from any cached file",
         action="store_true",
-        default=False,
     )
+
     parser.add_argument(
         "--debug",
         help="Enable verbose output",
         action="store_true",
-        default=False,
     )
+
     parser.add_argument(
         "--output",
-        type=str,
+        type=Path,
         help="Output directory where zim file will be built",
-        default=os.getenv("FCC_OUTPUT", "../output"),
+        dest="output_folder",
     )
+
     parser.add_argument(
         "--build",
-        type=str,
+        type=Path,
         help="The build directory to hold temporary files during scraper operation",
-        default=os.getenv("FCC_BUILD", "../build"),
+        dest="build_folder",
     )
+
     parser.add_argument(
         "--zimui-dist",
-        type=str,
+        type=Path,
         help=(
-            "Directory containing Vite build output from the Zim UI Vue.JS application"
+            "Dev option to customize directory containing Vite build output from the "
+            "ZIM UI Vue.JS application"
         ),
-        default=os.getenv("FCC_ZIMUI_DIST", "../zimui/dist"),
     )
+
     parser.add_argument(
         "--zim-file",
         type=str,
         help="ZIM file name (based on --name if not provided), could contain {period}"
         " placeholder which will be replaced by <year>_<month>",
     )
+
     parser.add_argument(
         "--zip-path",
         help="Path to main zip file containing FCC courses",
         type=str,
+        dest="main_zip_path",
     )
+
     parser.add_argument(
         "--i18n-zip-path",
         help="Path to i18n zip file containing translations of FCC courses",
         type=str,
     )
+
     parser.add_argument(
         "--version",
         help="Display scraper version and exit",
         action="version",
         version=f"fcc2zim {VERSION}",
     )
+
     parser.add_argument(
         "--overwrite",
         help="Do not fail if ZIM already exists, overwrite it",
@@ -144,35 +146,11 @@ def main():
         dest="overwrite_existing_zim",
     )
 
-    args = parser.parse_args()
+    args = parser.parse_args(raw_args)
 
-    Global.logger.info(f"Starting fcc2zim {VERSION}")
+    # Ignore unset values so they do not override the default specified in Context
+    args_dict = {key: value for key, value in args._get_kwargs() if value}
 
-    set_debug(debug=args.debug)
+    args_dict["start_date"] = datetime.date.today()
 
-    scraper = Scraper(
-        do_fetch=os.getenv("DO_FETCH", "False").lower() == "true",
-        do_prebuild=os.getenv("DO_PREBUILD", "False").lower() == "true",
-        do_build=os.getenv("DO_BUILD", "False").lower() == "true",
-        zimui_dist=args.zimui_dist,
-        output=args.output,
-        build=args.build,
-        language=args.language,
-        name=args.name,
-        title=args.title,
-        description=args.description,
-        long_description=args.long_description,
-        content_creator=args.creator,
-        publisher=args.publisher,
-        zim_file=args.zim_file,
-        force=args.force,
-        course_csv=args.course,
-        zip_main_path=args.zip_path,
-        zip_i18n_path=args.i18n_zip_path,
-        overwrite_existing_zim=args.overwrite_existing_zim,
-        start_date=datetime.date.today(),
-    )
-
-    scraper.run()
-
-    Global.logger.info("Scraper completed")
+    Context.setup(**args_dict)

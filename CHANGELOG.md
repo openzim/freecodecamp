@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Upgrade to Python 3.12 and Node.JS 22, adopt new openZIM practices, upgrade all dependencies (including zimscraperlib 5.0.0), add support for 'legacy' browsers (#43)
+
 ### Fixed
 
 - Fix ukrainian typo (#65)
@@ -47,7 +51,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Remove "_dir" or "-dir" prefix from input flag and variables/arguments names
+- Remove "\_dir" or "-dir" prefix from input flag and variables/arguments names
 
 ## [1.0.0] - 2023-08-29
 

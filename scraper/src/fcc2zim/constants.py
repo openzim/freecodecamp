@@ -1,8 +1,10 @@
-import logging
-
-from zimscraperlib.logging import getLogger
+import pathlib
 
 from fcc2zim.__about__ import __version__
+
+NAME = "fcc2zim"
+VERSION = __version__
+ROOT_DIR = pathlib.Path(__file__).parent
 
 # key is the language passed at CLI (and used as ZIM Language metadata)
 # value is the name of folders used in FCC source code
@@ -19,17 +21,3 @@ FCC_LANG_MAP = {
     "ukr": "ukrainian",
     "swa": "swahili",
 }
-
-VERSION = __version__
-
-
-class Global:
-    debug = False
-    logger: logging.Logger = getLogger("fcc2zim", level=logging.INFO)
-
-
-def set_debug(*, debug: bool):
-    Global.debug = debug
-    Global.logger = getLogger(  # refresh logger to update log level
-        "fcc2zim", level=logging.DEBUG if Global.debug else logging.INFO
-    )

@@ -1,23 +1,28 @@
 <script setup lang="ts">
-import { Ref, toRef } from 'vue';
-import { RouteParams, RouterLink, useRoute } from 'vue-router'
+import type { Ref } from 'vue'
+import { toRef } from 'vue'
+import type { RouteParams, RouterLink } from 'vue-router'
+import { useRoute } from 'vue-router'
 
 const route = useRoute()
 const params: Ref<RouteParams> = toRef(route, 'params')
 
-const challenges = (await (await fetch(`content/curriculum/${params.value.superblock}/${params.value.course}/_meta.json`)).json())['challenges']
+const challenges = (
+  await (
+    await fetch(`content/curriculum/${params.value.superblock}/${params.value.course}/_meta.json`)
+  ).json()
+)['challenges']
 
-const locales = (await (await fetch(`content/locales/intro.json`)).json())[params.value.superblock as string]
-
+const locales = (await (await fetch(`content/locales/intro.json`)).json())[
+  params.value.superblock as string
+]
 </script>
 
 <template>
   <div class="card centered">
     <h1>{{ locales.blocks[params.course as string].title }}</h1>
     <p>
-      <RouterLink :to="`/`">
-        &gt; {{ locales.title }}
-      </RouterLink>
+      <RouterLink :to="`/`"> &gt; {{ locales.title }} </RouterLink>
     </p>
     <!-- eslint-disable-next-line vue/no-v-html-->
     <p v-for="(p, idx) in locales.intro" :key="idx" class="my-2" v-html="p"></p>

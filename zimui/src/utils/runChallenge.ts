@@ -94,8 +94,8 @@ export const runChallenge = (
     logs: [],
     hints: ___challenge.hints.map((hint) => ({
       passed: false,
-      description: hint[0],
-    })),
+      description: hint[0]
+    }))
   }
   const ___evalCode = ___generateEvalCode(
     code,
@@ -120,7 +120,7 @@ export const runChallenge = (
     debug: ___consoleFn,
     info: ___consoleFn,
     warn: ___consoleFn,
-    error: ___consoleFn,
+    error: ___consoleFn
   }
   const assert = chaiAssert
   const __helpers = helpers

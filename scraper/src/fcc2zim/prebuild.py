@@ -3,10 +3,12 @@ import shutil
 from pathlib import Path
 
 from fcc2zim.challenge import Challenge
-from fcc2zim.constants import Global
+from fcc2zim.context import Context
+
+logger = Context.logger
 
 
-def get_challenges_for_lang(tmp_path, language):
+def get_challenges_for_lang(tmp_path: Path, language: str):
     return Path(tmp_path, language).rglob("*.md")
 
 
@@ -49,7 +51,7 @@ def write_course_to_path(
     us to render a page listing all available courses
     """
     curriculumdir.mkdir(parents=True, exist_ok=True)
-    meta = {"challenges": []}
+    meta: dict[str, list[dict[str, str]]] = {"challenges": []}
 
     for challenge in challenge_list:
         challenge_dest_path = curriculumdir.joinpath(
@@ -71,7 +73,7 @@ def write_course_to_path(
 
 
 def prebuild_command(
-    course_csv: str,
+    course_list: list[str],
     fcc_lang: str,
     curriculum_raw: Path,
     curriculum_dist: Path,
@@ -86,7 +88,7 @@ def prebuild_command(
         => { challenges: [{slug, title}] }
     - <curriculum_dist>/<superblock>/<course_slug>/{slug}.md
     """
-    Global.logger.info("Scraper: prebuild phase starting")
+    logger.info("Scraper: prebuild phase starting")
 
     curriculum_dist.mkdir(parents=True, exist_ok=True)
     shutil.rmtree(curriculum_dist)
@@ -97,11 +99,11 @@ def prebuild_command(
     )
 
     # eg. ['basic-javascript', 'debugging']
-    for course in course_csv.split(","):
-        Global.logger.debug(f"Prebuilding {course}")
+    for course in course_list:
+        logger.debug(f"Prebuilding {course}")
         meta = json.loads(challenges.joinpath("_meta", course, "meta.json").read_text())
         # Get the order that the challenges should be completed in for <course>
-        ids = [
+        ids: list[str] = [
             item[0] if isinstance(item, list) else item["id"]
             for item in meta["challengeOrder"]
         ]
@@ -126,5 +128,5 @@ def prebuild_command(
 
     # Copy all the locales for this language
     write_locales_to_path(locales, curriculum_dist)
-    Global.logger.info(f"Prebuilt curriculum into {curriculum_dist}")
-    Global.logger.info("Scraper: prebuild phase finished")
+    logger.info(f"Prebuilt curriculum into {curriculum_dist}")
+    logger.info("Scraper: prebuild phase finished")

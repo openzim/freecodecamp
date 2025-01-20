@@ -1,4 +1,9 @@
+<script setup lang="ts">
+import HeaderBar from './components/HeaderBar.vue'
+</script>
+
 <template>
+  <HeaderBar />
   <Suspense>
     <router-view></router-view>
   </Suspense>

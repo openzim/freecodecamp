@@ -4,12 +4,22 @@ import { ref, computed, watch, onMounted } from 'vue'
 import { Challenge } from '@/utils/parseChallenge'
 import type { RunResult } from '@/utils/runChallenge'
 import { runChallenge } from '@/utils/runChallenge'
+import type { ChallengeInfo } from '@/types/challenges'
+import { useMainStore } from '@/stores/main'
 
 const props = defineProps<{
   challenge: Challenge
   solution: string
-  nextChallenge?: { title: string; url: string }
+  superblock: string
+  course: string
+  slug: string
 }>()
+
+const main = useMainStore()
+
+const nextChallenge: Ref<ChallengeInfo | undefined> = computed(() => {
+  return main.nextChallenge(props.slug)
+})
 
 const emit = defineEmits<{
   (e: 'reset'): void
@@ -52,7 +62,7 @@ onMounted(() => {
   <div v-if="passed" class="passed">
     <p>Passed!</p>
     <p v-if="nextChallenge">
-      <router-link :to="nextChallenge.url">
+      <router-link :to="`/${superblock}/${course}/${nextChallenge.slug}`">
         <button>Move to next challenge</button>
       </router-link>
     </p>

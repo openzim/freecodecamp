@@ -19,12 +19,8 @@ const render = (str: string): string => {
   <!-- eslint-disable vue/no-v-html -->
   <h1>{{ props.title }}</h1>
   <p>
-    <RouterLink to="/">
-      &gt; {{ curriculumtitle }}
-    </RouterLink>
-    <RouterLink :to="coursepath">
-      &gt; {{ coursetitle }}
-    </RouterLink>
+    <RouterLink to="/"> &gt; {{ curriculumtitle }} </RouterLink>
+    <RouterLink :to="coursepath"> &gt; {{ coursetitle }} </RouterLink>
   </p>
   <div class="markdown">
     <div v-html="render(props.description)" />

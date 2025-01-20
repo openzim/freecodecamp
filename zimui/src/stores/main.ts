@@ -16,6 +16,22 @@ export type RootState = {
   errorDetails: string
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const nextChallenge = function (state: any) {
+  return (slug: string): ChallengeInfo | undefined => {
+    if (!state.challenge || !state.challengesMeta) {
+      return undefined
+    }
+    const challengeIndex = state.challengesMeta.challenges.findIndex(
+      (c: ChallengeInfo) => c.slug === slug
+    )
+    if (challengeIndex <= state.challengesMeta.challenges.length) {
+      return state.challengesMeta.challenges[challengeIndex + 1]
+    }
+    return undefined
+  }
+}
+
 export const useMainStore = defineStore('main', {
   state: () =>
     ({
@@ -29,20 +45,7 @@ export const useMainStore = defineStore('main', {
       errorDetails: ''
     }) as RootState,
   getters: {
-    nextChallenge: (state) => {
-      return (slug: string): ChallengeInfo | undefined => {
-        if (!state.challenge || !state.challengesMeta) {
-          return undefined
-        }
-        const challengeIndex = state.challengesMeta.challenges.findIndex(
-          (c: ChallengeInfo) => c.slug === slug
-        )
-        if (challengeIndex <= state.challengesMeta.challenges.length) {
-          return state.challengesMeta.challenges[challengeIndex + 1]
-        }
-        return undefined
-      }
-    }
+    nextChallenge: nextChallenge
   },
   actions: {
     async fetchLocales() {

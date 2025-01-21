@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Upgrade to Python 3.12 and Node.JS 22, adopt new openZIM practices, upgrade all dependencies (including zimscraperlib 5.0.0), add support for 'legacy' browsers (#43)
+- Upgrade to Python 3.13 and Node.JS 22, adopt new openZIM practices, upgrade all dependencies (including zimscraperlib 5.x), add support for 'legacy' browsers (#43 + #77)
 - Add clearer visual indication of external links (#70)
 - Cleanup JS code with a Pinia store and add header toolbar (#73)
 

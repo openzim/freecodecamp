@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add missing support for swahili (#66)
 - Do not parse the whole markdown as YAML, but only the frontmatter (#64)
 - Properly parse/present mathjax code (#57)
+- Fix display of tables in challenge instructions (#75)
 
 ## [1.2.0] - 2025-01-16
 

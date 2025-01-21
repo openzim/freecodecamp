@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { toRef } from 'vue'
+import { useMainStore } from '@/stores/main'
+
+const main = useMainStore()
 
 const props = defineProps<{
-  logs: string[]
   syntaxError?: Error | null
 }>()
 
-const logs = toRef(props, 'logs')
 const syntaxError = toRef(props, 'syntaxError')
 </script>
 
@@ -16,7 +17,7 @@ const syntaxError = toRef(props, 'syntaxError')
       {{ syntaxError.name }}
       {{ syntaxError.message }}
     </p>
-    <pre v-for="(log, i) in logs" v-else :key="i"> > {{ log }} </pre>
+    <pre v-for="(log, i) in main.logs" v-else :key="i"> > {{ log }} </pre>
   </div>
 </template>
 

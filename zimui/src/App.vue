@@ -1,6 +1,20 @@
+<script setup lang="ts">
+import ErrorInfo from './components/ErrorInfo.vue'
+import HeaderBar from './components/HeaderBar.vue'
+import { useMainStore } from '@/stores/main'
+const main = useMainStore()
+</script>
+
 <template>
+  <HeaderBar />
   <Suspense>
-    <router-view></router-view>
+    <div v-if="main.errorMessage">
+      <ErrorInfo>
+        <p>{{ main.errorMessage }}</p>
+        <p>{{ main.errorDetails }}</p>
+      </ErrorInfo>
+    </div>
+    <router-view v-else></router-view>
   </Suspense>
 </template>
 

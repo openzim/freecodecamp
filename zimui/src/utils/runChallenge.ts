@@ -109,12 +109,10 @@ export const runChallenge = (
   const ___consoleFn = (...msg: any[]) => {
     ___result.logs.push(...msg)
     if (!___options?.supressConsole) {
-      // eslint-disable-next-line no-console
       ___originalConsole.log(...msg)
     }
   }
 
-  /* eslint-disable @typescript-eslint/no-unused-vars */
   const ___consoleProxy = {
     log: ___consoleFn,
     debug: ___consoleFn,
@@ -127,10 +125,8 @@ export const runChallenge = (
   // vite build will drop these variables since they aren't used by anyone but eval.
   // Nasty hack to get this working for alpha
   if (typeof localStorage !== 'undefined' && localStorage.getItem('debug')) {
-    // eslint-disable-next-line no-console
     console.log(___consoleProxy, __helpers, assert)
   }
-  /* eslint-enable @typescript-eslint/no-unused-vars */
 
   try {
     eval(___evalCode)

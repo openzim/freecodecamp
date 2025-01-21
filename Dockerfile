@@ -6,8 +6,7 @@ RUN yarn install --frozen-lockfile
 RUN yarn build
 
 
-# FROM python:3.13.1-bookworm
-FROM python:3.12.8-bookworm
+FROM python:3.13.1-bookworm
 LABEL org.opencontainers.image.source=https://github.com/openzim/freecodecamp
 
 RUN python -m pip install --no-cache-dir -U \

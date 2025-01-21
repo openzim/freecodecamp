@@ -4,11 +4,11 @@ build-backend = "hatchling.build"
 
 [project]
 name = "fcc2zim"
-requires-python = ">=3.12,<3.13"
+requires-python = ">=3.13,<3.14"
 description = "Make ZIM files from freeCodeCamp courses"
 readme = "../README.md"
 dependencies = [
-  "zimscraperlib==5.0.0",
+  "zimscraperlib==5.1.0",
   "requests==2.32.3",
   "types-requests==2.32.0.20241016",
   "PyYAML==6.0.2",
@@ -69,7 +69,7 @@ html = "inv coverage --html --args '{args}'"
 
 [tool.hatch.envs.lint]
 template = "lint"
-python = "py312"
+python = "py313"
 skip-install = false
 features = ["scripts", "lint"]
 
@@ -90,11 +90,11 @@ all = "inv checkall --args '{args}'"
 
 [tool.black]
 line-length = 88
-target-version = ['py312']
+target-version = ['py313']
 exclude = "(.hatch/.*)"
 
 [tool.ruff]
-target-version = "py312"
+target-version = "py313"
 line-length = 88
 src = ["src"]
 
@@ -215,6 +215,6 @@ exclude_lines = ["no cov", "if __name__ == .__main__.:", "if TYPE_CHECKING:"]
 include = ["src", "tests", "tasks.py"]
 exclude = [".env/**", ".venv/**", ".hatch"]
 extraPaths = ["src"]
-pythonVersion = "3.12"
+pythonVersion = "3.13"
 typeCheckingMode = "strict"
 disableBytesTypePromotions = true

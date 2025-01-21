@@ -8,6 +8,7 @@ import ChallengeRunner from '../components/challenge/ChallengeRunner.vue'
 import ConsoleLogger from '@/components/challenge/ConsoleLogger.vue'
 import { useMainStore } from '@/stores/main'
 import { singlePathParam } from '../utils/pathParams.ts'
+import { supportedChallengeTypes } from '../constants.ts'
 
 const main = useMainStore()
 const route = useRoute()
@@ -35,7 +36,10 @@ watch(
 
 <template>
   <div v-if="main.challenge && main.locales">
-    <div v-if="['1', '4', '5'].includes(main.challenge.header['challengeType'])" class="split">
+    <div
+      v-if="supportedChallengeTypes.includes(main.challenge.header['challengeType'])"
+      class="split"
+    >
       <div class="left">
         <ChallengeInstructions></ChallengeInstructions>
         <ChallengeRunner></ChallengeRunner>

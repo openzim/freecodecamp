@@ -31,7 +31,7 @@ class Context:
 
     # ZIM name (also used for filename if zim_file is not set) and filename
     name: str
-    zim_file: str
+    zim_file: str | None = None
 
     # Other ZIM metadata
     title: str

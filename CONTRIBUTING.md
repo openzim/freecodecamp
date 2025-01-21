@@ -58,10 +58,10 @@ docker run --rm -it -v "$PWD/output":/output local-freecodecamp fcc2zim --course
 Extract interesting ZIM content and move it to `public` folder.
 
 ```
-rm -rf zimui/public/content
+rm -rf zimui/public/content zimui/public/mathjax
 docker run -it --rm -v $(pwd)/output:/data ghcr.io/openzim/zim-tools:latest zimdump dump --dir=/data/tests_en_freecodecamp /data/tests_en_freecodecamp.zim
 sudo chown -R $(id -u -n):$(id -g -n) output/tests_en_freecodecamp
-mv output/tests_en_freecodecamp/content zimui/public
+mv output/tests_en_freecodecamp/content output/tests_en_freecodecamp/mathjax zimui/public
 rm -rf output/tests_en_freecodecamp
 ```
 
@@ -73,8 +73,6 @@ yarn dev
 ```
 
 Do not forget to cleanup `public/content` folder before building the docker image again, otherwise all assets will be pushed to the ZIM.
-
-Note that some assets (e.g. icomoon fonts on LibreTexts Geoscience) having a question mark in their URL are not properly working in the yarn dev server. This is OK inside the ZIM. See https://github.com/openzim/mindtouch/issues/34.
 
 ```
 rm -rf zimui/public/content

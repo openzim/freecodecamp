@@ -4,6 +4,7 @@ import type { Locales } from '../types/locales.ts'
 import type { ChallengeInfo, ChallengesMeta } from '../types/challenges.ts'
 import { parseChallenge } from '@/utils/parseChallenge.ts'
 import type { Challenge } from '@/utils/parseChallenge.ts'
+import mathjaxService from '@/services/mathjax'
 
 export type RootState = {
   locales: Locales | null
@@ -98,6 +99,8 @@ export const useMainStore = defineStore('main', {
           this.isLoading = false
           this.challenge = parseChallenge(response.data as string)
           this.resetSolution()
+          mathjaxService.removeMathJax()
+          mathjaxService.addMathJax()
         },
         (error) => {
           this.isLoading = false

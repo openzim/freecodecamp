@@ -1,0 +1,9 @@
+[files.assets.config]
+target_dir="src/fcc2zim"
+
+[files.assets.actions."mathjax"]
+action="extract_items"
+source="https://github.com/mathjax/MathJax/archive/refs/tags/3.2.2.zip"
+zip_paths=["MathJax-3.2.2"]
+target_paths=["mathjax"]
+remove = ["mathjax/.github","mathjax/.gitignore","mathjax/.travis.yml","mathjax/bower.json","mathjax/composer.json","mathjax/CONTRIBUTING.md","mathjax/package.json"]

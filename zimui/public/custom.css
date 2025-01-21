@@ -30,3 +30,26 @@ a[href^="https://"]:after
 .MathJax svg {
   display: inline;
 }
+
+.markdown table {
+  display: inline-block;
+  overflow: auto;
+}
+.markdown table thead {
+  border-color: inherit;
+  background-color: lightblue;
+  display: table-header-group;
+  vertical-align: middle;
+}
+.markdown table th {
+  font-weight: 700;
+}
+.markdown table td,
+.markdown table th {
+  border: 1px solid black;
+  padding: 6px 13px;
+  text-align: center;
+}
+.markdown table tbody tr:nth-of-type(odd) {
+  background-color: rgb(211, 211, 211, 0.3);
+}

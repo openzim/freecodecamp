@@ -14,7 +14,7 @@ RUN python -m pip install --no-cache-dir -U \
 
 # Copy code + associated artifacts + zimui build output
 COPY LICENSE LICENSE.fcc.md README.md /src/
-COPY scraper/pyproject.toml scraper/tasks.py /src/scraper/
+COPY scraper/pyproject.toml scraper/openzim.toml scraper/tasks.py /src/scraper/
 COPY scraper/src /src/scraper/src
 COPY --from=zimui /src/dist /src/zimui
 

@@ -7,11 +7,20 @@
 export type ChallengeInfo = { title: string; slug: string }
 
 /**
- * Meta information about challenges of a course, as presented inside _meta.json FCC
- * files for a given course (files at curriculum/${superblock}/${course}/_meta.json)
- *
- * @param challenges - List of challenges information for this course
+ * Meta information about a given curriculum, as presented inside index.json file built
+ * by the scraper (at curriculum/index.json). Contains a dictionnary, each key is the
+ * course slug. The value is a list of challenge information (slug and title).
  */
-export type ChallengesMeta = {
-  challenges: ChallengeInfo[]
+export type CurriculumInfo = {
+  [dict_key: string]: ChallengeInfo[]
+}
+
+/**
+ * Meta information about all curriculum present in current ZIM, as presented inside
+ * index.json file built by the scraper (at curriculum/index.json). Contains a
+ * dictionnary, each key is the course slug. The value is a list of challenge
+ * information (slug and title)
+ */
+export type Curriculums = {
+  [dict_key: string]: CurriculumInfo
 }

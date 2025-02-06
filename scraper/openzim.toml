@@ -7,3 +7,15 @@ source="https://github.com/mathjax/MathJax/archive/refs/tags/3.2.2.zip"
 zip_paths=["MathJax-3.2.2"]
 target_paths=["mathjax"]
 remove = ["mathjax/.github","mathjax/.gitignore","mathjax/.travis.yml","mathjax/bower.json","mathjax/composer.json","mathjax/CONTRIBUTING.md","mathjax/package.json"]
+
+[files.assets.actions."lato"]
+action="extract_items"
+source="https://dev.kiwix.org/fonts/lato2/lato.zip"
+zip_paths=["lato"]
+target_paths=["fonts/lato"]
+
+[files.assets.actions."hack"]
+action="extract_items"
+source="https://dev.kiwix.org/fonts/Hack-ZeroSlash/Hack-ZeroSlash.zip"
+zip_paths=["Hack-ZeroSlash"]
+target_paths=["fonts/Hack-ZeroSlash"]

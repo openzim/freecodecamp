@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Make the UI responsive (#22)
+- Enhance the UI design to be closer to original FCC UI (#23)
+
 ## [1.3.0] - 2025-01-24
 
 ### Changed

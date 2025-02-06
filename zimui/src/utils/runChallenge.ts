@@ -76,13 +76,14 @@ try {
 `
   return code
 }
+export type RunResultHint = {
+  description: string
+  passed: boolean
+}
 
 export type RunResult = {
   logs: string[]
-  hints: {
-    description: string
-    passed: boolean
-  }[]
+  hints: RunResultHint[]
 }
 
 export const runChallenge = (
@@ -94,7 +95,7 @@ export const runChallenge = (
     logs: [],
     hints: ___challenge.hints.map((hint) => ({
       passed: false,
-      description: hint[0]
+      description: hint[0].replace(/`(.*?)`/g, '<code>$1</code>')
     }))
   }
   const ___evalCode = ___generateEvalCode(

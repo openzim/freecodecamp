@@ -12,16 +12,18 @@ def get_challenges_for_lang(tmp_path: Path, language: str):
     return Path(tmp_path, language).rglob("*.md")
 
 
-def update_index(path: Path, superblock: str, slug: str):
+def update_index(
+    path: Path, superblock: str, slug: str, challenges: list[dict[str, str]]
+):
     index_path = path.joinpath("index.json")
     if not index_path.exists():
         index_path.write_bytes(json.dumps({}).encode("utf-8"))
 
     index = json.loads(index_path.read_text())
     if superblock not in index:
-        index[superblock] = []
+        index[superblock] = {}
     if slug not in index[superblock]:
-        index[superblock].append(slug)
+        index[superblock][slug] = challenges
 
     with open(index_path, "w") as outfile:
         json.dump(index, outfile, indent=4)
@@ -51,7 +53,8 @@ def write_course_to_path(
     us to render a page listing all available courses
     """
     curriculumdir.mkdir(parents=True, exist_ok=True)
-    meta: dict[str, list[dict[str, str]]] = {"challenges": []}
+    challenges: list[dict[str, str]] = []
+    # meta: dict[str, list[dict[str, str]]] = {"challenges": []}
 
     for challenge in challenge_list:
         challenge_dest_path = curriculumdir.joinpath(
@@ -59,17 +62,10 @@ def write_course_to_path(
         )
         challenge_dest_path.mkdir(parents=True, exist_ok=True)
         shutil.copy2(challenge.path, challenge_dest_path.joinpath(challenge.path.name))
-        meta["challenges"].append(
-            {"title": challenge.title(), "slug": challenge.path.stem}
-        )
-
-    meta_path = curriculumdir.joinpath(superblock, course_slug, "_meta.json")
-    meta_path.parent.mkdir(parents=True, exist_ok=True)
-    with open(meta_path, "w") as outfile:
-        json.dump(meta, outfile, indent=4)
+        challenges.append({"title": challenge.title(), "slug": challenge.path.stem})
 
     # Create an index with a list of the courses
-    update_index(curriculumdir, superblock, course_slug)
+    update_index(curriculumdir, superblock, course_slug, challenges)
 
 
 def prebuild_command(
@@ -83,9 +79,7 @@ def prebuild_command(
 
     This gives following files:
     - <curriculum_dist>/index.json
-        => { 'superblock': ['basic-javascript'] }
-    - <curriculum_dist>/<superblock>/<course_slug>/_meta.json
-        => { challenges: [{slug, title}] }
+        => { 'superblock': {'course_slug': [ {challenge_slug, challenge_title} ] } }
     - <curriculum_dist>/<superblock>/<course_slug>/{slug}.md
     """
     logger.info("Scraper: prebuild phase starting")

@@ -1,55 +1,91 @@
 import { defineStore } from 'pinia'
 import axios, { AxiosError } from 'axios'
-import type { Locales } from '../types/locales.ts'
-import type { ChallengeInfo, ChallengesMeta } from '../types/challenges.ts'
-import { parseChallenge } from '@/utils/parseChallenge.ts'
-import type { Challenge } from '@/utils/parseChallenge.ts'
+import type {
+  LocalesIntro,
+  LocalesIntroMiscText,
+  LocalesMotivation,
+  LocalesTranslations
+} from '../types/locales'
+import type { ChallengeInfo, Curriculums } from '../types/challenges'
+import { parseChallenge } from '@/utils/parseChallenge'
+import type { Challenge } from '@/utils/parseChallenge'
 import mathjaxService from '@/services/mathjax'
+import type { RunResult, RunResultHint } from '@/utils/runChallenge'
+import { runChallenge } from '@/utils/runChallenge'
 
 export type RootState = {
-  locales: Locales | null
-  challengesMeta: ChallengesMeta | null
+  localesIntro: LocalesIntro | null
+  localesIntroMiscText: LocalesIntroMiscText | null
+  localesMotivation: LocalesMotivation | null
+  localesTranslations: LocalesTranslations | null
+  curriculums: Curriculums | null
   challenge: Challenge | null
   solution: string
-  logs: string[]
   isLoading: boolean
   errorMessage: string
   errorDetails: string
+  cheatMode: boolean
+  challengeResult: RunResult | null
+  challengePassedDialogActive: boolean
+  challengeResetDialogActive: boolean
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const nextChallenge = function (state: any) {
-  return (slug: string): ChallengeInfo | undefined => {
-    if (!state.challenge || !state.challengesMeta) {
+  return (
+    superblock_slug: string,
+    course_slug: string,
+    challenge_slug: string
+  ): ChallengeInfo | undefined => {
+    if (!state.curriculums) {
       return undefined
     }
-    const challengeIndex = state.challengesMeta.challenges.findIndex(
-      (c: ChallengeInfo) => c.slug === slug
-    )
-    if (challengeIndex <= state.challengesMeta.challenges.length) {
-      return state.challengesMeta.challenges[challengeIndex + 1]
+    const challenges = state.curriculums[superblock_slug][course_slug]
+    const challengeIndex = challenges.findIndex((c: ChallengeInfo) => c.slug === challenge_slug)
+    if (challengeIndex <= challenges.length) {
+      return challenges[challengeIndex + 1]
     }
     return undefined
+  }
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const runTest = function (state: any) {
+  return (): void => {
+    state.challengeResult = runChallenge(state.challenge as Challenge, state.solution)
+    if (
+      state.challengeResult.hints.filter((h: RunResultHint) => h.passed).length ===
+      state.challengeResult.hints.length
+    ) {
+      state.challengePassedDialogActive = true
+    }
   }
 }
 
 export const useMainStore = defineStore('main', {
   state: () =>
     ({
-      locales: null,
-      challengesMeta: null,
+      localesIntro: null,
+      localesIntroMiscText: null,
+      localesMotivation: null,
+      localesTranslations: null,
+      curriculums: null,
       challenge: null,
       solution: '',
-      logs: [],
       isLoading: false,
       errorMessage: '',
-      errorDetails: ''
+      errorDetails: '',
+      cheatMode: localStorage.getItem('cheatMode') == 'true',
+      challengeResult: null,
+      challengePassedDialogActive: false,
+      challengeResetDialogActive: false
     }) as RootState,
   getters: {
-    nextChallenge: nextChallenge
+    nextChallenge: nextChallenge,
+    runTest: runTest
   },
   actions: {
-    async fetchLocales() {
+    async fetchLocalesIntro() {
       this.isLoading = true
       this.errorMessage = ''
       this.errorDetails = ''
@@ -57,32 +93,73 @@ export const useMainStore = defineStore('main', {
       return axios.get('./content/locales/intro.json').then(
         (response) => {
           this.isLoading = false
-          this.locales = response.data as Locales
+          this.localesIntro = response.data as LocalesIntro
+          this.localesIntroMiscText = response.data['misc-text'] as LocalesIntroMiscText
         },
         (error) => {
           this.isLoading = false
-          this.locales = null
-          this.errorMessage = 'Failed to load locales data.'
+          this.localesIntro = null
+          this.errorMessage = 'Failed to load locales intro.json data.'
           if (error instanceof AxiosError) {
             this.handleAxiosError(error)
           }
         }
       )
     },
-    async fetchMeta(superblock: string, course: string) {
+    async fetchLocalesMotivation() {
       this.isLoading = true
       this.errorMessage = ''
       this.errorDetails = ''
 
-      return axios.get(`./content/curriculum/${superblock}/${course}/_meta.json`).then(
+      return axios.get('./content/locales/motivation.json').then(
         (response) => {
           this.isLoading = false
-          this.challengesMeta = response.data as ChallengesMeta
+          this.localesMotivation = response.data as LocalesMotivation
         },
         (error) => {
           this.isLoading = false
-          this.challengesMeta = null
-          this.errorMessage = `Failed to load challenges meta data for ${superblock}/${course}.`
+          this.localesMotivation = null
+          this.errorMessage = 'Failed to load locales motivation.json data.'
+          if (error instanceof AxiosError) {
+            this.handleAxiosError(error)
+          }
+        }
+      )
+    },
+    async fetchLocalesTranslations() {
+      this.isLoading = true
+      this.errorMessage = ''
+      this.errorDetails = ''
+
+      return axios.get('./content/locales/translations.json').then(
+        (response) => {
+          this.isLoading = false
+          this.localesTranslations = response.data as LocalesTranslations
+        },
+        (error) => {
+          this.isLoading = false
+          this.localesTranslations = null
+          this.errorMessage = 'Failed to load locales translations.json data.'
+          if (error instanceof AxiosError) {
+            this.handleAxiosError(error)
+          }
+        }
+      )
+    },
+    async fetchCurriculums() {
+      this.isLoading = true
+      this.errorMessage = ''
+      this.errorDetails = ''
+
+      return axios.get('./content/curriculum/index.json').then(
+        (response) => {
+          this.isLoading = false
+          this.curriculums = response.data as Curriculums
+        },
+        (error) => {
+          this.isLoading = false
+          this.localesIntro = null
+          this.errorMessage = 'Failed to load curriculum/index.json data.'
           if (error instanceof AxiosError) {
             this.handleAxiosError(error)
           }
@@ -99,6 +176,7 @@ export const useMainStore = defineStore('main', {
           this.isLoading = false
           this.challenge = parseChallenge(response.data as string)
           this.resetSolution()
+          this.runTest()
           mathjaxService.removeMathJax()
           mathjaxService.addMathJax()
         },

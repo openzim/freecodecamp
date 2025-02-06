@@ -1,32 +1,40 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router'
 import { useMainStore } from '@/stores/main'
-import ErrorInfo from '../components/ErrorInfo.vue'
+import ErrorInfo from '@/components/ErrorInfo.vue'
+import SuperblockOverview from '@/components/SuperblockOverview.vue'
+import CurriculumsOverview from '@/components/CurriculumsOverview.vue'
 
 const curriculum = await (await fetch(`content/curriculum/index.json`)).json()
-
-const items = curriculum as { [key: string]: string[] }
 
 const main = useMainStore()
 </script>
 
 <template>
-  <div class="card centered" v-if="main.locales">
-    <div v-for="(superblock, idx) of Object.keys(curriculum)" :key="idx" class="my-2">
-      <h1>{{ main.locales[superblock].title }}</h1>
-      <!-- eslint-disable-next-line vue/no-v-html-->
-      <p v-for="(p, jdx) in main.locales[superblock].intro" :key="jdx" class="my-2" v-html="p"></p>
-      <ul>
-        <li v-for="item in items[superblock]" :key="item">
-          <RouterLink :to="`/${superblock}/${item}`">
-            {{ main.locales[superblock].blocks[item].title }}
-          </RouterLink>
-        </li>
-      </ul>
-    </div>
+  <div class="main" v-if="main.localesIntro && main.localesIntroMiscText">
+    <CurriculumsOverview v-if="Object.keys(curriculum).length > 1" />
+    <SuperblockOverview :superblock="Object.keys(curriculum)[0]" v-else />
   </div>
-  <div v-else-if="main.isLoading">Page is loading ...</div>
+  <div class="main" v-else-if="main.isLoading">Page is loading ...</div>
   <ErrorInfo v-else> Introduction data failed to load. </ErrorInfo>
 </template>
 
-<style scoped></style>
+<style scoped>
+div.main {
+  width: 780px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: auto;
+}
+
+@media (max-width: 1024px) {
+  div.main {
+    width: 625px;
+  }
+}
+
+@media (max-width: 768px) {
+  div.main {
+    width: 100%;
+  }
+}
+</style>

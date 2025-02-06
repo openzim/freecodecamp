@@ -10,12 +10,12 @@ describe('Parsing a basic JS challenge', () => {
     markdown = await readFile(join(__dirname, 'fixtures', 'basicMarkdownChallenge.md'), 'utf-8')
     challenge = parseChallenge(markdown)
   })
-  it('should take in FCC markdown as parse description from it', async () => {
+  it('should take in FCC markdown as parse description from it', () => {
     const description = challenge.description
     expect(typeof description === 'string').toBe(true)
     expect(description && description.length > 0).toBe(true)
   })
-  it('should pull the header from the markdown', async () => {
+  it('should pull the header from the markdown', () => {
     const headers = challenge.header
     expect(typeof headers === 'object').toBe(true)
     expect(headers['title']).toEqual('Accessing: Object Properties with Variables')
@@ -24,15 +24,15 @@ describe('Parsing a basic JS challenge', () => {
     expect(headers['id']).toEqual('56533eb9ac21ba0edf2244c9')
     expect(headers['videoUrl']).toEqual('https://scrimba.com/c/cnQyKur')
   })
-  it('should pull the seed code from the markdown', async () => {
+  it('should pull the seed code from the markdown', () => {
     const seed = challenge.seed
     expect(typeof seed === 'string').toBe(true)
   })
-  it('should parse the hints from the markdown', async () => {
+  it('should parse the hints from the markdown', () => {
     const hints = challenge.hints
     expect(hints.length).toEqual(6)
   })
-  it('should get the solution from the markdown', async () => {
+  it('should get the solution from the markdown', () => {
     const solutions = challenge.solutions
     expect(solutions.length).toEqual(1)
     expect(typeof solutions[0] === 'string').toBe(true)
@@ -40,25 +40,25 @@ describe('Parsing a basic JS challenge', () => {
 })
 
 describe('Extract key/value for markdown header', () => {
-  it('should parse property with quotes', async () => {
+  it('should parse property with quotes', () => {
     expect(extractKeyValueFromMarkdown("title: 'A title: with a colon and quotes'")).toEqual([
       'title',
       'A title: with a colon and quotes'
     ])
   })
-  it('should parse property without quotes', async () => {
+  it('should parse property without quotes', () => {
     expect(extractKeyValueFromMarkdown('title: A simple title')).toEqual([
       'title',
       'A simple title'
     ])
   })
-  it('should not care about extra spaces', async () => {
+  it('should not care about extra spaces', () => {
     expect(extractKeyValueFromMarkdown('title:   A simple title  ')).toEqual([
       'title',
       'A simple title'
     ])
   })
-  it('should not care about extra spaces with quotes', async () => {
+  it('should not care about extra spaces with quotes', () => {
     expect(extractKeyValueFromMarkdown("title:  ' A simple title  '   ")).toEqual([
       'title',
       ' A simple title  '

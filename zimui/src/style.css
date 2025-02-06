@@ -1,18 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-html,
-body {
-  height: 100%;
-  min-height: 100%;
-}
-
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
   color: #213547;
   background-color: #ffffff;
 
@@ -23,69 +9,59 @@ body {
   -webkit-text-size-adjust: 100%;
 }
 
-.markdown pre {
-  @apply pl-4 my-4;
+img {
+  height: auto;
 }
 
-.markdown p {
-  @apply pt-2;
+html,
+body {
+  margin: 0;
+  height: 100%;
+  min-height: 100%;
 }
 
-.centered {
-  @apply max-w-2xl m-auto;
+* {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
 }
 
 a {
-  font-weight: 500;
-  color: #646cff;
+  color: inherit;
   text-decoration: inherit;
 }
-a:hover {
-  color: #747bff;
-}
 
-body {
+ul,
+ol,
+menu {
+  list-style: none;
   margin: 0;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-  height: 100%;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-h2 {
-  @apply text-4xl my-4;
+  padding: 0;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
   font-family: inherit;
-  background-color: #f9f9f9;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
 
-.card {
-  padding: 2em;
+.splitpanes--vertical .splitpanes__splitter {
+  background: #dfdfe2;
+  border: 5px #f5f6f7;
+  min-width: 16px !important;
+  border-left-style: solid;
+  border-right-style: solid;
+}
+
+.splitpanes--horizontal .splitpanes__splitter {
+  min-height: 16px !important;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-left-style: none;
 }
 
 #app {
   margin: 0 auto;
   text-align: left;
+  display: flex;
+  flex-direction: column;
   height: 100%;
 }

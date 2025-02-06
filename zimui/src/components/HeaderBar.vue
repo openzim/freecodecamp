@@ -7,7 +7,12 @@ import headerLogo from '@/assets/freecodecamp-header.svg'
 const main = useMainStore()
 onMounted(async () => {
   try {
-    await main.fetchLocales()
+    await Promise.all([
+      main.fetchLocalesIntro(),
+      main.fetchCurriculums(),
+      main.fetchLocalesMotivation(),
+      main.fetchLocalesTranslations()
+    ])
   } catch {
     main.setErrorMessage('An unexpected error occured.')
   }

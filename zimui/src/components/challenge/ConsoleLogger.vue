@@ -17,15 +17,17 @@ const syntaxError = toRef(props, 'syntaxError')
       {{ syntaxError.name }}
       {{ syntaxError.message }}
     </p>
-    <pre v-for="(log, i) in main.logs" v-else :key="i"> > {{ log }} </pre>
+    <pre v-for="(log, i) in main.challengeResult?.logs" v-else :key="i"> > {{ log }} </pre>
   </div>
 </template>
 
 <style scoped>
+/*
 .box {
   @apply border-2 border-s-black p-4 h-full;
 }
 .syntaxError {
   color: red;
 }
+*/
 </style>

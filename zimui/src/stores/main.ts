@@ -28,6 +28,11 @@ export type RootState = {
   challengeResult: RunResult | null
   challengePassedDialogActive: boolean
   challengeResetDialogActive: boolean
+  currentProfile: string
+  alreadySolvedChallenges: string[]
+  challengeSuperblock: string | null
+  challengeCourse: string | null
+  challengeSlug: string | null
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -57,9 +62,24 @@ const runTest = function (state: any) {
       state.challengeResult.hints.filter((h: RunResultHint) => h.passed).length ===
       state.challengeResult.hints.length
     ) {
+      state.alreadySolvedChallenges.push(
+        `${state.challengeSuperblock}/${state.challengeCourse}/${state.challengeSlug}`
+      )
+      try {
+        localStorage.setItem(
+          'freeCodeCamp.alreadySolvedChallenges',
+          JSON.stringify(state.alreadySolvedChallenges)
+        )
+      } catch (e) {
+        console.error(e)
+      }
       state.challengePassedDialogActive = true
     }
   }
+}
+
+const currentProfile = function () {
+  return localStorage.getItem('freeCodeCamp.currentProfile') || 'default'
 }
 
 export const useMainStore = defineStore('main', {
@@ -78,7 +98,11 @@ export const useMainStore = defineStore('main', {
       cheatMode: localStorage.getItem('cheatMode') == 'true',
       challengeResult: null,
       challengePassedDialogActive: false,
-      challengeResetDialogActive: false
+      challengeResetDialogActive: false,
+      currentProfile: currentProfile(),
+      alreadySolvedChallenges: JSON.parse(
+        localStorage.getItem(`freeCodeCamp.${currentProfile()}.alreadySolvedChallenges`) || '[]'
+      )
     }) as RootState,
   getters: {
     nextChallenge: nextChallenge,
@@ -174,6 +198,9 @@ export const useMainStore = defineStore('main', {
       return axios.get(`./content/curriculum/${superblock}/${course}/${slug}.md`).then(
         (response) => {
           this.isLoading = false
+          this.challengeSuperblock = superblock
+          this.challengeCourse = course
+          this.challengeSlug = slug
           this.challenge = parseChallenge(response.data as string)
           this.resetSolution()
           this.runTest()

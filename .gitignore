@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/linux,macos,python,database,visualstudiocode,intellij
-# Edit at https://www.toptal.com/developers/gitignore?templates=linux,macos,python,database,visualstudiocode,intellij
+# Created by https://www.toptal.com/developers/gitignore/api/linux,macos,python,database,intellij
+# Edit at https://www.toptal.com/developers/gitignore?templates=linux,macos,python,database,intellij
 
 ### Database ###
 *.accdb
@@ -344,14 +344,6 @@ poetry.toml
 # LSP config files
 pyrightconfig.json
 
-### VisualStudioCode ###
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-!.vscode/*.code-snippets
-
 # Local History for Visual Studio Code
 .history/
 
@@ -363,7 +355,7 @@ pyrightconfig.json
 .history
 .ionide
 
-# End of https://www.toptal.com/developers/gitignore/api/linux,macos,python,database,visualstudiocode,intellij
+# End of https://www.toptal.com/developers/gitignore/api/linux,macos,python,database,intellij
 
 # local dirs used for working files
 tmp
@@ -377,3 +369,4 @@ output
 zimui/public/content
 zimui/public/mathjax
 scraper/src/fcc2zim/mathjax
+scraper/src/fcc2zim/fonts

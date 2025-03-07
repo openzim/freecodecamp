@@ -25,7 +25,7 @@ export interface Blocks {
  * @param note - Note on the superblock
  * @param blocks - Information on the blocks (i.e. courses)
  */
-export interface LocaleInfo {
+export interface LocaleIntroInfo {
   title: string
   intro: string[]
   note: string
@@ -37,6 +37,38 @@ export interface LocaleInfo {
  * superblock slug to superblock information. File format comes from FCC file at
  * locales/intro.json (for proper language).
  */
-export interface Locales {
-  [dict_key: string]: LocaleInfo
+export interface LocalesIntro {
+  [dict_key: string]: LocaleIntroInfo
+}
+
+/**
+ * Miscelaneous text for UI
+ */
+export interface LocalesIntroMiscText {
+  courses: string
+  expand: string
+  collapse: string
+}
+
+/**
+ * Motivational strings. File comes from FCC file at locales/motivation.json.
+ */
+export interface LocalesMotivation {
+  compliments: string[]
+  motivationalQuotes: {
+    quote: string
+    author: string
+  }[]
+}
+
+/**
+ * Translations strings. File comes from FCC file at locales/translations.json.
+ */
+export interface LocalesTranslations {
+  learn: {
+    [dict_key: string]: string
+  }
+  buttons: {
+    [dict_key: string]: string
+  }
 }

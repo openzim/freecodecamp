@@ -28,17 +28,8 @@ def build_curriculum_redirects(curriculum_dist: Path):
         superblock_dict = json.load(course_index_str)
 
     redirects: list[CurriculumRedirect] = []
-    for superblock in superblock_dict:
-        course_list = superblock_dict[superblock]
-        for course in course_list:
-            meta_json_path = Path(
-                curriculum_dist,
-                "curriculum",
-                superblock,
-                course,
-                "_meta.json",
-            )
-            challenges = json.loads(meta_json_path.read_text())["challenges"]
+    for superblock, course_data in superblock_dict.items():
+        for course, challenges in course_data.items():
             for challenge in challenges:
                 title = challenge["title"]
                 redirects.append(
@@ -57,6 +48,7 @@ def build_command(
 ):
     logger.info("Scraper: build phase starting")
 
+    # Add Mathjax files
     mathjax = (Path(__file__) / "../mathjax").resolve()
     count_mathjax_files = len(list(mathjax.rglob("*")))
     logger.info(f"Adding {count_mathjax_files} MathJax files in {mathjax}")
@@ -67,6 +59,21 @@ def build_command(
         logger.debug(f"Adding {path} to ZIM")
         creator.add_item_for(
             path=path,
+            fpath=file,
+            is_front=False,
+        )
+
+    # Add fonts files
+    fonts = (Path(__file__) / "../fonts").resolve()
+    count_fonts_files = len(list(fonts.rglob("*")))
+    logger.info(f"Adding {count_fonts_files} fonts files in {fonts}")
+    for file in fonts.rglob("*"):
+        if not file.is_file():
+            continue
+        path = Path("content") / Path(file).relative_to(fonts.parent)
+        logger.debug(f"Adding {path} to ZIM")
+        creator.add_item_for(
+            path=str(path),
             fpath=file,
             is_front=False,
         )

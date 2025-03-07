@@ -13,14 +13,14 @@ describe('Running a basic JS challenge', () => {
     challenge = parseChallenge(markdown)
   })
 
-  it('should take in a challenge and run a working solution against it', async () => {
+  it('should take in a challenge and run a working solution against it', () => {
     const result = runChallenge(challenge, challenge.solutions[0], {
       supressConsole: true
     })
     expect(result.hints.filter((h) => h.passed).length).toEqual(challenge.hints.length)
   })
 
-  it('should log all the console statements for outputting to the user', async () => {
+  it('should log all the console statements for outputting to the user', () => {
     const result = runChallenge(challenge, challenge.solutions[0], {
       supressConsole: true
     })
@@ -29,30 +29,34 @@ describe('Running a basic JS challenge', () => {
     expect(result.hints.filter((h) => h.passed).length).toEqual(challenge.hints.length)
   })
 
-  it('should not pass all tests with a bad solution', async () => {
+  it('should not pass all tests with a bad solution', () => {
     const badSolution = challenge.solutions[1]
     const result = runChallenge(challenge, badSolution)
     expect(result.hints[1].passed).toBe(false)
-    expect(result.hints[1].description).toEqual('The variable `player` should be a string')
+    expect(result.hints[1].description).toEqual(
+      'The variable <code>player</code> should be a string'
+    )
   })
 
-  it('should still pass `code` regex tests even when the code throws an exception', async () => {
+  it('should still pass `code` regex tests even when the code throws an exception', () => {
     const badSolution = challenge.solutions[2] // Reference error code
     const result = runChallenge(challenge, badSolution)
     expect(result.hints[1].passed).toBe(false)
-    expect(result.hints[1].description).toEqual('The variable `player` should be a string')
+    expect(result.hints[1].description).toEqual(
+      'The variable <code>player</code> should be a string'
+    )
 
     // Code matcher still pass
     expect(result.hints[3].passed).toBe(true)
     expect(result.hints[3].description).toEqual(
-      'You should use bracket notation to access `testObj`'
+      'You should use bracket notation to access <code>testObj</code>'
     )
 
     // Log the error
     expect(result.logs[0]).toEqual('ReferenceError: someUnknownVariable is not defined')
   })
 
-  it('should throw an error on syntax errors', async () => {
+  it('should throw an error on syntax errors', () => {
     const result = runChallenge(challenge, challenge.solutions[3])
     expect(result.logs[0]).toEqual('SyntaxError: Unexpected number')
   })

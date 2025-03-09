@@ -70,6 +70,9 @@ class Context:
     # Date when the crawl started
     start_date: datetime.date
 
+    # Path or URL to use as ZIM illustration
+    illustration: str | None = None
+
     # logger to use everywhere (do not mind about mutability, we want to reuse same
     # logger everywhere)
     logger: logging.Logger = getLogger(  # noqa: RUF009

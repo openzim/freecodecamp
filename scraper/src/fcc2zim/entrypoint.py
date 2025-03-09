@@ -146,6 +146,11 @@ def prepare_context(raw_args: list[str]) -> None:
         dest="overwrite_existing_zim",
     )
 
+    parser.add_argument(
+        "--illustration",
+        help="Path or URL to ZIM illustration. Bitmap and SVG formats are supported.",
+    )
+
     args = parser.parse_args(raw_args)
 
     # Ignore unset values so they do not override the default specified in Context

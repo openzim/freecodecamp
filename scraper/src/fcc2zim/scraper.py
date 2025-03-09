@@ -1,7 +1,11 @@
+import io
 import logging
 from pathlib import Path
 
-from zimscraperlib.inputs import compute_descriptions
+from zimscraperlib.image.conversion import convert_image, convert_svg2png
+from zimscraperlib.image.probing import format_for
+from zimscraperlib.image.transformation import resize_image
+from zimscraperlib.inputs import compute_descriptions, handle_user_provided_file
 from zimscraperlib.zim import Creator, metadata
 
 from fcc2zim.build import build_command
@@ -81,9 +85,35 @@ class Scraper:
         else:
             logger.info(f"ZIM path: {self.zim_path}")
 
-        logo_path = Path(__file__).parent.joinpath("assets", "fcc_48.png")
+        if context.illustration:
+            logo_path = handle_user_provided_file(context.illustration)
+            if not logo_path:
+                raise ValueError(f"Logo not found at {context.illustration}")
+        else:
+            logo_path = Path(__file__).parent.joinpath("assets", "fcc_48.png")
         if not logo_path.exists():
             raise ValueError(f"Logo not found at {logo_path}")
+
+        illustration = io.BytesIO()
+        illustration_format = format_for(logo_path, from_suffix=False)
+        if illustration_format == "SVG":
+            convert_svg2png(
+                logo_path,
+                illustration,
+                metadata.DefaultIllustrationMetadata.illustration_size,
+                metadata.DefaultIllustrationMetadata.illustration_size,
+            )
+        else:
+            if illustration_format != "PNG":
+                convert_image(logo_path, illustration, fmt="PNG")
+            else:
+                illustration = io.BytesIO(logo_path.read_bytes())
+            resize_image(
+                illustration,
+                width=metadata.DefaultIllustrationMetadata.illustration_size,
+                height=metadata.DefaultIllustrationMetadata.illustration_size,
+                method="cover",
+            )
 
         self.creator = Creator(self.zim_path, "index.html").config_metadata(
             std_metadata=metadata.StandardMetadataList(
@@ -94,7 +124,7 @@ class Scraper:
                 Publisher=metadata.PublisherMetadata(context.publisher),
                 Date=metadata.DateMetadata(context.start_date),
                 Illustration_48x48_at_1=metadata.DefaultIllustrationMetadata(
-                    logo_path.read_bytes()
+                    illustration
                 ),
                 Description=metadata.DescriptionMetadata(context.description),
                 LongDescription=(

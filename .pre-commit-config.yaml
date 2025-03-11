@@ -7,15 +7,15 @@ repos:
       - id: trailing-whitespace
       - id: end-of-file-fixer
   - repo: https://github.com/psf/black
-    rev: "24.10.0"
+    rev: "25.1.0"
     hooks:
       - id: black
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.9.3
+    rev: v0.9.10
     hooks:
       - id: ruff
   - repo: https://github.com/RobertCraigie/pyright-python
-    rev: v1.1.392.post0
+    rev: v1.1.396
     hooks:
       - id: pyright
         name: pyright (system)

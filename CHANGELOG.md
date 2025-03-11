@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Enhance the UI design to be closer to original FCC UI (#23)
 - Add support for custom ZIM illustration (#79)
 
+### Changed
+
+- Upgrade Python and JS dependencies (#120)
+
 ## [1.3.0] - 2025-01-24
 
 ### Changed

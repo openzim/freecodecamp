@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Remove useless call to Fetch API causing issue on kiwix-desktop (#122)
 - Extract inline JS to plain files in UI (#123)
 
 ## [2.0.0] - 2025-03-11

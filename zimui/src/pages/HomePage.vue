@@ -4,15 +4,13 @@ import ErrorInfo from '@/components/ErrorInfo.vue'
 import SuperblockOverview from '@/components/SuperblockOverview.vue'
 import CurriculumsOverview from '@/components/CurriculumsOverview.vue'
 
-const curriculum = await (await fetch(`content/curriculum/index.json`)).json()
-
 const main = useMainStore()
 </script>
 
 <template>
-  <div class="main" v-if="main.localesIntro && main.localesIntroMiscText">
-    <CurriculumsOverview v-if="Object.keys(curriculum).length > 1" />
-    <SuperblockOverview :superblock="Object.keys(curriculum)[0]" v-else />
+  <div class="main" v-if="main.curriculums && main.localesIntro && main.localesIntroMiscText">
+    <CurriculumsOverview v-if="Object.keys(main.curriculums).length > 1" />
+    <SuperblockOverview :superblock="Object.keys(main.curriculums)[0]" v-else />
   </div>
   <div class="main" v-else-if="main.isLoading">Page is loading ...</div>
   <ErrorInfo v-else> Introduction data failed to load. </ErrorInfo>

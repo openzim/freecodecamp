@@ -47,7 +47,7 @@ def fetch_command(
             count = 0
             for member in zip_ref.namelist():
                 if not member.endswith("/") and (
-                    member.startswith("freeCodeCamp-main/curriculum/challenges/_meta")
+                    member.startswith("freeCodeCamp-main/curriculum/structure")
                     or member.startswith(
                         f"freeCodeCamp-main/curriculum/challenges/{fcc_lang}"
                     )

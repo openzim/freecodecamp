@@ -17,10 +17,10 @@ def read_yaml_frontmatter(filename: pathlib.Path) -> dict[str, str]:
 
 
 class Challenge:
-    def __init__(self, fpath: str | pathlib.Path) -> None:
+    def __init__(self, course_superblock: str, fpath: str | pathlib.Path) -> None:
         self.path = pathlib.Path(fpath)
         self.course_slug = self.path.parent.stem
-        self.course_superblock = "-".join(self.path.parent.parent.stem.split("-")[1:])
+        self.course_superblock = course_superblock
         self.language = self.path.parent.parent.parent.stem
         self._frontmatter = None
 

@@ -8,8 +8,8 @@ from fcc2zim.context import Context
 logger = Context.logger
 
 
-def get_challenges_for_lang(tmp_path: Path, language: str):
-    return Path(tmp_path, language).rglob("*.md")
+def get_challenges_for_lang(challenges_path: Path, course: str, language: str):
+    return challenges_path.joinpath(language, "blocks", course).rglob("*.md")
 
 
 def update_index(
@@ -88,26 +88,48 @@ def prebuild_command(
     shutil.rmtree(curriculum_dist)
 
     challenges = curriculum_raw.joinpath("extracted", "curriculum", "challenges")
+    structure = curriculum_raw.joinpath("extracted", "curriculum", "structure")
     locales = curriculum_raw.joinpath(
         "extracted", "client", "i18n", "locales", fcc_lang
     )
 
+    # compute list of superblocks content
+    superblocks: dict[str, list[str]] = {}
+    for file in structure.joinpath("superblocks").glob("*.json"):
+        superblock_name = file.stem
+        superblock_content = json.loads(file.read_bytes())
+        if "blocks" in superblock_content:
+            superblocks[superblock_name] = superblock_content["blocks"]
+
     # eg. ['basic-javascript', 'debugging']
     for course in course_list:
         logger.debug(f"Prebuilding {course}")
-        meta = json.loads(challenges.joinpath("_meta", course, "meta.json").read_text())
+        meta = json.loads(structure.joinpath("blocks", f"{course}.json").read_text())
         # Get the order that the challenges should be completed in for <course>
         ids: list[str] = [
             item[0] if isinstance(item, list) else item["id"]
             for item in meta["challengeOrder"]
         ]
-        superblock = meta["superBlock"]
+
+        matching_superblocks = [
+            superblock_name
+            for superblock_name, superblock_content in superblocks.items()
+            if course in superblock_content
+        ]
+        if len(matching_superblocks) == 0:
+            raise Exception(
+                f"Issue finding superblock of '{course}' course, no superblock found"
+            )
+        if len(matching_superblocks) > 1:
+            raise Exception(
+                f"Issue finding superblock of '{course}' course, too many superblocks"
+                f" found: {','.join(matching_superblocks)}"
+            )
+        superblock = matching_superblocks[0]
 
         challenge_list: list[Challenge] = []
-        for file in get_challenges_for_lang(challenges, fcc_lang):
-            challenge = Challenge(file)
-            if challenge.course_superblock != superblock:
-                continue
+        for file in get_challenges_for_lang(challenges, course, fcc_lang):
+            challenge = Challenge(superblock, file)
             # ID is a UUID the Challenge, the only add it to the challenge list if it's
             # a part of the course.
             if challenge.identifier() in ids:

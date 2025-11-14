@@ -119,7 +119,7 @@ class TestScraper:
                 "start_date": start_date,
             }
         )
-        from fcc2zim.scraper import Scraper
+        from fcc2zim.scraper import Scraper  # noqa: PLC0415
 
         return Scraper()
 

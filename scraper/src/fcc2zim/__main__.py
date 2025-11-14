@@ -12,7 +12,7 @@ def main():
 
         # import this only once the Context has been initialized, so that it gets an
         # initialized context
-        from fcc2zim.scraper import Scraper
+        from fcc2zim.scraper import Scraper  # noqa: PLC0415
 
         Scraper().run()
 

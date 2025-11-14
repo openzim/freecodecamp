@@ -1,4 +1,4 @@
-FROM node:22-alpine AS zimui
+FROM node:24-alpine AS zimui
 
 WORKDIR /src
 COPY zimui /src
@@ -6,7 +6,7 @@ RUN yarn install --frozen-lockfile
 RUN yarn build
 
 
-FROM python:3.13.1-bookworm
+FROM python:3.14-bookworm
 LABEL org.opencontainers.image.source=https://github.com/openzim/freecodecamp
 
 RUN python -m pip install --no-cache-dir -U \

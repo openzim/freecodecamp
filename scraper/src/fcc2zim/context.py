@@ -21,7 +21,7 @@ class Context:
     """
 
     # singleton instance
-    _instance: "Context | None" = None
+    _instance: Context | None = None
 
     # list of courses to include
     course: list[str]
@@ -93,7 +93,7 @@ class Context:
             cls._instance = new_instance
 
     @classmethod
-    def get(cls) -> "Context":
+    def get(cls) -> Context:
         if not cls._instance:
             raise OSError("Uninitialized context")  # pragma: no cover
         return cls._instance

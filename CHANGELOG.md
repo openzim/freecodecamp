@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Upgrade to Python 3.14 (and dependencies) and Node.JS 24 (and dependencies) (#xxx)
+
 ### Fixed
 
 - Adapt to changes of data structure on freeCodeCamp repo (#130)

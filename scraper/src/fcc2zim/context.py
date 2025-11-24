@@ -26,7 +26,7 @@ class Context:
     # list of courses to include
     course: list[str]
 
-    # ZIM language, also used to fetch proper FCC content
+    # language, used to fetch proper FCC content and compute proper ZIM metadata
     language: str
 
     # ZIM name (also used for filename if zim_file is not set) and filename

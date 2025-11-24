@@ -167,27 +167,30 @@ class TestScraper:
             self.create_scraper(zimui_dist=Path("whatever"))
 
     @pytest.mark.parametrize(
-        "language, expected_fcc_lang",
+        "language, expected_fcc_lang, expected_zim_lang",
         [
-            pytest.param("eng", "english", id="english"),
-            pytest.param("eng", "english", id="english"),
-            # pytest.param("cmn", "chinese", id="chinese"),
-            # pytest.param("lzh", "chinese-traditional", id="chinese-traditional"),
-            pytest.param("eng", "english", id="english"),
-            pytest.param("spa", "espanol", id="espanol"),
-            pytest.param("deu", "german", id="german"),
-            pytest.param("ita", "italian", id="italian"),
-            pytest.param("jpn", "japanese", id="japanese"),
-            pytest.param("por", "portuguese", id="portuguese"),
-            pytest.param("ukr", "ukrainian", id="ukrainian"),
-            pytest.param("swa", "swahili", id="swahili"),
+            pytest.param("zh-hans", "chinese", "zho", id="chinese"),
+            pytest.param(
+                "zh-hant", "chinese-traditional", "zho", id="chinese-traditional"
+            ),
+            pytest.param("eng", "english", "eng", id="english"),
+            pytest.param("spa", "espanol", "spa", id="espanol"),
+            pytest.param("deu", "german", "deu", id="german"),
+            pytest.param("ita", "italian", "ita", id="italian"),
+            pytest.param("jpn", "japanese", "jpn", id="japanese"),
+            pytest.param("por", "portuguese", "por", id="portuguese"),
+            pytest.param("ukr", "ukrainian", "ukr", id="ukrainian"),
+            pytest.param("swa", "swahili", "swa", id="swahili"),
         ],
     )
-    def test_fcc_lang_ok(self, language: str, expected_fcc_lang: str):
+    def test_fcc_lang_ok(
+        self, language: str, expected_fcc_lang: str, expected_zim_lang: str
+    ):
         scraper = self.create_scraper(language=language)
         context = Context.get()
         assert context.language == language
         assert scraper.fcc_lang == expected_fcc_lang
+        assert scraper.zim_lang == expected_zim_lang
 
     def test_language_ko(self):
         with pytest.raises(ValueError):

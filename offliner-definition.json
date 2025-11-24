@@ -13,39 +13,47 @@
       "type": "string-enum",
       "required": true,
       "title": "Language",
-      "description": "Language of zim file and curriculum.",
+      "description": "Language of curriculum.",
       "choices": [
         {
-          "title": "ENGLISH",
+          "title": "English",
           "value": "eng"
         },
         {
-          "title": "ESPANOL",
+          "title": "Espanol",
           "value": "spa"
         },
         {
-          "title": "GERMAN",
+          "title": "German",
           "value": "deu"
         },
         {
-          "title": "ITALIAN",
+          "title": "Italian",
           "value": "ita"
         },
         {
-          "title": "JAPANESE",
+          "title": "Japanese",
           "value": "jpn"
         },
         {
-          "title": "PORTOGUESE",
+          "title": "Portuguese",
           "value": "por"
         },
         {
-          "title": "UKRAINIAN",
+          "title": "Ukrainian",
           "value": "ukr"
         },
         {
-          "title": "SWAHILI",
+          "title": "Swahili",
           "value": "swa"
+        },
+        {
+          "title": "Chinese Simplified",
+          "value": "zh-hans"
+        },
+        {
+          "title": "Chinese Traditional",
+          "value": "zh-hant"
         }
       ]
     },

@@ -6,12 +6,11 @@ NAME = "fcc2zim"
 VERSION = __version__
 ROOT_DIR = pathlib.Path(__file__).parent
 
-# key is the language passed at CLI (and used as ZIM Language metadata)
+# key is the language passed at CLI
 # value is the name of folders used in FCC source code
 FCC_LANG_MAP = {
-    # removed until we settle on these two codes
-    # "cmn": "chinese",
-    # "lzh": "chinese-traditional",
+    "zh-hans": "chinese",
+    "zh-hant": "chinese-traditional",
     "eng": "english",
     "spa": "espanol",
     "deu": "german",
@@ -20,4 +19,17 @@ FCC_LANG_MAP = {
     "por": "portuguese",
     "ukr": "ukrainian",
     "swa": "swahili",
+}
+
+ZIM_LANG_MAP = {
+    "zh-hans": "zho",
+    "zh-hant": "zho",
+    "eng": "eng",
+    "spa": "spa",
+    "deu": "deu",
+    "ita": "ita",
+    "jpn": "jpn",
+    "por": "por",
+    "ukr": "ukr",
+    "swa": "swa",
 }

@@ -9,7 +9,7 @@ from zimscraperlib.inputs import compute_descriptions, handle_user_provided_file
 from zimscraperlib.zim import Creator, metadata
 
 from fcc2zim.build import build_command
-from fcc2zim.constants import FCC_LANG_MAP, VERSION
+from fcc2zim.constants import FCC_LANG_MAP, VERSION, ZIM_LANG_MAP
 from fcc2zim.context import Context
 from fcc2zim.fetch import fetch_command
 from fcc2zim.prebuild import prebuild_command
@@ -40,6 +40,10 @@ class Scraper:
         if context.language not in FCC_LANG_MAP:
             raise ValueError(f"Unsupported language {context.language}")
         self.fcc_lang = FCC_LANG_MAP[context.language]
+
+        if context.language not in ZIM_LANG_MAP:
+            raise ValueError(f"Unsupported language {context.language}")
+        self.zim_lang = ZIM_LANG_MAP[context.language]
 
         context.description, context.long_description = compute_descriptions(
             context.description, context.description, context.long_description
@@ -118,7 +122,7 @@ class Scraper:
         self.creator = Creator(self.zim_path, "index.html").config_metadata(
             std_metadata=metadata.StandardMetadataList(
                 Name=metadata.NameMetadata(context.name),
-                Language=metadata.LanguageMetadata(context.language),
+                Language=metadata.LanguageMetadata(self.zim_lang),
                 Title=metadata.TitleMetadata(context.title),
                 Creator=metadata.CreatorMetadata(context.creator),
                 Publisher=metadata.PublisherMetadata(context.publisher),

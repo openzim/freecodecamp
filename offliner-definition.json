@@ -122,7 +122,8 @@
       "pattern": "^([a-z0-9\\-\\.]+_)([a-z\\-]+_)([a-z0-9\\-\\.]+_)([a-z0-9\\-\\.]+_|)([\\d]{4}-[\\d]{2}|\\{period\\}).zim$"
     },
     "illustration": {
-      "type": "url",
+      "type": "blob",
+      "kind": "image",
       "required": false,
       "title": "Illustration",
       "description": "URL for ZIM illustration. Freecodecamp default logo if missing"

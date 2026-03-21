@@ -28,6 +28,7 @@ export type RootState = {
   challengeResult: RunResult | null
   challengePassedDialogActive: boolean
   challengeResetDialogActive: boolean
+  testsFlash: boolean
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -78,7 +79,8 @@ export const useMainStore = defineStore('main', {
       cheatMode: localStorage.getItem('cheatMode') == 'true',
       challengeResult: null,
       challengePassedDialogActive: false,
-      challengeResetDialogActive: false
+      challengeResetDialogActive: false,
+      testsFlash: false
     }) as RootState,
   getters: {
     nextChallenge: nextChallenge,

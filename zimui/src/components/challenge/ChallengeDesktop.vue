@@ -8,6 +8,16 @@ import { Splitpanes, Pane } from 'splitpanes'
 import { useMainStore } from '@/stores/main'
 
 const main = useMainStore()
+
+function checkCode() {
+  main.runTest()
+  if (!main.challengePassedDialogActive) {
+    main.testsFlash = true
+    setTimeout(() => {
+      main.testsFlash = false
+    }, 900)
+  }
+}
 </script>
 
 <template>
@@ -19,7 +29,10 @@ const main = useMainStore()
         <button v-if="main.cheatMode" @click="main.cheatSolution()">Set solution</button>
 
         <!--Run the tests button-->
-        <button @click="main.runTest">
+        <button
+          :class="{ 'tests-failed-flash': main.testsFlash }"
+          @click="checkCode"
+        >
           {{ main.localesTranslations.buttons['check-code'] }}
         </button>
 
@@ -73,4 +86,5 @@ button {
   padding: 0.375rem 0.75rem;
   margin: 0 0 0.5rem;
 }
+
 </style>

@@ -17,6 +17,16 @@ enum MobileTab {
 }
 
 const selectedTab: Ref<MobileTab> = ref(MobileTab.Instructions)
+
+function checkCode() {
+  main.runTest()
+  if (!main.challengePassedDialogActive) {
+    main.testsFlash = true
+    setTimeout(() => {
+      main.testsFlash = false
+    }, 900)
+  }
+}
 </script>
 
 <template>
@@ -58,7 +68,12 @@ const selectedTab: Ref<MobileTab> = ref(MobileTab.Instructions)
       <button @click="main.challengeResetDialogActive = true">
         {{ main.localesTranslations.buttons['reset-lesson'] }}
       </button>
-      <button @click="main.runTest()">{{ main.localesTranslations.buttons['run'] }}</button>
+      <button
+        :class="{ 'tests-failed-flash': main.testsFlash}"
+        @click="checkCode"
+      >
+        {{ main.localesTranslations.buttons['run'] }}
+      </button>
 
       <ChallengeDialogs />
     </div>
@@ -114,4 +129,5 @@ const selectedTab: Ref<MobileTab> = ref(MobileTab.Instructions)
 .code-editor {
   background-color: #fff;
 }
+
 </style>

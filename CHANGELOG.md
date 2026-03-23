@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add a visual red flash when "Check Your Code" tests fail (#126)
 
+### Fixed
+
+- Fix interpolation for placeholders in translation strings (#139)
+
 ## [2.0.3] - 2025-11-25
 
 ### Added

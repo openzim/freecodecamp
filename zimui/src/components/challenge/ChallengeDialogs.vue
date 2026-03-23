@@ -4,6 +4,7 @@ import type { ComputedRef } from 'vue'
 import { computed } from 'vue'
 import type { ChallengeInfo } from '@/types/challenges'
 import { singlePathParam } from '@/utils/pathParams'
+import { interpolate } from '@/utils/interpolate'
 import { useRoute, useRouter } from 'vue-router'
 
 import test_passed from '@/assets/test_passed.svg'
@@ -23,6 +24,11 @@ const nextChallenge: ComputedRef<ChallengeInfo | undefined> = computed(() => {
 const randomCompliment: ComputedRef<string | undefined> = computed(() =>
   main.localesMotivation?.compliments.random()
 )
+
+const resetWarnMessage = computed(() => {
+  const msg = main.localesTranslations?.learn['reset-warn'] || ''
+  return interpolate(msg, { title: main.challenge?.header['title'] || '' })
+})
 </script>
 
 <template>
@@ -42,7 +48,7 @@ const randomCompliment: ComputedRef<string | undefined> = computed(() =>
           </button>
         </div>
         <div class="message">
-          <p>{{ main.localesTranslations.learn['reset-warn'] }}</p>
+          <p>{{ resetWarnMessage }}</p>
           <p>
             <em>{{ main.localesTranslations.learn['reset-warn-2'] }}</em>
           </p>

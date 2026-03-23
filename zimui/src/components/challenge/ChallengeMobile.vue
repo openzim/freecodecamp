@@ -108,26 +108,26 @@ function checkCode() {
 }
 
 .header > button.active {
-  background-color: #3b3b4f;
-  color: #fff;
+  background-color: var(--tab-active-background);
+  color: var(--tab-active-color);
 }
 
 .header {
-  border-bottom: 1px solid #3b3b4f;
+  border-bottom: 1px solid var(--tab-active-background);
 }
 
 .footer > button {
-  background-color: #d0d0d5;
-  color: #1b1b32;
-  border: 3px solid #1b1b32;
+  background-color: var(--button-background);
+  color: var(--button-color);
+  border: 3px solid var(--foreground-accent);
 }
 
 .footer {
-  border-top: 1px solid #fff;
+  border-top: 1px solid var(--primary-background);
 }
 
 .code-editor {
-  background-color: #fff;
+  background-color: var(--editor-background);
 }
 
 </style>

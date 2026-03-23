@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  background-color: #f5f6f7;
+  background-color: var(--secondary-background, #f5f6f7);
 }
 
 p {
@@ -16,13 +16,13 @@ a[href^="https://"]
   /* modify all <a> tag so that the :after is centered */
   display: inline-flex;
   align-items: center;
-  color: #df2121;
+  color: var(--link-color, #df2121);
 }
 
 a[href^="http://"]:hover,
 a[href^="https://"]:hover
 {
-  color: #df2121;
+  color: var(--link-color, #df2121);
 }
 
 a[href^="http://"]:after,
@@ -49,7 +49,8 @@ a[href^="https://"]:after
 }
 .markdown table thead {
   border-color: inherit;
-  background-color: lightblue;
+  background-color: var(--table-header-bg, lightblue);
+  color: var(--table-header-color, inherit);
   display: table-header-group;
   vertical-align: middle;
 }
@@ -58,10 +59,10 @@ a[href^="https://"]:after
 }
 .markdown table td,
 .markdown table th {
-  border: 1px solid black;
+  border: 1px solid var(--table-border, black);
   padding: 6px 13px;
   text-align: center;
 }
 .markdown table tbody tr:nth-of-type(odd) {
-  background-color: rgb(211, 211, 211, 0.3);
+  background-color: var(--table-row-odd, rgba(211, 211, 211, 0.3));
 }

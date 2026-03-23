@@ -67,7 +67,7 @@ function checkCode() {
 
 .topright {
   display: flex;
-  background-color: white;
+  background-color: var(--editor-background);
 }
 
 .code-editor {
@@ -81,8 +81,9 @@ function checkCode() {
 button {
   font-size: 1.2rem;
   width: 100%;
-  border: 3px solid #1b1b32;
-  background-color: #d0d0d5;
+  border: 3px solid var(--foreground-accent);
+  background-color: var(--button-background);
+  color: var(--button-color);
   padding: 0.375rem 0.75rem;
   margin: 0 0 0.5rem;
 }

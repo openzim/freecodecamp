@@ -28,9 +28,9 @@ import dead_kiwix from '../assets/dead_kiwix.png'
   align-items: center;
   gap: 40px;
   margin: 60px 0;
-  background: white;
+  background: var(--primary-background);
   border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px var(--shadow-color);
   padding: 40px;
 }
 .content {
@@ -38,7 +38,7 @@ import dead_kiwix from '../assets/dead_kiwix.png'
   text-align: left;
 }
 .text {
-  color: #222;
+  color: var(--primary-color);
   margin: 10px 0;
   max-width: 500px;
   line-height: 1.6;

@@ -36,7 +36,7 @@ const course = computed(() => singlePathParam(route.params.course))
 }
 
 nav {
-  border: 1px solid #d0d0d5;
+  border: 1px solid var(--border-color);
 }
 
 ol {
@@ -45,7 +45,7 @@ ol {
 }
 
 .breadcrumb-left {
-  background-color: #d0d0d5;
+  background-color: var(--button-background);
   margin-inline-end: 0.57rem;
   min-width: 3rem;
 }
@@ -55,9 +55,9 @@ ol {
 }
 
 .breadcrumb-left::after {
-  background-color: #f5f6f7;
+  background-color: var(--secondary-background);
   border-bottom: 0.6rem solid transparent;
-  border-inline-start: 0.55rem solid #d0d0d5;
+  border-inline-start: 0.55rem solid var(--button-background);
   border-top: 0.6875rem solid transparent;
   content: '';
   height: 100%;

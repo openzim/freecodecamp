@@ -84,14 +84,14 @@ h3 {
 }
 
 div.block {
-  background-color: white;
+  background-color: var(--primary-background);
   margin-bottom: 30px;
 }
 
 div.block-description {
   padding: 0 15px 15px;
   font-size: 1.17rem;
-  border-bottom: 3px solid #f5f6f7;
+  border-bottom: 3px solid var(--secondary-background);
 }
 
 .icon {

@@ -24,17 +24,17 @@ const main = useMainStore()
 <style>
 ul.tests code {
   padding: 1px 4px;
-  border: 1px solid #858591;
-  background-color: #dfdfe2;
+  border: 1px solid var(--code-border);
+  background-color: var(--code-background);
   border-radius: 0;
-  color: #2a2a40;
+  color: var(--code-color);
   font-family: 'Hack-ZeroSlash';
   overflow-wrap: anywhere;
   font-size: 1.1rem;
 }
 
 ul.tests li:nth-child(2n + 1) code {
-  background-color: #f5f6f7;
+  background-color: var(--secondary-background);
 }
 </style>
 
@@ -56,12 +56,18 @@ ul.tests li:nth-child(2n + 1) code {
 }
 
 .hint:nth-child(2n + 1) {
-  background-color: #dfdfe2;
+  background-color: var(--tertiary-background);
 }
 
 h2.tests {
   text-align: center;
   padding: 0.5rem 0 1rem;
   font-size: 1.1rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .result img {
+    filter: invert(1);
+  }
 }
 </style>

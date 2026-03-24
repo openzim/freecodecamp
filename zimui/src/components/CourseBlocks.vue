@@ -63,7 +63,7 @@ const completedChallengesCount = computed(() => {
 
 <style scoped>
 button {
-  background-color: white;
+  background-color: var(--primary-background);
   width: 100%;
   display: flex;
   gap: 10px;
@@ -71,11 +71,12 @@ button {
   padding: 18px 15px;
   font-size: 1.13rem;
   border: none;
+  color: var(--primary-color);
 }
 
 button:hover {
-  color: #2a2a40;
-  background-color: #dfdfe2;
+  color: var(--secondary-color);
+  background-color: var(--hover-background);
 }
 
 img.icon {
@@ -105,14 +106,21 @@ div.completed {
 }
 
 .challenges a:hover {
-  color: #2a2a40;
-  background-color: #dfdfe2;
+  color: var(--secondary-color);
+  background-color: var(--hover-background);
 }
 
 @media (max-width: 500px) {
   button,
   .challenges a {
     font-size: 1rem;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  img.icon,
+  .challenges img {
+    filter: invert(1);
   }
 }
 </style>

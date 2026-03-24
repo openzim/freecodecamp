@@ -117,6 +117,8 @@ const resetWarnMessage = computed(() => {
 <style scoped>
 .v-sheet {
   text-align: center;
+  background-color: var(--primary-background);
+  color: var(--primary-color);
 }
 
 .v-sheet > * {
@@ -139,7 +141,7 @@ const resetWarnMessage = computed(() => {
 
 .header,
 .message {
-  border-bottom: 1px solid #1b1b32;
+  border-bottom: 1px solid var(--foreground-accent);
 }
 
 .header h2 {
@@ -165,29 +167,35 @@ const resetWarnMessage = computed(() => {
 }
 
 .danger {
-  color: #850000;
+  color: var(--danger-color);
 }
 
 .danger .header {
-  background-color: #ffadad;
+  background-color: var(--danger-background);
 }
 
 .danger button.reset {
-  color: #ffadad;
-  background-color: #850000;
+  color: var(--danger-background);
+  background-color: var(--danger-color);
   font-size: 1.4rem;
   width: 100%;
   padding: 0.625rem 1rem;
-  border: 3px solid #ffadad;
+  border: 3px solid var(--danger-background);
 }
 
 .passed button.next {
-  color: #1b1b32;
-  background-color: #d0d0d5;
+  color: var(--button-color);
+  background-color: var(--button-background);
   font-size: 1.4rem;
   width: 100%;
   padding: 0.625rem 1rem;
-  border: 3px solid #1b1b32;
+  border: 3px solid var(--foreground-accent);
+}
+
+@media (prefers-color-scheme: dark) {
+  .big_passed {
+    filter: invert(1);
+  }
 }
 
 .big_passed {

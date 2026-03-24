@@ -47,9 +47,9 @@ div.course {
   display: flex;
   align-items: center;
   gap: 15px;
-  background-color: #d0d0d5;
-  border: 3px solid #1b1b32;
-  color: #1b1b32;
+  background-color: var(--button-background);
+  border: 3px solid var(--foreground-accent);
+  color: var(--primary-color);
   font-size: 1.1rem;
   margin-bottom: 10px;
   min-height: 80px;
@@ -107,6 +107,12 @@ ul {
   }
   blockquote {
     font-size: 1.2rem;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  img {
+    filter: invert(1);
   }
 }
 </style>

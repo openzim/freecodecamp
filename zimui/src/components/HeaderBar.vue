@@ -31,7 +31,7 @@ onMounted(async () => {
 
 <style scoped>
 .header-bar {
-  background-color: #0a0a23;
+  background-color: var(--header-background);
 }
 
 #logo {

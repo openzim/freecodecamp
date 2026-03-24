@@ -36,10 +36,10 @@ div.markdown p:last-child {
 
 div.markdown code {
   padding: 1px 4px;
-  border: 1px solid #858591;
-  background-color: #dfdfe2;
+  border: 1px solid var(--code-border);
+  background-color: var(--code-background);
   border-radius: 0;
-  color: #2a2a40;
+  color: var(--code-color);
   font-family: 'Hack-ZeroSlash';
   overflow-wrap: anywhere;
   font-size: 1.1rem;
@@ -47,12 +47,12 @@ div.markdown code {
 
 div.markdown strong {
   font-weight: 700;
-  color: #1b1b32;
+  color: var(--primary-color);
 }
 
 div.markdown hr {
   border: 0;
-  border-top: 1px solid #d0d0d5;
+  border-top: 1px solid var(--hr-color);
   margin-bottom: 20px;
   margin-top: 20px;
 }

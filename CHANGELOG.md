@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Fix interpolation for placeholders in translation strings (#139)
+- Bundled ZIM UI inside pip package (#144)
 
 ## [2.0.3] - 2025-11-25
 

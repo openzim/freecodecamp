@@ -1,7 +1,8 @@
 FROM node:24-alpine AS zimui
 
 WORKDIR /src
-COPY zimui /src
+COPY zimui /src/zimui
+WORKDIR /src/zimui
 RUN yarn install --frozen-lockfile
 RUN yarn build
 
@@ -12,11 +13,13 @@ LABEL org.opencontainers.image.source=https://github.com/openzim/freecodecamp
 RUN python -m pip install --no-cache-dir -U \
       pip
 
-# Copy code + associated artifacts + zimui build output
+# Copy code + associated artifacts
 COPY LICENSE LICENSE.fcc.md README.md /src/
 COPY scraper/pyproject.toml scraper/openzim.toml scraper/tasks.py /src/scraper/
 COPY scraper/src /src/scraper/src
-COPY --from=zimui /src/dist /src/zimui
+
+# Copy zimui build output
+COPY --from=zimui /src/scraper/src/fcc2zim/zimui /src/scraper/src/fcc2zim/zimui
 
 # Install + cleanup
 RUN pip install --no-cache-dir /src/scraper \
@@ -28,6 +31,5 @@ WORKDIR /output
 
 ENV FCC_BUILD=/tmp
 ENV FCC_OUTPUT=/output
-ENV FCC_ZIMUI_DIST=/src/zimui
 
 CMD ["fcc2zim", "--help"]

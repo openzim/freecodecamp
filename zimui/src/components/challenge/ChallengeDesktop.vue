@@ -29,10 +29,7 @@ function checkCode() {
         <button v-if="main.cheatMode" @click="main.cheatSolution()">Set solution</button>
 
         <!--Run the tests button-->
-        <button
-          :class="{ 'tests-failed-flash': main.testsFlash }"
-          @click="checkCode"
-        >
+        <button :class="{ 'tests-failed-flash': main.testsFlash }" @click="checkCode">
           {{ main.localesTranslations.buttons['check-code'] }}
         </button>
 
@@ -87,5 +84,4 @@ button {
   padding: 0.375rem 0.75rem;
   margin: 0 0 0.5rem;
 }
-
 </style>

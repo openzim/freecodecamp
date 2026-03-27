@@ -4,7 +4,6 @@ import type { ComputedRef } from 'vue'
 import { computed } from 'vue'
 import type { ChallengeInfo } from '@/types/challenges'
 import { singlePathParam } from '@/utils/pathParams'
-import { interpolate } from '@/utils/interpolate'
 import { useRoute, useRouter } from 'vue-router'
 
 import test_passed from '@/assets/test_passed.svg'
@@ -21,27 +20,26 @@ const nextChallenge: ComputedRef<ChallengeInfo | undefined> = computed(() => {
   return main.nextChallenge(superblock.value, course.value, slug.value)
 })
 
-const randomCompliment: ComputedRef<string | undefined> = computed(() =>
-  main.localesMotivation?.compliments.random()
-)
+const randomCompliment = computed(() => main.t('motivation.compliment'))
 
 const resetWarnMessage = computed(() => {
-  const msg = main.localesTranslations?.learn['reset-warn'] || ''
-  return interpolate(msg, { title: main.challenge?.header['title'] || '' })
+  return main.t('translations.learn.reset-warn', {
+    title: main.challenge?.header['title'] || ''
+  })
 })
 </script>
 
 <template>
   <!--Reset dialog-->
   <v-dialog
-    v-if="main.localesTranslations"
+    v-if="main.isTranslationsReady"
     v-model="main.challengeResetDialogActive"
     max-width="500"
   >
     <template v-slot:default>
       <v-sheet class="danger">
         <div class="header">
-          <h2>{{ main.localesTranslations.learn['reset'] }}</h2>
+          <h2>{{ main.t('translations.learn.reset') }}</h2>
           <button class="close" type="button" @click="main.challengeResetDialogActive = false">
             <span class="sr-only">Close</span>
             <span aria-hidden="true">×</span>
@@ -50,7 +48,7 @@ const resetWarnMessage = computed(() => {
         <div class="message">
           <p>{{ resetWarnMessage }}</p>
           <p>
-            <em>{{ main.localesTranslations.learn['reset-warn-2'] }}</em>
+            <em>{{ main.t('translations.learn.reset-warn-2') }}</em>
           </p>
         </div>
         <div>
@@ -65,7 +63,7 @@ const resetWarnMessage = computed(() => {
               }
             "
           >
-            {{ main.localesTranslations.buttons['reset-lesson'] }}
+            {{ main.t('translations.buttons.reset-lesson') }}
           </button>
         </div>
       </v-sheet>
@@ -74,7 +72,7 @@ const resetWarnMessage = computed(() => {
 
   <!--Passed dialog-->
   <v-dialog
-    v-if="main.localesTranslations"
+    v-if="main.isTranslationsReady"
     v-model="main.challengePassedDialogActive"
     max-width="700"
   >
@@ -106,7 +104,7 @@ const resetWarnMessage = computed(() => {
               }
             "
           >
-            {{ main.localesTranslations.buttons['go-to-next'] }}
+            {{ main.t('translations.buttons.go-to-next') }}
           </button>
         </div>
       </v-sheet>

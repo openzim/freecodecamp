@@ -37,6 +37,10 @@ jobs:
         working-directory: scraper
         run: inv check-pyright
 
+      - name: Check UI translation keys
+        working-directory: scraper
+        run: inv check-ui-keys
+
   check-zimui-qa:
     runs-on: ubuntu-24.04
 

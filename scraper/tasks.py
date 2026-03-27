@@ -76,6 +76,12 @@ def check_pyright(ctx: Context, args: str = ""):
     ctx.run(f"pyright {args}", pty=use_pty)
 
 
+@task
+def check_ui_keys(ctx: Context):
+    """checks that the UI code only uses translation keys that are from ui_keys.yaml"""
+    ctx.run("python -m fcc2zim.check_ui_keys", pty=use_pty)
+
+
 @task(optional=["args"], help={"args": "check tools (pyright) additional arguments"})
 def checkall(ctx: Context, args: str = ""):
     """check static types"""

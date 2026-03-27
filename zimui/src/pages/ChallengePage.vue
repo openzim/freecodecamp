@@ -30,7 +30,7 @@ watch(
 
 <template>
   <div class="page" v-if="main.isLoading">Page is loading ...</div>
-  <div class="page" v-else-if="main.challenge && main.localesIntro">
+  <div class="page" v-else-if="main.challenge && main.isIntroReady">
     <ChallengeBreadcrumbs />
     <div
       v-if="supportedChallengeTypes.includes(main.challenge.header['challengeType'])"

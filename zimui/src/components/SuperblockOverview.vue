@@ -17,17 +17,17 @@ const activeCourse = toRef(props, 'activeCourse')
 </script>
 
 <template>
-  <div class="my-2" v-if="main.localesIntro && main.localesIntroMiscText && main.curriculums">
-    <h1>{{ main.localesIntro[superblock].title }}</h1>
+  <div class="my-2" v-if="main.isIntroReady && main.isIntroMiscTextReady && main.curriculums">
+    <h1>{{ main.tIntro(`${superblock}.title`) }}</h1>
     <SuperblockIcon :superblock="superblock" class="icon" />
     <!-- eslint-disable-next-line vue/no-v-html-->
     <p
-      v-for="(p, jdx) in main.localesIntro[superblock].intro"
+      v-for="(p, jdx) in main.tIntro(`${superblock}.intro`) as string[]"
       :key="jdx"
       class="my-2 super-block-intro"
       v-html="p"
     ></p>
-    <h2>{{ main.localesIntroMiscText.courses }}</h2>
+    <h2>{{ main.t('intro.misc-text.courses') }}</h2>
     <div
       class="block-parent"
       :id="`${superblock}-${course}`"
@@ -35,14 +35,17 @@ const activeCourse = toRef(props, 'activeCourse')
       :key="course"
     >
       <div class="block">
-        <h3 class="block-header">{{ main.localesIntro[superblock].blocks[course].title }}</h3>
+        <h3 class="block-header">
+          {{ main.tIntro(`${superblock}.blocks.${course}.title`) }}
+        </h3>
         <div class="block-description">
           <p
-            v-for="(p, jdx) in main.localesIntro[superblock].blocks[course].intro"
+            v-for="(p, jdx) in main.tIntro(
+              `${superblock}.blocks.${course}.intro`
+            ) as string[]"
             :key="jdx"
             v-html="p"
           ></p>
-          {{ main.localesIntro[course] }}
         </div>
         <CourseBlocks
           :superblock="superblock"

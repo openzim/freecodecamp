@@ -16,11 +16,11 @@ const course = computed(() => singlePathParam(route.params.course))
     <nav>
       <ol>
         <li class="breadcrumb-left">
-          <RouterLink to="/">{{ main.localesIntro?.[superblock].title }} </RouterLink>
+          <RouterLink to="/">{{ main.tIntro(`${superblock}.title`) }} </RouterLink>
         </li>
         <li class="breadcrumb-right">
           <RouterLink :to="`/${superblock}/${course}`">
-            {{ main.localesIntro?.[superblock].blocks[course].title }}
+            {{ main.tIntro(`${superblock}.blocks.${course}.title`) }}
           </RouterLink>
         </li>
       </ol>

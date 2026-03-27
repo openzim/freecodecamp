@@ -1,0 +1,25 @@
+# Keys from locale files that the ZIM UI uses.
+# Dynamic content isn't listed here since those keys depend on which courses and superblocks are included.
+
+translations:
+  buttons:
+    check-code:
+    reset-lesson:
+    run:
+    go-to-next:
+  learn:
+    heading:
+    reset:
+    reset-warn:
+      placeholders:
+        - title
+    reset-warn-2:
+
+motivation:
+  compliment:
+
+intro:
+  misc-text:
+    courses:
+    expand:
+    collapse:

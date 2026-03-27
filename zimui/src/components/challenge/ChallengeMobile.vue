@@ -30,7 +30,7 @@ function checkCode() {
 </script>
 
 <template>
-  <div v-if="main.localesTranslations" class="main">
+  <div v-if="main.isTranslationsReady" class="main">
     <div class="header">
       <button
         :class="{ active: selectedTab === MobileTab.Instructions }"
@@ -66,13 +66,10 @@ function checkCode() {
     <div class="footer">
       <button v-if="main.cheatMode" @click="main.cheatSolution()">Set solution</button>
       <button @click="main.challengeResetDialogActive = true">
-        {{ main.localesTranslations.buttons['reset-lesson'] }}
+        {{ main.t('translations.buttons.reset-lesson') }}
       </button>
-      <button
-        :class="{ 'tests-failed-flash': main.testsFlash}"
-        @click="checkCode"
-      >
-        {{ main.localesTranslations.buttons['run'] }}
+      <button :class="{ 'tests-failed-flash': main.testsFlash }" @click="checkCode">
+        {{ main.t('translations.buttons.run') }}
       </button>
 
       <ChallengeDialogs />

@@ -8,7 +8,7 @@ const main = useMainStore()
 </script>
 
 <template>
-  <div class="main" v-if="main.curriculums && main.localesIntro && main.localesIntroMiscText">
+  <div class="main" v-if="main.curriculums && main.isIntroReady && main.isIntroMiscTextReady">
     <CurriculumsOverview v-if="Object.keys(main.curriculums).length > 1" />
     <SuperblockOverview :superblock="Object.keys(main.curriculums)[0]" v-else />
   </div>

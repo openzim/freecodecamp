@@ -32,7 +32,7 @@ watch(
 </script>
 
 <template>
-  <div class="main" v-if="main.localesIntro && main.localesIntroMiscText && main.curriculums">
+  <div class="main" v-if="main.isIntroReady && main.isIntroMiscTextReady && main.curriculums">
     <SuperblockOverview :superblock="superblock" :activeCourse="course" />
   </div>
   <div class="main" v-else-if="main.isLoading">Page is loading ...</div>

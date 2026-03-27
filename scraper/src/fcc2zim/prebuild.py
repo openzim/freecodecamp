@@ -4,6 +4,7 @@ from pathlib import Path
 
 from fcc2zim.challenge import Challenge
 from fcc2zim.context import Context
+from fcc2zim.locale_validation import validate_locales
 
 logger = Context.logger
 
@@ -101,6 +102,8 @@ def prebuild_command(
         if "blocks" in superblock_content:
             superblocks[superblock_name] = superblock_content["blocks"]
 
+    included_superblocks: dict[str, list[str]] = {}
+
     # eg. ['basic-javascript', 'debugging']
     for course in course_list:
         logger.debug(f"Prebuilding {course}")
@@ -127,6 +130,10 @@ def prebuild_command(
             )
         superblock = matching_superblocks[0]
 
+        if superblock not in included_superblocks:
+            included_superblocks[superblock] = []
+        included_superblocks[superblock].append(course)
+
         challenge_list: list[Challenge] = []
         for file in get_challenges_for_lang(challenges, course, fcc_lang):
             challenge = Challenge(superblock, file)
@@ -144,5 +151,6 @@ def prebuild_command(
 
     # Copy all the locales for this language
     write_locales_to_path(locales, curriculum_dist)
+    validate_locales(curriculum_dist / "locales", included_superblocks)
     logger.info(f"Prebuilt curriculum into {curriculum_dist}")
     logger.info("Scraper: prebuild phase finished")

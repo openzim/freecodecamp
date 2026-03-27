@@ -158,8 +158,8 @@ button {
     background-color: #ffffff;
   }
   50% {
-    border-color: #FF0F0F;
-    background-color: #F00F0F;
-    color: #FF0F0F;
+    border-color: #ff0f0f;
+    background-color: #f00f0f;
+    color: #ff0f0f;
   }
 }

@@ -27,9 +27,7 @@ if (darkQuery) {
 }
 
 const js = javascript()
-const extensions = computed(() =>
-  prefersDark.value ? [js, oneDark] : [js]
-)
+const extensions = computed(() => (prefersDark.value ? [js, oneDark] : [js]))
 
 // Codemirror EditorView instance ref
 const view = shallowRef()

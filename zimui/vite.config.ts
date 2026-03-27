@@ -9,6 +9,8 @@ import { writeFileSync, existsSync, mkdirSync } from 'fs'
 import { join } from 'path'
 import { parse } from 'node-html-parser'
 
+const buildOutputDir = '../scraper/src/fcc2zim/zimui'
+
 /**
  * Rewrites HTML code by extracting inline JS code to plain files, keeping the rest
  * intact.
@@ -62,7 +64,7 @@ export default defineConfig({
       apply: 'build',
       enforce: 'post',
       transformIndexHtml(html) {
-        return extractInlineJS(html)
+        return extractInlineJS(html, buildOutputDir)
       }
     }
   ],
@@ -70,5 +72,9 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
+  },
+  build: {
+    outDir: buildOutputDir,
+    emptyOutDir: true
   }
 })

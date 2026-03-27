@@ -58,7 +58,9 @@ class Context:
     build_folder: Path = Path(os.getenv("FCC_BUILD", "../build"))
 
     # folder where Vue.JS UI has been built
-    zimui_dist: Path = Path(os.getenv("FCC_ZIMUI_DIST", "../zimui/dist"))
+    zimui_dist: Path = Path(
+        os.getenv("FCC_ZIMUI_DIST", str(Path(__file__).parent / "zimui"))
+    )
 
     # ZIP of FCC content
     main_zip_path: Path | None = None

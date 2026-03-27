@@ -68,10 +68,7 @@ function checkCode() {
       <button @click="main.challengeResetDialogActive = true">
         {{ main.localesTranslations.buttons['reset-lesson'] }}
       </button>
-      <button
-        :class="{ 'tests-failed-flash': main.testsFlash}"
-        @click="checkCode"
-      >
+      <button :class="{ 'tests-failed-flash': main.testsFlash }" @click="checkCode">
         {{ main.localesTranslations.buttons['run'] }}
       </button>
 
@@ -129,5 +126,4 @@ function checkCode() {
 .code-editor {
   background-color: var(--editor-background);
 }
-
 </style>

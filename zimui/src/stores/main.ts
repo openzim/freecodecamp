@@ -12,12 +12,13 @@ import type { Challenge } from '@/utils/parseChallenge'
 import mathjaxService from '@/services/mathjax'
 import type { RunResult, RunResultHint } from '@/utils/runChallenge'
 import { runChallenge } from '@/utils/runChallenge'
+import { interpolate } from '@/utils/interpolate'
 
 export type RootState = {
-  localesIntro: LocalesIntro | null
-  localesIntroMiscText: LocalesIntroMiscText | null
-  localesMotivation: LocalesMotivation | null
-  localesTranslations: LocalesTranslations | null
+  _localesIntro: LocalesIntro | null
+  _localesIntroMiscText: LocalesIntroMiscText | null
+  _localesMotivation: LocalesMotivation | null
+  _localesTranslations: LocalesTranslations | null
   curriculums: Curriculums | null
   challenge: Challenge | null
   solution: string
@@ -63,13 +64,14 @@ const runTest = function (state: any) {
   }
 }
 
-export const useMainStore = defineStore('main', {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const _useMainStore: any = defineStore('main', {
   state: () =>
     ({
-      localesIntro: null,
-      localesIntroMiscText: null,
-      localesMotivation: null,
-      localesTranslations: null,
+      _localesIntro: null,
+      _localesIntroMiscText: null,
+      _localesMotivation: null,
+      _localesTranslations: null,
       curriculums: null,
       challenge: null,
       solution: '',
@@ -83,6 +85,10 @@ export const useMainStore = defineStore('main', {
       testsFlash: false
     }) as RootState,
   getters: {
+    isIntroReady: (state) => state._localesIntro !== null,
+    isIntroMiscTextReady: (state) => state._localesIntroMiscText !== null,
+    isMotivationReady: (state) => state._localesMotivation !== null,
+    isTranslationsReady: (state) => state._localesTranslations !== null,
     nextChallenge: nextChallenge,
     runTest: runTest
   },
@@ -95,12 +101,12 @@ export const useMainStore = defineStore('main', {
       return axios.get('./content/locales/intro.json').then(
         (response) => {
           this.isLoading = false
-          this.localesIntro = response.data as LocalesIntro
-          this.localesIntroMiscText = response.data['misc-text'] as LocalesIntroMiscText
+          this._localesIntro = response.data as LocalesIntro
+          this._localesIntroMiscText = response.data['misc-text'] as LocalesIntroMiscText
         },
         (error) => {
           this.isLoading = false
-          this.localesIntro = null
+          this._localesIntro = null
           this.errorMessage = 'Failed to load locales intro.json data.'
           if (error instanceof AxiosError) {
             this.handleAxiosError(error)
@@ -116,11 +122,11 @@ export const useMainStore = defineStore('main', {
       return axios.get('./content/locales/motivation.json').then(
         (response) => {
           this.isLoading = false
-          this.localesMotivation = response.data as LocalesMotivation
+          this._localesMotivation = response.data as LocalesMotivation
         },
         (error) => {
           this.isLoading = false
-          this.localesMotivation = null
+          this._localesMotivation = null
           this.errorMessage = 'Failed to load locales motivation.json data.'
           if (error instanceof AxiosError) {
             this.handleAxiosError(error)
@@ -136,11 +142,11 @@ export const useMainStore = defineStore('main', {
       return axios.get('./content/locales/translations.json').then(
         (response) => {
           this.isLoading = false
-          this.localesTranslations = response.data as LocalesTranslations
+          this._localesTranslations = response.data as LocalesTranslations
         },
         (error) => {
           this.isLoading = false
-          this.localesTranslations = null
+          this._localesTranslations = null
           this.errorMessage = 'Failed to load locales translations.json data.'
           if (error instanceof AxiosError) {
             this.handleAxiosError(error)
@@ -160,7 +166,7 @@ export const useMainStore = defineStore('main', {
         },
         (error) => {
           this.isLoading = false
-          this.localesIntro = null
+          this._localesIntro = null
           this.errorMessage = 'Failed to load curriculum/index.json data.'
           if (error instanceof AxiosError) {
             this.handleAxiosError(error)
@@ -220,6 +226,41 @@ export const useMainStore = defineStore('main', {
     },
     cheatSolution() {
       this.solution = this.challenge?.solutions[0] || ''
+    },
+    tIntro(key: string): string | string[] {
+      if (!this._localesIntro) return ''
+      const parts = key.split('.')
+      const sbData = this._localesIntro[parts[0]]
+      if (!sbData) return ''
+      if (parts.length === 2) return sbData[parts[1] as 'title' | 'intro'] ?? ''
+      if (parts.length === 4 && parts[1] === 'blocks')
+        return sbData.blocks?.[parts[2]]?.[parts[3] as 'title' | 'intro'] ?? ''
+      return ''
+    },
+    getRandomQuote(): { quote: string; author: string } | undefined {
+      return this._localesMotivation?.motivationalQuotes.random()
+    },
+    t(key: string, vars?: Record<string, string>): string {
+      const [file, section, name] = key.split('.')
+      let value: string | undefined
+
+      if (file === 'translations') {
+        value = (this._localesTranslations as Record<string, Record<string, string>> | null)?.[
+          section
+        ]?.[name]
+      } else if (file === 'intro' && section === 'misc-text') {
+        value = (this._localesIntroMiscText as Record<string, string> | null)?.[name]
+      } else if (file === 'motivation' && section === 'compliment') {
+        value = this._localesMotivation?.compliments.random()
+      }
+
+      if (!value) return ''
+      return vars ? interpolate(value, vars) : value
     }
   }
 })
+
+// re-export via function to avoid TS7056 (composite declaration emit limit)
+export function useMainStore() {
+  return _useMainStore()
+}

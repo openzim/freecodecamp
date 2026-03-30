@@ -10,17 +10,17 @@ import right_arrow from '../assets/right_arrow.svg'
 const main = useMainStore()
 
 const randomQuote = computed(() => {
-  return main.localesMotivation?.motivationalQuotes.random()
+  return main.getRandomQuote()
 })
 </script>
 
 <template>
   <div
     v-if="
-      main.curriculums && main.localesIntro && main.localesMotivation && main.localesTranslations
+      main.curriculums && main.isIntroReady && main.isMotivationReady && main.isTranslationsReady
     "
   >
-    <h1>{{ main.localesTranslations.learn['heading'] }}</h1>
+    <h1>{{ main.t('translations.learn.heading') }}</h1>
     <blockquote>
       <q>{{ randomQuote?.quote }}</q>
       <footer>
@@ -32,7 +32,7 @@ const randomQuote = computed(() => {
         <RouterLink :to="`/${curriculum}`">
           <div class="course">
             <SuperblockIcon :superblock="curriculum" class="icon" />
-            <span>{{ main.localesIntro[curriculum].title }}</span>
+            <span>{{ main.tIntro(`${curriculum}.title`) }}</span>
             <img :src="right_arrow" aria-hidden="true" />
           </div>
         </RouterLink>

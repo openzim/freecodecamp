@@ -37,8 +37,8 @@ const completedChallengesCount = computed(() => {
 <template>
   <button @click="toggleOpen">
     <img :src="block_arrow" class="icon" :class="{ open: isOpen }" aria-hidden="true" />
-    <div v-if="isOpen">{{ main.localesIntroMiscText?.collapse }}</div>
-    <div v-else>{{ main.localesIntroMiscText?.expand }}</div>
+    <div v-if="isOpen">{{ main.t('intro.misc-text.collapse') }}</div>
+    <div v-else>{{ main.t('intro.misc-text.expand') }}</div>
     <div class="completed">
       <img
         :src="completedChallengesCount == totalChallengesCount ? checkbox_checked : checkbox_empty"

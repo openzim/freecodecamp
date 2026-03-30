@@ -24,21 +24,18 @@ function checkCode() {
   <Splitpanes>
     <Pane class="left">
       <ChallengeInstructions />
-      <div class="buttons" v-if="main.localesTranslations">
+      <div class="buttons" v-if="main.isTranslationsReady">
         <!--Cheat button (dev-only)-->
         <button v-if="main.cheatMode" @click="main.cheatSolution()">Set solution</button>
 
         <!--Run the tests button-->
-        <button
-          :class="{ 'tests-failed-flash': main.testsFlash }"
-          @click="checkCode"
-        >
-          {{ main.localesTranslations.buttons['check-code'] }}
+        <button :class="{ 'tests-failed-flash': main.testsFlash }" @click="checkCode">
+          {{ main.t('translations.buttons.check-code') }}
         </button>
 
         <!--Reset code-->
         <button @click="main.challengeResetDialogActive = true">
-          {{ main.localesTranslations.buttons['reset-lesson'] }}
+          {{ main.t('translations.buttons.reset-lesson') }}
         </button>
 
         <ChallengeDialogs />

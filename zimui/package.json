@@ -12,7 +12,9 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix",
-    "format": "prettier .  --write"
+    "lint-check": "eslint .",
+    "format": "prettier . --write",
+    "format-check": "prettier . --check"
   },
   "dependencies": {
     "@codemirror/lang-javascript": "^6.2.2",

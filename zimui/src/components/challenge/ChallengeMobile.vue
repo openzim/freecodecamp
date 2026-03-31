@@ -126,5 +126,4 @@ function checkCode() {
 .code-editor {
   background-color: var(--editor-background);
 }
-
 </style>

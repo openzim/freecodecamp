@@ -370,3 +370,4 @@ zimui/public/content
 zimui/public/mathjax
 scraper/src/fcc2zim/mathjax
 scraper/src/fcc2zim/fonts
+scraper/src/fcc2zim/zimui

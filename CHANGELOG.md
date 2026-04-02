@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Fix interpolation for placeholders in translation strings (#139)
+- Fix prettier and eslint check in zimui QA CI.(#146)
 
 ## [2.0.3] - 2025-11-25
 

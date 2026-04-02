@@ -40,9 +40,7 @@ const activeCourse = toRef(props, 'activeCourse')
         </h3>
         <div class="block-description">
           <p
-            v-for="(p, jdx) in main.tIntro(
-              `${superblock}.blocks.${course}.intro`
-            ) as string[]"
+            v-for="(p, jdx) in main.tIntro(`${superblock}.blocks.${course}.intro`) as string[]"
             :key="jdx"
             v-html="p"
           ></p>

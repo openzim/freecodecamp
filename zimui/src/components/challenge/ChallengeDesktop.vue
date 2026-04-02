@@ -84,5 +84,4 @@ button {
   padding: 0.375rem 0.75rem;
   margin: 0 0 0.5rem;
 }
-
 </style>

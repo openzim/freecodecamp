@@ -16,6 +16,8 @@ const render = (str: string): string => {
       <div class="description" v-html="render(main.challenge?.description || '')"></div>
       <hr v-if="main.challenge?.description && main.challenge?.instructions" />
       <div class="instructions" v-html="render(main.challenge?.instructions || '')"></div>
+      <hr v-if="main.challenge?.assignment && (main.challenge?.description || main.challenge?.instructions)" />
+      <div class="assignment" v-html="render(main.challenge?.assignment || '')"></div>
     </div>
   </div>
 </template>

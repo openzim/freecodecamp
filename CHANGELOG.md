@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add a visual red flash when "Check Your Code" tests fail (#126)
 - Add dark theme support using prefers-color-scheme (#131)
+- Add support for `# --assignment--` sections in challenge markdown (#88)
 
 ### Fixed
 

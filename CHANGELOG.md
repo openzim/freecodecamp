@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add support for `# --assignment--` sections in challenge markdown (#88)
+
 ### Fixed
 
 - Fix illustration kind in offliner definition (should be `illustration`, not `image`)

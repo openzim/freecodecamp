@@ -82,6 +82,10 @@ export class Challenge {
     return instructionMarkdown
   }
 
+  get assignment(): string | null {
+    return this.getSectionMarkdown('assignment')
+  }
+
   toJSON() {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const json: any = this.header

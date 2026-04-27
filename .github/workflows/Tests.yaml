@@ -99,3 +99,7 @@ jobs:
       - name: Ensure we can start the Docker image
         run: |
           docker run --rm testimage fcc2zim --version
+      
+      - name: Ensure zimui and its dependencies are included in the Docker image
+        run: |
+          docker run --rm testimage python -c "from pathlib import Path; import fcc2zim; path = Path(fcc2zim.__file__).parent / 'zimui'; assert (path / 'index.html').is_file() and (path / 'assets').is_dir(), 'zimui not found'"

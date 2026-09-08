@@ -37,6 +37,34 @@ describe('Parsing a basic JS challenge', () => {
     expect(solutions.length).toEqual(1)
     expect(typeof solutions[0] === 'string').toBe(true)
   })
+  it('should return empty for assignment that arent present', () => {
+    expect(challenge.assignment).toBeFalsy()
+  })
+})
+
+describe('Parsing a challenge with an assignment section', () => {
+  let markdown = ''
+  let challenge: Challenge
+  beforeAll(async () => {
+    markdown = await readFile(join(__dirname, 'fixtures', 'assignmentChallenge.md'), 'utf-8')
+    challenge = parseChallenge(markdown)
+  })
+  it('should pull the header from markdown', () => {
+    const headers = challenge.header
+    expect(headers['challengeType']).toEqual('31')
+    expect(headers['dashedName']).toEqual('review-recursion')
+  })
+  it('should parse the description', () => {
+    expect(challenge.description.length).toBeGreaterThan(0)
+  })
+  it('should parse the assignment section', () => {
+    const assignment = challenge.assignment
+    expect(assignment).not.toBeNull()
+    expect(assignment).toContain('Review the Recursion topics and concepts.')
+  })
+  it('should return empty for instructions that arent present', () => {
+    expect(challenge.instructions).toBeFalsy()
+  })
 })
 
 describe('Extract key/value for markdown header', () => {

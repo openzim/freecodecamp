@@ -365,6 +365,9 @@ output
 # ignore all vscode, this configuration is not maintained
 .vscode
 
+# README in scraper is a simple copy
+scraper/README.md
+
 # content dumped from ZIM file to test ZIM UI
 zimui/public/content
 zimui/public/mathjax

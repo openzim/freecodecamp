@@ -1,22 +1,22 @@
 [build-system]
-requires = ["hatchling", "hatch-openzim>=0.2.0"]
+requires = ["hatchling", "hatch-openzim>=0.3.0"]
 build-backend = "hatchling.build"
 
 [project]
 name = "fcc2zim"
 requires-python = ">=3.14,<3.15"
 description = "Make ZIM files from freeCodeCamp courses"
-readme = "../README.md"
 dependencies = [
   "zimscraperlib==5.3.0",
   "requests==2.32.5",
   "PyYAML==6.0.3",
 ]
-dynamic = ["authors", "classifiers", "keywords", "license", "version", "urls"]
+dynamic = ["authors", "classifiers", "keywords", "license", "version", "urls", "readme"]
 
 [tool.hatch.metadata.hooks.openzim-metadata]
 kind = "scraper"
 additional-keywords = ["fcc","freecodecamp"]
+readme = "../README.md"
 
 [tool.hatch.build.hooks.openzim-build]
 

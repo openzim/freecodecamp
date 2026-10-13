@@ -7,8 +7,8 @@ name = "fcc2zim"
 requires-python = ">=3.14,<3.15"
 description = "Make ZIM files from freeCodeCamp courses"
 dependencies = [
-  "zimscraperlib==5.3.0",
-  "requests==2.32.5",
+  "zimscraperlib==5.4.1",
+  "requests==2.34.2",
   "PyYAML==6.0.3",
 ]
 dynamic = ["authors", "classifiers", "keywords", "license", "version", "urls", "readme"]
@@ -22,22 +22,22 @@ readme = "../README.md"
 
 [project.optional-dependencies]
 scripts = [
-  "invoke==2.2.1",
+  "invoke==3.0.3",
 ]
 lint = [
-  "black==25.11.0",
-  "ruff==0.14.5",
+  "black==26.10.1",
+  "ruff==0.17.0",
 ]
 check = [
-  "pyright==1.1.407",
+  "pyright==1.1.414",
 ]
 test = [
-  "pytest==9.0.1",
-  "coverage==7.11.3",
+  "pytest==9.1.1",
+  "coverage==7.16.2",
 ]
 dev = [
-  "pre-commit==4.4.0",
-  "debugpy==1.8.17",
+  "pre-commit==4.7.0",
+  "debugpy==1.8.22",
   "fcc2zim[scripts]",
   "fcc2zim[lint]",
   "fcc2zim[test]",

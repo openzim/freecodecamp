@@ -1,4 +1,7 @@
-FROM node:24-alpine AS zimui
+FROM node:26-alpine AS zimui
+
+# Node 26 images do not ship yarn (nor corepack) anymore
+RUN npm install -g yarn@1.22.22
 
 WORKDIR /src
 COPY zimui /src/zimui
@@ -7,7 +10,7 @@ RUN yarn install --frozen-lockfile
 RUN yarn build
 
 
-FROM python:3.14-bookworm
+FROM python:3.14-trixie
 LABEL org.opencontainers.image.source=https://github.com/openzim/freecodecamp
 
 RUN python -m pip install --no-cache-dir -U \

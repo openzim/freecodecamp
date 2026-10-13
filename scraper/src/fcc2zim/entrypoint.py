@@ -1,5 +1,5 @@
 import argparse
-import datetime
+import datetime as dt
 from pathlib import Path
 
 from zimscraperlib.constants import (
@@ -156,6 +156,6 @@ def prepare_context(raw_args: list[str]) -> None:
     # Ignore unset values so they do not override the default specified in Context
     args_dict = {key: value for key, value in args._get_kwargs() if value}
 
-    args_dict["start_date"] = datetime.date.today()
+    args_dict["start_date"] = dt.date.today()
 
     Context.setup(**args_dict)

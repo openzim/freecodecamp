@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add dark theme support using prefers-color-scheme (#131)
 - Add support for Arabic and Korean courses (#154)
 
+### Changed
+
+- Upgrade to Node.JS 26, Debian trixie base image, and upgrade Python and JS dependencies (including Vite 8, Vuetify 4, Pinia 4, Vue Router 5, TypeScript 6)
+
 ### Fixed
 
 - Fix interpolation for placeholders in translation strings (#139)

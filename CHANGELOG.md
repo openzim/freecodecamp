@@ -11,12 +11,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add a visual red flash when "Check Your Code" tests fail (#126)
 - Add dark theme support using prefers-color-scheme (#131)
+- Add support for Arabic and Korean courses (#154)
 
 ### Fixed
 
 - Fix interpolation for placeholders in translation strings (#139)
 - Fix prettier and eslint check in zimui QA CI.(#146)
 - Bundled ZIM UI inside pip package (#144)
+- Fix fetch of non-English client UI translations, moved upstream to i18n-curriculum (#154)
 
 ## [2.0.3] - 2025-11-25
 

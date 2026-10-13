@@ -90,9 +90,7 @@ def prebuild_command(
 
     challenges = curriculum_raw.joinpath("extracted", "curriculum", "challenges")
     structure = curriculum_raw.joinpath("extracted", "curriculum", "structure")
-    locales = curriculum_raw.joinpath(
-        "extracted", "client", "i18n", "locales", fcc_lang
-    )
+    locales = curriculum_raw.joinpath("extracted", "client", fcc_lang)
 
     # compute list of superblocks content
     superblocks: dict[str, list[str]] = {}

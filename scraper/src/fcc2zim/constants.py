@@ -19,6 +19,8 @@ FCC_LANG_MAP = {
     "por": "portuguese",
     "ukr": "ukrainian",
     "swa": "swahili",
+    "ara": "arabic",
+    "kor": "korean",
 }
 
 ZIM_LANG_MAP = {
@@ -32,4 +34,6 @@ ZIM_LANG_MAP = {
     "por": "por",
     "ukr": "ukr",
     "swa": "swa",
+    "ara": "ara",
+    "kor": "kor",
 }

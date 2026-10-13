@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Upgrade to Node.JS 26, Debian trixie base image, and upgrade Python and JS dependencies (including Vite 8, Vuetify 4, Pinia 4, Vue Router 5, TypeScript 6)
 - Migrate zimui from yarn 1 (classic) to modern yarn, provisioned through corepack (#159)
+- Upgrade vendored MathJax from 3.2.2 to 4.1.3 (#158)
 
 ### Fixed
 

@@ -9,6 +9,14 @@ SAMPLE_CHALLENGE_ID = "587d7b83367417b2b2512b33"
 SAMPLE_CHALLENGE_TITLE = "Use the JavaScript Console to Check the Value of a Variable"
 EXPECTED_CHALLENGE_COUNT = 12
 
+# This course is also scraped alongside `debugging` (see the "Run scraper" step in the
+# GitHub workflows) because it contains math-heavy challenges, used by the MathJax
+# rendering tests in ../rendering. See https://github.com/openzim/freecodecamp/issues/57
+EULER_SUPERBLOCK = "project-euler"
+EULER_COURSE = "project-euler-problems-101-to-200"
+EULER_SAMPLE_CHALLENGE_ID = "5900f3d21000cf542c50fee4"
+EULER_SAMPLE_CHALLENGE_TITLE = "Problem 101: Optimum polynomial"
+
 
 def test_is_file(zim_file_path: Path):
     """Ensure ZIM file exists"""
@@ -28,7 +36,7 @@ def test_zim_metadata(zim_fh: Archive):
     """Ensure scraper and zim metadata are present and correct"""
 
     assert "fcc2zim v" in zim_fh.get_text_metadata("Scraper")
-    assert zim_fh.get_text_metadata("Title") == "FCC Debugging Test"
+    assert zim_fh.get_text_metadata("Title") == "FCC Integration Test"
     assert zim_fh.get_text_metadata("Description") == "Test ZIM for integration tests"
     assert zim_fh.get_text_metadata("Language") == "eng"
     assert zim_fh.get_text_metadata("Publisher") == "openZIM"
@@ -85,6 +93,37 @@ def test_zim_content_challenge_redirect(zim_fh: Archive):
     content = bytes(redirect_item.content).decode()
     assert SAMPLE_CHALLENGE_TITLE in content
     assert f"../../../index.html#{SUPERBLOCK}/{COURSE}/{SAMPLE_CHALLENGE_ID}" in content
+
+
+def test_zim_content_curriculum_index_math_course(zim_fh: Archive):
+    """Ensure the math-heavy course used for MathJax tests is present too"""
+
+    index_item = zim_fh.get_item("content/curriculum/index.json")
+    index = json.loads(bytes(index_item.content))
+
+    challenges = index[EULER_SUPERBLOCK][EULER_COURSE]
+    assert {
+        "title": EULER_SAMPLE_CHALLENGE_TITLE,
+        "slug": EULER_SAMPLE_CHALLENGE_ID,
+    } in challenges
+
+
+def test_zim_content_challenge_markdown_mathjax(zim_fh: Archive):
+    """Ensure the math-heavy challenge markdown still contains its LaTeX source
+
+    Regression test for https://github.com/openzim/freecodecamp/issues/57: this
+    challenge mixes inline math, a LaTeX array environment and the \\color
+    extension. Actual MathJax rendering is checked in ../rendering.
+    """
+
+    challenge_item = zim_fh.get_item(
+        f"content/curriculum/{EULER_SUPERBLOCK}/{EULER_COURSE}/"
+        f"{EULER_SAMPLE_CHALLENGE_ID}.md"
+    )
+    content = bytes(challenge_item.content).decode()
+    assert EULER_SAMPLE_CHALLENGE_TITLE in content
+    assert "\\begin{array}" in content
+    assert "\\color{red}" in content
 
 
 def test_zim_content_locales(zim_fh: Archive):

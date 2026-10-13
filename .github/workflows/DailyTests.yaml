@@ -20,30 +20,81 @@ jobs:
         run: |
           mkdir -p output
           docker run --rm -v "$PWD/output:/output" local-freecodecamp fcc2zim \
-            --course debugging \
+            --course debugging,project-euler-problems-101-to-200 \
             --language eng \
-            --name fcc_en_debugging_test \
-            --title "FCC Debugging Test" \
+            --name fcc_en_integration_test \
+            --title "FCC Integration Test" \
             --description "Test ZIM for integration tests" \
-            --zim-file tests_en_debugging.zim
+            --zim-file tests_en_integration.zim
 
       - name: Archive ZIM
         uses: actions/upload-artifact@v4
         with:
-          name: tests_en_debugging.zim
-          path: output/tests_en_debugging.zim
+          name: tests_en_integration.zim
+          path: output/tests_en_integration.zim
           retention-days: 30
 
       - name: Run zimcheck
         run: |
           docker run --rm -v "$PWD/output:/output" \
-            ghcr.io/openzim/zim-tools:3.8.0 zimcheck /output/tests_en_debugging.zim
+            ghcr.io/openzim/zim-tools:3.8.0 zimcheck /output/tests_en_integration.zim
 
-      - name: Run integration test suite
+      - name: Run integration test suite (ZIM structure)
         run: |
           docker run --rm \
-            -v "$PWD/scraper/tests-integration:/src/scraper/tests-integration:ro" \
+            -v "$PWD/scraper/tests-integration/structure:/src/scraper/tests-integration/structure:ro" \
             -v "$PWD/output:/output:ro" \
-            -e ZIM_FILE_PATH=/output/tests_en_debugging.zim \
+            -e ZIM_FILE_PATH=/output/tests_en_integration.zim \
             local-freecodecamp \
-            bash -c "pip install --no-cache-dir pytest && pytest -v /src/scraper/tests-integration"
+            bash -c "pip install --no-cache-dir pytest && pytest -v /src/scraper/tests-integration/structure"
+
+  # Builds on the ZIM produced by run-integration-tests to check that content actually
+  # renders as expected (e.g. MathJax typesetting math-heavy challenges fully offline,
+  # see openzim/freecodecamp#57 and #158). Runs directly on the runner (not the scraper
+  # Docker image) since it needs a browser.
+  run-rendering-tests:
+    runs-on: ubuntu-24.04
+    needs: run-integration-tests
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Download ZIM
+        uses: actions/download-artifact@v4
+        with:
+          name: tests_en_integration.zim
+          path: output
+
+      - name: Dump ZIM content
+        run: |
+          mkdir -p dumped
+          docker run --rm -v "$PWD/output:/output" -v "$PWD/dumped:/dumped" \
+            ghcr.io/openzim/zim-tools:3.8.0 \
+            zimdump dump --dir=/dumped /output/tests_en_integration.zim
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version-file: scraper/pyproject.toml
+          architecture: x64
+
+      - name: Install dependencies
+        working-directory: scraper
+        run: |
+          pip install -U pip
+          pip install -e .[test-integration-rendering]
+          playwright install --with-deps chromium
+
+      - name: Start web server
+        run: |
+          python -m http.server 8080 --directory dumped &
+
+      - name: Wait for web server to be ready
+        run: |
+          npx wait-on http://localhost:8080/index.html
+
+      - name: Run integration test suite (rendering)
+        working-directory: scraper
+        env:
+          RENDERING_TEST_BASE_URL: http://localhost:8080
+        run: |
+          pytest -v tests-integration/rendering

@@ -3,10 +3,28 @@ target_dir="src/fcc2zim"
 
 [files.assets.actions."mathjax"]
 action="extract_items"
-source="https://github.com/mathjax/MathJax/archive/refs/tags/3.2.2.zip"
-zip_paths=["MathJax-3.2.2"]
+source="https://github.com/mathjax/MathJax/archive/refs/tags/4.1.3.zip"
+zip_paths=["MathJax-4.1.3"]
 target_paths=["mathjax"]
-remove = ["mathjax/.github","mathjax/.gitignore","mathjax/.travis.yml","mathjax/bower.json","mathjax/composer.json","mathjax/CONTRIBUTING.md","mathjax/package.json"]
+remove = ["mathjax/.github","mathjax/.gitignore","mathjax/bower.json","mathjax/composer.json","mathjax/CONTRIBUTING.md","mathjax/package.json"]
+
+# The newcm font used by default by MathJax 4 is distributed as a separate npm
+# package (not published on GitHub), so it is not a plain ZIP we can fetch with
+# extract_items/extract_all. We download the npm tarball instead and extract it
+# ourselves. Only the svg/dynamic glyph chunks are vendored: everything else
+# (chtml/cjs/mjs builds, source, docs) is for non-SVG outputs or Node usage we
+# don't need, and tex-svg.js already bundles the core (non-dynamic) glyphs.
+[files.assets.actions."mathjax-newcm-font"]
+action="get_file"
+source="https://registry.npmjs.org/@mathjax/mathjax-newcm-font/-/mathjax-newcm-font-4.1.3.tgz"
+target_dir="mathjax-newcm-font-tmp"
+target_file="mathjax-newcm-font.tgz"
+execute_after=[
+  "tar -xzf mathjax-newcm-font-tmp/mathjax-newcm-font.tgz -C mathjax-newcm-font-tmp",
+  "mkdir -p mathjax/mathjax-newcm-font",
+  "cp -r mathjax-newcm-font-tmp/package/svg mathjax/mathjax-newcm-font/svg",
+  "rm -rf mathjax-newcm-font-tmp",
+]
 
 [files.assets.actions."lato"]
 action="extract_items"

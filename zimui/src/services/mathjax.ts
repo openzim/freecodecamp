@@ -10,6 +10,10 @@ need to dynamically set the PageIndex macro to dynamically display proper figure
 
 MathJax settings are an adaptation of libretexts.org settings, for MathJax 3 (including
 extensions now removed or not yet supported or included by default).
+
+MathJax 4 split the fonts (newcm by default) into their own package and loads glyphs
+missing from the core bundle on demand, from a CDN by default. loader.paths.fonts points
+it to the locally vendored font instead, so this dynamic loading stays fully offline.
 */
 
 class MathJaxService {
@@ -21,6 +25,9 @@ class MathJaxService {
 
   addMathJax() {
     window.MathJax = {
+      loader: {
+        paths: { fonts: './mathjax' }
+      },
       tex: {
         inlineMath: [
           ['$', '$'],
@@ -32,7 +39,7 @@ class MathJaxService {
     const script = document.createElement('script', {
       id: 'mathjax-script'
     } as ElementCreationOptions)
-    script.src = './mathjax/es5/tex-svg.js'
+    script.src = './mathjax/tex-svg.js'
     document.head.appendChild(script)
   }
 }

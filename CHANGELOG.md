@@ -12,12 +12,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add a visual red flash when "Check Your Code" tests fail (#126)
 - Add dark theme support using prefers-color-scheme (#131)
 - Add support for Arabic and Korean courses (#154)
+- Add rendering integration test covering challenge execution offline, against a real "debugging" challenge (#157)
 
 ### Changed
 
 - Upgrade to Node.JS 26, Debian trixie base image, and upgrade Python and JS dependencies (including Vite 8, Vuetify 4, Pinia 4, Vue Router 5, TypeScript 6)
 - Migrate zimui from yarn 1 (classic) to modern yarn, provisioned through corepack (#159)
 - Upgrade vendored MathJax from 3.2.2 to 4.1.3 (#158)
+- Migrate challenge execution to `@freecodecamp/curriculum-helpers`'s worker-based test-runner (#157)
 
 ### Fixed
 

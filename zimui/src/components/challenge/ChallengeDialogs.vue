@@ -59,7 +59,7 @@ const resetWarnMessage = computed(() => {
               () => {
                 main.challengeResetDialogActive = false
                 main.resetSolution()
-                main.runTest()
+                void main.runTest()
               }
             "
           >

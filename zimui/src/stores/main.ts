@@ -53,8 +53,8 @@ const nextChallenge = function (state: any) {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const runTest = function (state: any) {
-  return (): void => {
-    state.challengeResult = runChallenge(state.challenge as Challenge, state.solution)
+  return async (): Promise<void> => {
+    state.challengeResult = await runChallenge(state.challenge as Challenge, state.solution)
     if (
       state.challengeResult.hints.filter((h: RunResultHint) => h.passed).length ===
       state.challengeResult.hints.length
@@ -183,7 +183,7 @@ const _useMainStore: any = defineStore('main', {
           this.isLoading = false
           this.challenge = parseChallenge(response.data as string)
           this.resetSolution()
-          this.runTest()
+          void this.runTest()
           mathjaxService.removeMathJax()
           mathjaxService.addMathJax()
         },

@@ -9,8 +9,8 @@ import { useMainStore } from '@/stores/main'
 
 const main = useMainStore()
 
-function checkCode() {
-  main.runTest()
+async function checkCode() {
+  await main.runTest()
   if (!main.challengePassedDialogActive) {
     main.testsFlash = true
     setTimeout(() => {

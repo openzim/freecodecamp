@@ -2,6 +2,7 @@ node_modules
 .yarn/
 
 public/fcc
+public/test-runner
 dist
 dist-ssr
 *.l

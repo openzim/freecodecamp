@@ -18,8 +18,8 @@ enum MobileTab {
 
 const selectedTab: Ref<MobileTab> = ref(MobileTab.Instructions)
 
-function checkCode() {
-  main.runTest()
+async function checkCode() {
+  await main.runTest()
   if (!main.challengePassedDialogActive) {
     main.testsFlash = true
     setTimeout(() => {

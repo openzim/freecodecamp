@@ -5,21 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [2.1.0] - 2026-10-13
 
 ### Added
 
 - Add a visual red flash when "Check Your Code" tests fail (#126)
 - Add dark theme support using prefers-color-scheme (#131)
 - Add support for Arabic and Korean courses (#154)
-- Add rendering integration test covering challenge execution offline, against a real "debugging" challenge (#157)
+- Add rendering integration test covering challenge execution offline, against a real "debugging" challenge (#151)
+- Validate locale files against known UI translation keys and placeholders at scrape time, failing the build on mismatch (#142)
 
 ### Changed
 
-- Upgrade to Node.JS 26, Debian trixie base image, and upgrade Python and JS dependencies (including Vite 8, Vuetify 4, Pinia 4, Vue Router 5, TypeScript 6)
+- Upgrade to Node.JS 26, Debian trixie base image, and upgrade Python and JS dependencies, including Vite 8, Vuetify 4, Pinia 4, Vue Router 5, TypeScript 6 (#152, #160)
 - Migrate zimui from yarn 1 (classic) to modern yarn, provisioned through corepack (#159)
 - Upgrade vendored MathJax from 3.2.2 to 4.1.3 (#158)
-- Migrate challenge execution to `@freecodecamp/curriculum-helpers`'s worker-based test-runner (#157)
+- Migrate challenge execution to `@freecodecamp/curriculum-helpers`'s worker-based test-runner, better isolating challenge code from UI code (#60, #157)
 
 ### Fixed
 

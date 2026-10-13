@@ -18,10 +18,15 @@ jobs:
         with:
           node-version-file: zimui/.node-version
 
+      - name: Enable corepack
+        run: |
+          npm install -g corepack
+          corepack enable
+
       - name: Build zimui
         working-directory: zimui
         run: |
-          yarn install --frozen-lockfile
+          yarn install --immutable
           yarn build
 
       - name: Set up Python

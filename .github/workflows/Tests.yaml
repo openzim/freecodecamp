@@ -63,10 +63,15 @@ jobs:
         with:
           node-version-file: zimui/.node-version
 
+      - name: Enable corepack
+        run: |
+          npm install -g corepack
+          corepack enable
+
       - name: Install dependencies
         working-directory: zimui
         run: |
-          yarn install
+          yarn install --immutable
 
       - name: Test
         working-directory: zimui

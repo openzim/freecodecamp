@@ -1,12 +1,12 @@
 FROM node:26-alpine AS zimui
 
-# Node 26 images do not ship yarn (nor corepack) anymore
-RUN npm install -g yarn@1.22.22
+# Node 25+ images do not ship corepack anymore
+RUN npm install -g corepack && corepack enable
 
 WORKDIR /src
 COPY zimui /src/zimui
 WORKDIR /src/zimui
-RUN yarn install --frozen-lockfile
+RUN yarn install --immutable
 RUN yarn build
 
 

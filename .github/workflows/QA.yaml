@@ -52,10 +52,15 @@ jobs:
         with:
           node-version-file: zimui/.node-version
 
+      - name: Enable corepack
+        run: |
+          npm install -g corepack
+          corepack enable
+
       - name: Install JS dependencies
         working-directory: zimui
         run: |
-          yarn install
+          yarn install --immutable
       - name: Check prettier
         working-directory: zimui
         run: |

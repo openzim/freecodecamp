@@ -1,0 +1,49 @@
+name: Daily Tests
+
+on:
+  schedule:
+    - cron: "0 4 * * *"
+  workflow_dispatch:
+
+jobs:
+  run-integration-tests:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Build the Docker image
+        run: |
+          docker build -t local-freecodecamp .
+
+      - name: Run scraper
+        run: |
+          mkdir -p output
+          docker run --rm -v "$PWD/output:/output" local-freecodecamp fcc2zim \
+            --course debugging \
+            --language eng \
+            --name fcc_en_debugging_test \
+            --title "FCC Debugging Test" \
+            --description "Test ZIM for integration tests" \
+            --zim-file tests_en_debugging.zim
+
+      - name: Archive ZIM
+        uses: actions/upload-artifact@v4
+        with:
+          name: tests_en_debugging.zim
+          path: output/tests_en_debugging.zim
+          retention-days: 30
+
+      - name: Run zimcheck
+        run: |
+          docker run --rm -v "$PWD/output:/output" \
+            ghcr.io/openzim/zim-tools:3.8.0 zimcheck /output/tests_en_debugging.zim
+
+      - name: Run integration test suite
+        run: |
+          docker run --rm \
+            -v "$PWD/scraper/tests-integration:/src/scraper/tests-integration:ro" \
+            -v "$PWD/output:/output:ro" \
+            -e ZIM_FILE_PATH=/output/tests_en_debugging.zim \
+            local-freecodecamp \
+            bash -c "pip install --no-cache-dir pytest && pytest -v /src/scraper/tests-integration"

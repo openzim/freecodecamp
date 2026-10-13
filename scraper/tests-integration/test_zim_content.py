@@ -84,9 +84,7 @@ def test_zim_content_challenge_redirect(zim_fh: Archive):
     assert redirect_item.mimetype == "text/html"
     content = bytes(redirect_item.content).decode()
     assert SAMPLE_CHALLENGE_TITLE in content
-    assert (
-        f"../../../index.html#{SUPERBLOCK}/{COURSE}/{SAMPLE_CHALLENGE_ID}" in content
-    )
+    assert f"../../../index.html#{SUPERBLOCK}/{COURSE}/{SAMPLE_CHALLENGE_ID}" in content
 
 
 def test_zim_content_locales(zim_fh: Archive):

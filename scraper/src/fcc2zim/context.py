@@ -1,5 +1,5 @@
 import dataclasses
-import datetime
+import datetime as dt
 import logging
 import os
 from pathlib import Path
@@ -70,7 +70,7 @@ class Context:
     overwrite_existing_zim: bool = False
 
     # Date when the crawl started
-    start_date: datetime.date
+    start_date: dt.date
 
     # Path or URL to use as ZIM illustration
     illustration: str | None = None

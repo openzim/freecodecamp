@@ -1,4 +1,4 @@
-import datetime
+import datetime as dt
 from pathlib import Path
 from tempfile import NamedTemporaryFile, TemporaryDirectory
 
@@ -6,7 +6,7 @@ import pytest
 
 from fcc2zim.context import Context
 
-DEFAULT_START_DATE = datetime.date.fromisoformat("2023-08-23")
+DEFAULT_START_DATE = dt.date.fromisoformat("2023-08-23")
 WORKING_DIR = TemporaryDirectory(prefix="fcc2zim_tests_")
 WORKING_DIR_PATH = Path(WORKING_DIR.name)
 ZIMUI_DIST_PATH = WORKING_DIR_PATH.joinpath("zimui/dist")
@@ -92,7 +92,7 @@ class TestScraper:
         zip_main_path: Path | None = None,
         zip_i18n_path: Path | None = None,
         overwrite_existing_zim: bool = False,
-        start_date: datetime.date = DEFAULT_START_DATE,
+        start_date: dt.date = DEFAULT_START_DATE,
     ):
 
         Context.setup(
@@ -237,7 +237,7 @@ class TestScraper:
     )
     def test_zim_file_default(self, name: str, start_date: str):
         scraper = self.create_scraper(
-            name=name, start_date=datetime.date.fromisoformat(start_date)
+            name=name, start_date=dt.date.fromisoformat(start_date)
         )
         assert scraper.zim_path == OUTPUT_PATH.joinpath(f"{name}_{start_date[:7]}.zim")
 

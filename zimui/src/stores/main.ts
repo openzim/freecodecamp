@@ -66,24 +66,23 @@ const runTest = function (state: any) {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const _useMainStore: any = defineStore('main', {
-  state: () =>
-    ({
-      _localesIntro: null,
-      _localesIntroMiscText: null,
-      _localesMotivation: null,
-      _localesTranslations: null,
-      curriculums: null,
-      challenge: null,
-      solution: '',
-      isLoading: false,
-      errorMessage: '',
-      errorDetails: '',
-      cheatMode: localStorage.getItem('cheatMode') == 'true',
-      challengeResult: null,
-      challengePassedDialogActive: false,
-      challengeResetDialogActive: false,
-      testsFlash: false
-    }) as RootState,
+  state: (): RootState => ({
+    _localesIntro: null,
+    _localesIntroMiscText: null,
+    _localesMotivation: null,
+    _localesTranslations: null,
+    curriculums: null,
+    challenge: null,
+    solution: '',
+    isLoading: false,
+    errorMessage: '',
+    errorDetails: '',
+    cheatMode: localStorage.getItem('cheatMode') == 'true',
+    challengeResult: null,
+    challengePassedDialogActive: false,
+    challengeResetDialogActive: false,
+    testsFlash: false
+  }),
   getters: {
     isIntroReady: (state) => state._localesIntro !== null,
     isIntroMiscTextReady: (state) => state._localesIntroMiscText !== null,

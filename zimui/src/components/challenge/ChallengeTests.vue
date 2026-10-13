@@ -16,7 +16,7 @@ const main = useMainStore()
         <img v-if="test.passed" :src="test_passed" />
         <img v-else :src="test_failed" />
       </div>
-      {{ i + 1 }}.&nbsp;<span v-html="test.description"></span>
+      {{ Number(i) + 1 }}.&nbsp;<span v-html="test.description"></span>
     </li>
   </ul>
 </template>

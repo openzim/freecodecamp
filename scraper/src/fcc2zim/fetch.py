@@ -45,17 +45,19 @@ def fetch_command(
     for zip_path in [zip_main_path, zip_i18n_path]:
         with zipfile.ZipFile(zip_path, "r") as zip_ref:
             count = 0
+            fcc_main_client_prefix = (
+                f"freeCodeCamp-main/client/i18n/locales/{fcc_lang}/"
+            )
+            i18n_client_prefix = f"i18n-curriculum-main/client/{fcc_lang}/"
             for member in zip_ref.namelist():
-                if not member.endswith("/") and (
-                    member.startswith("freeCodeCamp-main/curriculum/structure")
-                    or member.startswith(
+                if member.endswith("/"):
+                    continue
+                if member.startswith("freeCodeCamp-main/curriculum/structure") or (
+                    member.startswith(
                         f"freeCodeCamp-main/curriculum/challenges/{fcc_lang}"
                     )
                     or member.startswith(
                         f"freeCodeCamp-main/curriculum/dictionaries/{fcc_lang}"
-                    )
-                    or member.startswith(
-                        f"freeCodeCamp-main/client/i18n/locales/{fcc_lang}"
                     )
                     or member.startswith(
                         f"i18n-curriculum-main/curriculum/challenges/{fcc_lang}"
@@ -70,9 +72,32 @@ def fetch_command(
                         / "extracted"
                         / member[18 if member.startswith("freeCodeCamp-main") else 21 :]
                     )
-                    target_path.parent.mkdir(parents=True, exist_ok=True)
-                    target_path.write_bytes(zip_ref.read(member))
-                    count += 1
+                elif member.startswith(fcc_main_client_prefix):
+                    # English client UI translation files are still published in the
+                    # freeCodeCamp main repo
+                    target_path = (
+                        curriculum_raw
+                        / "extracted"
+                        / "client"
+                        / fcc_lang
+                        / member.removeprefix(fcc_main_client_prefix)
+                    )
+                elif member.startswith(i18n_client_prefix):
+                    # non-English client UI translation files were moved out of the
+                    # freeCodeCamp main repo and into i18n-curriculum
+                    # (see freeCodeCamp/freeCodeCamp#68425)
+                    target_path = (
+                        curriculum_raw
+                        / "extracted"
+                        / "client"
+                        / fcc_lang
+                        / member.removeprefix(i18n_client_prefix)
+                    )
+                else:
+                    continue
+                target_path.parent.mkdir(parents=True, exist_ok=True)
+                target_path.write_bytes(zip_ref.read(member))
+                count += 1
             logger.info(f"Extracted {count} files from {zip_path}")
     logger.info(f"Fetched curriculum into {curriculum_raw}")
     logger.info("Scraper: fetch phase finished")

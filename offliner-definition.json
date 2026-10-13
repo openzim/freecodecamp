@@ -131,7 +131,7 @@
     },
     "illustration": {
       "type": "blob",
-      "kind": "image",
+      "kind": "illustration",
       "required": false,
       "title": "Illustration",
       "description": "URL for ZIM illustration. Freecodecamp default logo if missing"

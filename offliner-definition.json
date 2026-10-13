@@ -54,6 +54,14 @@
         {
           "title": "Chinese Traditional",
           "value": "zh-hant"
+        },
+        {
+          "title": "Arabic",
+          "value": "ara"
+        },
+        {
+          "title": "Korean",
+          "value": "kor"
         }
       ]
     },

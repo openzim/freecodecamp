@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import axios, { AxiosError } from 'axios'
 import type {
+  Config,
   LocalesIntro,
   LocalesIntroMiscText,
   LocalesMotivation,
@@ -15,6 +16,7 @@ import { runChallenge } from '@/utils/runChallenge'
 import { interpolate } from '@/utils/interpolate'
 
 export type RootState = {
+  _config: Config | null
   _localesIntro: LocalesIntro | null
   _localesIntroMiscText: LocalesIntroMiscText | null
   _localesMotivation: LocalesMotivation | null
@@ -67,6 +69,7 @@ const runTest = function (state: any) {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const _useMainStore: any = defineStore('main', {
   state: (): RootState => ({
+    _config: null,
     _localesIntro: null,
     _localesIntroMiscText: null,
     _localesMotivation: null,
@@ -92,6 +95,27 @@ const _useMainStore: any = defineStore('main', {
     runTest: runTest
   },
   actions: {
+    async fetchConfig() {
+      this.isLoading = true
+      this.errorMessage = ''
+      this.errorDetails = ''
+
+      return axios.get('./content/config.json').then(
+        (response) => {
+          this.isLoading = false
+          this._config = response.data as Config
+          document.documentElement.setAttribute('dir', this._config.textDirection)
+        },
+        (error) => {
+          this.isLoading = false
+          this._config = null
+          this.errorMessage = 'Failed to load config.json data.'
+          if (error instanceof AxiosError) {
+            this.handleAxiosError(error)
+          }
+        }
+      )
+    },
     async fetchLocalesIntro() {
       this.isLoading = true
       this.errorMessage = ''

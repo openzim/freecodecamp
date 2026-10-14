@@ -43,6 +43,9 @@ div.markdown code {
   font-family: 'Hack-ZeroSlash';
   overflow-wrap: anywhere;
   font-size: 1.1rem;
+  /* Code is always written left-to-right, even within RTL languages */
+  direction: ltr;
+  unicode-bidi: embed;
 }
 
 div.markdown strong {

@@ -37,3 +37,7 @@ ZIM_LANG_MAP = {
     "ara": "ara",
     "kor": "kor",
 }
+
+# languages (keyed the same way as FCC_LANG_MAP/ZIM_LANG_MAP, i.e. as passed at CLI)
+# which are written right-to-left and must be rendered accordingly in the ZIM UI
+RTL_LANGUAGES = {"ara"}

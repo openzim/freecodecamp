@@ -49,7 +49,7 @@ const handleReady = ({ view: editorView }: { view: EditorView }) => {
 </script>
 
 <template>
-  <div>
+  <div dir="ltr">
     <codemirror
       v-model="main.solution"
       placeholder="Code goes here..."

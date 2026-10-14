@@ -25,6 +25,7 @@ export type RootState = {
   challenge: Challenge | null
   solution: string
   isLoading: boolean
+  _pendingRequestsCount: number
   errorMessage: string
   errorDetails: string
   cheatMode: boolean
@@ -77,7 +78,10 @@ const _useMainStore: any = defineStore('main', {
     curriculums: null,
     challenge: null,
     solution: '',
-    isLoading: false,
+    // starts true: the first fetches only kick off after the header bar mounts, so
+    // defaulting to false would briefly show the "failed to load" fallback on every load
+    isLoading: true,
+    _pendingRequestsCount: 0,
     errorMessage: '',
     errorDetails: '',
     cheatMode: localStorage.getItem('cheatMode') == 'true',
@@ -95,19 +99,32 @@ const _useMainStore: any = defineStore('main', {
     runTest: runTest
   },
   actions: {
-    async fetchConfig() {
+    // tracks concurrently in-flight fetches so isLoading only clears once all of
+    // them are done, instead of flipping false as soon as the fastest one resolves
+    startLoading() {
+      this._pendingRequestsCount += 1
       this.isLoading = true
+    },
+    stopLoading() {
+      this._pendingRequestsCount -= 1
+      if (this._pendingRequestsCount <= 0) {
+        this._pendingRequestsCount = 0
+        this.isLoading = false
+      }
+    },
+    async fetchConfig() {
+      this.startLoading()
       this.errorMessage = ''
       this.errorDetails = ''
 
       return axios.get('./content/config.json').then(
         (response) => {
-          this.isLoading = false
+          this.stopLoading()
           this._config = response.data as Config
           document.documentElement.setAttribute('dir', this._config.textDirection)
         },
         (error) => {
-          this.isLoading = false
+          this.stopLoading()
           this._config = null
           this.errorMessage = 'Failed to load config.json data.'
           if (error instanceof AxiosError) {
@@ -117,18 +134,18 @@ const _useMainStore: any = defineStore('main', {
       )
     },
     async fetchLocalesIntro() {
-      this.isLoading = true
+      this.startLoading()
       this.errorMessage = ''
       this.errorDetails = ''
 
       return axios.get('./content/locales/intro.json').then(
         (response) => {
-          this.isLoading = false
+          this.stopLoading()
           this._localesIntro = response.data as LocalesIntro
           this._localesIntroMiscText = response.data['misc-text'] as LocalesIntroMiscText
         },
         (error) => {
-          this.isLoading = false
+          this.stopLoading()
           this._localesIntro = null
           this.errorMessage = 'Failed to load locales intro.json data.'
           if (error instanceof AxiosError) {
@@ -138,17 +155,17 @@ const _useMainStore: any = defineStore('main', {
       )
     },
     async fetchLocalesMotivation() {
-      this.isLoading = true
+      this.startLoading()
       this.errorMessage = ''
       this.errorDetails = ''
 
       return axios.get('./content/locales/motivation.json').then(
         (response) => {
-          this.isLoading = false
+          this.stopLoading()
           this._localesMotivation = response.data as LocalesMotivation
         },
         (error) => {
-          this.isLoading = false
+          this.stopLoading()
           this._localesMotivation = null
           this.errorMessage = 'Failed to load locales motivation.json data.'
           if (error instanceof AxiosError) {
@@ -158,17 +175,17 @@ const _useMainStore: any = defineStore('main', {
       )
     },
     async fetchLocalesTranslations() {
-      this.isLoading = true
+      this.startLoading()
       this.errorMessage = ''
       this.errorDetails = ''
 
       return axios.get('./content/locales/translations.json').then(
         (response) => {
-          this.isLoading = false
+          this.stopLoading()
           this._localesTranslations = response.data as LocalesTranslations
         },
         (error) => {
-          this.isLoading = false
+          this.stopLoading()
           this._localesTranslations = null
           this.errorMessage = 'Failed to load locales translations.json data.'
           if (error instanceof AxiosError) {
@@ -178,17 +195,17 @@ const _useMainStore: any = defineStore('main', {
       )
     },
     async fetchCurriculums() {
-      this.isLoading = true
+      this.startLoading()
       this.errorMessage = ''
       this.errorDetails = ''
 
       return axios.get('./content/curriculum/index.json').then(
         (response) => {
-          this.isLoading = false
+          this.stopLoading()
           this.curriculums = response.data as Curriculums
         },
         (error) => {
-          this.isLoading = false
+          this.stopLoading()
           this._localesIntro = null
           this.errorMessage = 'Failed to load curriculum/index.json data.'
           if (error instanceof AxiosError) {
@@ -198,13 +215,13 @@ const _useMainStore: any = defineStore('main', {
       )
     },
     async fetchChallenge(superblock: string, course: string, slug: string) {
-      this.isLoading = true
+      this.startLoading()
       this.errorMessage = ''
       this.errorDetails = ''
 
       return axios.get(`./content/curriculum/${superblock}/${course}/${slug}.md`).then(
         (response) => {
-          this.isLoading = false
+          this.stopLoading()
           this.challenge = parseChallenge(response.data as string)
           this.resetSolution()
           void this.runTest()
@@ -212,7 +229,7 @@ const _useMainStore: any = defineStore('main', {
           mathjaxService.addMathJax()
         },
         (error) => {
-          this.isLoading = false
+          this.stopLoading()
           this.challenge = null
           this.errorMessage = `Failed to load challenges markdown for ${superblock}/${course}/${slug}.`
           if (error instanceof AxiosError) {

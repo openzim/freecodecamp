@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix illustration kind in offliner definition (should be `illustration`, not `image`)
 - Properly display RTL languages (e.g. Arabic) with a right-to-left layout, while keeping code snippets left-to-right (#170)
 - Validate motivation.json content at scrape time so a missing or malformed file fails the build instead of producing a ZIM silently missing this data (#169)
+- Fix blink of "bad content" error message at every page load (#168)
 
 ## [2.1.0] - 2026-10-13
 

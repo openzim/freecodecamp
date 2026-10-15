@@ -39,6 +39,18 @@ def write_locales_to_path(source: Path, curriculumdir: Path):
     shutil.copytree(source, curriculumdir / "locales")
 
 
+def write_config_to_path(curriculumdir: Path, text_direction: str):
+    """Write a small runtime config, consumed by the zimui Vue app
+
+    Holds information not known at zimui build time (same build is reused for every
+    language), but only once the ZIM language has been chosen, e.g. the text
+    direction to use so that RTL languages are properly displayed.
+    """
+    curriculumdir.joinpath("config.json").write_text(
+        json.dumps({"textDirection": text_direction})
+    )
+
+
 def write_course_to_path(
     challenge_list: list[Challenge],
     superblock: str,
@@ -74,6 +86,7 @@ def prebuild_command(
     fcc_lang: str,
     curriculum_raw: Path,
     curriculum_dist: Path,
+    text_direction: str,
 ):
     """Transform raw data in curriculum_raw directory into pre-built data in
     curriculum_dist directory
@@ -150,5 +163,6 @@ def prebuild_command(
     # Copy all the locales for this language
     write_locales_to_path(locales, curriculum_dist)
     validate_locales(curriculum_dist / "locales", included_superblocks)
+    write_config_to_path(curriculum_dist, text_direction=text_direction)
     logger.info(f"Prebuilt curriculum into {curriculum_dist}")
     logger.info("Scraper: prebuild phase finished")

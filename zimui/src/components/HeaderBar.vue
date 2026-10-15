@@ -8,6 +8,7 @@ const main = useMainStore()
 onMounted(async () => {
   try {
     await Promise.all([
+      main.fetchConfig(),
       main.fetchLocalesIntro(),
       main.fetchCurriculums(),
       main.fetchLocalesMotivation(),

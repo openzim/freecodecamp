@@ -9,7 +9,7 @@ from zimscraperlib.inputs import compute_descriptions, handle_user_provided_file
 from zimscraperlib.zim import Creator, metadata
 
 from fcc2zim.build import build_command
-from fcc2zim.constants import FCC_LANG_MAP, VERSION, ZIM_LANG_MAP
+from fcc2zim.constants import FCC_LANG_MAP, RTL_LANGUAGES, VERSION, ZIM_LANG_MAP
 from fcc2zim.context import Context
 from fcc2zim.fetch import fetch_command
 from fcc2zim.prebuild import prebuild_command
@@ -44,6 +44,8 @@ class Scraper:
         if context.language not in ZIM_LANG_MAP:
             raise ValueError(f"Unsupported language {context.language}")
         self.zim_lang = ZIM_LANG_MAP[context.language]
+
+        self.text_direction = "rtl" if context.language in RTL_LANGUAGES else "ltr"
 
         context.description, context.long_description = compute_descriptions(
             context.description, context.description, context.long_description
@@ -177,6 +179,7 @@ class Scraper:
                 course_list=context.course,
                 curriculum_raw=self.curriculum_raw,
                 curriculum_dist=self.curriculum_dist,
+                text_direction=self.text_direction,
             )
         if context.do_build:
             build_command(

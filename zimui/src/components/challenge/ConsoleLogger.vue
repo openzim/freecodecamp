@@ -17,7 +17,8 @@ const syntaxError = toRef(props, 'syntaxError')
       {{ syntaxError.name }}
       {{ syntaxError.message }}
     </p>
-    <pre v-for="(log, i) in main.challengeResult?.logs" v-else :key="i"> > {{ log }} </pre>
+    <pre v-for="(log, i) in main.challengeResult?.logs" v-else :key="i" dir="ltr">
+ > {{ log }} </pre>
   </div>
 </template>
 

@@ -72,3 +72,11 @@ export interface LocalesTranslations {
     [dict_key: string]: string
   }
 }
+
+/**
+ * Runtime configuration, computed by the scraper for the current ZIM language.
+ * File comes from fcc2zim at content/config.json.
+ */
+export interface Config {
+  textDirection: 'ltr' | 'rtl'
+}

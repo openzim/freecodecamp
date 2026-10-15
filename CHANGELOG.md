@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Fix illustration kind in offliner definition (should be `illustration`, not `image`)
+- Properly display RTL languages (e.g. Arabic) with a right-to-left layout, while keeping code snippets left-to-right (#170)
 
 ## [2.1.0] - 2026-10-13
 

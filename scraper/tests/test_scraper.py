@@ -167,32 +167,41 @@ class TestScraper:
             self.create_scraper(zimui_dist=Path("whatever"))
 
     @pytest.mark.parametrize(
-        "language, expected_fcc_lang, expected_zim_lang",
+        "language, expected_fcc_lang, expected_zim_lang, expected_text_direction",
         [
-            pytest.param("zh-hans", "chinese", "zho", id="chinese"),
+            pytest.param("zh-hans", "chinese", "zho", "ltr", id="chinese"),
             pytest.param(
-                "zh-hant", "chinese-traditional", "zho", id="chinese-traditional"
+                "zh-hant",
+                "chinese-traditional",
+                "zho",
+                "ltr",
+                id="chinese-traditional",
             ),
-            pytest.param("eng", "english", "eng", id="english"),
-            pytest.param("spa", "espanol", "spa", id="espanol"),
-            pytest.param("deu", "german", "deu", id="german"),
-            pytest.param("ita", "italian", "ita", id="italian"),
-            pytest.param("jpn", "japanese", "jpn", id="japanese"),
-            pytest.param("por", "portuguese", "por", id="portuguese"),
-            pytest.param("ukr", "ukrainian", "ukr", id="ukrainian"),
-            pytest.param("swa", "swahili", "swa", id="swahili"),
-            pytest.param("ara", "arabic", "ara", id="arabic"),
-            pytest.param("kor", "korean", "kor", id="korean"),
+            pytest.param("eng", "english", "eng", "ltr", id="english"),
+            pytest.param("spa", "espanol", "spa", "ltr", id="espanol"),
+            pytest.param("deu", "german", "deu", "ltr", id="german"),
+            pytest.param("ita", "italian", "ita", "ltr", id="italian"),
+            pytest.param("jpn", "japanese", "jpn", "ltr", id="japanese"),
+            pytest.param("por", "portuguese", "por", "ltr", id="portuguese"),
+            pytest.param("ukr", "ukrainian", "ukr", "ltr", id="ukrainian"),
+            pytest.param("swa", "swahili", "swa", "ltr", id="swahili"),
+            pytest.param("ara", "arabic", "ara", "rtl", id="arabic"),
+            pytest.param("kor", "korean", "kor", "ltr", id="korean"),
         ],
     )
     def test_fcc_lang_ok(
-        self, language: str, expected_fcc_lang: str, expected_zim_lang: str
+        self,
+        language: str,
+        expected_fcc_lang: str,
+        expected_zim_lang: str,
+        expected_text_direction: str,
     ):
         scraper = self.create_scraper(language=language)
         context = Context.get()
         assert context.language == language
         assert scraper.fcc_lang == expected_fcc_lang
         assert scraper.zim_lang == expected_zim_lang
+        assert scraper.text_direction == expected_text_direction
 
     def test_language_ko(self):
         with pytest.raises(ValueError):

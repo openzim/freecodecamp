@@ -20,6 +20,9 @@ def validate_locales(locales_path: Path, included_superblocks: dict[str, list[st
         (locales_path / "translations.json").read_text(encoding="utf-8")
     )
     intro = json.loads((locales_path / "intro.json").read_text(encoding="utf-8"))
+    motivation = json.loads(
+        (locales_path / "motivation.json").read_text(encoding="utf-8")
+    )
     errors: list[str] = []
 
     # checks static keys from translations.json and intro.json
@@ -54,6 +57,30 @@ def validate_locales(locales_path: Path, included_superblocks: dict[str, list[st
                         f"{file_key}.json: '{section}.{key}'"
                         f" has unexpected placeholder {{{{{name}}}}}"
                     )
+
+    # checks motivation.json has the data the ZIM UI relies on (not a key/placeholder
+    # based spec like translations.json and intro.json since it's just lists of
+    # compliments and quotes, with no fixed set of keys)
+    compliments_raw = motivation.get("compliments")
+    if not isinstance(compliments_raw, list) or not compliments_raw:
+        errors.append("motivation.json: missing or empty 'compliments' list")
+    else:
+        compliments = cast(list[str], compliments_raw)
+        if not all(compliment for compliment in compliments):
+            errors.append(
+                "motivation.json: 'compliments' must be a list of non-empty strings"
+            )
+
+    quotes_raw = motivation.get("motivationalQuotes")
+    if not isinstance(quotes_raw, list) or not quotes_raw:
+        errors.append("motivation.json: missing or empty 'motivationalQuotes' list")
+    else:
+        quotes = cast("list[dict[str, str]]", quotes_raw)
+        if not all(quote.get("quote") and quote.get("author") for quote in quotes):
+            errors.append(
+                "motivation.json: 'motivationalQuotes' must be a list of objects"
+                " with non-empty 'quote' and 'author' strings"
+            )
 
     # checks intro.json has entries for every included superblock/course
     for superblock, courses in included_superblocks.items():

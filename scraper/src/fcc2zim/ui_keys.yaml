@@ -1,5 +1,9 @@
 # Keys from locale files that the ZIM UI uses.
 # Dynamic content isn't listed here since those keys depend on which courses and superblocks are included.
+# motivation.compliment is listed here only so check_ui_keys.py knows about this
+# main.t() call; motivation.json's actual content (compliments/motivationalQuotes)
+# is a flat list, not a fixed set of keys, so it's validated with dedicated
+# structural checks in locale_validation.py instead of this key/placeholder spec.
 
 translations:
   buttons:
